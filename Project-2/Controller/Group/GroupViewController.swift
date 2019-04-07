@@ -31,7 +31,7 @@ class GroupViewController: BaseViewController {
     private func setupTableView() {
         
         tableView.mls_registerCellWithNib(
-            identifier: String(describing: GroupTableViewCell.self),
+            identifier: String(describing: GroupListCell.self),
             bundle: nil
         )
     }
@@ -52,11 +52,11 @@ extension GroupViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GroupTableViewCell.self), for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GroupListCell.self), for: indexPath)
         
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         
-        guard let groupCell = cell as? GroupTableViewCell else { return cell }
+        guard let groupCell = cell as? GroupListCell else { return cell }
         
         return groupCell
     }

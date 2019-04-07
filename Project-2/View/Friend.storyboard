@@ -145,16 +145,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="9B8-5L-dWC" id="X0O-hb-94u"/>
+                        <segue destination="Zi3-d1-7tX" kind="show" identifier="SegueFriendDetail" id="JTQ-3m-p3N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rL7-mu-TYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1061.5999999999999" y="83.208395802098963"/>
         </scene>
-        <!--View Controller-->
+        <!--Friend Detail View Controller-->
         <scene sceneID="dCr-sP-VKN">
             <objects>
-                <viewController id="Zi3-d1-7tX" sceneMemberID="viewController">
+                <viewController id="Zi3-d1-7tX" customClass="FriendDetailViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PRf-UL-KgI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,6 +164,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-JP-uPa">
+                                <rect key="frame" x="7" y="21" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="backFriendList:" destination="Zi3-d1-7tX" eventType="touchUpInside" id="Tqi-bL-iou"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -173,6 +182,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K9j-8h-G1Q"/>
                     </view>
+                    <navigationItem key="navigationItem" id="4oa-6x-cpB"/>
+                    <connections>
+                        <outlet property="friendDetail" destination="ytA-pd-fv2" id="pTR-Fs-9pz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZu-96-PvW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -294,4 +307,7 @@
             <point key="canvasLocation" x="122.40000000000001" y="83.208395802098963"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back" width="24" height="24"/>
+    </resources>
 </document>

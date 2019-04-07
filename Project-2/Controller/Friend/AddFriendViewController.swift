@@ -22,15 +22,13 @@ class AddFriendViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.addEmail.becomeFirstResponder()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         
         UIView.animate(withDuration: 0.3, animations: { [weak self] in
             
             self?.contentView.isHidden = false
+            
+            self?.addEmail.becomeFirstResponder()
         })
     }
 

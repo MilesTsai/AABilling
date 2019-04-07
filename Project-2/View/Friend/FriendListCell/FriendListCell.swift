@@ -8,8 +8,18 @@
 
 import UIKit
 
-class FriendTableViewCell: UITableViewCell {
-
+class FriendListCell: UITableViewCell {
+    
+    
+    @IBOutlet weak var userPhoto: UIImageView!
+    
+    @IBOutlet weak var userName: UILabel!
+    
+    @IBOutlet weak var accountsStatus: UILabel!
+    
+    @IBOutlet weak var accountsSum: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

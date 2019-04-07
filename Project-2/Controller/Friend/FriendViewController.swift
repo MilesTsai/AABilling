@@ -32,7 +32,7 @@ class FriendViewController: BaseViewController {
     private func setupTableView() {
         
         tableView.mls_registerCellWithNib(
-            identifier: String(describing: FriendTableViewCell.self),
+            identifier: String(describing: FriendListCell.self),
             bundle: nil
         )
     }
@@ -55,16 +55,30 @@ extension FriendViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendTableViewCell.self), for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendListCell.self), for: indexPath)
         
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         
-        guard let friendCell = cell as? FriendTableViewCell else { return cell }
+        guard let friendCell = cell as? FriendListCell else { return cell }
         
         return friendCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "SegueFriendDetail", sender: indexPath)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueFriendDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                guard let vc = segue.destination as? FriendDetailViewController else { return }
+                
+            }
+            
+        }
+        
+    }
 }
 
 extension FriendViewController: UITableViewDelegate {
