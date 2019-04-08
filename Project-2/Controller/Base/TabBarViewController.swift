@@ -97,5 +97,20 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         viewControllers = tabs.map({ $0.controller() })
         
         delegate = self
+        
+        let isLogIn = true
+        
+        if isLogIn {
+            
+        } else {
+            perform(#selector(showLoginController), with: nil, afterDelay: 0.01)
+        }
+    }
+    
+    @objc func showLoginController() {
+        let loginController = LogInAndSignUpViewController()
+        present(loginController, animated: true, completion: {
+            
+        })
     }
 }

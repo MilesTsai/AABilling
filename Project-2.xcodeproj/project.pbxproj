@@ -26,6 +26,13 @@
 		CE768AB4225A010100ECEBE1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CE768AB3225A010100ECEBE1 /* .gitignore */; };
 		CE768AB9225A165C00ECEBE1 /* FriendDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE768AB7225A165C00ECEBE1 /* FriendDetailCell.swift */; };
 		CE768ABA225A165C00ECEBE1 /* FriendDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE768AB8225A165C00ECEBE1 /* FriendDetailCell.xib */; };
+		CE768ABD225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE768ABB225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.swift */; };
+		CE768ABE225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE768ABC225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.xib */; };
+		CE768AC0225B120A00ECEBE1 /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE768ABF225B120A00ECEBE1 /* GroupDetailViewController.swift */; };
+		CE768AC4225B1A2400ECEBE1 /* GroupDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE768AC2225B1A2400ECEBE1 /* GroupDetailCell.swift */; };
+		CE768AC5225B1A2400ECEBE1 /* GroupDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE768AC3225B1A2400ECEBE1 /* GroupDetailCell.xib */; };
+		CE768AC8225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE768AC6225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift */; };
+		CE768AC9225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE768AC7225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib */; };
 		CED3A86922545874007B5A07 /* LogInAndSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */; };
 		CED3A86C225460B6007B5A07 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86B225460B6007B5A07 /* UITextField+Extension.swift */; };
 		CED3A86F2254655F007B5A07 /* TextFieldPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */; };
@@ -62,6 +69,13 @@
 		CE768AB3225A010100ECEBE1 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CE768AB7225A165C00ECEBE1 /* FriendDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailCell.swift; sourceTree = "<group>"; };
 		CE768AB8225A165C00ECEBE1 /* FriendDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendDetailCell.xib; sourceTree = "<group>"; };
+		CE768ABB225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAccountsListDetailCell.swift; sourceTree = "<group>"; };
+		CE768ABC225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendAccountsListDetailCell.xib; sourceTree = "<group>"; };
+		CE768ABF225B120A00ECEBE1 /* GroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
+		CE768AC2225B1A2400ECEBE1 /* GroupDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailCell.swift; sourceTree = "<group>"; };
+		CE768AC3225B1A2400ECEBE1 /* GroupDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDetailCell.xib; sourceTree = "<group>"; };
+		CE768AC6225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAccountsListDetailCell.swift; sourceTree = "<group>"; };
+		CE768AC7225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupAccountsListDetailCell.xib; sourceTree = "<group>"; };
 		CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInAndSignUp.storyboard; sourceTree = "<group>"; };
 		CED3A86B225460B6007B5A07 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPlaceholder.swift; sourceTree = "<group>"; };
@@ -96,6 +110,7 @@
 			children = (
 				CE768A942254F09A00ECEBE1 /* GroupViewController.swift */,
 				CE768AAA2259DE6200ECEBE1 /* AddGroupViewController.swift */,
+				CE768ABF225B120A00ECEBE1 /* GroupDetailViewController.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -137,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				CE768AB6225A0CFA00ECEBE1 /* GroupListCell */,
+				CE768AC1225B191C00ECEBE1 /* GroupDetailCell */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -146,6 +162,8 @@
 			children = (
 				CE768AB7225A165C00ECEBE1 /* FriendDetailCell.swift */,
 				CE768AB8225A165C00ECEBE1 /* FriendDetailCell.xib */,
+				CE768ABB225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.swift */,
+				CE768ABC225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.xib */,
 			);
 			path = FriendDetailCell;
 			sourceTree = "<group>";
@@ -166,6 +184,17 @@
 				CE768AA42256510500ECEBE1 /* GroupListCell.xib */,
 			);
 			path = GroupListCell;
+			sourceTree = "<group>";
+		};
+		CE768AC1225B191C00ECEBE1 /* GroupDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE768AC2225B1A2400ECEBE1 /* GroupDetailCell.swift */,
+				CE768AC3225B1A2400ECEBE1 /* GroupDetailCell.xib */,
+				CE768AC6225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift */,
+				CE768AC7225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib */,
+			);
+			path = GroupDetailCell;
 			sourceTree = "<group>";
 		};
 		CED3A86A22546070007B5A07 /* Extension */ = {
@@ -344,14 +373,17 @@
 			files = (
 				CE768A892254EED000ECEBE1 /* Group.storyboard in Resources */,
 				CE768ABA225A165C00ECEBE1 /* FriendDetailCell.xib in Resources */,
+				CE768AC5225B1A2400ECEBE1 /* GroupDetailCell.xib in Resources */,
 				CE768A8D2254EF3B00ECEBE1 /* Chart.storyboard in Resources */,
 				CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */,
+				CE768ABE225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.xib in Resources */,
 				CEFDBC1722538EFC00E603F3 /* LaunchScreen.storyboard in Resources */,
 				CE768AB4225A010100ECEBE1 /* .gitignore in Resources */,
 				CED3A86922545874007B5A07 /* LogInAndSignUp.storyboard in Resources */,
 				CE768AA0225642E000ECEBE1 /* FriendListCell.xib in Resources */,
 				CED3A8722254B787007B5A07 /* Friend.storyboard in Resources */,
 				CEFDBC1422538EFC00E603F3 /* Assets.xcassets in Resources */,
+				CE768AC9225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib in Resources */,
 				CE768AA62256510500ECEBE1 /* GroupListCell.xib in Resources */,
 				CEFDBC1222538EF900E603F3 /* Main.storyboard in Resources */,
 				CE768A8F2254EF4E00ECEBE1 /* User.storyboard in Resources */,
@@ -374,16 +406,20 @@
 				CEFDBC0D22538EF900E603F3 /* AppDelegate.swift in Sources */,
 				CED3A87C2254D3FA007B5A07 /* UIImage+Extension.swift in Sources */,
 				CE768A952254F09A00ECEBE1 /* GroupViewController.swift in Sources */,
+				CE768ABD225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.swift in Sources */,
 				CE768A992254F0BF00ECEBE1 /* ChartViewController.swift in Sources */,
 				CE768A972254F0B000ECEBE1 /* AddBillViewController.swift in Sources */,
 				CED3A86F2254655F007B5A07 /* TextFieldPlaceholder.swift in Sources */,
 				CED3A87E2254EAEC007B5A07 /* BaseViewController.swift in Sources */,
 				CED3A8782254CE12007B5A07 /* TabBarViewController.swift in Sources */,
 				CED3A8752254B87A007B5A07 /* FriendViewController.swift in Sources */,
+				CE768AC8225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift in Sources */,
 				CE768AA92259C45600ECEBE1 /* AddFriendViewController.swift in Sources */,
 				CED3A87A2254D006007B5A07 /* UIStoryboard+Extension.swift in Sources */,
 				CE768AAB2259DE6200ECEBE1 /* AddGroupViewController.swift in Sources */,
+				CE768AC0225B120A00ECEBE1 /* GroupDetailViewController.swift in Sources */,
 				CE768A9F225642E000ECEBE1 /* FriendListCell.swift in Sources */,
+				CE768AC4225B1A2400ECEBE1 /* GroupDetailCell.swift in Sources */,
 				CE768AAD2259EB6A00ECEBE1 /* FriendDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

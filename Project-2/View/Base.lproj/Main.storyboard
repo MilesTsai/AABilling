@@ -12,7 +12,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="sYz-nn-gcI">
             <objects>
-                <tabBarController storyboardIdentifier="Main" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="WUm-4E-KrC" customClass="TabBarViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="WUm-4E-KrC" customClass="TabBarViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="miy-vv-05G">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

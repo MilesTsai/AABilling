@@ -29,6 +29,11 @@ class FriendViewController: BaseViewController {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     private func setupTableView() {
         
         tableView.mls_registerCellWithNib(
@@ -39,6 +44,7 @@ class FriendViewController: BaseViewController {
     
     @IBAction func addFriend(_ sender: UIBarButtonItem) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "AddFriend") {
+            vc.modalPresentationStyle = .overCurrentContext
             present(vc, animated: true, completion: nil)
         }
     }
@@ -66,7 +72,7 @@ extension FriendViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "SegueFriendDetail", sender: indexPath)
+        performSegue(withIdentifier: "SegueFriendDetail", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -83,4 +89,7 @@ extension FriendViewController: UITableViewDataSource {
 
 extension FriendViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 46
+    }
 }

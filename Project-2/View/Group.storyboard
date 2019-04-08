@@ -137,7 +137,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="群組" id="LwZ-2o-q0J">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vTU-dd-Cny">
-                            <color key="tintColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addGroup:" destination="1yB-nt-VTi" id="7MI-Ph-ngr"/>
                             </connections>
@@ -145,11 +145,52 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="ofF-j7-AmM" id="Tzr-bG-8Oq"/>
+                        <segue destination="ENf-MF-oLg" kind="show" identifier="SegueGroupDetail" id="0Fd-HF-ItV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tsh-Qr-lJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1156" y="96.7016491754123"/>
+        </scene>
+        <!--Group Detail View Controller-->
+        <scene sceneID="SWr-yd-1XA">
+            <objects>
+                <viewController id="ENf-MF-oLg" customClass="GroupDetailViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gqa-3X-0uF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="etT-DI-Dic">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STj-H9-gyg">
+                                <rect key="frame" x="14" y="28" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backGroupList:" destination="ENf-MF-oLg" eventType="touchUpInside" id="kJJ-wu-ni4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="etT-DI-Dic" firstAttribute="leading" secondItem="VNW-h7-ReM" secondAttribute="leading" id="Dbi-EW-Y6n"/>
+                            <constraint firstItem="VNW-h7-ReM" firstAttribute="trailing" secondItem="etT-DI-Dic" secondAttribute="trailing" id="VpI-QB-N1p"/>
+                            <constraint firstItem="VNW-h7-ReM" firstAttribute="bottom" secondItem="etT-DI-Dic" secondAttribute="bottom" id="aSt-mV-Lzw"/>
+                            <constraint firstItem="etT-DI-Dic" firstAttribute="top" secondItem="Gqa-3X-0uF" secondAttribute="top" id="xGo-5X-Qie"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VNW-h7-ReM"/>
+                    </view>
+                    <connections>
+                        <outlet property="groupDetailTableView" destination="etT-DI-Dic" id="75y-cN-67S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Du7-WB-tq5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2094" y="97"/>
         </scene>
         <!--新增群組-->
         <scene sceneID="zb0-nb-KTj">
@@ -238,6 +279,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="24" height="24"/>
         <image name="groupPhoto" width="36" height="36"/>
     </resources>
 </document>

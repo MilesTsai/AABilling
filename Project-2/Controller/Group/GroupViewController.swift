@@ -28,6 +28,12 @@ class GroupViewController: BaseViewController {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     private func setupTableView() {
         
         tableView.mls_registerCellWithNib(
@@ -60,8 +66,17 @@ extension GroupViewController: UITableViewDataSource {
         
         return groupCell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "SegueGroupDetail", sender: nil)
+    }
 }
 
 extension GroupViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 46
+    }
     
 }

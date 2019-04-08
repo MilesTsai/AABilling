@@ -10,13 +10,13 @@ import UIKit
 
 class FriendDetailViewController: BaseViewController {
     
-    @IBOutlet weak var friendDetail: UITableView! {
+    @IBOutlet weak var friendDetailTableView: UITableView! {
         
         didSet {
             
-            friendDetail.dataSource = self
+            friendDetailTableView.dataSource = self
             
-            friendDetail.delegate = self
+            friendDetailTableView.delegate = self
         }
     }
     
@@ -29,18 +29,27 @@ class FriendDetailViewController: BaseViewController {
     
     private func setupTableView() {
         
-        friendDetail.mls_registerHeaderWithNib(identifier: String(describing: FriendDetailCell.self), bundle: nil)
+        friendDetailTableView.mls_registerCellWithNib(identifier: String(describing: FriendDetailCell.self), bundle: nil)
+        
+        friendDetailTableView.mls_registerCellWithNib(identifier: String(describing: FriendAccountsListDetailCell.self), bundle: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     @IBAction func backFriendList(_ sender: UIButton) {
         
-        dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
     
 
@@ -49,16 +58,22 @@ class FriendDetailViewController: BaseViewController {
 extension FriendDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: FriendDetailCell.self))
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendDetailCell.self))
         return headerCell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendAccountsListDetailCell.self), for: indexPath)
+        
+        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        
+        guard let accountsDetailCell = cell as? FriendAccountsListDetailCell else { return cell }
+        
+        return accountsDetailCell
     }
 }
 
@@ -66,5 +81,9 @@ extension FriendDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 200
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 46
     }
 }

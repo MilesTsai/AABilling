@@ -18,6 +18,14 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        setStatusBarBackgroundColor(color: #colorLiteral(red: 0.6709331784, green: 0.7987587246, blue: 0.7739934854, alpha: 1))
+//
+//        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.6709331784, green: 0.7987587246, blue: 0.7739934854, alpha: 1)
+//
+//        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+//
+//        navigationController?.navigationBar.isTranslucent = false
+        
         if isHideNavigationBar {
             
             navigationItem.hidesBackButton = true
@@ -26,6 +34,14 @@ class BaseViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        setStatusBarBackgroundColor(color: #colorLiteral(red: 0.6709331784, green: 0.7987587246, blue: 0.7739934854, alpha: 1))
+        
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.6709331784, green: 0.7987587246, blue: 0.7739934854, alpha: 1)
+        
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        navigationController?.navigationBar.isTranslucent = false
         
         if isHideNavigationBar {
             navigationController?.setNavigationBarHidden(true, animated: true)
@@ -38,6 +54,11 @@ class BaseViewController: UIViewController {
         if isHideNavigationBar {
             navigationController?.setNavigationBarHidden(false, animated: true)
         }
+    }
+    
+    func setStatusBarBackgroundColor(color: UIColor) {
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        statusBar.backgroundColor = color
     }
 
 }
