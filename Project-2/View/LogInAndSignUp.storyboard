@@ -86,7 +86,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="LogIn:" destination="HY8-Zm-wF1" eventType="touchUpInside" id="T3E-kv-u6F"/>
+                                    <action selector="logIn:" destination="HY8-Zm-wF1" eventType="touchUpInside" id="T3E-kv-u6F"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bjy-o2-O7k">
@@ -106,7 +106,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="SignUpPage:" destination="HY8-Zm-wF1" eventType="touchUpInside" id="0uc-r3-QWb"/>
+                                    <action selector="signUpPage:" destination="HY8-Zm-wF1" eventType="touchUpInside" id="0uc-r3-QWb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -136,8 +136,8 @@
                         <viewLayoutGuide key="safeArea" id="ymB-QN-ByM"/>
                     </view>
                     <connections>
-                        <outlet property="LogInEmail" destination="ncC-AN-WkJ" id="Tel-bg-ubI"/>
-                        <outlet property="LogInPassword" destination="Nc7-QP-32c" id="dlh-bf-Vuh"/>
+                        <outlet property="logInEmail" destination="ncC-AN-WkJ" id="Tel-bg-ubI"/>
+                        <outlet property="logInPassword" destination="Nc7-QP-32c" id="dlh-bf-Vuh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gRd-8J-Z88" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -237,7 +237,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="SignUp:" destination="8Bl-ZX-F8l" eventType="touchUpInside" id="ALO-4E-rjJ"/>
+                                    <action selector="signUp:" destination="8Bl-ZX-F8l" eventType="touchUpInside" id="ALO-4E-rjJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="me0-kY-u75">
@@ -258,7 +258,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="LogInPage:" destination="8Bl-ZX-F8l" eventType="touchUpInside" id="Bo1-7S-pGc"/>
+                                    <action selector=";ogInPagl:" destination="8Bl-ZX-F8l" eventType="touchUpInside" id="Bo1-7S-pGc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -284,9 +284,9 @@
                         <viewLayoutGuide key="safeArea" id="QZb-as-XwZ"/>
                     </view>
                     <connections>
-                        <outlet property="SignUpEmail" destination="ZE8-Hi-5Ne" id="o9a-q8-Wfq"/>
-                        <outlet property="SignUpPassword" destination="4T8-7E-DDn" id="wVb-5l-5Rl"/>
-                        <outlet property="SignUpUsername" destination="Kkc-oY-3Kr" id="zv2-8H-fhm"/>
+                        <outlet property="signUpEmail" destination="ZE8-Hi-5Ne" id="o9a-q8-Wfq"/>
+                        <outlet property="signUpPassword" destination="4T8-7E-DDn" id="wVb-5l-5Rl"/>
+                        <outlet property="signUpUsername" destination="Kkc-oY-3Kr" id="zv2-8H-fhm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuY-EN-e4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>

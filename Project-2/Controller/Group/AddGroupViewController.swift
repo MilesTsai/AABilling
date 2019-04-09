@@ -9,23 +9,23 @@
 import UIKit
 
 class AddGroupViewController: BaseViewController {
-    
+
     @IBOutlet weak var addGroupName: TextFieldPlaceholder!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
-        
+
         self.addGroupName.becomeFirstResponder()
     }
-    
+
     @IBAction func cancelAddGroup(_ sender: UIBarButtonItem) {
-        
+
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
+
 }

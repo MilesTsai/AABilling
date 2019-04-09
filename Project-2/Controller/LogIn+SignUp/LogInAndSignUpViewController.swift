@@ -9,45 +9,49 @@
 import UIKit
 
 class LogInAndSignUpViewController: UIViewController {
-    
-    @IBOutlet weak var LogInEmail: TextFieldPlaceholder!
-    
-    @IBOutlet weak var LogInPassword: TextFieldPlaceholder!
-    
-    @IBOutlet weak var SignUpEmail: TextFieldPlaceholder!
-    
-    @IBOutlet weak var SignUpUsername: TextFieldPlaceholder!
-    
-    @IBOutlet weak var SignUpPassword: TextFieldPlaceholder!
-    
+
+    @IBOutlet weak var logInEmail: TextFieldPlaceholder!
+
+    @IBOutlet weak var logInPassword: TextFieldPlaceholder!
+
+    @IBOutlet weak var signUpEmail: TextFieldPlaceholder!
+
+    @IBOutlet weak var signUpUsername: TextFieldPlaceholder!
+
+    @IBOutlet weak var signUpPassword: TextFieldPlaceholder!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func SignUpPage(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "SignUp" ) {
-            present(vc, animated: true, completion: nil)
+    @IBAction func signUpPage(_ sender: UIButton) {
+        if let signUpVC =
+            storyboard?.instantiateViewController(withIdentifier: "SignUp" ) {
+            present(signUpVC, animated: true, completion: nil)
         }
-        
+
     }
-    
-    @IBAction func LogIn(_ sender: UIButton) {
+
+    @IBAction func logIn(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: String(describing: TabBarViewController.self)) as? TabBarViewController {
-            self.present(vc, animated: true, completion: nil)
+        if let tabBarVC =
+            storyboard.instantiateViewController(
+                withIdentifier: String(describing: TabBarViewController.self)) as? TabBarViewController {
+            self.present(tabBarVC, animated: true, completion: nil)
         }
     }
-    
-    @IBAction func LogInPage(_ sender: UIButton) {
+
+    @IBAction func logInPage(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func SignUp(_ sender: UIButton) {
+
+    @IBAction func signUp(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: String(describing: TabBarViewController.self)) as? TabBarViewController {
-            self.present(vc, animated: true, completion: nil)
+        if let tabBarVC =
+            storyboard.instantiateViewController(
+                withIdentifier: String(describing: TabBarViewController.self)) as? TabBarViewController {
+            self.present(tabBarVC, animated: true, completion: nil)
         }
     }
 }
-

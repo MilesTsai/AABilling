@@ -9,7 +9,7 @@
 import UIKit
 
 enum ImageSource: String {
-    
+
     case friend
     case friendselect
     case group
@@ -23,10 +23,10 @@ enum ImageSource: String {
 }
 
 extension UIImage {
-    
+
     static func source(_ source: ImageSource) -> UIImage? {
-        
+
         return UIImage(named: source.rawValue)
-        
+
     }
 }

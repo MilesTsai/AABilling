@@ -9,27 +9,23 @@
 import UIKit
 
 class FriendBillEditViewController: BaseViewController {
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
 
     }
-    
+
     @IBAction func cancelEditBill(_ sender: UIBarButtonItem) {
-        
+
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
-    
-    @IBAction func ExpenseDetail(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "FriendExpense") {
-            
-            present(vc, animated: true, completion: nil)
+
+    @IBAction func expenseDetail(_ sender: UIButton) {
+        if let expenseDetailVC =
+            storyboard?.instantiateViewController(withIdentifier: "FriendExpense") {
+
+            present(expenseDetailVC, animated: true, completion: nil)
         }
     }
-    
+
 }

@@ -13,13 +13,11 @@ class FreindExpenseDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
-    
-    
+
     @IBAction func cancelExpenseDetail(_ sender: UIBarButtonItem) {
-        
+
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
+
 }

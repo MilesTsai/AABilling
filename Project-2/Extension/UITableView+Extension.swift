@@ -9,18 +9,18 @@
 import UIKit
 
 extension UITableView {
-    
+
     func mls_registerCellWithNib(identifier: String, bundle: Bundle?) {
-        
+
         let nib = UINib(nibName: identifier, bundle: bundle)
-        
+
         register(nib, forCellReuseIdentifier: identifier)
     }
-    
+
     func mls_registerHeaderWithNib(identifier: String, bundle: Bundle?) {
-        
+
         let nib = UINib(nibName: identifier, bundle: bundle)
-        
+
         register(nib, forHeaderFooterViewReuseIdentifier: identifier)
     }
 }
