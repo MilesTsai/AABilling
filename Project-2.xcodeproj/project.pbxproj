@@ -17,6 +17,7 @@
 		CE497D02225C6123004ED6DF /* FriendBillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D01225C6123004ED6DF /* FriendBillDetailViewController.swift */; };
 		CE497D04225C6EF2004ED6DF /* FriendBillEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D03225C6EF2004ED6DF /* FriendBillEditViewController.swift */; };
 		CE497D06225C82D0004ED6DF /* FreindExpenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D05225C82D0004ED6DF /* FreindExpenseDetailViewController.swift */; };
+		CE497D09225CB9AD004ED6DF /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D08225CB9AD004ED6DF /* UIScreen+Extension.swift */; };
 		CE768A892254EED000ECEBE1 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A882254EED000ECEBE1 /* Group.storyboard */; };
 		CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */; };
 		CE768A8D2254EF3B00ECEBE1 /* Chart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */; };
@@ -72,6 +73,7 @@
 		CE497D01225C6123004ED6DF /* FriendBillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendBillDetailViewController.swift; sourceTree = "<group>"; };
 		CE497D03225C6EF2004ED6DF /* FriendBillEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendBillEditViewController.swift; sourceTree = "<group>"; };
 		CE497D05225C82D0004ED6DF /* FreindExpenseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreindExpenseDetailViewController.swift; sourceTree = "<group>"; };
+		CE497D08225CB9AD004ED6DF /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		CE768A882254EED000ECEBE1 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddBill.storyboard; sourceTree = "<group>"; };
 		CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chart.storyboard; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				CED3A8792254D006007B5A07 /* UIStoryboard+Extension.swift */,
 				CED3A87B2254D3FA007B5A07 /* UIImage+Extension.swift */,
 				CE768AA1225644EC00ECEBE1 /* UITableView+Extension.swift */,
+				CE497D08225CB9AD004ED6DF /* UIScreen+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				CE768AA92259C45600ECEBE1 /* AddFriendViewController.swift in Sources */,
 				CED3A87A2254D006007B5A07 /* UIStoryboard+Extension.swift in Sources */,
 				CE768AAB2259DE6200ECEBE1 /* AddGroupViewController.swift in Sources */,
+				CE497D09225CB9AD004ED6DF /* UIScreen+Extension.swift in Sources */,
 				CE497D02225C6123004ED6DF /* FriendBillDetailViewController.swift in Sources */,
 				CE768AC0225B120A00ECEBE1 /* GroupDetailViewController.swift in Sources */,
 				CE768A9F225642E000ECEBE1 /* FriendListCell.swift in Sources */,
