@@ -164,12 +164,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-JP-uPa">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-JP-uPa" userLabel="backFriendList">
                                 <rect key="frame" x="7" y="21" width="38" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="backFriendList:" destination="Zi3-d1-7tX" eventType="touchUpInside" id="Tqi-bL-iou"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7l-oC-WWF" userLabel="friendSetting">
+                                <rect key="frame" x="320" y="21" width="38" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="setting"/>
+                                <connections>
+                                    <action selector="friendSetting:" destination="Zi3-d1-7tX" eventType="touchUpInside" id="iXj-jk-ZXv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -191,6 +199,94 @@
             </objects>
             <point key="canvasLocation" x="1968.8" y="82.3088455772114"/>
         </scene>
+        <!--好友設定-->
+        <scene sceneID="1PA-F3-Lc6">
+            <objects>
+                <viewController id="0mW-zO-wTS" customClass="FriendSettingViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="G7C-pu-oCU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="F0A-C4-vhF">
+                                <rect key="frame" x="30" y="94" width="85" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="F0A-C4-vhF" secondAttribute="height" multiplier="1:1" id="lTX-WO-gvh"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123@email.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVa-Y0-laK">
+                                <rect key="frame" x="145" y="148" width="150" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="FBA-yx-4Y8"/>
+                                    <constraint firstAttribute="height" constant="28" id="txi-nj-VhI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Friend" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPZ-KQ-ONf">
+                                <rect key="frame" x="145" y="106" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="NnV-xE-Z1y"/>
+                                    <constraint firstAttribute="height" constant="30" id="dX0-IS-hPi"/>
+                                </constraints>
+                                <color key="textColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYk-YA-llF">
+                                <rect key="frame" x="40" y="204" width="300" height="30"/>
+                                <color key="backgroundColor" red="0.73223350253807107" green="0.088639852269824237" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="M55-Kh-xC9"/>
+                                    <constraint firstAttribute="height" constant="30" id="Z9m-I6-twO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="mlsCornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="deleteFriend:" destination="0mW-zO-wTS" eventType="touchUpInside" id="Lmc-IB-Neu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mff-Xc-fkT" firstAttribute="trailing" secondItem="RVa-Y0-laK" secondAttribute="trailing" constant="85" id="0tn-IB-S9k"/>
+                            <constraint firstItem="RVa-Y0-laK" firstAttribute="top" secondItem="xPZ-KQ-ONf" secondAttribute="bottom" constant="12" id="5NB-B0-SNr"/>
+                            <constraint firstItem="tYk-YA-llF" firstAttribute="top" secondItem="F0A-C4-vhF" secondAttribute="bottom" constant="25" id="ZXi-hR-4oe"/>
+                            <constraint firstItem="mff-Xc-fkT" firstAttribute="trailing" secondItem="xPZ-KQ-ONf" secondAttribute="trailing" constant="85" id="abz-Sy-NeP"/>
+                            <constraint firstItem="tYk-YA-llF" firstAttribute="top" secondItem="RVa-Y0-laK" secondAttribute="bottom" constant="28" id="gV4-Vu-CSi"/>
+                            <constraint firstItem="xPZ-KQ-ONf" firstAttribute="top" secondItem="mff-Xc-fkT" secondAttribute="top" constant="42" id="gi5-EB-6aj"/>
+                            <constraint firstItem="RVa-Y0-laK" firstAttribute="leading" secondItem="F0A-C4-vhF" secondAttribute="trailing" constant="30" id="nY3-T9-Rl8"/>
+                            <constraint firstItem="F0A-C4-vhF" firstAttribute="top" secondItem="mff-Xc-fkT" secondAttribute="top" constant="30" id="oDn-A4-HoP"/>
+                            <constraint firstItem="tYk-YA-llF" firstAttribute="centerX" secondItem="G7C-pu-oCU" secondAttribute="centerX" id="vtx-HA-OUg"/>
+                            <constraint firstItem="xPZ-KQ-ONf" firstAttribute="leading" secondItem="F0A-C4-vhF" secondAttribute="trailing" constant="30" id="wBB-iF-Q3S"/>
+                            <constraint firstItem="F0A-C4-vhF" firstAttribute="leading" secondItem="mff-Xc-fkT" secondAttribute="leading" constant="30" id="zp6-S7-JSv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mff-Xc-fkT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="好友設定" id="Hhx-Mf-U0L">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="fec-lF-Bqx">
+                            <color key="tintColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="cancelFriendSetting:" destination="0mW-zO-wTS" id="XqI-zV-0OU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="friendEmail" destination="RVa-Y0-laK" id="IXG-0b-BTj"/>
+                        <outlet property="friendNameSetting" destination="xPZ-KQ-ONf" id="pRA-gh-ZnY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gbI-PM-eus" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2920.8000000000002" y="831.63418290854577"/>
+        </scene>
         <!--Add Friend View Controller-->
         <scene sceneID="eFW-AI-HxX">
             <objects>
@@ -199,7 +295,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCh-z9-AqE">
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCh-z9-AqE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -306,8 +402,28 @@
             </objects>
             <point key="canvasLocation" x="122.40000000000001" y="83.208395802098963"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FiD-xk-zz7">
+            <objects>
+                <navigationController storyboardIdentifier="FriendSetting" automaticallyAdjustsScrollViewInsets="NO" id="ynG-wr-Ym7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8MA-j7-wqc">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0mW-zO-wTS" kind="relationship" relationship="rootViewController" id="qcu-hM-xG9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eH6-ny-KkD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1969" y="832"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="24" height="24"/>
+        <image name="setting" width="24" height="24"/>
+        <image name="userPhoto" width="36" height="36"/>
     </resources>
 </document>

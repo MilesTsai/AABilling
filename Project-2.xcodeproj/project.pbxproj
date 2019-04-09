@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */; };
+		CE497CF7225B8C1D004ED6DF /* GroupSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */; };
+		CE497CFB225B928B004ED6DF /* GroupSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CF9225B928B004ED6DF /* GroupSettingCell.swift */; };
+		CE497CFC225B928B004ED6DF /* GroupSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497CFA225B928B004ED6DF /* GroupSettingCell.xib */; };
 		CE768A892254EED000ECEBE1 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A882254EED000ECEBE1 /* Group.storyboard */; };
 		CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */; };
 		CE768A8D2254EF3B00ECEBE1 /* Chart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */; };
@@ -50,6 +54,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSettingViewController.swift; sourceTree = "<group>"; };
+		CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingViewController.swift; sourceTree = "<group>"; };
+		CE497CF9225B928B004ED6DF /* GroupSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingCell.swift; sourceTree = "<group>"; };
+		CE497CFA225B928B004ED6DF /* GroupSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupSettingCell.xib; sourceTree = "<group>"; };
 		CE768A882254EED000ECEBE1 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddBill.storyboard; sourceTree = "<group>"; };
 		CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chart.storyboard; sourceTree = "<group>"; };
@@ -105,12 +113,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE497CF8225B9254004ED6DF /* GroupSettingCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE497CF9225B928B004ED6DF /* GroupSettingCell.swift */,
+				CE497CFA225B928B004ED6DF /* GroupSettingCell.xib */,
+			);
+			path = GroupSettingCell;
+			sourceTree = "<group>";
+		};
 		CE768A902254F02D00ECEBE1 /* Group */ = {
 			isa = PBXGroup;
 			children = (
 				CE768A942254F09A00ECEBE1 /* GroupViewController.swift */,
 				CE768AAA2259DE6200ECEBE1 /* AddGroupViewController.swift */,
 				CE768ABF225B120A00ECEBE1 /* GroupDetailViewController.swift */,
+				CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -151,6 +169,7 @@
 		CE768AA72256510F00ECEBE1 /* Group */ = {
 			isa = PBXGroup;
 			children = (
+				CE497CF8225B9254004ED6DF /* GroupSettingCell */,
 				CE768AB6225A0CFA00ECEBE1 /* GroupListCell */,
 				CE768AC1225B191C00ECEBE1 /* GroupDetailCell */,
 			);
@@ -230,6 +249,7 @@
 				CED3A8742254B87A007B5A07 /* FriendViewController.swift */,
 				CE768AA82259C45600ECEBE1 /* AddFriendViewController.swift */,
 				CE768AAC2259EB6A00ECEBE1 /* FriendDetailViewController.swift */,
+				CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -384,6 +404,7 @@
 				CED3A8722254B787007B5A07 /* Friend.storyboard in Resources */,
 				CEFDBC1422538EFC00E603F3 /* Assets.xcassets in Resources */,
 				CE768AC9225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib in Resources */,
+				CE497CFC225B928B004ED6DF /* GroupSettingCell.xib in Resources */,
 				CE768AA62256510500ECEBE1 /* GroupListCell.xib in Resources */,
 				CEFDBC1222538EF900E603F3 /* Main.storyboard in Resources */,
 				CE768A8F2254EF4E00ECEBE1 /* User.storyboard in Resources */,
@@ -399,6 +420,7 @@
 			files = (
 				CED3A86C225460B6007B5A07 /* UITextField+Extension.swift in Sources */,
 				CEFDBC0F22538EF900E603F3 /* LogInAndSignUpViewController.swift in Sources */,
+				CE497CF7225B8C1D004ED6DF /* GroupSettingViewController.swift in Sources */,
 				CE768AA2225644EC00ECEBE1 /* UITableView+Extension.swift in Sources */,
 				CE768AA52256510500ECEBE1 /* GroupListCell.swift in Sources */,
 				CE768AB9225A165C00ECEBE1 /* FriendDetailCell.swift in Sources */,
@@ -410,6 +432,7 @@
 				CE768A992254F0BF00ECEBE1 /* ChartViewController.swift in Sources */,
 				CE768A972254F0B000ECEBE1 /* AddBillViewController.swift in Sources */,
 				CED3A86F2254655F007B5A07 /* TextFieldPlaceholder.swift in Sources */,
+				CE497CFB225B928B004ED6DF /* GroupSettingCell.swift in Sources */,
 				CED3A87E2254EAEC007B5A07 /* BaseViewController.swift in Sources */,
 				CED3A8782254CE12007B5A07 /* TabBarViewController.swift in Sources */,
 				CED3A8752254B87A007B5A07 /* FriendViewController.swift in Sources */,
@@ -420,6 +443,7 @@
 				CE768AC0225B120A00ECEBE1 /* GroupDetailViewController.swift in Sources */,
 				CE768A9F225642E000ECEBE1 /* FriendListCell.swift in Sources */,
 				CE768AC4225B1A2400ECEBE1 /* GroupDetailCell.swift in Sources */,
+				CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */,
 				CE768AAD2259EB6A00ECEBE1 /* FriendDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

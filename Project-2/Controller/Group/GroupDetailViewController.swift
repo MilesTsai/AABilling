@@ -37,12 +37,19 @@ class GroupDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     @IBAction func backGroupList(_ sender: UIButton) {
         
         navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func groupSetting(_ sender: UIButton) {
+        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "GroupSetting") {
+            present(vc, animated: true, completion: nil)
+        }
     }
     
 }
@@ -77,6 +84,6 @@ extension GroupDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 46
+        return 50
     }
 }

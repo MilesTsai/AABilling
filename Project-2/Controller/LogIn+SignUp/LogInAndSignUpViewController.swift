@@ -44,8 +44,9 @@ class LogInAndSignUpViewController: UIViewController {
     }
     
     @IBAction func SignUp(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "Main") {
-            present(vc, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: String(describing: TabBarViewController.self)) as? TabBarViewController {
+            self.present(vc, animated: true, completion: nil)
         }
     }
 }

@@ -18,14 +18,6 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setStatusBarBackgroundColor(color: #colorLiteral(red: 0.6709331784, green: 0.7987587246, blue: 0.7739934854, alpha: 1))
-//
-//        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.6709331784, green: 0.7987587246, blue: 0.7739934854, alpha: 1)
-//
-//        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-//
-//        navigationController?.navigationBar.isTranslucent = false
-        
         if isHideNavigationBar {
             
             navigationItem.hidesBackButton = true

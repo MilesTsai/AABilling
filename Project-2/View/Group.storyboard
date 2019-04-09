@@ -164,7 +164,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STj-H9-gyg">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STj-H9-gyg" userLabel="backGroupList">
                                 <rect key="frame" x="14" y="28" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="back">
@@ -172,6 +172,14 @@
                                 </state>
                                 <connections>
                                     <action selector="backGroupList:" destination="ENf-MF-oLg" eventType="touchUpInside" id="kJJ-wu-ni4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUC-Vw-VlP" userLabel="groupSetting">
+                                <rect key="frame" x="320" y="21" width="38" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="setting"/>
+                                <connections>
+                                    <action selector="groupSetting:" destination="ENf-MF-oLg" eventType="touchUpInside" id="O5Q-X4-R58"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -191,6 +199,99 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du7-WB-tq5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2094" y="97"/>
+        </scene>
+        <!--群組設定-->
+        <scene sceneID="DKK-nX-wbA">
+            <objects>
+                <viewController id="BzU-gr-GDo" customClass="GroupSettingViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pUQ-1H-Wdb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="groupPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="npz-Mg-pif">
+                                <rect key="frame" x="37" y="71" width="85" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="npz-Mg-pif" secondAttribute="height" multiplier="1:1" id="Jo3-rY-C1V"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeX-DT-xgR">
+                                <rect key="frame" x="200" y="163" width="155" height="28"/>
+                                <color key="backgroundColor" red="0.13965381575041083" green="0.59749762053908628" blue="0.22716687285947856" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="dFb-Bq-Yc6"/>
+                                </constraints>
+                                <state key="normal" title="邀請好友">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="mlsCornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-d6-6Qo">
+                                <rect key="frame" x="0.0" y="191" width="375" height="476"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1q-aO-fHU">
+                                <rect key="frame" x="20" y="163" width="155" height="28"/>
+                                <color key="backgroundColor" red="0.73223350249999997" green="0.08863985227" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="Brl-E9-zmN"/>
+                                </constraints>
+                                <state key="normal" title="刪除群組">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="mlsCornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WqE-m4-UWT">
+                                <rect key="frame" x="145" y="98" width="210" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5K5-ku-zFn"/>
+                                </constraints>
+                                <color key="textColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WqE-m4-UWT" firstAttribute="leading" secondItem="npz-Mg-pif" secondAttribute="trailing" constant="23" id="0ww-97-fjH"/>
+                            <constraint firstItem="0Cg-d6-6Qo" firstAttribute="leading" secondItem="LJR-9o-L8d" secondAttribute="leading" id="5y4-ff-zmy"/>
+                            <constraint firstItem="WqE-m4-UWT" firstAttribute="width" secondItem="pUQ-1H-Wdb" secondAttribute="width" multiplier="210:375" id="I3D-ZT-zD8"/>
+                            <constraint firstItem="0Cg-d6-6Qo" firstAttribute="trailing" secondItem="LJR-9o-L8d" secondAttribute="trailing" id="LpH-QU-ZaN"/>
+                            <constraint firstItem="0Cg-d6-6Qo" firstAttribute="top" secondItem="TeX-DT-xgR" secondAttribute="bottom" id="M9Z-rM-KCM"/>
+                            <constraint firstItem="S1q-aO-fHU" firstAttribute="leading" secondItem="LJR-9o-L8d" secondAttribute="leading" constant="20" id="NTO-DG-YcA"/>
+                            <constraint firstItem="TeX-DT-xgR" firstAttribute="leading" secondItem="S1q-aO-fHU" secondAttribute="trailing" constant="25" id="S3I-Ia-4KS"/>
+                            <constraint firstItem="LJR-9o-L8d" firstAttribute="trailing" secondItem="WqE-m4-UWT" secondAttribute="trailing" constant="20" id="SGj-PJ-CEd"/>
+                            <constraint firstItem="LJR-9o-L8d" firstAttribute="trailing" secondItem="TeX-DT-xgR" secondAttribute="trailing" constant="20" id="TtO-Hp-REu"/>
+                            <constraint firstItem="S1q-aO-fHU" firstAttribute="width" secondItem="pUQ-1H-Wdb" secondAttribute="width" multiplier="155:375" id="W82-zz-uAr"/>
+                            <constraint firstItem="0Cg-d6-6Qo" firstAttribute="top" secondItem="S1q-aO-fHU" secondAttribute="bottom" id="eq4-zd-bGl"/>
+                            <constraint firstItem="S1q-aO-fHU" firstAttribute="top" secondItem="npz-Mg-pif" secondAttribute="bottom" constant="7" id="esT-CE-bvW"/>
+                            <constraint firstItem="0Cg-d6-6Qo" firstAttribute="bottom" secondItem="LJR-9o-L8d" secondAttribute="bottom" id="f4y-Jf-gqn"/>
+                            <constraint firstItem="TeX-DT-xgR" firstAttribute="top" secondItem="WqE-m4-UWT" secondAttribute="bottom" constant="35" id="gVb-t4-nqk"/>
+                            <constraint firstItem="npz-Mg-pif" firstAttribute="leading" secondItem="LJR-9o-L8d" secondAttribute="leading" constant="37" id="gri-Mz-NrF"/>
+                            <constraint firstItem="TeX-DT-xgR" firstAttribute="width" secondItem="pUQ-1H-Wdb" secondAttribute="width" multiplier="155:375" id="yvT-Rq-Bta"/>
+                            <constraint firstItem="npz-Mg-pif" firstAttribute="top" secondItem="LJR-9o-L8d" secondAttribute="top" constant="7" id="z31-pR-QAR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LJR-9o-L8d"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="群組設定" id="vKX-Wj-cOS">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="p3e-Au-xqR">
+                            <color key="tintColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="cancelGroupSetting:" destination="BzU-gr-GDo" id="Z2R-9i-7aK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z4U-fW-8ja" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3047.1999999999998" y="875.71214392803608"/>
         </scene>
         <!--新增群組-->
         <scene sceneID="zb0-nb-KTj">
@@ -277,9 +378,28 @@
             </objects>
             <point key="canvasLocation" x="1156" y="-666"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GHJ-ZH-T1h">
+            <objects>
+                <navigationController storyboardIdentifier="GroupSetting" automaticallyAdjustsScrollViewInsets="NO" id="jfW-ue-JsW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oD6-gn-G8N">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BzU-gr-GDo" kind="relationship" relationship="rootViewController" id="3Oy-7J-Wsa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Hf-7E-5Q5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2094" y="876"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="24" height="24"/>
         <image name="groupPhoto" width="36" height="36"/>
+        <image name="setting" width="24" height="24"/>
     </resources>
 </document>

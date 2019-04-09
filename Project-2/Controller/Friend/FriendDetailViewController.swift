@@ -41,18 +41,18 @@ class FriendDetailViewController: BaseViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
     @IBAction func backFriendList(_ sender: UIButton) {
         
         navigationController?.popToRootViewController(animated: true)
     }
     
-
+    @IBAction func friendSetting(_ sender: UIButton) {
+        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "FriendSetting") {
+            present(vc, animated: true, completion: nil)
+        }
+    }
+    
 }
 
 extension FriendDetailViewController: UITableViewDataSource {
@@ -84,6 +84,6 @@ extension FriendDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 46
+        return 50
     }
 }

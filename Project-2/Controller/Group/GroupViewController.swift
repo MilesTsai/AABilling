@@ -31,7 +31,6 @@ class GroupViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.isNavigationBarHidden = false
     }
     
     private func setupTableView() {
@@ -76,7 +75,7 @@ extension GroupViewController: UITableViewDataSource {
 extension GroupViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 46
+        return 50
     }
     
 }

@@ -32,6 +32,7 @@ class FriendViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     private func setupTableView() {
@@ -90,6 +91,6 @@ extension FriendViewController: UITableViewDataSource {
 extension FriendViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 46
+        return 50
     }
 }

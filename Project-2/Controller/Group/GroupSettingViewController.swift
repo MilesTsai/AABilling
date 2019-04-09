@@ -1,17 +1,15 @@
 //
-//  AddGroupViewController.swift
+//  GroupSettingViewController.swift
 //  Project-2
 //
-//  Created by User on 2019/4/7.
+//  Created by User on 2019/4/8.
 //  Copyright © 2019 Miles. All rights reserved.
 //
 
 import UIKit
 
-class AddGroupViewController: BaseViewController {
-    
-    @IBOutlet weak var addGroupName: TextFieldPlaceholder!
-    
+class GroupSettingViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,11 +17,12 @@ class AddGroupViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        self.addGroupName.becomeFirstResponder()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @IBAction func cancelAddGroup(_ sender: UIBarButtonItem) {
+    @IBAction func cancelGroupSetting(_ sender: UIBarButtonItem) {
         
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
