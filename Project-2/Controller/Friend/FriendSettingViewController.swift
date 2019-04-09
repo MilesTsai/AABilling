@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendSettingViewController: UIViewController {
+class FriendSettingViewController: BaseViewController {
 
     @IBOutlet weak var friendNameSetting: TextFieldPlaceholder!
     
@@ -25,12 +25,6 @@ class FriendSettingViewController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//
-//        self.navigationController?.setNavigationBarHidden(true, animated: true)
-//    }
     
     
     @IBAction func cancelFriendSetting(_ sender: UIBarButtonItem) {

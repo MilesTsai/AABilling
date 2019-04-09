@@ -75,6 +75,11 @@ extension FriendDetailViewController: UITableViewDataSource {
         
         return accountsDetailCell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "SegueFriendBillDetail", sender: nil)
+    }
 }
 
 extension FriendDetailViewController: UITableViewDelegate {

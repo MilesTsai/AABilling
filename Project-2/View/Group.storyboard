@@ -288,6 +288,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="groupSettingTableView" destination="0Cg-d6-6Qo" id="Rzu-jJ-aP3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z4U-fW-8ja" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
