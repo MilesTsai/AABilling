@@ -591,7 +591,20 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVv-VW-abw" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="750" height="488.5"/>
+                                        <subviews>
+                                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xkf-UG-hZN">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="488.5"/>
+                                                <connections>
+                                                    <segue destination="d9X-gf-Jwu" kind="embed" id="MNu-Al-ujM"/>
+                                                </connections>
+                                            </containerView>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="xkf-UG-hZN" firstAttribute="leading" secondItem="IVv-VW-abw" secondAttribute="leading" id="9E8-Ui-420"/>
+                                            <constraint firstAttribute="bottom" secondItem="xkf-UG-hZN" secondAttribute="bottom" id="Sn0-cL-EYq"/>
+                                            <constraint firstItem="xkf-UG-hZN" firstAttribute="top" secondItem="IVv-VW-abw" secondAttribute="top" id="gJA-Zw-Jiq"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -897,6 +910,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDR-BW-4Ao" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4870" y="1584"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fcc-S8-rdV">
+            <objects>
+                <viewController id="d9X-gf-Jwu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5XM-UP-FMr">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="488.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hok-wp-9yt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
