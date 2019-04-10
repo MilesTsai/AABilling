@@ -45,7 +45,7 @@ class LogInAndSignUpViewController: UIViewController {
     @IBAction func logInPage(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-
+    
     @IBAction func signUp(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let tabBarVC =

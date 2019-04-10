@@ -22,7 +22,7 @@ class FriendBillEditViewController: BaseViewController {
 
     @IBAction func expenseDetail(_ sender: UIButton) {
         if let expenseDetailVC =
-            storyboard?.instantiateViewController(withIdentifier: "FriendExpense") {
+            storyboard?.instantiateViewController(withIdentifier: "ExpenseDetail") {
 
             present(expenseDetailVC, animated: true, completion: nil)
         }
