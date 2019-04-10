@@ -61,7 +61,23 @@ extension GroupDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: String(describing: GroupDetailCell.self))
+        
+        guard let groupHeaderCell = headerCell as? GroupDetailCell else { return headerCell }
+        
+        groupHeaderCell.groupSettleUp.addTarget(self, action: #selector(self.groupSettleUpSelect), for: .touchUpInside)
         return headerCell
+        
+    }
+    
+    @objc func groupSettleUpSelect() {
+        
+        let storyboard = UIStoryboard(name: "Group", bundle: nil)
+        let settleVC =
+            storyboard.instantiateViewController(
+                withIdentifier: String(
+                    describing: GroupSettleUpSelectViewController.self))
+        present(settleVC, animated: true, completion: nil)
+        
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,6 +95,7 @@ extension GroupDetailViewController: UITableViewDataSource {
 
         return accountsDetailCell
     }
+    
 }
 
 extension GroupDetailViewController: UITableViewDelegate {

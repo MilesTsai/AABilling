@@ -1,17 +1,15 @@
 //
-//  GroupDetailCell.swift
+//  GroupSettleUpSelectCell.swift
 //  Project-2
 //
-//  Created by User on 2019/4/8.
+//  Created by User on 2019/4/10.
 //  Copyright © 2019 Miles. All rights reserved.
 //
 
 import UIKit
 
-class GroupDetailCell: UITableViewCell {
+class GroupSettleUpSelectCell: UITableViewCell {
 
-    @IBOutlet weak var groupSettleUp: UIButton!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,5 +20,5 @@ class GroupDetailCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

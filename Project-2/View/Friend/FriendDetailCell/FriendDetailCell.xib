@@ -55,6 +55,9 @@
                 <color key="backgroundColor" red="0.6709331784" green="0.79875872459999997" blue="0.77399348540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="settleUpBtn" destination="6c4-V0-fC9" id="4zO-7d-voB"/>
+            </connections>
             <point key="canvasLocation" x="112.31884057971016" y="9.375"/>
         </tableViewCell>
     </objects>

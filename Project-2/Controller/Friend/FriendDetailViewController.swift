@@ -62,7 +62,23 @@ extension FriendDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendDetailCell.self))
-        return headerCell
+        
+        guard let friendHeaderCell = headerCell as? FriendDetailCell else { return headerCell }
+        
+        friendHeaderCell.settleUpBtn.addTarget(self, action: #selector(self.friendSettleUp), for: .touchUpInside)
+        
+        return friendHeaderCell
+    }
+    
+    @objc func friendSettleUp() {
+        
+        let storyboard = UIStoryboard(name: "Friend", bundle: nil)
+        let settleVC =
+            storyboard.instantiateViewController(
+                withIdentifier: String(
+                    describing: FriendSettleUpViewController.self))
+            present(settleVC, animated: true, completion: nil)
+        
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,7 +92,7 @@ extension FriendDetailViewController: UITableViewDataSource {
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
         guard let accountsDetailCell = cell as? FriendAccountsListDetailCell else { return cell }
-
+        
         return accountsDetailCell
     }
 

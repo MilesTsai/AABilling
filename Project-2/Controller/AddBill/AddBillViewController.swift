@@ -8,12 +8,11 @@
 
 import UIKit
 
-class AddBillViewController: UIViewController {
+class AddBillViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
 
 }

@@ -150,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tsh-Qr-lJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1156" y="96.7016491754123"/>
+            <point key="canvasLocation" x="217" y="922"/>
         </scene>
         <!--Group Detail View Controller-->
         <scene sceneID="SWr-yd-1XA">
@@ -198,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du7-WB-tq5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2094" y="97"/>
+            <point key="canvasLocation" x="217" y="1764"/>
         </scene>
         <!--群組設定-->
         <scene sceneID="DKK-nX-wbA">
@@ -228,6 +228,9 @@
                                         <real key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addGroupMember:" destination="BzU-gr-GDo" eventType="touchUpInside" id="iNu-tz-9Qc"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-d6-6Qo">
                                 <rect key="frame" x="0.0" y="191" width="375" height="476"/>
@@ -282,7 +285,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="群組設定" id="vKX-Wj-cOS">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="p3e-Au-xqR">
-                            <color key="tintColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelGroupSetting:" destination="BzU-gr-GDo" id="Z2R-9i-7aK"/>
                             </connections>
@@ -290,11 +293,43 @@
                     </navigationItem>
                     <connections>
                         <outlet property="groupSettingTableView" destination="0Cg-d6-6Qo" id="Rzu-jJ-aP3"/>
+                        <segue destination="Zuc-mx-iMW" kind="show" identifier="SegueAddGroupMember" id="9eN-lv-Vjo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z4U-fW-8ja" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3047.1999999999998" y="875.71214392803608"/>
+            <point key="canvasLocation" x="2374" y="1764"/>
+        </scene>
+        <!--Add Group Member View Controller-->
+        <scene sceneID="Oi3-Nv-eSM">
+            <objects>
+                <viewController id="Zuc-mx-iMW" customClass="AddGroupMemberViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3a1-tw-WdG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KOs-sX-5hg">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KOs-sX-5hg" firstAttribute="trailing" secondItem="fyo-Qy-ewc" secondAttribute="trailing" id="6uM-sn-6Cb"/>
+                            <constraint firstItem="KOs-sX-5hg" firstAttribute="top" secondItem="fyo-Qy-ewc" secondAttribute="top" id="EPZ-m6-i5J"/>
+                            <constraint firstItem="KOs-sX-5hg" firstAttribute="bottom" secondItem="fyo-Qy-ewc" secondAttribute="bottom" id="GK7-vH-3hJ"/>
+                            <constraint firstItem="KOs-sX-5hg" firstAttribute="leading" secondItem="fyo-Qy-ewc" secondAttribute="leading" id="hZC-d8-Eho"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fyo-Qy-ewc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tKX-mm-Rrx"/>
+                    <connections>
+                        <outlet property="addGroupMemberTableView" destination="KOs-sX-5hg" id="qYB-k3-35R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Vl-dT-d6j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3420" y="1763.568215892054"/>
         </scene>
         <!--新增群組-->
         <scene sceneID="zb0-nb-KTj">
@@ -343,7 +378,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4e-S1-lru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2095" y="-666"/>
+            <point key="canvasLocation" x="2374" y="922"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gZ4-75-wGE">
@@ -379,7 +414,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPi-Dw-J5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1156" y="-666"/>
+            <point key="canvasLocation" x="1302" y="922"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GHJ-ZH-T1h">
@@ -397,7 +432,204 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Hf-7E-5Q5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2094" y="876"/>
+            <point key="canvasLocation" x="1302" y="1764"/>
+        </scene>
+        <!--選擇付款-->
+        <scene sceneID="SFt-gp-BED">
+            <objects>
+                <viewController id="3lR-qd-UB9" customClass="GroupSettleUpSelectViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pZu-x3-54s">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6d0-S9-KE6">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6d0-S9-KE6" firstAttribute="leading" secondItem="acP-uo-0bp" secondAttribute="leading" id="JkU-fV-4Jn"/>
+                            <constraint firstItem="6d0-S9-KE6" firstAttribute="top" secondItem="acP-uo-0bp" secondAttribute="top" id="gQb-16-FD6"/>
+                            <constraint firstItem="acP-uo-0bp" firstAttribute="trailing" secondItem="6d0-S9-KE6" secondAttribute="trailing" id="ued-X1-ptL"/>
+                            <constraint firstItem="acP-uo-0bp" firstAttribute="bottom" secondItem="6d0-S9-KE6" secondAttribute="bottom" id="wqd-Tb-E81"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="acP-uo-0bp"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="選擇付款" id="V7k-wh-wua">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="BwP-zg-Xah">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="cancelSettleUpSelect:" destination="3lR-qd-UB9" id="4SQ-2W-YVJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="groupSettleUpSelectTableView" destination="6d0-S9-KE6" id="xeW-9T-y5M"/>
+                        <segue destination="dTW-ZZ-ju0" kind="show" identifier="SegueSettleUpSelect" id="J84-hh-ySB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="olj-ee-NAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2374" y="2606"/>
+        </scene>
+        <!--付款-->
+        <scene sceneID="UiJ-SH-sDy">
+            <objects>
+                <viewController id="l28-P2-Iwc" customClass="GroupSettleUpViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jZp-eh-ieS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A 付給 B" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ql3-lR-6qk">
+                                <rect key="frame" x="149.5" y="208" width="76" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FOe-X4-qez">
+                                <rect key="frame" x="130" y="252" width="115" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cLT-ye-C96"/>
+                                </constraints>
+                                <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4o-pb-4uq">
+                                <rect key="frame" x="130" y="282" width="115" height="1"/>
+                                <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkf-T4-Bzc">
+                                <rect key="frame" x="115.5" y="256" width="11.5" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Cah-50-K9i" firstAttribute="bottom" secondItem="x4o-pb-4uq" secondAttribute="bottom" constant="384" id="7Aw-dv-Lqp"/>
+                            <constraint firstItem="FOe-X4-qez" firstAttribute="centerX" secondItem="jZp-eh-ieS" secondAttribute="centerX" id="7P3-9a-ieJ"/>
+                            <constraint firstItem="x4o-pb-4uq" firstAttribute="top" secondItem="FOe-X4-qez" secondAttribute="bottom" id="DhF-gj-h4u"/>
+                            <constraint firstItem="ql3-lR-6qk" firstAttribute="top" secondItem="Cah-50-K9i" secondAttribute="top" constant="144" id="KO2-5l-UYx"/>
+                            <constraint firstItem="Jkf-T4-Bzc" firstAttribute="centerY" secondItem="FOe-X4-qez" secondAttribute="centerY" id="QMM-oN-Y7e"/>
+                            <constraint firstItem="x4o-pb-4uq" firstAttribute="leading" secondItem="FOe-X4-qez" secondAttribute="leading" id="VXw-0X-ad0"/>
+                            <constraint firstItem="FOe-X4-qez" firstAttribute="top" secondItem="ql3-lR-6qk" secondAttribute="bottom" constant="20" id="XoZ-Hg-aX0"/>
+                            <constraint firstItem="ql3-lR-6qk" firstAttribute="centerX" secondItem="jZp-eh-ieS" secondAttribute="centerX" id="ZQe-mg-Vkl"/>
+                            <constraint firstItem="x4o-pb-4uq" firstAttribute="trailing" secondItem="FOe-X4-qez" secondAttribute="trailing" id="aL9-YI-pww"/>
+                            <constraint firstItem="FOe-X4-qez" firstAttribute="width" secondItem="jZp-eh-ieS" secondAttribute="width" multiplier="115:375" id="vvQ-E9-5xd"/>
+                            <constraint firstItem="FOe-X4-qez" firstAttribute="leading" secondItem="Jkf-T4-Bzc" secondAttribute="trailing" constant="3" id="zkT-Ix-Y9j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Cah-50-K9i"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="付款" id="DJ9-31-2XW">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="ukT-c1-8qv">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="cancelGroupSettleUp:" destination="l28-P2-Iwc" id="2lx-hG-Zti"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ANS-ni-hSI">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HBT-Pe-qqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4460" y="2606"/>
+        </scene>
+        <!--群組帳單細節-->
+        <scene sceneID="J5R-4n-gRf">
+            <objects>
+                <viewController id="XZH-Vw-vL2" customClass="GroupBillDetailViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RFV-FX-5V1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8l5-cJ-c9z">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8l5-cJ-c9z" firstAttribute="leading" secondItem="HUP-Xq-Kpc" secondAttribute="leading" id="DS3-FK-jN9"/>
+                            <constraint firstItem="8l5-cJ-c9z" firstAttribute="top" secondItem="HUP-Xq-Kpc" secondAttribute="top" id="Izj-sx-msh"/>
+                            <constraint firstItem="HUP-Xq-Kpc" firstAttribute="trailing" secondItem="8l5-cJ-c9z" secondAttribute="trailing" id="R1b-cf-DrA"/>
+                            <constraint firstItem="HUP-Xq-Kpc" firstAttribute="bottom" secondItem="8l5-cJ-c9z" secondAttribute="bottom" id="z6e-xk-Pwg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HUP-Xq-Kpc"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="群組帳單細節" id="8HQ-rz-F2s">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="oHc-nO-mhd">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="oPd-hX-QQX">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="groupBillDetailTableView" destination="8l5-cJ-c9z" id="FuK-Fq-oaq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kPB-Jq-hib" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1302" y="3444"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MHf-Rq-7gL">
+            <objects>
+                <navigationController storyboardIdentifier="GroupSettleUpSelectViewController" automaticallyAdjustsScrollViewInsets="NO" id="bub-3h-Nsg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HVk-HH-KYe">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3lR-qd-UB9" kind="relationship" relationship="rootViewController" id="cct-zp-76i"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P06-Od-4hJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1302" y="2606"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Z8k-f7-b4V">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="dTW-ZZ-ju0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="s3i-Pn-Sys">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="l28-P2-Iwc" kind="relationship" relationship="rootViewController" id="3Km-vK-Kqp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rCe-z6-S4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3420" y="2606"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8XO-fn-gkH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gO9-a6-l5Q" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ioU-Dd-z82">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XZH-Vw-vL2" kind="relationship" relationship="rootViewController" id="CaU-nY-uPR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Saq-aO-uua" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="216.80000000000001" y="3443.9280359820091"/>
         </scene>
     </scenes>
     <resources>

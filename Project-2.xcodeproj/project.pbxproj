@@ -58,6 +58,21 @@
 		CEFDBC1222538EF900E603F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFDBC1022538EF900E603F3 /* Main.storyboard */; };
 		CEFDBC1422538EFC00E603F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFDBC1322538EFC00E603F3 /* Assets.xcassets */; };
 		CEFDBC1722538EFC00E603F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFDBC1522538EFC00E603F3 /* LaunchScreen.storyboard */; };
+		CEFF0D66225D8F6B00C74ED4 /* AddGroupMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D65225D8F6A00C74ED4 /* AddGroupMemberViewController.swift */; };
+		CEFF0D6A225D900500C74ED4 /* AddGroupMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D68225D900500C74ED4 /* AddGroupMemberCell.swift */; };
+		CEFF0D6B225D900500C74ED4 /* AddGroupMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFF0D69225D900500C74ED4 /* AddGroupMemberCell.xib */; };
+		CEFF0D6E225D932D00C74ED4 /* AddGroupMemberHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D6C225D932D00C74ED4 /* AddGroupMemberHeaderCell.swift */; };
+		CEFF0D6F225D932D00C74ED4 /* AddGroupMemberHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFF0D6D225D932D00C74ED4 /* AddGroupMemberHeaderCell.xib */; };
+		CEFF0D71225D9DB100C74ED4 /* FriendSettleUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D70225D9DB100C74ED4 /* FriendSettleUpViewController.swift */; };
+		CEFF0D73225DBEA200C74ED4 /* GroupSettleUpSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D72225DBEA200C74ED4 /* GroupSettleUpSelectViewController.swift */; };
+		CEFF0D77225DBEE900C74ED4 /* GroupSettleUpSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D75225DBEE900C74ED4 /* GroupSettleUpSelectCell.swift */; };
+		CEFF0D78225DBEE900C74ED4 /* GroupSettleUpSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFF0D76225DBEE900C74ED4 /* GroupSettleUpSelectCell.xib */; };
+		CEFF0D7A225DD50A00C74ED4 /* GroupSettleUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D79225DD50A00C74ED4 /* GroupSettleUpViewController.swift */; };
+		CEFF0D7C225DE30D00C74ED4 /* GroupBillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D7B225DE30D00C74ED4 /* GroupBillDetailViewController.swift */; };
+		CEFF0D80225DE47100C74ED4 /* GroupBillDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D7E225DE47100C74ED4 /* GroupBillDetailTitleCell.swift */; };
+		CEFF0D81225DE47100C74ED4 /* GroupBillDetailTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFF0D7F225DE47100C74ED4 /* GroupBillDetailTitleCell.xib */; };
+		CEFF0D84225DE49300C74ED4 /* GroupBillDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D82225DE49300C74ED4 /* GroupBillDetailCell.swift */; };
+		CEFF0D85225DE49300C74ED4 /* GroupBillDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFF0D83225DE49300C74ED4 /* GroupBillDetailCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +131,21 @@
 		CEFDBC1322538EFC00E603F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEFDBC1622538EFC00E603F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEFDBC1822538EFC00E603F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEFF0D65225D8F6A00C74ED4 /* AddGroupMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupMemberViewController.swift; sourceTree = "<group>"; };
+		CEFF0D68225D900500C74ED4 /* AddGroupMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupMemberCell.swift; sourceTree = "<group>"; };
+		CEFF0D69225D900500C74ED4 /* AddGroupMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddGroupMemberCell.xib; sourceTree = "<group>"; };
+		CEFF0D6C225D932D00C74ED4 /* AddGroupMemberHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupMemberHeaderCell.swift; sourceTree = "<group>"; };
+		CEFF0D6D225D932D00C74ED4 /* AddGroupMemberHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddGroupMemberHeaderCell.xib; sourceTree = "<group>"; };
+		CEFF0D70225D9DB100C74ED4 /* FriendSettleUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSettleUpViewController.swift; sourceTree = "<group>"; };
+		CEFF0D72225DBEA200C74ED4 /* GroupSettleUpSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettleUpSelectViewController.swift; sourceTree = "<group>"; };
+		CEFF0D75225DBEE900C74ED4 /* GroupSettleUpSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettleUpSelectCell.swift; sourceTree = "<group>"; };
+		CEFF0D76225DBEE900C74ED4 /* GroupSettleUpSelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupSettleUpSelectCell.xib; sourceTree = "<group>"; };
+		CEFF0D79225DD50A00C74ED4 /* GroupSettleUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettleUpViewController.swift; sourceTree = "<group>"; };
+		CEFF0D7B225DE30D00C74ED4 /* GroupBillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBillDetailViewController.swift; sourceTree = "<group>"; };
+		CEFF0D7E225DE47100C74ED4 /* GroupBillDetailTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBillDetailTitleCell.swift; sourceTree = "<group>"; };
+		CEFF0D7F225DE47100C74ED4 /* GroupBillDetailTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupBillDetailTitleCell.xib; sourceTree = "<group>"; };
+		CEFF0D82225DE49300C74ED4 /* GroupBillDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBillDetailCell.swift; sourceTree = "<group>"; };
+		CEFF0D83225DE49300C74ED4 /* GroupBillDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupBillDetailCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +186,10 @@
 				CE768AAA2259DE6200ECEBE1 /* AddGroupViewController.swift */,
 				CE768ABF225B120A00ECEBE1 /* GroupDetailViewController.swift */,
 				CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */,
+				CEFF0D65225D8F6A00C74ED4 /* AddGroupMemberViewController.swift */,
+				CEFF0D72225DBEA200C74ED4 /* GroupSettleUpSelectViewController.swift */,
+				CEFF0D79225DD50A00C74ED4 /* GroupSettleUpViewController.swift */,
+				CEFF0D7B225DE30D00C74ED4 /* GroupBillDetailViewController.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -196,9 +230,12 @@
 		CE768AA72256510F00ECEBE1 /* Group */ = {
 			isa = PBXGroup;
 			children = (
-				CE497CF8225B9254004ED6DF /* GroupSettingCell */,
 				CE768AB6225A0CFA00ECEBE1 /* GroupListCell */,
 				CE768AC1225B191C00ECEBE1 /* GroupDetailCell */,
+				CE497CF8225B9254004ED6DF /* GroupSettingCell */,
+				CEFF0D67225D8FB400C74ED4 /* AddGroupMemberCell */,
+				CEFF0D74225DBEB200C74ED4 /* GroupSettleUpSelectCell */,
+				CEFF0D7D225DE40800C74ED4 /* GroupBillDetailCell */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -281,6 +318,7 @@
 				CE497D01225C6123004ED6DF /* FriendBillDetailViewController.swift */,
 				CE497D03225C6EF2004ED6DF /* FriendBillEditViewController.swift */,
 				CE497D05225C82D0004ED6DF /* FreindExpenseDetailViewController.swift */,
+				CEFF0D70225D9DB100C74ED4 /* FriendSettleUpViewController.swift */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -366,6 +404,37 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CEFF0D67225D8FB400C74ED4 /* AddGroupMemberCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEFF0D6C225D932D00C74ED4 /* AddGroupMemberHeaderCell.swift */,
+				CEFF0D6D225D932D00C74ED4 /* AddGroupMemberHeaderCell.xib */,
+				CEFF0D68225D900500C74ED4 /* AddGroupMemberCell.swift */,
+				CEFF0D69225D900500C74ED4 /* AddGroupMemberCell.xib */,
+			);
+			path = AddGroupMemberCell;
+			sourceTree = "<group>";
+		};
+		CEFF0D74225DBEB200C74ED4 /* GroupSettleUpSelectCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEFF0D75225DBEE900C74ED4 /* GroupSettleUpSelectCell.swift */,
+				CEFF0D76225DBEE900C74ED4 /* GroupSettleUpSelectCell.xib */,
+			);
+			path = GroupSettleUpSelectCell;
+			sourceTree = "<group>";
+		};
+		CEFF0D7D225DE40800C74ED4 /* GroupBillDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEFF0D7E225DE47100C74ED4 /* GroupBillDetailTitleCell.swift */,
+				CEFF0D7F225DE47100C74ED4 /* GroupBillDetailTitleCell.xib */,
+				CEFF0D82225DE49300C74ED4 /* GroupBillDetailCell.swift */,
+				CEFF0D83225DE49300C74ED4 /* GroupBillDetailCell.xib */,
+			);
+			path = GroupBillDetailCell;
+			sourceTree = "<group>";
+		};
 		DF6A6343403FC6674536FFE9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +506,7 @@
 			files = (
 				CE768A892254EED000ECEBE1 /* Group.storyboard in Resources */,
 				CE768ABA225A165C00ECEBE1 /* FriendDetailCell.xib in Resources */,
+				CEFF0D78225DBEE900C74ED4 /* GroupSettleUpSelectCell.xib in Resources */,
 				CE768AC5225B1A2400ECEBE1 /* GroupDetailCell.xib in Resources */,
 				CE768A8D2254EF3B00ECEBE1 /* Chart.storyboard in Resources */,
 				CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */,
@@ -447,12 +517,16 @@
 				CE768AA0225642E000ECEBE1 /* FriendListCell.xib in Resources */,
 				CED3A8722254B787007B5A07 /* Friend.storyboard in Resources */,
 				CEFDBC1422538EFC00E603F3 /* Assets.xcassets in Resources */,
+				CEFF0D6F225D932D00C74ED4 /* AddGroupMemberHeaderCell.xib in Resources */,
 				CE497D00225C5964004ED6DF /* GroupHeaderCell.xib in Resources */,
 				CE768AC9225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib in Resources */,
+				CEFF0D6B225D900500C74ED4 /* AddGroupMemberCell.xib in Resources */,
 				CE497CFC225B928B004ED6DF /* GroupSettingCell.xib in Resources */,
 				CE768AA62256510500ECEBE1 /* GroupListCell.xib in Resources */,
 				CEFDBC1222538EF900E603F3 /* Main.storyboard in Resources */,
+				CEFF0D81225DE47100C74ED4 /* GroupBillDetailTitleCell.xib in Resources */,
 				CE768A8F2254EF4E00ECEBE1 /* User.storyboard in Resources */,
+				CEFF0D85225DE49300C74ED4 /* GroupBillDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,20 +581,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				CED3A86C225460B6007B5A07 /* UITextField+Extension.swift in Sources */,
+				CEFF0D6E225D932D00C74ED4 /* AddGroupMemberHeaderCell.swift in Sources */,
 				CEFDBC0F22538EF900E603F3 /* LogInAndSignUpViewController.swift in Sources */,
 				CE497CFF225C5964004ED6DF /* GroupHeaderCell.swift in Sources */,
 				CE497D04225C6EF2004ED6DF /* FriendBillEditViewController.swift in Sources */,
 				CE497CF7225B8C1D004ED6DF /* GroupSettingViewController.swift in Sources */,
+				CEFF0D73225DBEA200C74ED4 /* GroupSettleUpSelectViewController.swift in Sources */,
 				CE768AA2225644EC00ECEBE1 /* UITableView+Extension.swift in Sources */,
+				CEFF0D7C225DE30D00C74ED4 /* GroupBillDetailViewController.swift in Sources */,
 				CE768AA52256510500ECEBE1 /* GroupListCell.swift in Sources */,
 				CE768AB9225A165C00ECEBE1 /* FriendDetailCell.swift in Sources */,
+				CEFF0D7A225DD50A00C74ED4 /* GroupSettleUpViewController.swift in Sources */,
 				CE768A9B2254F0D200ECEBE1 /* UserViewController.swift in Sources */,
 				CEFDBC0D22538EF900E603F3 /* AppDelegate.swift in Sources */,
 				CE497D06225C82D0004ED6DF /* FreindExpenseDetailViewController.swift in Sources */,
 				CED3A87C2254D3FA007B5A07 /* UIImage+Extension.swift in Sources */,
 				CE768A952254F09A00ECEBE1 /* GroupViewController.swift in Sources */,
 				CE768ABD225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.swift in Sources */,
+				CEFF0D66225D8F6B00C74ED4 /* AddGroupMemberViewController.swift in Sources */,
+				CEFF0D6A225D900500C74ED4 /* AddGroupMemberCell.swift in Sources */,
 				CE768A992254F0BF00ECEBE1 /* ChartViewController.swift in Sources */,
+				CEFF0D80225DE47100C74ED4 /* GroupBillDetailTitleCell.swift in Sources */,
+				CEFF0D77225DBEE900C74ED4 /* GroupSettleUpSelectCell.swift in Sources */,
 				CE768A972254F0B000ECEBE1 /* AddBillViewController.swift in Sources */,
 				CED3A86F2254655F007B5A07 /* TextFieldPlaceholder.swift in Sources */,
 				CE497CFB225B928B004ED6DF /* GroupSettingCell.swift in Sources */,
@@ -531,8 +613,10 @@
 				CE768AA92259C45600ECEBE1 /* AddFriendViewController.swift in Sources */,
 				CED3A87A2254D006007B5A07 /* UIStoryboard+Extension.swift in Sources */,
 				CE768AAB2259DE6200ECEBE1 /* AddGroupViewController.swift in Sources */,
+				CEFF0D84225DE49300C74ED4 /* GroupBillDetailCell.swift in Sources */,
 				CE497D09225CB9AD004ED6DF /* UIScreen+Extension.swift in Sources */,
 				CE497D02225C6123004ED6DF /* FriendBillDetailViewController.swift in Sources */,
+				CEFF0D71225D9DB100C74ED4 /* FriendSettleUpViewController.swift in Sources */,
 				CE768AC0225B120A00ECEBE1 /* GroupDetailViewController.swift in Sources */,
 				CE768A9F225642E000ECEBE1 /* FriendListCell.swift in Sources */,
 				CE768AC4225B1A2400ECEBE1 /* GroupDetailCell.swift in Sources */,

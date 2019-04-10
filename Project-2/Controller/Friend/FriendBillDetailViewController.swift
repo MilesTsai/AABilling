@@ -21,7 +21,12 @@ class FriendBillDetailViewController: BaseViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
 
     }
-
+    
+    @IBAction func backFreindDetail(_ sender: UIBarButtonItem) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func friendBillEdit(_ sender: UIBarButtonItem) {
         if let billEditVC = storyboard?.instantiateViewController(withIdentifier: "FriendBillEdit") {
 

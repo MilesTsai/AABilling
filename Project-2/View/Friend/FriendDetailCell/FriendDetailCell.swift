@@ -10,6 +10,8 @@ import UIKit
 
 class FriendDetailCell: UITableViewCell {
 
+    @IBOutlet weak var settleUpBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +22,5 @@ class FriendDetailCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

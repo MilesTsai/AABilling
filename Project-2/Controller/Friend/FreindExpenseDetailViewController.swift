@@ -34,8 +34,9 @@ class FreindExpenseDetailViewController: BaseViewController {
     
     @IBOutlet var selectExpenseBtns: [UIButton]!
     
+    @IBOutlet weak var firstBtn: UIButton!
     
-    
+    @IBOutlet weak var secondBtn: UIButton!
     
     var containerViews: [UIView] {
         
@@ -65,6 +66,16 @@ class FreindExpenseDetailViewController: BaseViewController {
         
     }
     
+    @IBAction func firstBtnAct(_ sender: UIButton) {
+        
+        sender.isSelected = !sender.isSelected
+    }
+    
+    @IBAction func secondBtnAct(_ sender: UIButton) {
+        
+        sender.isSelected = !sender.isSelected
+    }
+    
     private func moveIndicatorView(toPage: Int) {
         
         indicatorLeadingConstraint.constant = CGFloat(toPage) * UIScreen.width / 2
@@ -76,7 +87,6 @@ class FreindExpenseDetailViewController: BaseViewController {
             self?.view.layoutIfNeeded()
         })
     }
-    
 }
 
 extension FreindExpenseDetailViewController: UIScrollViewDelegate {

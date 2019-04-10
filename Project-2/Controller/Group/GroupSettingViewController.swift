@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupSettingViewController: UIViewController {
+class GroupSettingViewController: BaseViewController {
 
     @IBOutlet weak var groupSettingTableView: UITableView! {
         didSet {
@@ -47,7 +47,12 @@ class GroupSettingViewController: UIViewController {
 
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-
+    
+    @IBAction func addGroupMember(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "SegueAddGroupMember", sender: nil)
+    }
+    
 }
 
 extension GroupSettingViewController: UITableViewDataSource {
