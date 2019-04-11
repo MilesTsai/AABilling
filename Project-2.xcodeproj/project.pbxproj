@@ -73,6 +73,9 @@
 		CEFF0D81225DE47100C74ED4 /* GroupBillDetailTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFF0D7F225DE47100C74ED4 /* GroupBillDetailTitleCell.xib */; };
 		CEFF0D84225DE49300C74ED4 /* GroupBillDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D82225DE49300C74ED4 /* GroupBillDetailCell.swift */; };
 		CEFF0D85225DE49300C74ED4 /* GroupBillDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFF0D83225DE49300C74ED4 /* GroupBillDetailCell.xib */; };
+		CEFF0D87225EDF7F00C74ED4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEFF0D86225EDF7F00C74ED4 /* GoogleService-Info.plist */; };
+		CEFF0D89225F3E1600C74ED4 /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFF0D88225F3E1600C74ED4 /* Loading.storyboard */; };
+		CEFF0D8B225F3F5E00C74ED4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D8A225F3F5E00C74ED4 /* LoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +149,9 @@
 		CEFF0D7F225DE47100C74ED4 /* GroupBillDetailTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupBillDetailTitleCell.xib; sourceTree = "<group>"; };
 		CEFF0D82225DE49300C74ED4 /* GroupBillDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBillDetailCell.swift; sourceTree = "<group>"; };
 		CEFF0D83225DE49300C74ED4 /* GroupBillDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupBillDetailCell.xib; sourceTree = "<group>"; };
+		CEFF0D86225EDF7F00C74ED4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEFF0D88225F3E1600C74ED4 /* Loading.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Loading.storyboard; sourceTree = "<group>"; };
+		CEFF0D8A225F3F5E00C74ED4 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +334,7 @@
 			children = (
 				CED3A8772254CE12007B5A07 /* TabBarViewController.swift */,
 				CED3A87D2254EAEC007B5A07 /* BaseViewController.swift */,
+				CEFF0D8A225F3F5E00C74ED4 /* LoadingViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -360,6 +367,7 @@
 				CEFDBC1E22538FBA00E603F3 /* Controller */,
 				CEFDBC0C22538EF900E603F3 /* AppDelegate.swift */,
 				CEFDBC1822538EFC00E603F3 /* Info.plist */,
+				CEFF0D86225EDF7F00C74ED4 /* GoogleService-Info.plist */,
 			);
 			path = "Project-2";
 			sourceTree = "<group>";
@@ -392,6 +400,7 @@
 				CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */,
 				CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */,
 				CE768A8E2254EF4E00ECEBE1 /* User.storyboard */,
+				CEFF0D88225F3E1600C74ED4 /* Loading.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -456,6 +465,7 @@
 				CEFDBC0622538EF800E603F3 /* Frameworks */,
 				CEFDBC0722538EF800E603F3 /* Resources */,
 				CE497D07225C9B9E004ED6DF /* SwiftLint */,
+				17BE9779696B2A2E11023A07 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -507,6 +517,7 @@
 				CE768A892254EED000ECEBE1 /* Group.storyboard in Resources */,
 				CE768ABA225A165C00ECEBE1 /* FriendDetailCell.xib in Resources */,
 				CEFF0D78225DBEE900C74ED4 /* GroupSettleUpSelectCell.xib in Resources */,
+				CEFF0D89225F3E1600C74ED4 /* Loading.storyboard in Resources */,
 				CE768AC5225B1A2400ECEBE1 /* GroupDetailCell.xib in Resources */,
 				CE768A8D2254EF3B00ECEBE1 /* Chart.storyboard in Resources */,
 				CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */,
@@ -521,6 +532,7 @@
 				CE497D00225C5964004ED6DF /* GroupHeaderCell.xib in Resources */,
 				CE768AC9225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib in Resources */,
 				CEFF0D6B225D900500C74ED4 /* AddGroupMemberCell.xib in Resources */,
+				CEFF0D87225EDF7F00C74ED4 /* GoogleService-Info.plist in Resources */,
 				CE497CFC225B928B004ED6DF /* GroupSettingCell.xib in Resources */,
 				CE768AA62256510500ECEBE1 /* GroupListCell.xib in Resources */,
 				CEFDBC1222538EF900E603F3 /* Main.storyboard in Resources */,
@@ -533,6 +545,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		17BE9779696B2A2E11023A07 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Project-2/Pods-Project-2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Project-2/Pods-Project-2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BD06E3DA62E4C004D1FA4A7D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -612,6 +650,7 @@
 				CE768AC8225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift in Sources */,
 				CE768AA92259C45600ECEBE1 /* AddFriendViewController.swift in Sources */,
 				CED3A87A2254D006007B5A07 /* UIStoryboard+Extension.swift in Sources */,
+				CEFF0D8B225F3F5E00C74ED4 /* LoadingViewController.swift in Sources */,
 				CE768AAB2259DE6200ECEBE1 /* AddGroupViewController.swift in Sources */,
 				CEFF0D84225DE49300C74ED4 /* GroupBillDetailCell.swift in Sources */,
 				CE497D09225CB9AD004ED6DF /* UIScreen+Extension.swift in Sources */,
@@ -768,15 +807,19 @@
 			baseConfigurationReference = 968056FE5A4616085FDFFC44 /* Pods-Project-2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WAH4T7BX8F;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "Project-2/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Miles.Project-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -787,15 +830,19 @@
 			baseConfigurationReference = A12B318B13D4CCFE8266D316 /* Pods-Project-2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WAH4T7BX8F;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "Project-2/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Miles.Project-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

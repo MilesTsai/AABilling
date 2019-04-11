@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddFriendViewController: BaseViewController {
+class AddFriendViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
 
@@ -29,6 +29,15 @@ class AddFriendViewController: BaseViewController {
 
             self?.addEmail.becomeFirstResponder()
         })
+        
+        setStatusBarBackgroundColor(color: UIColor.clear)
+        
+    }
+    
+    func setStatusBarBackgroundColor(color: UIColor) {
+        guard let statusBar =
+            UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        statusBar.backgroundColor = color
     }
 
     @IBAction func cancelAddFriend(_ sender: UIButton) {

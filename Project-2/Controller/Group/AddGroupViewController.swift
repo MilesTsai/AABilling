@@ -25,7 +25,7 @@ class AddGroupViewController: BaseViewController {
 
     @IBAction func cancelAddGroup(_ sender: UIBarButtonItem) {
 
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
 
 }

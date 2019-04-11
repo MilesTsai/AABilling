@@ -47,7 +47,6 @@ class GroupViewController: BaseViewController {
             present(addGroupVC, animated: true, completion: nil)
         }
     }
-
 }
 
 extension GroupViewController: UITableViewDataSource {
