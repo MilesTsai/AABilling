@@ -13,6 +13,8 @@ class AddBillViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.navigationController?.navigationBar.topItem?.title = "新增帳單"
+        
     }
     
     @IBAction func expenseDetail(_ sender: UIButton) {

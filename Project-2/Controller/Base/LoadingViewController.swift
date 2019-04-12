@@ -26,7 +26,7 @@ class LoadingViewController: UIViewController {
             animations: {
                 self.testView.startAnimating()
         }, completion: { _ in
-            Auth.auth().addStateDidChangeListener { [weak self] (_, user) in
+            Auth.auth().addStateDidChangeListener { (_, user) in
                 
                 guard user != nil else {
                     
@@ -47,16 +47,15 @@ class LoadingViewController: UIViewController {
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 
-                if let tabBarVC =
-                    storyboard.instantiateViewController(
-                        withIdentifier: String(describing: TabBarViewController.self)) as? TabBarViewController {
-                    self?.present(tabBarVC, animated: true, completion: nil)
+                if let tabBarVC = storyboard.instantiateViewController(
+                        withIdentifier: String(describing: TabBarViewController.self)
+                    ) as? TabBarViewController {
                     
-                    guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-                        return
-                    }
+                        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+                            return
+                        }
                     
-                    delegate.window?.rootViewController = tabBarVC
+                        delegate.window?.rootViewController = tabBarVC
                 }
             }
         })

@@ -33,6 +33,10 @@ class GroupViewController: BaseViewController {
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 
     private func setupTableView() {
 

@@ -21,10 +21,13 @@ class LogInAndSignUpViewController: UIViewController {
     @IBOutlet weak var signUpUsername: TextFieldPlaceholder!
 
     @IBOutlet weak var signUpPassword: TextFieldPlaceholder!
-
+    
+    var dataBase: Firestore!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        dataBase = Firestore.firestore()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,6 +121,16 @@ class LogInAndSignUpViewController: UIViewController {
                 
                 if error == nil {
                     print("You have successfully signed up")
+                    
+                    guard let currentUser = Auth.auth().currentUser else { return }
+                    
+                    guard let email = self.signUpEmail.text else { return }
+                    
+                    self.dataBase.collection("users").document(currentUser.uid).setData([
+                        "email": email,
+                        "name": self.signUpUsername.text ?? "",
+                        "friends": ""
+                        ])
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     

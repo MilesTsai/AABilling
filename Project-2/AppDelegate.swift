@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     -> Bool {
         
         FirebaseApp.configure()
+        
+        let deBug = Firestore.firestore()
+        
+        print(deBug)
 
         return true
     }
