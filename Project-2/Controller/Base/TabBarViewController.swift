@@ -16,9 +16,9 @@ private enum Tab {
 
     case addBill
 
-    case chart
-
-    case user
+//    case chart
+//
+//    case user
 
     func controller() -> UIViewController {
 
@@ -32,9 +32,9 @@ private enum Tab {
 
         case .addBill: controller = UIStoryboard.addBill.instantiateInitialViewController()!
 
-        case .chart: controller = UIStoryboard.chart.instantiateInitialViewController()!
-
-        case .user: controller = UIStoryboard.user.instantiateInitialViewController()!
+//        case .chart: controller = UIStoryboard.chart.instantiateInitialViewController()!
+//
+//        case .user: controller = UIStoryboard.user.instantiateInitialViewController()!
 
         }
 
@@ -70,26 +70,27 @@ private enum Tab {
                 selectedImage: UIImage.source(.addBillselect)
             )
 
-        case .chart:
-            return UITabBarItem(
-                title: nil,
-                image: UIImage.source(.chart),
-                selectedImage: UIImage.source(.chartselect)
-            )
+//        case .chart:
+//            return UITabBarItem(
+//                title: nil,
+//                image: UIImage.source(.chart),
+//                selectedImage: UIImage.source(.chartselect)
+//            )
 
-        case .user:
-            return UITabBarItem(
-                title: nil,
-                image: UIImage.source(.user),
-                selectedImage: UIImage.source(.userselect)
-            )
+//        case .user:
+//            return UITabBarItem(
+//                title: nil,
+//                image: UIImage.source(.user),
+//                selectedImage: UIImage.source(.userselect)
+//            )
         }
     }
 }
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
-    private let tabs: [Tab] = [.friend, .group, .addBill, .chart, .user]
+//    private let tabs: [Tab] = [.friend, .group, .addBill, .chart, .user]
+    private let tabs: [Tab] = [.friend, .addBill, .group]
 
     override func viewDidLoad() {
         super.viewDidLoad()

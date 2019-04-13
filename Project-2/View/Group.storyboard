@@ -149,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tsh-Qr-lJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1156" y="921.58920539730138"/>
+            <point key="canvasLocation" x="217" y="922"/>
         </scene>
         <!--Group Detail View Controller-->
         <scene sceneID="SWr-yd-1XA">
@@ -283,7 +283,7 @@
                         <viewLayoutGuide key="safeArea" id="LJR-9o-L8d"/>
                     </view>
                     <navigationItem key="navigationItem" title="群組設定" id="vKX-Wj-cOS">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="p3e-Au-xqR">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="p3e-Au-xqR">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelGroupSetting:" destination="BzU-gr-GDo" id="Z2R-9i-7aK"/>
@@ -361,14 +361,14 @@
                         <viewLayoutGuide key="safeArea" id="IqD-pI-6cG"/>
                     </view>
                     <navigationItem key="navigationItem" title="新增群組" id="pHm-cj-vmN">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="9Au-uZ-8oa">
-                            <color key="tintColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="9Au-uZ-8oa">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelAddGroup:" destination="Zdk-nE-RgG" id="hcG-Dr-fTc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="3WF-Bu-4hM">
-                            <color key="tintColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <barButtonItem key="rightBarButtonItem" title="完成" id="3WF-Bu-4hM">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -377,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b4e-S1-lru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3312.8000000000002" y="921.58920539730138"/>
+            <point key="canvasLocation" x="2374" y="922"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CbA-rZ-Y3M">
@@ -395,7 +395,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPi-Dw-J5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2240.8000000000002" y="921.58920539730138"/>
+            <point key="canvasLocation" x="1302" y="922"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GHJ-ZH-T1h">
@@ -438,7 +438,7 @@
                         <viewLayoutGuide key="safeArea" id="acP-uo-0bp"/>
                     </view>
                     <navigationItem key="navigationItem" title="選擇付款" id="V7k-wh-wua">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="BwP-zg-Xah">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="BwP-zg-Xah">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelSettleUpSelect:" destination="3lR-qd-UB9" id="4SQ-2W-YVJ"/>
@@ -505,13 +505,13 @@
                         <viewLayoutGuide key="safeArea" id="Cah-50-K9i"/>
                     </view>
                     <navigationItem key="navigationItem" title="付款" id="DJ9-31-2XW">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="ukT-c1-8qv">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="ukT-c1-8qv">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelGroupSettleUp:" destination="l28-P2-Iwc" id="2lx-hG-Zti"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ANS-ni-hSI">
+                        <barButtonItem key="rightBarButtonItem" title="儲存" id="ANS-ni-hSI">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
@@ -543,10 +543,10 @@
                         <viewLayoutGuide key="safeArea" id="HUP-Xq-Kpc"/>
                     </view>
                     <navigationItem key="navigationItem" title="群組帳單細節" id="8HQ-rz-F2s">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="oHc-nO-mhd">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="oHc-nO-mhd">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="oPd-hX-QQX">
+                        <barButtonItem key="rightBarButtonItem" title="編輯" id="oPd-hX-QQX">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
@@ -628,7 +628,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sro-hJ-8Ez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="216.80000000000001" y="921.58920539730138"/>
+            <point key="canvasLocation" x="217" y="63"/>
         </scene>
     </scenes>
     <resources>

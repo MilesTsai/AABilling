@@ -7,17 +7,22 @@
 //
 
 import UIKit
+import Firebase
 
 class AddFriendViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
 
     @IBOutlet weak var addEmail: UITextField!
+    
+    var dataBase: Firestore!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         contentView.isHidden = true
+        
+        dataBase = Firestore.firestore()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +44,25 @@ class AddFriendViewController: UIViewController {
             UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
         statusBar.backgroundColor = color
     }
-
+    
+    @IBAction func addFriend(_ sender: UIButton) {
+        
+        dataBase.collection("users").whereField("email", isEqualTo: addEmail.text ?? "")
+            .getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                if querySnapshot?.isEmpty == true {
+                    print("No exist")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                    }
+                }
+            }
+        }
+    }
+    
     @IBAction func cancelAddFriend(_ sender: UIButton) {
 
         presentingViewController?.dismiss(animated: false, completion: nil)

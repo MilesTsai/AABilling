@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FriendViewController: BaseViewController {
 
@@ -49,6 +50,11 @@ class FriendViewController: BaseViewController {
             present(addFriendVC, animated: true, completion: nil)
         }
     }
+    
+    @IBAction func logOut(_ sender: UIBarButtonItem) {
+        try? Auth.auth().signOut()
+    }
+    
 }
 
 extension FriendViewController: UITableViewDataSource {

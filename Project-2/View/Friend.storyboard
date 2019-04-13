@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -136,6 +135,12 @@
                         <viewLayoutGuide key="safeArea" id="we4-Qf-CZI"/>
                     </view>
                     <navigationItem key="navigationItem" title="好友" id="Y8W-gH-bcJ">
+                        <barButtonItem key="leftBarButtonItem" title="登出" id="YhF-lH-tNf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="logOut:" destination="o5B-qN-8np" id="Mmt-jO-hkB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="YNC-aU-0br">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -305,13 +310,13 @@
                         <viewLayoutGuide key="safeArea" id="WT6-Zp-7tV"/>
                     </view>
                     <navigationItem key="navigationItem" title="好友帳單細節" id="KVC-Ly-OMW">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="szK-kW-H9j">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="szK-kW-H9j">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="backFreindDetail:" destination="f8H-41-GR2" id="3dn-v4-2hQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="aLD-pg-FVd">
+                        <barButtonItem key="rightBarButtonItem" title="編輯" id="aLD-pg-FVd">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="friendBillEdit:" destination="f8H-41-GR2" id="MA9-Z2-DHl"/>
@@ -374,13 +379,13 @@
                         <viewLayoutGuide key="safeArea" id="qFm-IQ-pYR"/>
                     </view>
                     <navigationItem key="navigationItem" title="付款" id="Ssf-Mg-SUb">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="odw-pE-vaS">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="odw-pE-vaS">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="settleUpCancel:" destination="rlv-LD-oUQ" id="8nh-KE-NRJ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="XKe-z0-3vy">
+                        <barButtonItem key="rightBarButtonItem" title="儲存" id="XKe-z0-3vy">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
@@ -545,7 +550,7 @@
                                 <action selector="cancelEditBill:" destination="Rnp-XG-r2U" id="O4b-jb-bt3"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="hCq-Ho-sRc">
+                        <barButtonItem key="rightBarButtonItem" title="儲存" id="hCq-Ho-sRc">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
@@ -719,13 +724,13 @@
                         <viewLayoutGuide key="safeArea" id="qfS-CQ-B5v"/>
                     </view>
                     <navigationItem key="navigationItem" title="分帳細節" id="Ozc-Jp-a2J">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="SqY-FR-xSN">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="SqY-FR-xSN">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelExpenseDetail:" destination="7w6-ZU-MlV" id="Uz7-Wo-WDh"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="O6u-Jt-ef9">
+                        <barButtonItem key="rightBarButtonItem" title="完成" id="O6u-Jt-ef9">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
@@ -757,7 +762,7 @@
                                     <constraint firstAttribute="width" secondItem="F0A-C4-vhF" secondAttribute="height" multiplier="1:1" id="lTX-WO-gvh"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123@email.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVa-Y0-laK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123@email.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVa-Y0-laK">
                                 <rect key="frame" x="145" y="148" width="150" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="FBA-yx-4Y8"/>
@@ -765,7 +770,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
+                                <color key="highlightedColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Friend" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPZ-KQ-ONf">
                                 <rect key="frame" x="145" y="106" width="150" height="30"/>
@@ -773,8 +778,8 @@
                                     <constraint firstAttribute="width" constant="150" id="NnV-xE-Z1y"/>
                                     <constraint firstAttribute="height" constant="30" id="dX0-IS-hPi"/>
                                 </constraints>
-                                <color key="textColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYk-YA-llF">
@@ -801,11 +806,11 @@
                         <constraints>
                             <constraint firstItem="mff-Xc-fkT" firstAttribute="trailing" secondItem="RVa-Y0-laK" secondAttribute="trailing" constant="85" id="0tn-IB-S9k"/>
                             <constraint firstItem="RVa-Y0-laK" firstAttribute="top" secondItem="xPZ-KQ-ONf" secondAttribute="bottom" constant="12" id="5NB-B0-SNr"/>
+                            <constraint firstItem="RVa-Y0-laK" firstAttribute="leading" secondItem="xPZ-KQ-ONf" secondAttribute="leading" id="O6x-gS-GTN"/>
                             <constraint firstItem="tYk-YA-llF" firstAttribute="top" secondItem="F0A-C4-vhF" secondAttribute="bottom" constant="25" id="ZXi-hR-4oe"/>
                             <constraint firstItem="mff-Xc-fkT" firstAttribute="trailing" secondItem="xPZ-KQ-ONf" secondAttribute="trailing" constant="85" id="abz-Sy-NeP"/>
                             <constraint firstItem="tYk-YA-llF" firstAttribute="top" secondItem="RVa-Y0-laK" secondAttribute="bottom" constant="28" id="gV4-Vu-CSi"/>
                             <constraint firstItem="xPZ-KQ-ONf" firstAttribute="top" secondItem="mff-Xc-fkT" secondAttribute="top" constant="42" id="gi5-EB-6aj"/>
-                            <constraint firstItem="RVa-Y0-laK" firstAttribute="leading" secondItem="F0A-C4-vhF" secondAttribute="trailing" constant="30" id="nY3-T9-Rl8"/>
                             <constraint firstItem="F0A-C4-vhF" firstAttribute="top" secondItem="mff-Xc-fkT" secondAttribute="top" constant="30" id="oDn-A4-HoP"/>
                             <constraint firstItem="tYk-YA-llF" firstAttribute="centerX" secondItem="G7C-pu-oCU" secondAttribute="centerX" id="vtx-HA-OUg"/>
                             <constraint firstItem="xPZ-KQ-ONf" firstAttribute="leading" secondItem="F0A-C4-vhF" secondAttribute="trailing" constant="30" id="wBB-iF-Q3S"/>
@@ -815,7 +820,7 @@
                         <viewLayoutGuide key="safeArea" id="mff-Xc-fkT"/>
                     </view>
                     <navigationItem key="navigationItem" title="好友設定" id="Hhx-Mf-U0L">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="fec-lF-Bqx">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="fec-lF-Bqx">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelFriendSetting:" destination="0mW-zO-wTS" id="XqI-zV-0OU"/>
@@ -870,7 +875,7 @@
                                         <rect key="frame" x="20" y="78" width="94" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.2783687413" green="0.32148486380000002" blue="0.36851397159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Cancel">
+                                        <state key="normal" title="取消">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -886,7 +891,7 @@
                                         <rect key="frame" x="126" y="78" width="94" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.91273397842639592" green="0.69614974845968536" blue="0.2429643188396497" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Add">
+                                        <state key="normal" title="新增">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -894,6 +899,9 @@
                                                 <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="addFriend:" destination="kdA-HC-tdU" eventType="touchUpInside" id="dO2-WN-kRP"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

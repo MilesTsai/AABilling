@@ -126,10 +126,15 @@ class LogInAndSignUpViewController: UIViewController {
                     
                     guard let email = self.signUpEmail.text else { return }
                     
-                    self.dataBase.collection("users").document(currentUser.uid).setData([
+                    self.dataBase.collection("users").document(currentUser.uid).setData(
+                        [
                         "email": email,
                         "name": self.signUpUsername.text ?? "",
-                        "friends": ""
+                        "storage": ""
+                        ])
+                    self.dataBase.collection("users").document(currentUser.uid)
+                        .collection("firends").document().setData(
+                        ["status": 0
                         ])
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)

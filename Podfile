@@ -11,5 +11,7 @@ target 'Project-2' do
   pod 'Firebase/Auth'
   
   pod 'Firebase/Firestore'
+  
+  pod 'IQKeyboardManager'
 
 end
