@@ -16,6 +16,14 @@ class AddFriendViewController: UIViewController {
     @IBOutlet weak var addEmail: UITextField!
     
     var dataBase: Firestore!
+    
+    var friendID: String?
+    
+    var friendName: String?
+    
+    var friendEmail: String?
+    
+    var friendStorage: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +44,6 @@ class AddFriendViewController: UIViewController {
         })
         
         setStatusBarBackgroundColor(color: UIColor.clear)
-        
     }
     
     func setStatusBarBackgroundColor(color: UIColor) {
@@ -47,6 +54,8 @@ class AddFriendViewController: UIViewController {
     
     @IBAction func addFriend(_ sender: UIButton) {
         
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
         dataBase.collection("users").whereField("email", isEqualTo: addEmail.text ?? "")
             .getDocuments { (querySnapshot, error) in
             if let error = error {
@@ -54,11 +63,62 @@ class AddFriendViewController: UIViewController {
             } else {
                 if querySnapshot?.isEmpty == true {
                     print("No exist")
+                    let alertController = UIAlertController(
+                        title: "錯誤",
+                        message: "無此帳號",
+                        preferredStyle: .alert)
+                    
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(defaultAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
                 } else {
                     for document in querySnapshot!.documents {
                         print("\(document.documentID) => \(document.data())")
+                        self.friendID = String(document.documentID)
+                        
+                        let first = document.data()
+                        
+                        self.friendEmail = first["email"] as? String
+                        self.friendName = first["displayName"] as? String
+                        self.friendStorage = first["storage"] as? String
+                        
                     }
+                    self.updateDocument(document: self.friendID ?? "")
+                self.dataBase.collection("users").document(currentUser.uid)
+                    .collection("friends").document(self.friendID ?? "").setData(
+                        ["status": 0,
+                         "displayName": self.friendName ?? "",
+                         "storage": self.friendStorage ?? "",
+                         "email": self.friendEmail ?? ""
+                        ])
+                    let alertController = UIAlertController(
+                        title: "成功",
+                        message: "已寄出好友邀請",
+                        preferredStyle: .alert)
+                    
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(defaultAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
                 }
+            }
+        }
+    }
+    
+    private func updateDocument(document: String) {
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        let inviteFriend =
+            dataBase.collection("users").document(friendID ?? "").collection("friends").document(currentUser.uid)
+        inviteFriend.setData([
+            "invite": currentUser.email ?? ""
+        ]) { error in
+            if let error = error {
+                print("Error updating document: \(error)")
+            } else {
+                print("Document successfully updated")
             }
         }
     }

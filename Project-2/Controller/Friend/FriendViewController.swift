@@ -22,17 +22,23 @@ class FriendViewController: BaseViewController {
             tableView.separatorStyle = .none
         }
     }
-
+    
+    var dataBase: Firestore!
+    
+    let currentUser = Auth.auth().currentUser
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupTableView()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
     }
 
     private func setupTableView() {
@@ -54,7 +60,6 @@ class FriendViewController: BaseViewController {
     @IBAction func logOut(_ sender: UIBarButtonItem) {
         try? Auth.auth().signOut()
     }
-    
 }
 
 extension FriendViewController: UITableViewDataSource {

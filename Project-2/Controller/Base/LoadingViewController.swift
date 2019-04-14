@@ -22,7 +22,7 @@ class LoadingViewController: UIViewController {
         super.viewWillAppear(animated)
         
         UIView.animate(
-            withDuration: 3,
+            withDuration: 3.0,
             animations: {
                 self.testView.startAnimating()
         }, completion: { _ in

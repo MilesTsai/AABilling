@@ -85,8 +85,9 @@ class LogInAndSignUpViewController: UIViewController {
                     // 提示用戶從 firebase 返回了一個錯誤。
                     let alertController =
                         UIAlertController(
-                            title: "Error",
-                            message: error?.localizedDescription,
+                            title: "錯誤",
+                            message: "無此帳號",
+//                            message: error?.localizedDescription,
                             preferredStyle: .alert
                     )
                     
@@ -129,12 +130,8 @@ class LogInAndSignUpViewController: UIViewController {
                     self.dataBase.collection("users").document(currentUser.uid).setData(
                         [
                         "email": email,
-                        "name": self.signUpUsername.text ?? "",
+                        "displayName": self.signUpUsername.text ?? "",
                         "storage": ""
-                        ])
-                    self.dataBase.collection("users").document(currentUser.uid)
-                        .collection("firends").document().setData(
-                        ["status": 0
                         ])
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -146,7 +143,11 @@ class LogInAndSignUpViewController: UIViewController {
                     }
                 } else {
                     let alertController =
-                        UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                        UIAlertController(
+                            title: "錯誤",
+                            message: "此帳號已被註冊",
+//                            message: error?.localizedDescription,
+                            preferredStyle: .alert)
                     
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     alertController.addAction(defaultAction)
