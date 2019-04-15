@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FriendDetailViewController: BaseViewController {
 
@@ -19,7 +20,11 @@ class FriendDetailViewController: BaseViewController {
             friendDetailTableView.delegate = self
         }
     }
+    
+    var dataBase: Firestore = Firestore.firestore()
 
+    var friendData: PersonalData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,7 +60,6 @@ class FriendDetailViewController: BaseViewController {
             present(friendSettingVC, animated: true, completion: nil)
         }
     }
-
 }
 
 extension FriendDetailViewController: UITableViewDataSource {
@@ -67,6 +71,8 @@ extension FriendDetailViewController: UITableViewDataSource {
         
         friendHeaderCell.settleUpBtn.addTarget(self, action: #selector(self.friendSettleUp), for: .touchUpInside)
         
+        friendHeaderCell.friendName.text = friendData?.displayName
+        
         return friendHeaderCell
     }
     
@@ -74,8 +80,8 @@ extension FriendDetailViewController: UITableViewDataSource {
         
         let storyboard = UIStoryboard(name: "Friend", bundle: nil)
         let settleVC =
-            storyboard.instantiateViewController(
-                withIdentifier: String(
+                storyboard.instantiateViewController(
+                    withIdentifier: String(
                     describing: FriendSettleUpViewController.self))
             present(settleVC, animated: true, completion: nil)
         
@@ -87,7 +93,8 @@ extension FriendDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: FriendAccountsListDetailCell.self), for: indexPath)
+                withIdentifier: String(describing: FriendAccountsListDetailCell.self),
+                for: indexPath)
 
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
@@ -109,6 +116,6 @@ extension FriendDetailViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 60
     }
 }

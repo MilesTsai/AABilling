@@ -15,22 +15,17 @@ class AddFriendViewController: UIViewController {
 
     @IBOutlet weak var addEmail: UITextField!
     
-    var dataBase: Firestore!
+    var dataBase: Firestore = Firestore.firestore()
     
     var friendID: String?
     
-    var friendName: String?
-    
-    var friendEmail: String?
-    
-    var friendStorage: String?
+    var user: PersonalData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         contentView.isHidden = true
         
-        dataBase = Firestore.firestore()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +42,7 @@ class AddFriendViewController: UIViewController {
     }
     
     func setStatusBarBackgroundColor(color: UIColor) {
+        
         guard let statusBar =
             UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
         statusBar.backgroundColor = color
@@ -56,7 +52,9 @@ class AddFriendViewController: UIViewController {
         
         guard let currentUser = Auth.auth().currentUser else { return }
         
-        dataBase.collection("users").whereField("email", isEqualTo: addEmail.text ?? "")
+        dataBase
+            .collection("users")
+            .whereField("email", isEqualTo: addEmail.text ?? "")
             .getDocuments { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
@@ -64,11 +62,15 @@ class AddFriendViewController: UIViewController {
                 if querySnapshot?.isEmpty == true {
                     print("No exist")
                     let alertController = UIAlertController(
-                        title: "錯誤",
-                        message: "無此帳號",
-                        preferredStyle: .alert)
+                                            title: "錯誤",
+                                            message: "無此帳號",
+                                            preferredStyle: .alert)
                     
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    let defaultAction = UIAlertAction(
+                                            title: "OK",
+                                            style: .cancel,
+                                            handler: nil)
+                    
                     alertController.addAction(defaultAction)
                     
                     self.present(alertController, animated: true, completion: nil)
@@ -79,25 +81,33 @@ class AddFriendViewController: UIViewController {
                         
                         let first = document.data()
                         
-                        self.friendEmail = first["email"] as? String
-                        self.friendName = first["displayName"] as? String
-                        self.friendStorage = first["storage"] as? String
-                        
+                        self.user = PersonalData(
+                            displayName: first["displayName"] as? String,
+                            email: first["email"] as? String,
+                            storage: first["storage"] as? String
+                        )
                     }
                     self.updateDocument(document: self.friendID ?? "")
-                self.dataBase.collection("users").document(currentUser.uid)
-                    .collection("friends").document(self.friendID ?? "").setData(
-                        ["status": 0,
-                         "displayName": self.friendName ?? "",
-                         "storage": self.friendStorage ?? "",
-                         "email": self.friendEmail ?? ""
-                        ])
+                    self.dataBase.collection("users").document(currentUser.uid)
+                        .collection("friends").document(self.friendID ?? "").setData(
+                            ["status": 0,
+                             PersonalData.CodingKeys.displayName.rawValue:
+                                self.user?.displayName ?? "",
+                             PersonalData.CodingKeys.storage.rawValue:
+                                self.user?.storage ?? "",
+                             PersonalData.CodingKeys.email.rawValue:
+                                self.user?.email ?? ""
+                            ])
                     let alertController = UIAlertController(
-                        title: "成功",
-                        message: "已寄出好友邀請",
-                        preferredStyle: .alert)
+                                            title: "成功",
+                                            message: "已寄出好友邀請",
+                                            preferredStyle: .alert)
                     
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    let defaultAction = UIAlertAction(
+                                            title: "OK",
+                                            style: .cancel,
+                                            handler: nil)
+                    
                     alertController.addAction(defaultAction)
                     
                     self.present(alertController, animated: true, completion: nil)
@@ -111,7 +121,12 @@ class AddFriendViewController: UIViewController {
         guard let currentUser = Auth.auth().currentUser else { return }
         
         let inviteFriend =
-            dataBase.collection("users").document(friendID ?? "").collection("friends").document(currentUser.uid)
+            dataBase
+                .collection("users")
+                .document(friendID ?? "")
+                .collection("friends")
+                .document(currentUser.uid)
+        
         inviteFriend.setData([
             "invite": currentUser.email ?? ""
         ]) { error in

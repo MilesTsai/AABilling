@@ -135,7 +135,7 @@
                         <viewLayoutGuide key="safeArea" id="GCJ-t4-D2i"/>
                     </view>
                     <navigationItem key="navigationItem" title="新增帳單" id="wby-jN-bZM">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JSc-p6-SVn">
+                        <barButtonItem key="rightBarButtonItem" title="儲存" id="JSc-p6-SVn">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>

@@ -33,5 +33,4 @@ class FriendBillDetailViewController: BaseViewController {
             present(billEditVC, animated: true, completion: nil)
         }
     }
-
 }

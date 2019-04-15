@@ -10,6 +10,12 @@ import UIKit
 
 class FriendDetailCell: UITableViewCell {
 
+    @IBOutlet weak var friendPhoto: UIImageView!
+    
+    @IBOutlet weak var friendName: UILabel!
+    
+    @IBOutlet weak var friendBill: UILabel!
+    
     @IBOutlet weak var settleUpBtn: UIButton!
     
     override func awakeFromNib() {

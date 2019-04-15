@@ -23,15 +23,18 @@ class FriendViewController: BaseViewController {
         }
     }
     
-    var dataBase: Firestore!
+    var dataBase: Firestore = Firestore.firestore()
     
     let currentUser = Auth.auth().currentUser
+    
+    var friendList = [PersonalData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupTableView()
         
+        loadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +50,33 @@ class FriendViewController: BaseViewController {
             identifier: String(describing: FriendListCell.self),
             bundle: nil
         )
+    }
+    
+    func loadData() {
+        
+        dataBase
+            .collection("users")
+            .document(currentUser?.uid ?? "")
+            .collection("friends")
+            .getDocuments { querySnapshot, error in
+            
+                if let error = error {
+                    print("\(error.localizedDescription)")
+                } else {
+                    guard let snapshot = querySnapshot else { return }
+                    
+                    self.friendList = snapshot
+                                        .documents
+                                        .compactMap({
+                                            PersonalData(dictionary: $0.data())
+                                        })
+                    
+                    DispatchQueue.main.async {
+                        
+                        self.tableView.reloadData()
+                    }
+                }
+            }
     }
 
     @IBAction func addFriend(_ sender: UIBarButtonItem) {
@@ -66,7 +96,7 @@ extension FriendViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 10
+        return friendList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,6 +107,10 @@ extension FriendViewController: UITableViewDataSource {
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
         guard let friendCell = cell as? FriendListCell else { return cell }
+        
+        let list = friendList[indexPath.row]
+        
+        friendCell.userName.text = list.displayName
 
         return friendCell
     }
@@ -85,21 +119,20 @@ extension FriendViewController: UITableViewDataSource {
 
         performSegue(withIdentifier: "SegueFriendDetail", sender: nil)
     }
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "SegueFriendDetail" {
-//            if let indexPath = tableView.indexPathForSelectedRow {
-//                guard let vc = segue.destination as? FriendDetailViewController else { return }
-//
-//            }
-//
-//        }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueFriendDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                guard let friendDetailVC = segue.destination as? FriendDetailViewController else { return }
+                friendDetailVC.friendData = friendList[indexPath.row]
+            }
+        }
     }
+}
 
 extension FriendViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 60
     }
 }
