@@ -10,13 +10,16 @@ import UIKit
 
 class FriendSettingViewController: BaseViewController {
 
-    @IBOutlet weak var friendNameSetting: TextFieldPlaceholder!
-
+    @IBOutlet weak var friendName: UILabel!
+    
     @IBOutlet weak var friendEmail: UILabel!
+    
+    var friendDetailData: PersonalData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        friendEmail.text = friendDetailData?.email
         // Do any additional setup after loading the view.
     }
 
@@ -24,6 +27,10 @@ class FriendSettingViewController: BaseViewController {
         super.viewWillAppear(animated)
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        friendName.text = friendDetailData?.displayName
+        
+        friendEmail.text = friendDetailData?.email
     }
 
     @IBAction func cancelFriendSetting(_ sender: UIBarButtonItem) {

@@ -40,11 +40,18 @@ struct PersonalData {
 
 extension PersonalData: DocumentSerializable {
     init?(dictionary: [String: Any]) {
-        guard let displayName = dictionary["displayName"] as? String,
-        let email = dictionary["email"] as? String,
+        guard let displayName =
+                    dictionary["displayName"] as? String,
+              let email =
+                    dictionary["email"] as? String,
+              let storage =
+                    dictionary["storage"] as? String
+              else { return nil }
         
-            let storage = dictionary["storage"] as? String else { return nil }
-        
-        self.init(displayName: displayName, email: email, storage: storage)
+        self.init(
+            displayName: displayName,
+            email: email,
+            storage: storage
+        )
     }
 }

@@ -63,13 +63,14 @@ class FriendViewController: BaseViewController {
                 if let error = error {
                     print("\(error.localizedDescription)")
                 } else {
-                    guard let snapshot = querySnapshot else { return }
-                    
-                    self.friendList = snapshot
-                                        .documents
-                                        .compactMap({
-                                            PersonalData(dictionary: $0.data())
-                                        })
+                    guard let snapshot =
+                              querySnapshot else { return }
+                    self.friendList =
+                         snapshot
+                            .documents
+                            .compactMap({
+                                PersonalData(dictionary: $0.data())
+                            })
                     
                     DispatchQueue.main.async {
                         
@@ -81,7 +82,7 @@ class FriendViewController: BaseViewController {
 
     @IBAction func addFriend(_ sender: UIBarButtonItem) {
         if let addFriendVC =
-            storyboard?.instantiateViewController(withIdentifier: "AddFriend") {
+               storyboard?.instantiateViewController(withIdentifier: "AddFriend") {
             addFriendVC.modalPresentationStyle = .overCurrentContext
             present(addFriendVC, animated: true, completion: nil)
         }
@@ -106,7 +107,8 @@ extension FriendViewController: UITableViewDataSource {
 
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
-        guard let friendCell = cell as? FriendListCell else { return cell }
+        guard let friendCell =
+                  cell as? FriendListCell else { return cell }
         
         let list = friendList[indexPath.row]
         
@@ -123,7 +125,9 @@ extension FriendViewController: UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueFriendDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                guard let friendDetailVC = segue.destination as? FriendDetailViewController else { return }
+                guard let friendDetailVC =
+                          segue.destination
+                            as? FriendDetailViewController else { return }
                 friendDetailVC.friendData = friendList[indexPath.row]
             }
         }

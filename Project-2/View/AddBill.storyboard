@@ -137,8 +137,16 @@
                     <navigationItem key="navigationItem" title="新增帳單" id="wby-jN-bZM">
                         <barButtonItem key="rightBarButtonItem" title="儲存" id="JSc-p6-SVn">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveBill:" destination="4xM-RI-gtA" id="eIN-tx-gaD"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="accountObject" destination="h8q-6W-PVe" id="gX4-Gp-HO2"/>
+                        <outlet property="billAmount" destination="kEV-YP-wla" id="Lfa-QO-dhB"/>
+                        <outlet property="friendBillName" destination="esd-wy-2Z6" id="HVd-0w-ujM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3td-UU-6tE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

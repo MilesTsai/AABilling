@@ -35,11 +35,14 @@ class FriendDetailViewController: BaseViewController {
     private func setupTableView() {
 
         friendDetailTableView.mls_registerCellWithNib(
-            identifier: String(describing: FriendDetailCell.self), bundle: nil)
+            identifier: String(describing: FriendDetailCell.self),
+            bundle: nil
+        )
 
         friendDetailTableView.mls_registerCellWithNib(
-            identifier: String(describing: FriendAccountsListDetailCell.self), bundle: nil)
-
+            identifier: String(describing: FriendAccountsListDetailCell.self),
+            bundle: nil
+        )
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,22 +57,48 @@ class FriendDetailViewController: BaseViewController {
     }
 
     @IBAction func friendSetting(_ sender: UIButton) {
-
-        if let friendSettingVC =
-            storyboard?.instantiateViewController(withIdentifier: "FriendSetting") {
-            present(friendSettingVC, animated: true, completion: nil)
-        }
+        
+        guard let nextVC =
+                    storyboard?.instantiateViewController(
+                        withIdentifier: "FriendSetting")
+                        as? UINavigationController else { return }
+        
+        guard let friendSettingVC =
+                    nextVC.topViewController as? FriendSettingViewController else { return }
+  
+        friendSettingVC.friendDetailData = friendData
+        present(nextVC, animated: true, completion: nil)
+//        performSegue(withIdentifier: "SegueFriendSetting", sender: nil)
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "SegueFriendSetting" {
+//            guard let friendSettingVC =
+//                segue.destination
+//                    as? UINavigationController else {
+//                        return
+//            }
+//            guard let nextVC = friendSettingVC.children[0] as? FriendSettingViewController else {return}
+//            nextVC.friendDetailData = friendData
+//        }
+//    }
 }
 
 extension FriendDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendDetailCell.self))
+        let headerCell =
+                tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: FriendDetailCell.self)
+                )
         
-        guard let friendHeaderCell = headerCell as? FriendDetailCell else { return headerCell }
+        guard let friendHeaderCell =
+                    headerCell as? FriendDetailCell else { return headerCell }
         
-        friendHeaderCell.settleUpBtn.addTarget(self, action: #selector(self.friendSettleUp), for: .touchUpInside)
+        friendHeaderCell.settleUpBtn.addTarget(
+            self, action: #selector(self.friendSettleUp),
+            for: .touchUpInside
+        )
         
         friendHeaderCell.friendName.text = friendData?.displayName
         
@@ -82,7 +111,8 @@ extension FriendDetailViewController: UITableViewDataSource {
         let settleVC =
                 storyboard.instantiateViewController(
                     withIdentifier: String(
-                    describing: FriendSettleUpViewController.self))
+                    describing: FriendSettleUpViewController.self)
+                )
             present(settleVC, animated: true, completion: nil)
         
     }
@@ -92,13 +122,16 @@ extension FriendDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-                withIdentifier: String(describing: FriendAccountsListDetailCell.self),
-                for: indexPath)
+        let cell =
+                tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: FriendAccountsListDetailCell.self),
+                for: indexPath
+                )
 
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
-        guard let accountsDetailCell = cell as? FriendAccountsListDetailCell else { return cell }
+        guard let accountsDetailCell =
+                    cell as? FriendAccountsListDetailCell else { return cell }
         
         return accountsDetailCell
     }
