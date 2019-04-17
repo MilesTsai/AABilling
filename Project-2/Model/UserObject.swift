@@ -14,44 +14,60 @@ protocol DocumentSerializable {
 
 struct PersonalData {
     
-    let displayName: String?
+    let name: String?
     
     let email: String?
     
     let storage: String?
     
+    let uid: String?
+    
+    let status: Int?
+    
     var dictionary: [String: Any] {
         return [
-            "displayName": displayName ?? "",
+            "name": name ?? "",
             "email": email ?? "",
-            "storage": storage ?? ""
+            "storage": storage ?? "",
+            "uid": uid ?? "",
+            "status": status ?? ""
         ]
     }
     
     enum CodingKeys: String, CodingKey {
         
-        case displayName
+        case name
         
         case email
         
         case storage
+        
+        case uid
+        
+        case status
     }
 }
 
 extension PersonalData: DocumentSerializable {
     init?(dictionary: [String: Any]) {
-        guard let displayName =
-                    dictionary["displayName"] as? String,
+        guard let name =
+                    dictionary["name"] as? String,
               let email =
                     dictionary["email"] as? String,
               let storage =
-                    dictionary["storage"] as? String
+                    dictionary["storage"] as? String,
+              let uid =
+                    dictionary["uid"] as? String,
+              let status =
+                    dictionary["status"] as? Int
               else { return nil }
         
         self.init(
-            displayName: displayName,
+            name: name,
             email: email,
-            storage: storage
+            storage: storage,
+            uid: uid,
+            status: status
         )
     }
 }

@@ -71,7 +71,7 @@ class FriendViewController: BaseViewController {
                             .compactMap({
                                 PersonalData(dictionary: $0.data())
                             })
-                    
+                    Friend.friendList = self.friendList
                     DispatchQueue.main.async {
                         
                         self.tableView.reloadData()
@@ -97,7 +97,9 @@ extension FriendViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
+        print(friendList.count)
         return friendList.count
+        
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,7 +114,7 @@ extension FriendViewController: UITableViewDataSource {
         
         let list = friendList[indexPath.row]
         
-        friendCell.userName.text = list.displayName
+        friendCell.userName.text = list.name
 
         return friendCell
     }
@@ -139,4 +141,9 @@ extension FriendViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+}
+
+class Friend {
+    
+    static var friendList: [PersonalData] = []
 }

@@ -47,6 +47,7 @@
 		CEABD3D322644FF00062B552 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D222644FEF0062B552 /* UserObject.swift */; };
 		CEABD3D522658F840062B552 /* FriendInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D422658F840062B552 /* FriendInviteViewController.swift */; };
 		CEABD3D72265A8C80062B552 /* BillObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D62265A8C80062B552 /* BillObject.swift */; };
+		CEABD3DA2265F5A10062B552 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D92265F5A10062B552 /* FirebaseManager.swift */; };
 		CED3A86922545874007B5A07 /* LogInAndSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */; };
 		CED3A86C225460B6007B5A07 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86B225460B6007B5A07 /* UITextField+Extension.swift */; };
 		CED3A86F2254655F007B5A07 /* TextFieldPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */; };
@@ -124,6 +125,7 @@
 		CEABD3D222644FEF0062B552 /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		CEABD3D422658F840062B552 /* FriendInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInviteViewController.swift; sourceTree = "<group>"; };
 		CEABD3D62265A8C80062B552 /* BillObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillObject.swift; sourceTree = "<group>"; };
+		CEABD3D92265F5A10062B552 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInAndSignUp.storyboard; sourceTree = "<group>"; };
 		CED3A86B225460B6007B5A07 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPlaceholder.swift; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 				CEFDBC1322538EFC00E603F3 /* Assets.xcassets */,
 				CEABD3D222644FEF0062B552 /* UserObject.swift */,
 				CEABD3D62265A8C80062B552 /* BillObject.swift */,
+				CEABD3D92265F5A10062B552 /* FirebaseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				CE768AC0225B120A00ECEBE1 /* GroupDetailViewController.swift in Sources */,
 				CE768A9F225642E000ECEBE1 /* FriendListCell.swift in Sources */,
 				CE768AC4225B1A2400ECEBE1 /* GroupDetailCell.swift in Sources */,
+				CEABD3DA2265F5A10062B552 /* FirebaseManager.swift in Sources */,
 				CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */,
 				CEABD3D522658F840062B552 /* FriendInviteViewController.swift in Sources */,
 				CE768AAD2259EB6A00ECEBE1 /* FriendDetailViewController.swift in Sources */,

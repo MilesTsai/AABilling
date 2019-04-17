@@ -38,6 +38,18 @@ class FreindExpenseDetailViewController: BaseViewController {
     
     @IBOutlet weak var secondBtn: UIButton!
     
+    @IBOutlet weak var payer: UITextField!
+    
+    @IBOutlet weak var firstPhoto: UIImageView!
+    
+    @IBOutlet weak var secondPhoto: UIImageView!
+    
+    @IBOutlet weak var firstName: UILabel!
+    
+    @IBOutlet weak var secondName: UILabel!
+    
+    @IBOutlet weak var equalAccount: UILabel!
+    
     var containerViews: [UIView] {
         
         return [firstContainerView, secondContainerView]

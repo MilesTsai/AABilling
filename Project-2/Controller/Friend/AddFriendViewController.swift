@@ -89,9 +89,11 @@ class AddFriendViewController: UIViewController {
                         
                         self.user =
                                 PersonalData(
-                                    displayName: friend["displayName"] as? String,
+                                    name: friend["name"] as? String,
                                     email: friend["email"] as? String,
-                                    storage: friend["storage"] as? String
+                                    storage: friend["storage"] as? String,
+                                    uid: friend["uid"] as? String,
+                                    status: friend["status"] as? Int
                                 )
                     }
                     self.updateDocument(document: self.friendID ?? "")
@@ -102,13 +104,17 @@ class AddFriendViewController: UIViewController {
                             .collection("friends")
                             .document(self.friendID ?? "")
                             .setData(
-                                ["status": 0,
-                                 PersonalData.CodingKeys.displayName.rawValue:
-                                    self.user?.displayName ?? "",
-                                 PersonalData.CodingKeys.storage.rawValue:
-                                    self.user?.storage ?? "",
-                                 PersonalData.CodingKeys.email.rawValue:
-                                    self.user?.email ?? ""
+                                [
+                                    PersonalData.CodingKeys.status.rawValue:
+                                        0,
+                                    PersonalData.CodingKeys.name.rawValue:
+                                        self.user?.name ?? "",
+                                    PersonalData.CodingKeys.storage.rawValue:
+                                        self.user?.storage ?? "",
+                                    PersonalData.CodingKeys.email.rawValue:
+                                        self.user?.email ?? "",
+                                    PersonalData.CodingKeys.uid.rawValue:
+                                        self.user?.uid ?? ""
                                 ])
                     
                     let alertController =

@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 
 class LogInAndSignUpViewController: UIViewController {
 
@@ -104,57 +103,13 @@ class LogInAndSignUpViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func signUp(_ sender: UIButton) {
+    @IBAction func signUp(_ sender: UIButton) { 
         
-        if signUpEmail.text == "" {
-            let alertController = UIAlertController(
-                title: "錯誤",
-                message: "請輸入信箱與密碼",
-                preferredStyle: .alert)
-            
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            present(alertController, animated: true, completion: nil)
-            
-        } else {
-            Auth.auth().createUser(withEmail: signUpEmail.text!, password: signUpPassword.text!) { (_, error) in
-                
-                if error == nil {
-                    print("You have successfully signed up")
-                    
-                    guard let currentUser = Auth.auth().currentUser else { return }
-                    
-                    guard let email = self.signUpEmail.text else { return }
-                    
-                    self.dataBase.collection("users").document(currentUser.uid).setData(
-                        [
-                        "email": email,
-                        "displayName": self.signUpUsername.text ?? "",
-                        "storage": ""
-                        ])
-                    
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    
-                    if let tabBarVC =
-                        storyboard.instantiateViewController(
-                            withIdentifier: String(describing: TabBarViewController.self)) as? TabBarViewController {
-                        self.present(tabBarVC, animated: true, completion: nil)
-                    }
-                } else {
-                    let alertController =
-                        UIAlertController(
-                            title: "錯誤",
-                            message: "此帳號已被註冊",
-//                            message: error?.localizedDescription,
-                            preferredStyle: .alert)
-                    
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                }
-            }
-        }
+        FirebaseManager.shared.signUp(
+            withEmail: signUpEmail.text ?? "",
+            password: signUpPassword.text ?? "",
+            userName: signUpUsername.text ?? "",
+            view: self
+        )
     }
 }

@@ -100,7 +100,7 @@ extension FriendDetailViewController: UITableViewDataSource {
             for: .touchUpInside
         )
         
-        friendHeaderCell.friendName.text = friendData?.displayName
+        friendHeaderCell.friendName.text = friendData?.name
         
         return friendHeaderCell
     }

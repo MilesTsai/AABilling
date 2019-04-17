@@ -19,11 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     -> Bool {
         
+//        FirebaseManager.shared.configure()
         FirebaseApp.configure()
-        
-        let deBug = Firestore.firestore()
-        
-        print(deBug)
 
         return true
     }

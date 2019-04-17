@@ -10,7 +10,7 @@ import Foundation
 
 struct BillData {
     
-    let displayName: String?
+    let name: String?
     
     let billName: String?
     
@@ -18,14 +18,18 @@ struct BillData {
     
     let status: Int?
     
+    let uid: String?
+    
     enum CodingKeys: String, CodingKey {
         
-        case displayName
+        case name
         
         case billName
         
         case amount
         
         case status
+        
+        case uid
     }
 }

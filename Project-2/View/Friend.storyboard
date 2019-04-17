@@ -700,6 +700,7 @@
                         <outlet property="firstContainerView" destination="xkf-UG-hZN" id="vY3-NL-xa7"/>
                         <outlet property="indicatorLeadingConstraint" destination="dQh-qJ-7k1" id="GQS-eZ-u6a"/>
                         <outlet property="indicatorView" destination="S3n-ah-x6l" id="KKf-g2-3IH"/>
+                        <outlet property="payer" destination="zGQ-PD-E8j" id="gbb-Yw-QWz"/>
                         <outlet property="scrollView" destination="dI4-Kt-OpE" id="Imq-G4-ZnC"/>
                         <outlet property="secondContainerView" destination="sMA-4C-Xib" id="Kpt-IU-qQq"/>
                         <outletCollection property="selectExpenseBtns" destination="zBX-yL-oV9" collectionClass="NSMutableArray" id="QN4-2n-p3h"/>
@@ -1168,8 +1169,13 @@
                         <viewLayoutGuide key="safeArea" id="UWR-9O-egf"/>
                     </view>
                     <connections>
+                        <outlet property="equalAccount" destination="TuJ-GC-e2q" id="B8b-an-QL9"/>
                         <outlet property="firstBtn" destination="xou-Ik-dSD" id="NaU-ta-6lY"/>
+                        <outlet property="firstName" destination="MRG-sX-bPe" id="nYZ-KA-OXp"/>
+                        <outlet property="firstPhoto" destination="w8i-Z2-Q9x" id="Ohw-sT-15c"/>
                         <outlet property="secondBtn" destination="j3t-2x-Sxy" id="Sv4-eV-mUA"/>
+                        <outlet property="secondName" destination="QKA-V6-gSg" id="afb-Cf-LYa"/>
+                        <outlet property="secondPhoto" destination="X6V-T6-6i1" id="PGK-bR-5Wp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hok-wp-9yt" userLabel="First Responder" sceneMemberID="firstResponder"/>
