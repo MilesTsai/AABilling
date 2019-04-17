@@ -48,8 +48,17 @@
 		CEABD3D522658F840062B552 /* FriendInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D422658F840062B552 /* FriendInviteViewController.swift */; };
 		CEABD3D72265A8C80062B552 /* BillObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D62265A8C80062B552 /* BillObject.swift */; };
 		CEABD3DA2265F5A10062B552 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D92265F5A10062B552 /* FirebaseManager.swift */; };
+		CEABD3DC226737140062B552 /* EqualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3DB226737140062B552 /* EqualViewController.swift */; };
+		CEABD3DE226737510062B552 /* IndividualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3DD226737510062B552 /* IndividualViewController.swift */; };
+		CEABD3E0226738410062B552 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3DF226738410062B552 /* BaseTableViewController.swift */; };
+		CEABD3E5226740950062B552 /* EqualCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3E3226740950062B552 /* EqualCell.swift */; };
+		CEABD3E6226740950062B552 /* EqualCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEABD3E4226740950062B552 /* EqualCell.xib */; };
+		CEABD3E9226740B30062B552 /* IndividualCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3E7226740B30062B552 /* IndividualCell.swift */; };
+		CEABD3EA226740B30062B552 /* IndividualCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEABD3E8226740B30062B552 /* IndividualCell.xib */; };
+		CEABD3ED226767080062B552 /* AverageValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3EB226767080062B552 /* AverageValueCell.swift */; };
+		CEABD3EE226767080062B552 /* AverageValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEABD3EC226767080062B552 /* AverageValueCell.xib */; };
 		CED3A86922545874007B5A07 /* LogInAndSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */; };
-		CED3A86C225460B6007B5A07 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86B225460B6007B5A07 /* UITextField+Extension.swift */; };
+		CED3A86C225460B6007B5A07 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86B225460B6007B5A07 /* UIView+Extension.swift */; };
 		CED3A86F2254655F007B5A07 /* TextFieldPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */; };
 		CED3A8722254B787007B5A07 /* Friend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED3A8712254B787007B5A07 /* Friend.storyboard */; };
 		CED3A8752254B87A007B5A07 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A8742254B87A007B5A07 /* FriendViewController.swift */; };
@@ -126,8 +135,17 @@
 		CEABD3D422658F840062B552 /* FriendInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInviteViewController.swift; sourceTree = "<group>"; };
 		CEABD3D62265A8C80062B552 /* BillObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillObject.swift; sourceTree = "<group>"; };
 		CEABD3D92265F5A10062B552 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		CEABD3DB226737140062B552 /* EqualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualViewController.swift; sourceTree = "<group>"; };
+		CEABD3DD226737510062B552 /* IndividualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualViewController.swift; sourceTree = "<group>"; };
+		CEABD3DF226738410062B552 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		CEABD3E3226740950062B552 /* EqualCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualCell.swift; sourceTree = "<group>"; };
+		CEABD3E4226740950062B552 /* EqualCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EqualCell.xib; sourceTree = "<group>"; };
+		CEABD3E7226740B30062B552 /* IndividualCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualCell.swift; sourceTree = "<group>"; };
+		CEABD3E8226740B30062B552 /* IndividualCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IndividualCell.xib; sourceTree = "<group>"; };
+		CEABD3EB226767080062B552 /* AverageValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageValueCell.swift; sourceTree = "<group>"; };
+		CEABD3EC226767080062B552 /* AverageValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AverageValueCell.xib; sourceTree = "<group>"; };
 		CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInAndSignUp.storyboard; sourceTree = "<group>"; };
-		CED3A86B225460B6007B5A07 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		CED3A86B225460B6007B5A07 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPlaceholder.swift; sourceTree = "<group>"; };
 		CED3A8712254B787007B5A07 /* Friend.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friend.storyboard; sourceTree = "<group>"; };
 		CED3A8742254B87A007B5A07 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +253,8 @@
 		CE768A9C225642A900ECEBE1 /* Friend */ = {
 			isa = PBXGroup;
 			children = (
+				CEABD3E2226740590062B552 /* IndividualCell */,
+				CEABD3E12267404C0062B552 /* EqualCell */,
 				CE768AB5225A0C2700ECEBE1 /* FriendListCell */,
 				CE768AAE2259EFED00ECEBE1 /* FriendDetailCell */,
 			);
@@ -294,10 +314,30 @@
 			path = GroupDetailCell;
 			sourceTree = "<group>";
 		};
+		CEABD3E12267404C0062B552 /* EqualCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEABD3E3226740950062B552 /* EqualCell.swift */,
+				CEABD3E4226740950062B552 /* EqualCell.xib */,
+				CEABD3EB226767080062B552 /* AverageValueCell.swift */,
+				CEABD3EC226767080062B552 /* AverageValueCell.xib */,
+			);
+			path = EqualCell;
+			sourceTree = "<group>";
+		};
+		CEABD3E2226740590062B552 /* IndividualCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEABD3E7226740B30062B552 /* IndividualCell.swift */,
+				CEABD3E8226740B30062B552 /* IndividualCell.xib */,
+			);
+			path = IndividualCell;
+			sourceTree = "<group>";
+		};
 		CED3A86A22546070007B5A07 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				CED3A86B225460B6007B5A07 /* UITextField+Extension.swift */,
+				CED3A86B225460B6007B5A07 /* UIView+Extension.swift */,
 				CED3A8792254D006007B5A07 /* UIStoryboard+Extension.swift */,
 				CED3A87B2254D3FA007B5A07 /* UIImage+Extension.swift */,
 				CE768AA1225644EC00ECEBE1 /* UITableView+Extension.swift */,
@@ -334,6 +374,8 @@
 				CE497D03225C6EF2004ED6DF /* FriendBillEditViewController.swift */,
 				CE497D05225C82D0004ED6DF /* FreindExpenseDetailViewController.swift */,
 				CEFF0D70225D9DB100C74ED4 /* FriendSettleUpViewController.swift */,
+				CEABD3DB226737140062B552 /* EqualViewController.swift */,
+				CEABD3DD226737510062B552 /* IndividualViewController.swift */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -344,6 +386,7 @@
 				CED3A8772254CE12007B5A07 /* TabBarViewController.swift */,
 				CED3A87D2254EAEC007B5A07 /* BaseViewController.swift */,
 				CEFF0D8A225F3F5E00C74ED4 /* LoadingViewController.swift */,
+				CEABD3DF226738410062B552 /* BaseTableViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -527,7 +570,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE768A892254EED000ECEBE1 /* Group.storyboard in Resources */,
+				CEABD3EE226767080062B552 /* AverageValueCell.xib in Resources */,
 				CE768ABA225A165C00ECEBE1 /* FriendDetailCell.xib in Resources */,
+				CEABD3E6226740950062B552 /* EqualCell.xib in Resources */,
 				CEFF0D78225DBEE900C74ED4 /* GroupSettleUpSelectCell.xib in Resources */,
 				CEFF0D89225F3E1600C74ED4 /* Loading.storyboard in Resources */,
 				CE768AC5225B1A2400ECEBE1 /* GroupDetailCell.xib in Resources */,
@@ -545,6 +590,7 @@
 				CE768AC9225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib in Resources */,
 				CEFF0D6B225D900500C74ED4 /* AddGroupMemberCell.xib in Resources */,
 				CEFF0D87225EDF7F00C74ED4 /* GoogleService-Info.plist in Resources */,
+				CEABD3EA226740B30062B552 /* IndividualCell.xib in Resources */,
 				CE497CFC225B928B004ED6DF /* GroupSettingCell.xib in Resources */,
 				CE768AA62256510500ECEBE1 /* GroupListCell.xib in Resources */,
 				CEFDBC1222538EF900E603F3 /* Main.storyboard in Resources */,
@@ -642,7 +688,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CED3A86C225460B6007B5A07 /* UITextField+Extension.swift in Sources */,
+				CED3A86C225460B6007B5A07 /* UIView+Extension.swift in Sources */,
+				CEABD3DE226737510062B552 /* IndividualViewController.swift in Sources */,
 				CEABD3D322644FF00062B552 /* UserObject.swift in Sources */,
 				CEFF0D6E225D932D00C74ED4 /* AddGroupMemberHeaderCell.swift in Sources */,
 				CEFDBC0F22538EF900E603F3 /* LogInAndSignUpViewController.swift in Sources */,
@@ -657,6 +704,7 @@
 				CEFF0D7A225DD50A00C74ED4 /* GroupSettleUpViewController.swift in Sources */,
 				CE768A9B2254F0D200ECEBE1 /* UserViewController.swift in Sources */,
 				CEFDBC0D22538EF900E603F3 /* AppDelegate.swift in Sources */,
+				CEABD3ED226767080062B552 /* AverageValueCell.swift in Sources */,
 				CE497D06225C82D0004ED6DF /* FreindExpenseDetailViewController.swift in Sources */,
 				CED3A87C2254D3FA007B5A07 /* UIImage+Extension.swift in Sources */,
 				CE768A952254F09A00ECEBE1 /* GroupViewController.swift in Sources */,
@@ -669,9 +717,11 @@
 				CE768A972254F0B000ECEBE1 /* AddBillViewController.swift in Sources */,
 				CED3A86F2254655F007B5A07 /* TextFieldPlaceholder.swift in Sources */,
 				CE497CFB225B928B004ED6DF /* GroupSettingCell.swift in Sources */,
+				CEABD3DC226737140062B552 /* EqualViewController.swift in Sources */,
 				CED3A87E2254EAEC007B5A07 /* BaseViewController.swift in Sources */,
 				CED3A8782254CE12007B5A07 /* TabBarViewController.swift in Sources */,
 				CED3A8752254B87A007B5A07 /* FriendViewController.swift in Sources */,
+				CEABD3E5226740950062B552 /* EqualCell.swift in Sources */,
 				CE768AC8225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift in Sources */,
 				CE768AA92259C45600ECEBE1 /* AddFriendViewController.swift in Sources */,
 				CED3A87A2254D006007B5A07 /* UIStoryboard+Extension.swift in Sources */,
@@ -682,10 +732,12 @@
 				CE497D02225C6123004ED6DF /* FriendBillDetailViewController.swift in Sources */,
 				CEFF0D71225D9DB100C74ED4 /* FriendSettleUpViewController.swift in Sources */,
 				CE768AC0225B120A00ECEBE1 /* GroupDetailViewController.swift in Sources */,
+				CEABD3E0226738410062B552 /* BaseTableViewController.swift in Sources */,
 				CE768A9F225642E000ECEBE1 /* FriendListCell.swift in Sources */,
 				CE768AC4225B1A2400ECEBE1 /* GroupDetailCell.swift in Sources */,
 				CEABD3DA2265F5A10062B552 /* FirebaseManager.swift in Sources */,
 				CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */,
+				CEABD3E9226740B30062B552 /* IndividualCell.swift in Sources */,
 				CEABD3D522658F840062B552 /* FriendInviteViewController.swift in Sources */,
 				CE768AAD2259EB6A00ECEBE1 /* FriendDetailViewController.swift in Sources */,
 				CEABD3D72265A8C80062B552 /* BillObject.swift in Sources */,

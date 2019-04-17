@@ -16,11 +16,11 @@ class FirebaseManager {
     
     static let shared = FirebaseManager()
     
-//    func configure() {
-//        FirebaseApp.configure()
-//    }
+    func configure() {
+        FirebaseApp.configure()
+    }
     
-    let userReference = Firestore.firestore().collection("users")
+    lazy var userReference = Firestore.firestore().collection("users")
     
     func signUp(withEmail: String, password: String, userName: String, view: UIViewController) {
             if withEmail.isEmpty == true {
@@ -49,10 +49,8 @@ class FirebaseManager {
                                 "uid": currentUser.uid
                             ])
                         
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        
                         if let tabBarVC =
-                            storyboard.instantiateViewController(
+                            UIStoryboard.main.instantiateViewController(
                                 withIdentifier:
                                 String(describing: TabBarViewController.self))
                                 as? TabBarViewController {

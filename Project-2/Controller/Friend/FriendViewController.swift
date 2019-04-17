@@ -71,7 +71,7 @@ class FriendViewController: BaseViewController {
                             .compactMap({
                                 PersonalData(dictionary: $0.data())
                             })
-                    Friend.friendList = self.friendList
+//                    Friend.friendList = self.friendList
                     DispatchQueue.main.async {
                         
                         self.tableView.reloadData()
@@ -121,6 +121,8 @@ extension FriendViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         performSegue(withIdentifier: "SegueFriendDetail", sender: nil)
     }
     
@@ -143,7 +145,7 @@ extension FriendViewController: UITableViewDelegate {
     }
 }
 
-class Friend {
-    
-    static var friendList: [PersonalData] = []
-}
+//class Friend {
+//    
+//    static var friendList: [PersonalData] = []
+//}

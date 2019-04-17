@@ -10,6 +10,17 @@ import UIKit
 
 class FreindExpenseDetailViewController: BaseViewController {
     
+    var vc1: EqualViewController?
+    
+    var vc2: IndividualViewController?
+    
+    private enum ShareType: Int {
+        
+        case equal = 0
+        
+        case individual = 1
+    }
+    
     private struct Segue {
         
         static let equal = "SegueEqual"
@@ -28,31 +39,17 @@ class FreindExpenseDetailViewController: BaseViewController {
         }
     }
     
-    @IBOutlet weak var firstContainerView: UIView!
+    @IBOutlet weak var equalContainerView: UIView!
     
-    @IBOutlet weak var secondContainerView: UIView!
+    @IBOutlet weak var individualContainerView: UIView!
     
     @IBOutlet var selectExpenseBtns: [UIButton]!
     
-    @IBOutlet weak var firstBtn: UIButton!
-    
-    @IBOutlet weak var secondBtn: UIButton!
-    
-    @IBOutlet weak var payer: UITextField!
-    
-    @IBOutlet weak var firstPhoto: UIImageView!
-    
-    @IBOutlet weak var secondPhoto: UIImageView!
-    
-    @IBOutlet weak var firstName: UILabel!
-    
-    @IBOutlet weak var secondName: UILabel!
-    
-    @IBOutlet weak var equalAccount: UILabel!
+    @IBOutlet weak var payer: UILabel!
     
     var containerViews: [UIView] {
         
-        return [firstContainerView, secondContainerView]
+        return [equalContainerView, individualContainerView]
     }
     
     override func viewDidLoad() {
@@ -76,17 +73,20 @@ class FreindExpenseDetailViewController: BaseViewController {
         
         moveIndicatorView(toPage: sender.tag)
         
+        guard let type = ShareType(rawValue: sender.tag) else { return }
+        
+        updateContainer(type: type)
     }
     
-    @IBAction func firstBtnAct(_ sender: UIButton) {
-        
-        sender.isSelected = !sender.isSelected
-    }
-    
-    @IBAction func secondBtnAct(_ sender: UIButton) {
-        
-        sender.isSelected = !sender.isSelected
-    }
+//    @IBAction func firstBtnAct(_ sender: UIButton) {
+//
+//        sender.isSelected = !sender.isSelected
+//    }
+//
+//    @IBAction func secondBtnAct(_ sender: UIButton) {
+//
+//        sender.isSelected = !sender.isSelected
+//    }
     
     private func moveIndicatorView(toPage: Int) {
         
@@ -98,6 +98,33 @@ class FreindExpenseDetailViewController: BaseViewController {
             
             self?.view.layoutIfNeeded()
         })
+    }
+    
+    private func updateContainer(type: ShareType) {
+        
+        containerViews.forEach({ $0.isHidden = true })
+        
+        switch type {
+            
+        case .equal: equalContainerView.isHidden = false
+            
+        case .individual: individualContainerView.isHidden = false
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let equalVC = segue.destination as? EqualViewController else { return }
+        
+        guard let individualVC = segue.destination as? IndividualViewController else { return }
+        
+        let identifier = segue.identifier
+        
+        if identifier == Segue.equal {
+            vc1 = equalVC
+        } else if identifier == Segue.individual {
+            vc2 = individualVC
+        }
     }
 }
 
@@ -124,3 +151,18 @@ extension FreindExpenseDetailViewController: UIScrollViewDelegate {
         })
     }
 }
+
+//extension FreindExpenseDetailViewController: UITableViewDataSource {
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 10
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        return UITableViewCell()
+//    }
+//}
+//
+//extension FreindExpenseDetailViewController: UITableViewDelegate {
+//
+//}

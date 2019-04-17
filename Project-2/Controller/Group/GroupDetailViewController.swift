@@ -96,6 +96,10 @@ extension GroupDetailViewController: UITableViewDataSource {
         return accountsDetailCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 }
 
 extension GroupDetailViewController: UITableViewDelegate {
