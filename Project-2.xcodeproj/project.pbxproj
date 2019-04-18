@@ -16,7 +16,7 @@
 		CE497D00225C5964004ED6DF /* GroupHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE497CFE225C5964004ED6DF /* GroupHeaderCell.xib */; };
 		CE497D02225C6123004ED6DF /* FriendBillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D01225C6123004ED6DF /* FriendBillDetailViewController.swift */; };
 		CE497D04225C6EF2004ED6DF /* FriendBillEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D03225C6EF2004ED6DF /* FriendBillEditViewController.swift */; };
-		CE497D06225C82D0004ED6DF /* FreindExpenseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D05225C82D0004ED6DF /* FreindExpenseDetailViewController.swift */; };
+		CE497D06225C82D0004ED6DF /* SplitBillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D05225C82D0004ED6DF /* SplitBillDetailViewController.swift */; };
 		CE497D09225CB9AD004ED6DF /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D08225CB9AD004ED6DF /* UIScreen+Extension.swift */; };
 		CE768A892254EED000ECEBE1 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A882254EED000ECEBE1 /* Group.storyboard */; };
 		CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */; };
@@ -103,7 +103,7 @@
 		CE497CFE225C5964004ED6DF /* GroupHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupHeaderCell.xib; sourceTree = "<group>"; };
 		CE497D01225C6123004ED6DF /* FriendBillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendBillDetailViewController.swift; sourceTree = "<group>"; };
 		CE497D03225C6EF2004ED6DF /* FriendBillEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendBillEditViewController.swift; sourceTree = "<group>"; };
-		CE497D05225C82D0004ED6DF /* FreindExpenseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreindExpenseDetailViewController.swift; sourceTree = "<group>"; };
+		CE497D05225C82D0004ED6DF /* SplitBillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitBillDetailViewController.swift; sourceTree = "<group>"; };
 		CE497D08225CB9AD004ED6DF /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		CE768A882254EED000ECEBE1 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddBill.storyboard; sourceTree = "<group>"; };
@@ -230,6 +230,9 @@
 			isa = PBXGroup;
 			children = (
 				CE768A962254F0B000ECEBE1 /* AddBillViewController.swift */,
+				CE497D05225C82D0004ED6DF /* SplitBillDetailViewController.swift */,
+				CEABD3DB226737140062B552 /* EqualViewController.swift */,
+				CEABD3DD226737510062B552 /* IndividualViewController.swift */,
 			);
 			path = AddBill;
 			sourceTree = "<group>";
@@ -372,10 +375,7 @@
 				CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */,
 				CE497D01225C6123004ED6DF /* FriendBillDetailViewController.swift */,
 				CE497D03225C6EF2004ED6DF /* FriendBillEditViewController.swift */,
-				CE497D05225C82D0004ED6DF /* FreindExpenseDetailViewController.swift */,
 				CEFF0D70225D9DB100C74ED4 /* FriendSettleUpViewController.swift */,
-				CEABD3DB226737140062B552 /* EqualViewController.swift */,
-				CEABD3DD226737510062B552 /* IndividualViewController.swift */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -705,7 +705,7 @@
 				CE768A9B2254F0D200ECEBE1 /* UserViewController.swift in Sources */,
 				CEFDBC0D22538EF900E603F3 /* AppDelegate.swift in Sources */,
 				CEABD3ED226767080062B552 /* AverageValueCell.swift in Sources */,
-				CE497D06225C82D0004ED6DF /* FreindExpenseDetailViewController.swift in Sources */,
+				CE497D06225C82D0004ED6DF /* SplitBillDetailViewController.swift in Sources */,
 				CED3A87C2254D3FA007B5A07 /* UIImage+Extension.swift in Sources */,
 				CE768A952254F09A00ECEBE1 /* GroupViewController.swift in Sources */,
 				CE768ABD225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.swift in Sources */,

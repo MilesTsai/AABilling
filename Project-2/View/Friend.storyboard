@@ -524,7 +524,7 @@
         <!--分帳細節-->
         <scene sceneID="pw1-zw-6ii">
             <objects>
-                <viewController id="7w6-ZU-MlV" customClass="FreindExpenseDetailViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7w6-ZU-MlV" customClass="SplitBillDetailViewController" customModule="Project_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mcg-a2-WFw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -632,13 +632,13 @@
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xkf-UG-hZN" userLabel="First Container View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="488.5"/>
                                                 <connections>
-                                                    <segue destination="d9X-gf-Jwu" kind="embed" identifier="SegueIndividual" id="MNu-Al-ujM"/>
+                                                    <segue destination="d9X-gf-Jwu" kind="embed" identifier="SegueEqual" id="MNu-Al-ujM"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sMA-4C-Xib" userLabel="Second Container View">
                                                 <rect key="frame" x="375" y="0.0" width="375" height="488.5"/>
                                                 <connections>
-                                                    <segue destination="isr-qj-CqM" kind="embed" identifier="SegueEqual" id="qEN-iY-wBL"/>
+                                                    <segue destination="isr-qj-CqM" kind="embed" identifier="SegueIndividual" id="qEN-iY-wBL"/>
                                                 </connections>
                                             </containerView>
                                         </subviews>
@@ -693,8 +693,11 @@
                                 <action selector="cancelExpenseDetail:" destination="7w6-ZU-MlV" id="Uz7-Wo-WDh"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="完成" id="O6u-Jt-ef9">
+                        <barButtonItem key="rightBarButtonItem" title="儲存" id="O6u-Jt-ef9">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveBill:" destination="7w6-ZU-MlV" id="l1d-ZB-3Zq"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

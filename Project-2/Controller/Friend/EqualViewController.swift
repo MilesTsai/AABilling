@@ -7,18 +7,33 @@
 //
 
 import UIKit
+import Firebase
 
 class EqualViewController: BaseTableViewController {
     
     var equalView: EqualCell?
     
     var averageView: AverageValueCell?
+    
+//    var billingContent: BillingContent?
+    
+    var dataBase: Firestore = Firestore.firestore()
+    
+    var userNameInfo: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+
+        dataBase.collection("users").document(currentUser.uid).getDocument { [weak self](snapshot, error) in
+            guard let document = snapshot?.data() else { return }
+            self?.userNameInfo = document["name"] as? String ?? "No Document"
+            print(self?.userNameInfo ?? "")
+            self?.tableView.reloadData()
+        }
 
         setupTableView()
-        
     }
     
     private func setupTableView() {
@@ -38,7 +53,31 @@ class EqualViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 2 {
+
+        switch indexPath.row {
+        case 0:
+            let myCell = tableView.dequeueReusableCell(withIdentifier: String(describing: EqualCell.self), for: indexPath)
+            
+            guard let equalCell = myCell as? EqualCell else { return myCell }
+            
+            equalCell.userName.text = userNameInfo
+            
+            return equalCell
+            
+        case 1:
+            let friendCell =
+                tableView.dequeueReusableCell(withIdentifier: String(describing: EqualCell.self), for: indexPath)
+            
+            guard let equalCell =
+                friendCell as? EqualCell else { return friendCell }
+            
+//            equalCell.userName.text = billingContent?.anyone
+            
+            equalCell.paySelectBtn.addTarget(self, action: #selector(self.paySelect(_:)), for: .touchUpInside)
+            
+            return equalCell
+            
+        case 2:
             let cell =
                 tableView.dequeueReusableCell(withIdentifier: String(describing: AverageValueCell.self), for: indexPath)
             
@@ -46,17 +85,37 @@ class EqualViewController: BaseTableViewController {
             
             return averageCell
             
-        } else {
-            let cell =
-                tableView.dequeueReusableCell(withIdentifier: String(describing: EqualCell.self), for: indexPath)
+        default:
+            return UITableViewCell()
             
-            guard let equalCell =
-                cell as? EqualCell else { return cell }
-            
-            equalCell.paySelectBtn.addTarget(self, action: #selector(self.paySelect(_:)), for: .touchUpInside)
-            
-            return equalCell
         }
+//        if indexPath.row == 0 {
+//            let myCell = tableView.dequeueReusableCell(withIdentifier: String(describing: EqualCell.self), for: indexPath)
+//
+//            guard let equalCell = myCell as? EqualCell else { return myCell }
+//
+//            return equalCell
+//
+//        } else if indexPath.row == 1 {
+//            let friendCell =
+//                tableView.dequeueReusableCell(withIdentifier: String(describing: EqualCell.self), for: indexPath)
+//
+//            guard let equalCell =
+//                friendCell as? EqualCell else { return friendCell }
+//
+//            equalCell.userName.text = billingContent?.anyone
+//
+//            equalCell.paySelectBtn.addTarget(self, action: #selector(self.paySelect(_:)), for: .touchUpInside)
+//
+//            return equalCell
+//        } else if indexPath.row == 2 {
+//            let cell =
+//                tableView.dequeueReusableCell(withIdentifier: String(describing: AverageValueCell.self), for: indexPath)
+//
+//            guard let averageCell = cell as? AverageValueCell else { return cell }
+//
+//            return averageCell
+//        }
     }
     
     @objc func paySelect(_ sender: UIButton) {

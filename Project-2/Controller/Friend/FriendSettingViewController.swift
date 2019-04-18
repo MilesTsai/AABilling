@@ -19,7 +19,7 @@ class FriendSettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        friendEmail.text = friendDetailData?.email
+//        friendEmail.text = friendDetailData?.email
         // Do any additional setup after loading the view.
     }
 

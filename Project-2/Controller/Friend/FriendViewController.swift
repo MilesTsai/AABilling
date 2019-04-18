@@ -121,7 +121,7 @@ extension FriendViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        tableView.deselectRow(at: indexPath, animated: true)
+//        tableView.deselectRow(at: indexPath, animated: true)
         
         performSegue(withIdentifier: "SegueFriendDetail", sender: nil)
     }
@@ -130,8 +130,7 @@ extension FriendViewController: UITableViewDataSource {
         if segue.identifier == "SegueFriendDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 guard let friendDetailVC =
-                          segue.destination
-                            as? FriendDetailViewController else { return }
+                          segue.destination as? FriendDetailViewController else { return }
                 friendDetailVC.friendData = friendList[indexPath.row]
             }
         }

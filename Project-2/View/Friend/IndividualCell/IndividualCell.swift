@@ -10,7 +10,6 @@ import UIKit
 
 class IndividualCell: UITableViewCell {
     
-    
     @IBOutlet weak var userPhoto: UIImageView!
     
     @IBOutlet weak var userName: UILabel!
