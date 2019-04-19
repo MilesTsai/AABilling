@@ -127,6 +127,10 @@ extension FriendDetailViewController: UITableViewDataSource {
                     withIdentifier: String(describing: FriendAccountsListDetailCell.self),
                 for: indexPath
                 )
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
 
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
@@ -138,8 +142,6 @@ extension FriendDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        tableView.deselectRow(at: indexPath, animated: true)
-        
         performSegue(withIdentifier: "SegueFriendBillDetail", sender: nil)
     }
 }

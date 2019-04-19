@@ -63,6 +63,10 @@ extension GroupViewController: UITableViewDataSource {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GroupListCell.self), for: indexPath)
 
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
+        
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
         guard let groupCell = cell as? GroupListCell else { return cell }
@@ -72,8 +76,6 @@ extension GroupViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        tableView.deselectRow(at: indexPath, animated: true)
-        
         performSegue(withIdentifier: "SegueGroupDetail", sender: nil)
     }
 }

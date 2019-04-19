@@ -50,10 +50,16 @@ extension AddGroupMemberViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: AddGroupMemberCell.self), for: indexPath)
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
+        
         guard let addGroupMemberCell = cell as? AddGroupMemberCell else { return cell }
+        
         return addGroupMemberCell
     }
     

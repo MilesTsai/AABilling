@@ -107,6 +107,10 @@ extension FriendViewController: UITableViewDataSource {
         let cell =
             tableView.dequeueReusableCell(withIdentifier: String(describing: FriendListCell.self), for: indexPath)
 
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
+        
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
         guard let friendCell =
@@ -120,8 +124,6 @@ extension FriendViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-//        tableView.deselectRow(at: indexPath, animated: true)
         
         performSegue(withIdentifier: "SegueFriendDetail", sender: nil)
     }
@@ -143,8 +145,3 @@ extension FriendViewController: UITableViewDelegate {
         return 60
     }
 }
-
-//class Friend {
-//    
-//    static var friendList: [PersonalData] = []
-//}

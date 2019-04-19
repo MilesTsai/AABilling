@@ -14,7 +14,7 @@ class IndividualCell: UITableViewCell {
     
     @IBOutlet weak var userName: UILabel!
     
-    @IBOutlet weak var amount: UITextField!
+    @IBOutlet weak var amountTextField: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()

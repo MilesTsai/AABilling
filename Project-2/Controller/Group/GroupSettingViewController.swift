@@ -67,10 +67,16 @@ extension GroupSettingViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: GroupSettingCell.self), for: indexPath)
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
 
         guard let groupSettingCell = cell as? GroupSettingCell else { return cell }
+        
         return groupSettingCell
     }
 

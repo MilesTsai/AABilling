@@ -19,8 +19,6 @@ class FriendSettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        friendEmail.text = friendDetailData?.email
-        // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {

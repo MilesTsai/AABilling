@@ -9,12 +9,6 @@
 import UIKit
 import Firebase
 
-class MoneyShare: NSObject {
-    
-    @objc dynamic var userMoney = Int()
-    @objc dynamic var friendMoney = Int()
-}
-
 class IndividualViewController: BaseTableViewController {
     
     var individualBilling: BillingContent?
@@ -23,13 +17,11 @@ class IndividualViewController: BaseTableViewController {
     
     var userNameInfo: String = ""
     
-    var myAmount: Int?
+    var userTextField: UITextField?
     
-    var friendAmount: Int?
+    var friendTextField: UITextField?
     
-    var moneyShareKVO = MoneyShare()
-    
-    var moneyValue: NSKeyValueObservation!
+    var selectHandler: ((String) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,19 +48,6 @@ class IndividualViewController: BaseTableViewController {
         
         setupTableView()
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        moneyValue = moneyShareKVO.observe(\.userMoney, options:[.new]) { (object, change) in
-            self.moneyShareKVO.friendMoney = change.newValue!
-            self.tableView.reloadData()
-        }
-        
-        moneyValue = moneyShareKVO.observe(\.friendMoney, options:[.initial, .new]) { (object, change) in
-            self.moneyShareKVO.userMoney = change.newValue!
-            self.tableView.reloadData()
-        }
     }
     
     private func setupTableView() {
@@ -104,19 +83,26 @@ class IndividualViewController: BaseTableViewController {
                 for: indexPath
             )
             
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.clear
+            myCell.selectedBackgroundView = backgroundView
+            
             guard let individualCell = myCell as? IndividualCell
                 else {
                     return myCell
             }
             
+            individualCell.amountTextField.delegate = self
+            
             individualCell.userName.text = userNameInfo
             
-            guard let amount = Int(individualCell.amount.text ?? "")
-                else {
-                    return individualCell
-            }
-            myAmount = amount
-            moneyShareKVO.friendMoney = amount
+            userTextField = individualCell.amountTextField
+            
+            individualCell.amountTextField.addTarget(
+                self,
+                action: #selector(textFieldDidChange(_:)),
+                for: .editingChanged
+            )
             
             return individualCell
             
@@ -126,20 +112,27 @@ class IndividualViewController: BaseTableViewController {
                 for: indexPath
             )
             
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.clear
+            friendCell.selectedBackgroundView = backgroundView
+            
             guard let individualCell =
                 friendCell as? IndividualCell
                 else {
                     return friendCell
             }
             
+            individualCell.amountTextField.delegate = self
+            
             individualCell.userName.text = individualBilling?.anyone
             
-            guard let amount = Int(individualCell.amount.text ?? "")
-                else {
-                    return individualCell
-            }
-            friendAmount = amount
-            moneyShareKVO.userMoney = amount
+            friendTextField = individualCell.amountTextField
+            
+            individualCell.amountTextField.addTarget(
+                self,
+                action: #selector(textFieldDidChange(_:)),
+                for: .editingChanged
+            )
             
             return individualCell
         
@@ -161,6 +154,58 @@ class IndividualViewController: BaseTableViewController {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath) {
         
-//        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == 0 {
+            selectHandler?(userNameInfo)
+        } else if indexPath.row == 1 {
+            selectHandler?(individualBilling!.anyone)
+        } else {
+            return
+        }
+    }
+}
+
+extension IndividualViewController: UITextFieldDelegate {
+
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+        if textField == userTextField {
+            
+            if userTextField?.text == "\(0)" {
+                
+                friendTextField?.text = "\(individualBilling?.amount ?? 0)"
+                
+            } else if userTextField?.text == "" {
+                
+                friendTextField?.text = ""
+                
+            } else {
+                
+                guard let userAmount = Int(userTextField?.text ?? "")
+                    else {
+                        return
+                }
+                friendTextField?.text =
+                "\(individualBilling!.amount - userAmount)"
+            }
+        } else {
+            
+            if friendTextField?.text == "\(0)" {
+                
+                userTextField?.text = "\(individualBilling?.amount ?? 0)"
+                
+            } else if friendTextField?.text == "" {
+                
+                userTextField?.text = ""
+                
+            } else {
+                
+                guard let friendAmount = Int(friendTextField?.text ?? "")
+                    else {
+                        return
+                }
+                userTextField?.text =
+                "\(individualBilling!.amount - friendAmount)"
+            }
+        }
     }
 }

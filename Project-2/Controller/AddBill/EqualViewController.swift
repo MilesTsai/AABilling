@@ -20,6 +20,14 @@ class EqualViewController: BaseTableViewController {
     var dataBase: Firestore = Firestore.firestore()
     
     var userNameInfo: String = ""
+    
+    var userBtn: UIButton?
+    
+    var friendBtn: UIButton?
+    
+    var averageLabel: UILabel?
+    
+    var selectHandler: ((String) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +37,7 @@ class EqualViewController: BaseTableViewController {
         dataBase
             .collection("users")
             .document(currentUser.uid)
-            .getDocument {
-                [weak self](snapshot, error) in
+            .getDocument { [weak self](snapshot, _) in
                 
             guard let document = snapshot?.data()
                 else {
@@ -84,6 +91,10 @@ class EqualViewController: BaseTableViewController {
                 for: indexPath
             )
             
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.clear
+            myCell.selectedBackgroundView = backgroundView
+            
             guard let equalCell = myCell as? EqualCell
                 else {
                     return myCell
@@ -91,12 +102,13 @@ class EqualViewController: BaseTableViewController {
             
             equalCell.userName.text = userNameInfo
             
+            userBtn = equalCell.paySelectBtn
+            
             equalCell.paySelectBtn.addTarget(
                 self,
                 action: #selector(self.paySelect(_:)),
                 for: .touchUpInside
             )
-            
             return equalCell
             
         case 1:
@@ -105,6 +117,10 @@ class EqualViewController: BaseTableViewController {
                     for: indexPath
             )
             
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.clear
+            friendCell.selectedBackgroundView = backgroundView
+            
             guard let equalCell = friendCell as? EqualCell
                 else {
                     return friendCell
@@ -112,12 +128,13 @@ class EqualViewController: BaseTableViewController {
             
             equalCell.userName.text = equalBilling?.anyone
             
+            friendBtn = equalCell.paySelectBtn
+            
             equalCell.paySelectBtn.addTarget(
                 self,
                 action: #selector(self.paySelect(_:)),
                 for: .touchUpInside
             )
-            
             return equalCell
             
         case 2:
@@ -126,11 +143,15 @@ class EqualViewController: BaseTableViewController {
                     for: indexPath
             )
             
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.clear
+            cell.selectedBackgroundView = backgroundView
+            
             guard let averageCell = cell as? AverageValueCell
                 else {
                     return cell
             }
-            
+            averageLabel = averageCell.averageValue
             averageCell.averageValue.text = "$\(equalBilling!.amount / 2)/人"
             
             return averageCell
@@ -139,37 +160,26 @@ class EqualViewController: BaseTableViewController {
             
             return UITableViewCell()
         }
-//        if indexPath.row == 0 {
-//            let myCell = tableView.dequeueReusableCell(withIdentifier: String(describing: EqualCell.self), for: indexPath)
-//
-//            guard let equalCell = myCell as? EqualCell else { return myCell }
-//
-//            return equalCell
-//
-//        } else if indexPath.row == 1 {
-//            let friendCell =
-//                tableView.dequeueReusableCell(withIdentifier: String(describing: EqualCell.self), for: indexPath)
-//
-//            guard let equalCell =
-//                friendCell as? EqualCell else { return friendCell }
-//
-//            equalCell.userName.text = billingContent?.anyone
-//
-//            equalCell.paySelectBtn.addTarget(self, action: #selector(self.paySelect(_:)), for: .touchUpInside)
-//
-//            return equalCell
-//        } else if indexPath.row == 2 {
-//            let cell =
-//                tableView.dequeueReusableCell(withIdentifier: String(describing: AverageValueCell.self), for: indexPath)
-//
-//            guard let averageCell = cell as? AverageValueCell else { return cell }
-//
-//            return averageCell
-//        }
     }
     
     @objc func paySelect(_ sender: UIButton) {
+        
         sender.isSelected = !sender.isSelected
+        
+        if userBtn?.isSelected == true
+            && friendBtn?.isSelected == true {
+            
+            averageLabel?.text = "請至少選擇一人"
+            
+        } else if userBtn?.isSelected == true
+            || friendBtn?.isSelected == true {
+            
+            averageLabel?.text = "$\(equalBilling!.amount)/人"
+            
+        } else {
+            
+            averageLabel?.text = "$\(equalBilling!.amount / 2)/人"
+        }
     }
     
     func tableView(
@@ -184,6 +194,13 @@ class EqualViewController: BaseTableViewController {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath) {
         
+        if indexPath.row == 0 {
+            selectHandler?(userNameInfo)
+        } else if indexPath.row == 1 {
+            selectHandler?(equalBilling!.anyone)
+        } else {
+            return
+        }
 //        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

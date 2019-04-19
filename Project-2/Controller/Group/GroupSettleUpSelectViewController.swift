@@ -50,8 +50,13 @@ extension GroupSettleUpSelectViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: GroupSettleUpSelectCell.self), for: indexPath)
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
         
         guard let groupSettleUpSelectCell = cell as? GroupSettleUpSelectCell else { return cell }
         

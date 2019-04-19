@@ -88,6 +88,10 @@ extension GroupDetailViewController: UITableViewDataSource {
 
         let cell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: GroupAccountsListDetailCell.self), for: indexPath)
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
 
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 

@@ -14,7 +14,11 @@ struct BillData {
     
     let billName: String?
     
-    let amount: Int?
+    let amountTotal: Int?
+    
+    let owedAmount: Int?
+    
+    let payAmount: Int?
     
     let status: Int?
     
@@ -26,7 +30,11 @@ struct BillData {
         
         case billName
         
-        case amount
+        case amountTotal
+        
+        case owedAmount
+        
+        case payAmount
         
         case status
         
