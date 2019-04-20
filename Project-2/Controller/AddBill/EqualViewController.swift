@@ -28,6 +28,10 @@ class EqualViewController: BaseTableViewController {
     var averageLabel: UILabel?
     
     var selectHandler: ((String) -> Void)?
+    
+    var shareAmount: ((Int) -> Void)?
+    
+    var payAmount: ((Int) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,16 +173,34 @@ class EqualViewController: BaseTableViewController {
         if userBtn?.isSelected == true
             && friendBtn?.isSelected == true {
             
-            averageLabel?.text = "請至少選擇一人"
+            averageLabel?.text = ""
             
-        } else if userBtn?.isSelected == true
-            || friendBtn?.isSelected == true {
+            shareAmount?(equalBilling!.amount + 1)
+            
+        } else if userBtn?.isSelected == true {
             
             averageLabel?.text = "$\(equalBilling!.amount)/人"
+            
+            shareAmount?(equalBilling!.amount / 2 - equalBilling!.amount)
+            
+            payAmount?(0)
+            
+        } else if friendBtn?.isSelected == true {
+            
+            averageLabel?.text = "$\(equalBilling!.amount)/人"
+            
+            shareAmount?(equalBilling!.amount - equalBilling!.amount / 2)
+            
+            payAmount?(equalBilling!.amount)
             
         } else {
             
             averageLabel?.text = "$\(equalBilling!.amount / 2)/人"
+            
+            shareAmount?(0)
+            
+            payAmount?(equalBilling!.amount / 2)
+            
         }
     }
     
@@ -195,12 +217,16 @@ class EqualViewController: BaseTableViewController {
         didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
+            
             selectHandler?(userNameInfo)
+            
         } else if indexPath.row == 1 {
+            
             selectHandler?(equalBilling!.anyone)
+            
         } else {
+            
             return
         }
-//        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

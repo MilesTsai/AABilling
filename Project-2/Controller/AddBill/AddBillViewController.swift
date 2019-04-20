@@ -117,15 +117,17 @@ class AddBillViewController: BaseViewController {
                                 amount: amount
                             )
                             
+                            splitBillDetailVC.equalResult = amount / 2
+                            
+                            splitBillDetailVC.equalCalculationResult = 0
+                            
+                            splitBillDetailVC.individualCalculationResult = Int(-0.01)
+                            
                             self.present(expenseVC, animated: true, completion: nil)
                         }
                     }
             }
         }
-    }
-    
-    @IBAction func saveBill(_ sender: UIBarButtonItem) {
-        
 //        guard let currentUser = Auth.auth().currentUser else { return }
 //
 //        if accountObject.text?.isEmpty == true

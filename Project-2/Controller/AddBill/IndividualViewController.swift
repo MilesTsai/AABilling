@@ -22,6 +22,10 @@ class IndividualViewController: BaseTableViewController {
     var friendTextField: UITextField?
     
     var selectHandler: ((String) -> Void)?
+    
+    var shareAmount: ((Int) -> Void)?
+    
+    var payAmount: ((Int) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,13 +174,11 @@ extension IndividualViewController: UITextFieldDelegate {
         
         if textField == userTextField {
             
-            if userTextField?.text == "\(0)" {
-                
-                friendTextField?.text = "\(individualBilling?.amount ?? 0)"
-                
-            } else if userTextField?.text == "" {
+            if userTextField?.text == "" {
                 
                 friendTextField?.text = ""
+                
+                shareAmount?(individualBilling!.amount - individualBilling!.amount + Int(0.01))
                 
             } else {
                 
@@ -186,14 +188,15 @@ extension IndividualViewController: UITextFieldDelegate {
                 }
                 friendTextField?.text =
                 "\(individualBilling!.amount - userAmount)"
+                
+                payAmount?(userAmount)
+                
+                shareAmount?(userAmount - individualBilling!.amount / 2)
             }
+            
         } else {
             
-            if friendTextField?.text == "\(0)" {
-                
-                userTextField?.text = "\(individualBilling?.amount ?? 0)"
-                
-            } else if friendTextField?.text == "" {
+            if friendTextField?.text == "" {
                 
                 userTextField?.text = ""
                 
@@ -205,6 +208,10 @@ extension IndividualViewController: UITextFieldDelegate {
                 }
                 userTextField?.text =
                 "\(individualBilling!.amount - friendAmount)"
+                
+                payAmount?(friendAmount)
+                
+                shareAmount?(friendAmount - individualBilling!.amount / 2)
             }
         }
     }

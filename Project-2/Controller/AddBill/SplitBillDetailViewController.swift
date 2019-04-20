@@ -25,6 +25,16 @@ class SplitBillDetailViewController: BaseViewController {
     
     var billingContent: BillingContent?
     
+    var equalCalculationResult: Int?
+    
+    var equalResult: Int?
+    
+    var individualCalculationResult: Int?
+    
+    var individualResult: Int?
+    
+    var amountStatus: Int?
+    
     private enum ShareType: Int {
         
         case equal = 0
@@ -73,162 +83,194 @@ class SplitBillDetailViewController: BaseViewController {
         vc2?.selectHandler = { [weak self] name in
             self?.payer.text = name
         }
+        
+        vc1?.shareAmount = { [weak self] calculation in
+            self?.equalCalculationResult = calculation
+        }
+        
+        vc1?.payAmount = { [weak self] whoPay in
+            self?.equalResult = whoPay
+        }
+        
+        vc2?.shareAmount = { [weak self] calculation in
+            self?.individualCalculationResult = calculation
+        }
+        
+        vc2?.payAmount = { [weak self] whoPay in
+            self?.individualResult = whoPay
+        }
     }
     
     @IBAction func saveBill(_ sender: UIBarButtonItem) {
         
-        guard let currentUser = Auth.auth().currentUser else { return }
+        guard let currentUser = Auth.auth().currentUser
+            else {
+                return
+        }
         
-            dataBase
-                .collection("users")
-                .whereField("name", isEqualTo: accountObject.text ?? "")
-                .getDocuments { (querySnapshot, error) in
-                    if let error = error {
-                        print("Error getting documents: \(error)")
-                    } else {
-                        if querySnapshot?.isEmpty == true {
-                            print("No exist")
-                            let alertController =
-                                UIAlertController(
-                                    title: "錯誤",
-                                    message: "無此帳號",
-                                    preferredStyle: .alert
-                            )
+        if selectExpenseBtns[0].isSelected == true {
+            
+            if billingContent!.amount + 1 == equalCalculationResult {
+                
+                let alertController =
+                    UIAlertController(
+                        title: "錯誤",
+                        message: "請至少選擇一人",
+                        preferredStyle: .alert
+                )
+                
+                let defaultAction =
+                    UIAlertAction(
+                        title: "OK",
+                        style: .cancel,
+                        handler: nil
+                )
+                
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+                
+            } else {
+                
+                if equalCalculationResult! < 0 {
+                    amountStatus = 1
+                } else if equalCalculationResult == 0 {
+                    amountStatus = 2
+                } else if equalCalculationResult! > 0 {
+                    amountStatus = 0
+                }
+                
+                dataBase
+                    .collection("users")
+                    .document(currentUser.uid)
+                    .collection("bills")
+                    .document()
+                    .setData(
+                        [
+                            BillData.CodingKeys.name.rawValue:
+                                billingContent?.anyone ?? "",
+                            BillData.CodingKeys.billName.rawValue:
+                                billingContent?.billName ?? "",
+                            BillData.CodingKeys.amountTotal.rawValue:
+                                billingContent?.amount ?? "",
+                            BillData.CodingKeys.owedAmount.rawValue:
+                                equalCalculationResult ?? "",
+                            BillData.CodingKeys.payAmount.rawValue:
+                                equalResult ?? "",
+                            BillData.CodingKeys.status.rawValue:
+                                amountStatus ?? ""
+                        ]
+                )
+                
+                let alertController =
+                    UIAlertController(
+                        title: "成功",
+                        message: "帳單已成立",
+                        preferredStyle: .alert
+                )
+                
+                let defaultAction =
+                    UIAlertAction(
+                        title: "OK",
+                        style: .cancel,
+                        handler: nil
+                )
+                
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
+            
+        } else if selectExpenseBtns[1].isSelected == true {
+            
+            if billingContent!.amount - billingContent!.amount + Int(0.01) == individualCalculationResult {
 
-                            let defaultAction =
-                                UIAlertAction(
-                                    title: "OK",
-                                    style: .cancel,
-                                    handler: nil
-                            )
+                let alertController =
+                    UIAlertController(
+                        title: "錯誤",
+                        message: "請填入金額",
+                        preferredStyle: .alert
+                )
 
-                            alertController.addAction(defaultAction)
+                let defaultAction =
+                    UIAlertAction(
+                        title: "OK",
+                        style: .cancel,
+                        handler: nil
+                )
 
-                            self.present(alertController, animated: true, completion: nil)
-                        } else {
-                            for document in querySnapshot!.documents {
-                                print("\(document.documentID) => \(document.data())")
+                alertController.addAction(defaultAction)
 
-                                self.friendID = String(document.documentID)
-
-                                let friend = document.data()
-
-                                self.bill =
-                                    BillData(
-                                        name: friend["name"] as? String,
-                                        billName: friend["billName"] as? String,
-                                        amount: friend["amount"] as? Int,
-                                        status: friend["status"] as? Int,
-                                        uid: friend["uid"] as? String
-                                )
-                            }
-                            self.addDocument(document: self.friendID ?? "")
-
-                            self.dataBase
-                                .collection("users")
-                                .document(currentUser.uid)
-                                .collection("bills")
-                                .addDocument(data:
-                                    [
-                                        BillData.CodingKeys.status.rawValue:
-                                        0,
-                                        BillData.CodingKeys.name.rawValue:
-                                            self.accountObject.text ?? "",
-                                        BillData.CodingKeys.billName.rawValue:
-                                            self.friendBillName.text ?? "",
-                                        BillData.CodingKeys.amount.rawValue:
-                                            self.billAmount.text ?? "",
-                                        BillData.CodingKeys.uid.rawValue:
-                                            self.friendID ?? ""
-                                    ])
-
-                            let alertController =
-                                UIAlertController(
-                                    title: "成功",
-                                    message: "帳單已成立",
-                                    preferredStyle: .alert
-                            )
-
-                            let defaultAction =
-                                UIAlertAction(
-                                    title: "OK",
-                                    style: .cancel,
-                                    handler: nil
-                            )
-
-                            alertController.addAction(defaultAction)
-
-                            self.present(alertController, animated: true, completion: nil)
-                        }
-                    }
-                                dataBase
-                                    .collection("users")
-                                    .document(currentUser.uid)
-                                    .collection("bills")
-                                    .addDocument(data:
-                                        [
-                                            BillData.CodingKeys.name.rawValue:
-                                                accountObject.text ?? "",
-                                            BillData.CodingKeys.billName.rawValue:
-                                                friendBillName.text ?? "",
-                                            BillData.CodingKeys.amount.rawValue:
-                                                Int(billAmount.text ?? "") ?? "",
-                                            BillData.CodingKeys.status.rawValue: 0
-                                    ]) { error in
-                                        if let error = error {
-                                            print("Error adding document: \(error)")
-                                        } else {
-                                            let alertController =
-                                                UIAlertController(
-                                                    title: "成功",
-                                                    message: "帳單已成立",
-                                                    preferredStyle: .alert
-                                                )
-                    
-                                            let defaultAction =
-                                                UIAlertAction(
-                                                    title: "OK",
-                                                    style: .cancel,
-                                                    handler: nil
-                                                )
-                    
-                                            alertController.addAction(defaultAction)
-                    
-                                            self.present(alertController, animated: true, completion: nil)
-                    
-                                            self.dataBase.collection("users").addSnapshotListener({ (snapshot, _) in
-                    
-                                            guard let snapshot = snapshot else { return }
-                    
-                                            for document in snapshot.documents {
-                                                    print("\(document.documentID) => \(document.data())")
-                    
-                                                self.friendID = String(document.documentID)
-                                                }
-                                            })
-                                        }
-                                        self.addDocument(document: self.friendID ?? "")
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+            
+                if individualCalculationResult! < 0 {
+                    amountStatus = 1
+                } else if individualCalculationResult == 0 {
+                    amountStatus = 2
+                } else if individualCalculationResult! > 0 {
+                    amountStatus = 0
+                }
+                
+                dataBase
+                    .collection("users")
+                    .document(currentUser.uid)
+                    .collection("bills")
+                    .document()
+                    .setData(
+                        [
+                            BillData.CodingKeys.name.rawValue:
+                                billingContent?.anyone ?? "",
+                            BillData.CodingKeys.billName.rawValue:
+                                billingContent?.billName ?? "",
+                            BillData.CodingKeys.amountTotal.rawValue:
+                                billingContent?.amount ?? "",
+                            BillData.CodingKeys.owedAmount.rawValue:
+                                individualCalculationResult ?? "",
+                            BillData.CodingKeys.payAmount.rawValue:
+                                individualResult ?? "",
+                            BillData.CodingKeys.status.rawValue:
+                                amountStatus ?? ""
+                        ]
+                )
+                
+                let alertController =
+                    UIAlertController(
+                        title: "成功",
+                        message: "帳單已成立",
+                        preferredStyle: .alert
+                )
+                
+                let defaultAction =
+                    UIAlertAction(
+                        title: "OK",
+                        style: .cancel,
+                        handler: nil
+                )
+                
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
     
-    private func addDocument(document: String) {
-        //        friendID = Friend.friendList[0].uid
-        guard let currentUser = Auth.auth().currentUser else { return }
-
-        dataBase
-            .collection("users")
-            .document(friendID ?? "")
-            .collection("bills")
-            .addDocument(data:
-                [
-                    BillData.CodingKeys.name.rawValue: accountObject.text ?? "",
-                    BillData.CodingKeys.billName.rawValue: friendBillName.text ?? "",
-                    BillData.CodingKeys.amount.rawValue: Int(billAmount.text ?? "") ?? "",
-                    BillData.CodingKeys.uid.rawValue: currentUser.uid,
-                    BillData.CodingKeys.status.rawValue: 1
-                ])
-    }
+//    private func addDocument(document: String) {
+//        guard let currentUser = Auth.auth().currentUser else { return }
+//
+//        dataBase
+//            .collection("users")
+//            .document(friendID ?? "")
+//            .collection("bills")
+//            .addDocument(data:
+//                [
+//                    BillData.CodingKeys.name.rawValue: accountObject.text ?? "",
+//                    BillData.CodingKeys.billName.rawValue: friendBillName.text ?? "",
+//                    BillData.CodingKeys.amount.rawValue: Int(billAmount.text ?? "") ?? "",
+//                    BillData.CodingKeys.uid.rawValue: currentUser.uid,
+//                    BillData.CodingKeys.status.rawValue: 1
+//                ])
+//    }
     
     @IBAction func cancelExpenseDetail(_ sender: UIBarButtonItem) {
 
