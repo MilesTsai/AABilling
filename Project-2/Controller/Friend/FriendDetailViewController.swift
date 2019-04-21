@@ -25,6 +25,8 @@ class FriendDetailViewController: BaseViewController {
 
     var friendData: PersonalData?
     
+    var billingList = [BillingContent]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

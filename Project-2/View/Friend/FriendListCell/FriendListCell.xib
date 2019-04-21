@@ -34,7 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1,000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3Y-Av-Mz2">
-                        <rect key="frame" x="257" y="23" width="100" height="31.5"/>
+                        <rect key="frame" x="257" y="26" width="100" height="25.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="Xbz-bB-hsi"/>
                         </constraints>
@@ -43,7 +43,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="you owe" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puc-P1-QSe">
-                        <rect key="frame" x="297" y="5" width="60" height="18"/>
+                        <rect key="frame" x="297" y="8" width="60" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="EQF-IB-qbe"/>
                             <constraint firstAttribute="height" constant="18" id="dT3-Ot-hSc"/>
@@ -60,8 +60,8 @@
                     <constraint firstAttribute="bottom" secondItem="3lI-2h-T75" secondAttribute="bottom" constant="6" id="RHu-LT-SXk"/>
                     <constraint firstItem="3lI-2h-T75" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="Wre-Fm-Wfx"/>
                     <constraint firstItem="b3Y-Av-Mz2" firstAttribute="top" secondItem="puc-P1-QSe" secondAttribute="bottom" id="eOo-Ue-7I0"/>
-                    <constraint firstItem="puc-P1-QSe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="h4J-Ay-cf7"/>
-                    <constraint firstAttribute="bottom" secondItem="b3Y-Av-Mz2" secondAttribute="bottom" constant="5" id="hdf-aw-dh9"/>
+                    <constraint firstItem="puc-P1-QSe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="h4J-Ay-cf7"/>
+                    <constraint firstAttribute="bottom" secondItem="b3Y-Av-Mz2" secondAttribute="bottom" constant="8" id="hdf-aw-dh9"/>
                     <constraint firstItem="b3Y-Av-Mz2" firstAttribute="trailing" secondItem="puc-P1-QSe" secondAttribute="trailing" id="lYB-cz-EmX"/>
                     <constraint firstAttribute="trailing" secondItem="puc-P1-QSe" secondAttribute="trailing" constant="18" id="mKp-Rb-BiZ"/>
                     <constraint firstItem="l0K-MR-WCY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="mdE-UM-8Fg"/>

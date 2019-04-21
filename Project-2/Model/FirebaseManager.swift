@@ -20,6 +20,8 @@ class FirebaseManager {
         FirebaseApp.configure()
     }
     
+    var myName: String?
+    
     lazy var userReference = Firestore.firestore().collection("users")
     
     func signUp(withEmail: String, password: String, userName: String, view: UIViewController) {
@@ -48,6 +50,7 @@ class FirebaseManager {
                                 "storage": "",
                                 "uid": currentUser.uid
                             ])
+                        self.myName = userName
                         
                         if let tabBarVC =
                             UIStoryboard.main.instantiateViewController(

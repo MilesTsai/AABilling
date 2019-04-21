@@ -23,9 +23,13 @@ class IndividualViewController: BaseTableViewController {
     
     var selectHandler: ((String) -> Void)?
     
-    var shareAmount: ((Int) -> Void)?
+    var owedAmount: ((Int) -> Void)?
     
     var payAmount: ((Int) -> Void)?
+    
+    var friendOwedAmount: ((Int) -> Void)?
+    
+    var friendPayAmount: ((Int) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -178,7 +182,7 @@ extension IndividualViewController: UITextFieldDelegate {
                 
                 friendTextField?.text = ""
                 
-                shareAmount?(individualBilling!.amount - individualBilling!.amount + Int(0.01))
+                owedAmount?(Int(-0.01))
                 
             } else {
                 
@@ -191,7 +195,11 @@ extension IndividualViewController: UITextFieldDelegate {
                 
                 payAmount?(userAmount)
                 
-                shareAmount?(userAmount - individualBilling!.amount / 2)
+                owedAmount?(userAmount - individualBilling!.amount / 2)
+                
+                friendPayAmount?(individualBilling!.amount - userAmount)
+                
+                friendOwedAmount?(individualBilling!.amount / 2 - userAmount)
             }
             
         } else {
@@ -211,7 +219,7 @@ extension IndividualViewController: UITextFieldDelegate {
                 
                 payAmount?(friendAmount)
                 
-                shareAmount?(friendAmount - individualBilling!.amount / 2)
+                owedAmount?(friendAmount - individualBilling!.amount / 2)
             }
         }
     }

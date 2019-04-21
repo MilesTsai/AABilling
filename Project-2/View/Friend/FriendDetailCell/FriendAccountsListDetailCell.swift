@@ -9,7 +9,13 @@
 import UIKit
 
 class FriendAccountsListDetailCell: UITableViewCell {
-
+    
+    @IBOutlet weak var billName: UILabel!
+    
+    @IBOutlet weak var sumOfMoneyStatus: UILabel!
+    
+    @IBOutlet weak var sumOfMoney: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

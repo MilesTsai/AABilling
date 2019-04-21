@@ -29,9 +29,17 @@ class SplitBillDetailViewController: BaseViewController {
     
     var equalResult: Int?
     
+    var friendEqualCalculationResult: Int?
+    
+    var friendEqualResult: Int?
+    
     var individualCalculationResult: Int?
     
     var individualResult: Int?
+    
+    var friendIndividualCalculationResult: Int?
+    
+    var friendIndividualResult: Int?
     
     var amountStatus: Int?
     
@@ -84,7 +92,7 @@ class SplitBillDetailViewController: BaseViewController {
             self?.payer.text = name
         }
         
-        vc1?.shareAmount = { [weak self] calculation in
+        vc1?.owedAmount = { [weak self] calculation in
             self?.equalCalculationResult = calculation
         }
         
@@ -92,12 +100,28 @@ class SplitBillDetailViewController: BaseViewController {
             self?.equalResult = whoPay
         }
         
-        vc2?.shareAmount = { [weak self] calculation in
+        vc1?.friendOwedAmount = { [weak self] calculation in
+            self?.friendEqualCalculationResult = calculation
+        }
+        
+        vc1?.friendPayAmount = { [weak self] whoPay in
+            self?.friendEqualResult = whoPay
+        }
+        
+        vc2?.owedAmount = { [weak self] calculation in
             self?.individualCalculationResult = calculation
         }
         
         vc2?.payAmount = { [weak self] whoPay in
             self?.individualResult = whoPay
+        }
+        
+        vc2?.friendOwedAmount = { [weak self] calculation in
+            self?.friendIndividualCalculationResult = calculation
+        }
+        
+        vc2?.friendPayAmount = { [weak self] whoPay in
+            self?.friendIndividualResult = whoPay
         }
     }
     
@@ -113,18 +137,10 @@ class SplitBillDetailViewController: BaseViewController {
             if billingContent!.amount + 1 == equalCalculationResult {
                 
                 let alertController =
-                    UIAlertController(
-                        title: "錯誤",
-                        message: "請至少選擇一人",
-                        preferredStyle: .alert
-                )
+                    UIAlertController(title: "錯誤", message: "請至少選擇一人", preferredStyle: .alert)
                 
                 let defaultAction =
-                    UIAlertAction(
-                        title: "OK",
-                        style: .cancel,
-                        handler: nil
-                )
+                    UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 
                 alertController.addAction(defaultAction)
                 
@@ -158,32 +174,27 @@ class SplitBillDetailViewController: BaseViewController {
                             BillData.CodingKeys.payAmount.rawValue:
                                 equalResult ?? "",
                             BillData.CodingKeys.status.rawValue:
-                                amountStatus ?? ""
+                                amountStatus ?? "",
+                            BillData.CodingKeys.uid.rawValue: friendID ?? ""
                         ]
                 )
                 
+                addEqualDocument()
+                
                 let alertController =
-                    UIAlertController(
-                        title: "成功",
-                        message: "帳單已成立",
-                        preferredStyle: .alert
-                )
+                    UIAlertController(title: "成功", message: "帳單已成立", preferredStyle: .alert)
                 
                 let defaultAction =
-                    UIAlertAction(
-                        title: "OK",
-                        style: .cancel,
-                        handler: nil
-                )
+                    UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 
                 alertController.addAction(defaultAction)
                 
                 self.present(alertController, animated: true, completion: nil)
             }
             
-        } else if selectExpenseBtns[1].isSelected == true {
+        } else {
             
-            if billingContent!.amount - billingContent!.amount + Int(0.01) == individualCalculationResult {
+            if Int(-0.01) == individualCalculationResult {
 
                 let alertController =
                     UIAlertController(
@@ -230,9 +241,12 @@ class SplitBillDetailViewController: BaseViewController {
                             BillData.CodingKeys.payAmount.rawValue:
                                 individualResult ?? "",
                             BillData.CodingKeys.status.rawValue:
-                                amountStatus ?? ""
+                                amountStatus ?? "",
+                            BillData.CodingKeys.uid.rawValue: friendID ?? ""
                         ]
                 )
+                
+                addIndividualDocument()
                 
                 let alertController =
                     UIAlertController(
@@ -255,22 +269,71 @@ class SplitBillDetailViewController: BaseViewController {
         }
     }
     
-//    private func addDocument(document: String) {
-//        guard let currentUser = Auth.auth().currentUser else { return }
-//
-//        dataBase
-//            .collection("users")
-//            .document(friendID ?? "")
-//            .collection("bills")
-//            .addDocument(data:
-//                [
-//                    BillData.CodingKeys.name.rawValue: accountObject.text ?? "",
-//                    BillData.CodingKeys.billName.rawValue: friendBillName.text ?? "",
-//                    BillData.CodingKeys.amount.rawValue: Int(billAmount.text ?? "") ?? "",
-//                    BillData.CodingKeys.uid.rawValue: currentUser.uid,
-//                    BillData.CodingKeys.status.rawValue: 1
-//                ])
-//    }
+    private func addEqualDocument() {
+        
+        guard let currentUser = Auth.auth().currentUser
+            else {
+                return
+        }
+        
+        if friendEqualCalculationResult! < 0 {
+            amountStatus = 1
+        } else if friendEqualCalculationResult == 0 {
+            amountStatus = 2
+        } else if friendEqualCalculationResult! > 0 {
+            amountStatus = 0
+        }
+        
+        dataBase
+            .collection("users")
+            .document(friendID ?? "")
+            .collection("bills")
+            .document()
+            .setData(
+                [
+                    BillData.CodingKeys.name.rawValue: FirebaseManager.shared.myName ?? "",
+                    BillData.CodingKeys.billName.rawValue: billingContent?.billName ?? "",
+                    BillData.CodingKeys.amountTotal.rawValue: billingContent?.amount ?? "",
+                    BillData.CodingKeys.owedAmount.rawValue: friendEqualCalculationResult ?? "",
+                    BillData.CodingKeys.payAmount.rawValue: friendEqualResult ?? "",
+                    BillData.CodingKeys.status.rawValue: amountStatus ?? "",
+                    BillData.CodingKeys.uid.rawValue: currentUser.uid
+                ]
+        )
+    }
+    
+    private func addIndividualDocument() {
+        
+        guard let currentUser = Auth.auth().currentUser
+            else {
+                return
+        }
+        
+        if friendIndividualCalculationResult! < 0 {
+            amountStatus = 1
+        } else if friendIndividualCalculationResult == 0 {
+            amountStatus = 2
+        } else if friendIndividualCalculationResult! > 0 {
+            amountStatus = 0
+        }
+        
+        dataBase
+            .collection("users")
+            .document(friendID ?? "")
+            .collection("bills")
+            .document()
+            .setData(
+                [
+                    BillData.CodingKeys.name.rawValue: FirebaseManager.shared.myName ?? "",
+                    BillData.CodingKeys.billName.rawValue: billingContent?.billName ?? "",
+                    BillData.CodingKeys.amountTotal.rawValue: billingContent?.amount ?? "",
+                    BillData.CodingKeys.owedAmount.rawValue: friendIndividualCalculationResult ?? "",
+                    BillData.CodingKeys.payAmount.rawValue: friendIndividualResult ?? "",
+                    BillData.CodingKeys.status.rawValue: amountStatus ?? "",
+                    BillData.CodingKeys.uid.rawValue: currentUser.uid
+                ]
+        )
+    }
     
     @IBAction func cancelExpenseDetail(_ sender: UIBarButtonItem) {
 

@@ -29,9 +29,13 @@ class EqualViewController: BaseTableViewController {
     
     var selectHandler: ((String) -> Void)?
     
-    var shareAmount: ((Int) -> Void)?
+    var owedAmount: ((Int) -> Void)?
     
     var payAmount: ((Int) -> Void)?
+    
+    var friendOwedAmount: ((Int) -> Void)?
+    
+    var friendPayAmount: ((Int) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,31 +179,43 @@ class EqualViewController: BaseTableViewController {
             
             averageLabel?.text = ""
             
-            shareAmount?(equalBilling!.amount + 1)
+            owedAmount?(equalBilling!.amount + 1)
             
         } else if userBtn?.isSelected == true {
             
             averageLabel?.text = "$\(equalBilling!.amount)/人"
             
-            shareAmount?(equalBilling!.amount / 2 - equalBilling!.amount)
+            owedAmount?(equalBilling!.amount / 2 - equalBilling!.amount)
             
             payAmount?(0)
+            
+            friendOwedAmount?(equalBilling!.amount - equalBilling!.amount / 2)
+            
+            friendPayAmount?(equalBilling!.amount)
             
         } else if friendBtn?.isSelected == true {
             
             averageLabel?.text = "$\(equalBilling!.amount)/人"
             
-            shareAmount?(equalBilling!.amount - equalBilling!.amount / 2)
+            owedAmount?(equalBilling!.amount - equalBilling!.amount / 2)
             
             payAmount?(equalBilling!.amount)
+            
+            friendOwedAmount?(equalBilling!.amount / 2 - equalBilling!.amount)
+            
+            friendPayAmount?(0)
             
         } else {
             
             averageLabel?.text = "$\(equalBilling!.amount / 2)/人"
             
-            shareAmount?(0)
+            owedAmount?(0)
             
             payAmount?(equalBilling!.amount / 2)
+            
+            friendOwedAmount?(0)
+            
+            friendPayAmount?(equalBilling!.amount / 2)
             
         }
     }
