@@ -11,6 +11,12 @@ import Firebase
 
 class FriendViewController: BaseViewController {
 
+    @IBOutlet weak var oweLabel: UILabel!
+    
+    @IBOutlet weak var lentLabel: UILabel!
+    
+    @IBOutlet weak var totalLabel: UILabel!
+    
     @IBOutlet weak var tableView: UITableView! {
 
         didSet {
@@ -29,7 +35,11 @@ class FriendViewController: BaseViewController {
     
     var friendList = [PersonalData]()
     
-    var billList = [BillData]()
+    var sum = 0
+    
+    var owe = 0
+    
+    var lent = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,20 +70,20 @@ class FriendViewController: BaseViewController {
             .collection("users")
             .document(currentUser?.uid ?? "")
             .collection("friends")
-            .getDocuments { querySnapshot, error in
+            .addSnapshotListener { querySnapshot, error in
             
                 if let error = error {
                     print("\(error.localizedDescription)")
                 } else {
                     guard let snapshot =
                               querySnapshot else { return }
+                    
                     self.friendList =
                          snapshot
                             .documents
                             .compactMap({
                                 PersonalData(dictionary: $0.data())
                             })
-//                    Friend.friendList = self.friendList
                     DispatchQueue.main.async {
                         
                         self.tableView.reloadData()
@@ -93,13 +103,13 @@ class FriendViewController: BaseViewController {
     @IBAction func logOut(_ sender: UIBarButtonItem) {
         try? Auth.auth().signOut()
     }
+    
 }
 
 extension FriendViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        print(friendList.count)
         return friendList.count
         
     }
@@ -120,7 +130,44 @@ extension FriendViewController: UITableViewDataSource {
         
         let list = friendList[indexPath.row]
         
+        guard var total = list.totalAccount else { return friendCell }
+        
+        for totals in total...total {
+            sum += totals
+        }
+        
+        totalLabel.text = "$\(sum)"
+        
         friendCell.userName.text = list.name
+        
+        friendCell.accountsSum.text = "$\(String(describing: total))"
+        
+        if total > 0 {
+            
+            friendCell.accountsStatus.text = "未取款"
+            
+            friendCell.accountsSum.text = "$\(String(describing: total))"
+            
+            for totals in total...total {
+                lent += totals
+            }
+            
+            lentLabel.text = "$\(lent)"
+            
+        } else if total < 0 {
+            
+            friendCell.accountsStatus.text = "欠款"
+            
+            total.negate()
+            
+            friendCell.accountsSum.text = "$\(String(describing: total))"
+            
+            for totals in total...total {
+                owe += totals
+            }
+            
+            oweLabel.text = "$\(owe)"
+        }
 
         return friendCell
     }
@@ -136,6 +183,8 @@ extension FriendViewController: UITableViewDataSource {
                 guard let friendDetailVC =
                           segue.destination as? FriendDetailViewController else { return }
                 friendDetailVC.friendData = friendList[indexPath.row]
+//                print("=========")
+//                print(friendDetailVC.friendData)
             }
         }
     }

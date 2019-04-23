@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol BillingDocument {
+    init?(dictionary: [String: Any])
+}
+
 struct BillData {
     
     let uid: String?
@@ -24,6 +28,18 @@ struct BillData {
     
     let status: Int?
     
+    var dictionary: [String: Any] {
+        return [
+            "name": name ?? "",
+            "billName": billName ?? "",
+            "amountTotal": amountTotal ?? "",
+            "uid": uid ?? "",
+            "status": status ?? "",
+            "owedAmount": owedAmount ?? "",
+            "payAmount": payAmount ?? ""
+        ]
+    }
+    
     enum CodingKeys: String, CodingKey {
         
         case uid
@@ -39,5 +55,38 @@ struct BillData {
         case payAmount
         
         case status
+    }
+}
+
+extension BillData: BillingDocument {
+    init?(dictionary: [String: Any]) {
+        guard let name =
+            dictionary["name"] as? String,
+            let billName =
+            dictionary["billName"] as? String,
+            let amountTotal =
+            dictionary["amountTotal"] as? Int,
+            let uid =
+            dictionary["uid"] as? String,
+            let status =
+            dictionary["status"] as? Int,
+            let owedAmount =
+            dictionary["owedAmount"] as? Int,
+            let payAmount =
+            dictionary["payAmount"] as? Int
+            else {
+                return nil
+                
+        }
+        
+        self.init(
+            uid: uid,
+            name: name,
+            billName: billName,
+            amountTotal: amountTotal,
+            owedAmount: owedAmount,
+            payAmount: payAmount,
+            status: status
+        )
     }
 }

@@ -29,6 +29,8 @@ class AddBillViewController: BaseViewController {
     var dataBase: Firestore = Firestore.firestore()
 
     var friendID: String?
+    
+    var friend: [String: Any]?
 
     var user: PersonalData?
 
@@ -62,8 +64,16 @@ class AddBillViewController: BaseViewController {
             self.present(alertController, animated: true, completion: nil)
             
         } else {
+            
+            guard let currentUser = Auth.auth().currentUser
+                else {
+                    return
+            }
+            
             dataBase
                 .collection("users")
+                .document(currentUser.uid)
+                .collection("friends")
                 .whereField("name", isEqualTo: accountObject.text ?? "")
                 .getDocuments { (querySnapshot, error) in
                     if let error = error {
@@ -94,6 +104,8 @@ class AddBillViewController: BaseViewController {
                                 print("\(document.documentID) => \(document.data())")
                                 
                                 self.friendID = String(document.documentID)
+                                
+                                self.friend = document.data()
                             }
                             
                             let storyboard = UIStoryboard(name: "Friend", bundle: nil)
@@ -134,6 +146,8 @@ class AddBillViewController: BaseViewController {
                             splitBillDetailVC.friendEqualResult = amount / 2
                                 
                             splitBillDetailVC.friendID = self.friendID
+                            
+                            splitBillDetailVC.friend = self.friend
                             
                             self.present(expenseVC, animated: true, completion: nil)
                         }

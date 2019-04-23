@@ -78,9 +78,9 @@ class FirebaseManager {
     
     func read() {
         
-        let userReference = Firestore.firestore().collection("users")
+        guard let currentUser = Auth.auth().currentUser else { return }
         
-        userReference.addSnapshotListener { (snapshot, _) in
+        userReference.document(currentUser.uid).collection("bills").addSnapshotListener { (snapshot, _) in
             
             guard let snapshot = snapshot else { return }
             

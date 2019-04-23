@@ -57,6 +57,7 @@
 		CEABD3EA226740B30062B552 /* IndividualCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEABD3E8226740B30062B552 /* IndividualCell.xib */; };
 		CEABD3ED226767080062B552 /* AverageValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3EB226767080062B552 /* AverageValueCell.swift */; };
 		CEABD3EE226767080062B552 /* AverageValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEABD3EC226767080062B552 /* AverageValueCell.xib */; };
+		CEABD3F9226D9EDC0062B552 /* BillingDetailObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3F8226D9EDB0062B552 /* BillingDetailObject.swift */; };
 		CED3A86922545874007B5A07 /* LogInAndSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */; };
 		CED3A86C225460B6007B5A07 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86B225460B6007B5A07 /* UIView+Extension.swift */; };
 		CED3A86F2254655F007B5A07 /* TextFieldPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */; };
@@ -144,6 +145,7 @@
 		CEABD3E8226740B30062B552 /* IndividualCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IndividualCell.xib; sourceTree = "<group>"; };
 		CEABD3EB226767080062B552 /* AverageValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageValueCell.swift; sourceTree = "<group>"; };
 		CEABD3EC226767080062B552 /* AverageValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AverageValueCell.xib; sourceTree = "<group>"; };
+		CEABD3F8226D9EDB0062B552 /* BillingDetailObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDetailObject.swift; sourceTree = "<group>"; };
 		CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInAndSignUp.storyboard; sourceTree = "<group>"; };
 		CED3A86B225460B6007B5A07 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPlaceholder.swift; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 				CEABD3D222644FEF0062B552 /* UserObject.swift */,
 				CEABD3D62265A8C80062B552 /* BillObject.swift */,
 				CEABD3D92265F5A10062B552 /* FirebaseManager.swift */,
+				CEABD3F8226D9EDB0062B552 /* BillingDetailObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -735,6 +738,7 @@
 				CEABD3E0226738410062B552 /* BaseTableViewController.swift in Sources */,
 				CE768A9F225642E000ECEBE1 /* FriendListCell.swift in Sources */,
 				CE768AC4225B1A2400ECEBE1 /* GroupDetailCell.swift in Sources */,
+				CEABD3F9226D9EDC0062B552 /* BillingDetailObject.swift in Sources */,
 				CEABD3DA2265F5A10062B552 /* FirebaseManager.swift in Sources */,
 				CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */,
 				CEABD3E9226740B30062B552 /* IndividualCell.swift in Sources */,

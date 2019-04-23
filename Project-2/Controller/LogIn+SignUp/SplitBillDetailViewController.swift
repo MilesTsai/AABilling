@@ -19,6 +19,8 @@ class SplitBillDetailViewController: BaseViewController {
     
     var friendID: String?
     
+    var friend: [String : Any]?
+    
     var user: PersonalData?
     
     var bill: BillData?
@@ -123,6 +125,10 @@ class SplitBillDetailViewController: BaseViewController {
         vc2?.friendPayAmount = { [weak self] whoPay in
             self?.friendIndividualResult = whoPay
         }
+        
+        print("=========")
+        print(friend)
+        
     }
     
     @IBAction func saveBill(_ sender: UIBarButtonItem) {
@@ -181,6 +187,8 @@ class SplitBillDetailViewController: BaseViewController {
                 
                 addEqualDocument()
                 
+                updateEqualDocument()
+                
                 let alertController =
                     UIAlertController(title: "成功", message: "帳單已成立", preferredStyle: .alert)
                 
@@ -194,7 +202,7 @@ class SplitBillDetailViewController: BaseViewController {
             
         } else {
             
-            if Int(-0.01) == individualCalculationResult {
+            if Int(-0.9501) == individualCalculationResult {
 
                 let alertController =
                     UIAlertController(
@@ -248,6 +256,8 @@ class SplitBillDetailViewController: BaseViewController {
                 
                 addIndividualDocument()
                 
+                updateIndividualDocument()
+                
                 let alertController =
                     UIAlertController(
                         title: "成功",
@@ -300,6 +310,7 @@ class SplitBillDetailViewController: BaseViewController {
                     BillData.CodingKeys.uid.rawValue: currentUser.uid
                 ]
         )
+    
     }
     
     private func addIndividualDocument() {
@@ -333,6 +344,46 @@ class SplitBillDetailViewController: BaseViewController {
                     BillData.CodingKeys.uid.rawValue: currentUser.uid
                 ]
         )
+    }
+    
+    private func updateEqualDocument() {
+        
+        guard let currentUser = Auth.auth().currentUser
+            else {
+                return
+        }
+        
+        guard let equal = equalCalculationResult else { return }
+        
+        guard let money = (friend?["totalAccount"]) as? Int else { return }
+        
+        dataBase
+            .collection("users")
+            .document(currentUser.uid).collection("friends")
+            .document(friendID ?? "")
+            .updateData(["totalAccount": money + equal])
+
+    }
+    
+    private func updateIndividualDocument() {
+        
+        guard let currentUser = Auth.auth().currentUser
+            else {
+                return
+        }
+        
+        guard let individual = individualCalculationResult else { return }
+        
+        guard let amount = (friend?["totalAccount"]) as? Int else {
+            return
+        }
+        
+        dataBase
+            .collection("users")
+            .document(currentUser.uid)
+            .collection("friends")
+            .document(friendID ?? "")
+            .updateData(["totalAccount" : amount + individual])
     }
     
     @IBAction func cancelExpenseDetail(_ sender: UIBarButtonItem) {

@@ -24,13 +24,16 @@ struct PersonalData {
     
     let status: Int?
     
+    let totalAccount: Int?
+    
     var dictionary: [String: Any] {
         return [
             "name": name ?? "",
             "email": email ?? "",
             "storage": storage ?? "",
             "uid": uid ?? "",
-            "status": status ?? ""
+            "status": status ?? "",
+            "totalAccount": totalAccount ?? ""
         ]
     }
     
@@ -45,6 +48,8 @@ struct PersonalData {
         case uid
         
         case status
+        
+        case totalAccount
     }
 }
 
@@ -59,7 +64,9 @@ extension PersonalData: DocumentSerializable {
               let uid =
                     dictionary["uid"] as? String,
               let status =
-                    dictionary["status"] as? Int
+                    dictionary["status"] as? Int,
+              let totalAccount =
+                    dictionary["totalAccount"] as? Int
               else { return nil }
         
         self.init(
@@ -67,7 +74,8 @@ extension PersonalData: DocumentSerializable {
             email: email,
             storage: storage,
             uid: uid,
-            status: status
+            status: status,
+            totalAccount: totalAccount
         )
     }
 }

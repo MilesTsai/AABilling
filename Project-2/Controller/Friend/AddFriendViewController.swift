@@ -93,7 +93,8 @@ class AddFriendViewController: UIViewController {
                                     email: friend["email"] as? String,
                                     storage: friend["storage"] as? String,
                                     uid: friend["uid"] as? String,
-                                    status: friend["status"] as? Int
+                                    status: friend["status"] as? Int,
+                                    totalAccount: friend["totalAccount"] as? Int
                                 )
                     }
                     self.updateDocument(document: self.friendID ?? "")
@@ -114,7 +115,9 @@ class AddFriendViewController: UIViewController {
                                     PersonalData.CodingKeys.email.rawValue:
                                         self.user?.email ?? "",
                                     PersonalData.CodingKeys.uid.rawValue:
-                                        self.user?.uid ?? ""
+                                        self.user?.uid ?? "",
+                                    
+                                    PersonalData.CodingKeys.totalAccount.rawValue: 0
                                 ])
                     
                     let alertController =

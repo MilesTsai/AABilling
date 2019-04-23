@@ -182,7 +182,7 @@ extension IndividualViewController: UITextFieldDelegate {
                 
                 friendTextField?.text = ""
                 
-                owedAmount?(Int(-0.01))
+                owedAmount?(Int(-0.9501))
                 
             } else {
                 
@@ -203,23 +203,27 @@ extension IndividualViewController: UITextFieldDelegate {
             }
             
         } else {
-            
+
             if friendTextField?.text == "" {
-                
+
                 userTextField?.text = ""
-                
+
             } else {
-                
+
                 guard let friendAmount = Int(friendTextField?.text ?? "")
                     else {
                         return
                 }
                 userTextField?.text =
                 "\(individualBilling!.amount - friendAmount)"
+
+                payAmount?(individualBilling!.amount - friendAmount)
                 
-                payAmount?(friendAmount)
+                owedAmount?(individualBilling!.amount - friendAmount - individualBilling!.amount / 2)
                 
-                owedAmount?(friendAmount - individualBilling!.amount / 2)
+                friendPayAmount?(friendAmount)
+                
+                friendOwedAmount?(friendAmount - individualBilling!.amount / 2)
             }
         }
     }
