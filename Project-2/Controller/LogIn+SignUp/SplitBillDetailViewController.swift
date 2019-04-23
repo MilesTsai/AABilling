@@ -21,7 +21,7 @@ class SplitBillDetailViewController: BaseViewController {
     
     var friend: [String : Any]?
     
-    var user: PersonalData?
+    var user: UserData?
     
     var bill: BillData?
     
@@ -301,7 +301,7 @@ class SplitBillDetailViewController: BaseViewController {
             .document()
             .setData(
                 [
-                    BillData.CodingKeys.name.rawValue: FirebaseManager.shared.myName ?? "",
+                    BillData.CodingKeys.name.rawValue: user?.name ?? "",
                     BillData.CodingKeys.billName.rawValue: billingContent?.billName ?? "",
                     BillData.CodingKeys.amountTotal.rawValue: billingContent?.amount ?? "",
                     BillData.CodingKeys.owedAmount.rawValue: friendEqualCalculationResult ?? "",
@@ -335,7 +335,7 @@ class SplitBillDetailViewController: BaseViewController {
             .document()
             .setData(
                 [
-                    BillData.CodingKeys.name.rawValue: FirebaseManager.shared.myName ?? "",
+                    BillData.CodingKeys.name.rawValue: user?.name ?? "",
                     BillData.CodingKeys.billName.rawValue: billingContent?.billName ?? "",
                     BillData.CodingKeys.amountTotal.rawValue: billingContent?.amount ?? "",
                     BillData.CodingKeys.owedAmount.rawValue: friendIndividualCalculationResult ?? "",

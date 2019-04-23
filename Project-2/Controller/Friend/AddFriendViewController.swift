@@ -19,7 +19,9 @@ class AddFriendViewController: UIViewController {
     
     var friendID: String?
     
-    var user: PersonalData?
+    var friend: PersonalData?
+    
+    var userData: UserData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +89,7 @@ class AddFriendViewController: UIViewController {
                         
                         let friend = document.data()
                         
-                        self.user =
+                        self.friend =
                                 PersonalData(
                                     name: friend["name"] as? String,
                                     email: friend["email"] as? String,
@@ -107,15 +109,15 @@ class AddFriendViewController: UIViewController {
                             .setData(
                                 [
                                     PersonalData.CodingKeys.status.rawValue:
-                                        0,
+                                        2,
                                     PersonalData.CodingKeys.name.rawValue:
-                                        self.user?.name ?? "",
+                                        self.friend?.name ?? "",
                                     PersonalData.CodingKeys.storage.rawValue:
-                                        self.user?.storage ?? "",
+                                        self.friend?.storage ?? "",
                                     PersonalData.CodingKeys.email.rawValue:
-                                        self.user?.email ?? "",
+                                        self.friend?.email ?? "",
                                     PersonalData.CodingKeys.uid.rawValue:
-                                        self.user?.uid ?? "",
+                                        self.friend?.uid ?? "",
                                     
                                     PersonalData.CodingKeys.totalAccount.rawValue: 0
                                 ])
@@ -146,16 +148,25 @@ class AddFriendViewController: UIViewController {
         
         guard let currentUser = Auth.auth().currentUser else { return }
         
-        let inviteFriend =
-                dataBase
-                    .collection("users")
-                    .document(friendID ?? "")
-                    .collection("friends")
-                    .document(currentUser.uid)
-        
-        inviteFriend.setData([
-            "status": 1
-        ]) { error in
+        dataBase
+            .collection("users")
+            .document(friendID ?? "")
+            .collection("friends")
+            .document(currentUser.uid)
+            .setData([
+                PersonalData.CodingKeys.status.rawValue:
+                0,
+                PersonalData.CodingKeys.name.rawValue:
+                    userData?.name ?? "",
+                PersonalData.CodingKeys.storage.rawValue:
+                    userData?.storage ?? "",
+                PersonalData.CodingKeys.email.rawValue:
+                    userData?.email ?? "",
+                PersonalData.CodingKeys.uid.rawValue:
+                    currentUser.uid ,
+                PersonalData.CodingKeys.totalAccount.rawValue: 0
+                
+            ]) { error in
             if let error = error {
                 print("Error updating document: \(error)")
             } else {

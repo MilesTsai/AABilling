@@ -15,10 +15,12 @@ class FriendSettingViewController: BaseViewController {
     @IBOutlet weak var friendEmail: UILabel!
     
     var friendDetailData: PersonalData?
+    
+    var friendUid: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +39,11 @@ class FriendSettingViewController: BaseViewController {
     }
 
     @IBAction func deleteFriend(_ sender: UIButton) {
+        
+        guard let friendUid = friendDetailData?.uid else {
+            return
+        }
+        
+        FirebaseManager.shared.deleteFriend(document: friendUid)
     }
-
 }

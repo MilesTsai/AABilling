@@ -201,9 +201,9 @@ extension FriendDetailViewController: UITableViewDataSource {
                 for: indexPath
                 )
         
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.clear
-        cell.selectedBackgroundView = backgroundView
+//        let backgroundView = UIView()
+//        backgroundView.backgroundColor = UIColor.clear
+//        cell.selectedBackgroundView = backgroundView
 
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 

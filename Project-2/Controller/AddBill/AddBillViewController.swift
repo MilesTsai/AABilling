@@ -32,9 +32,9 @@ class AddBillViewController: BaseViewController {
     
     var friend: [String: Any]?
 
-    var user: PersonalData?
-
-    var bill: BillData?
+//    var user: PersonalData?
+//
+//    var bill: BillData?
     
     override func viewDidLoad() {
         super.viewDidLoad()

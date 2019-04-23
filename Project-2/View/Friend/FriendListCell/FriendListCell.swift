@@ -17,10 +17,18 @@ class FriendListCell: UITableViewCell {
     @IBOutlet weak var accountsStatus: UILabel!
 
     @IBOutlet weak var accountsSum: UILabel!
-
+    
+    @IBOutlet weak var acceptBtn: UIButton!
+    
+    @IBOutlet weak var refuseBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        acceptBtn.isHidden = true
+        
+        refuseBtn.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5709D70A4D654E1EB4C99FA0 /* Pods_Project_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A219E35342CA912299A66365 /* Pods_Project_2.framework */; };
+		CE007C59226EB16800465E28 /* FriendSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE007C57226EB16800465E28 /* FriendSectionCell.swift */; };
+		CE007C5A226EB16800465E28 /* FriendSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE007C58226EB16800465E28 /* FriendSectionCell.xib */; };
 		CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */; };
 		CE497CF7225B8C1D004ED6DF /* GroupSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */; };
 		CE497CFB225B928B004ED6DF /* GroupSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CF9225B928B004ED6DF /* GroupSettingCell.swift */; };
@@ -44,7 +46,7 @@
 		CE768AC5225B1A2400ECEBE1 /* GroupDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE768AC3225B1A2400ECEBE1 /* GroupDetailCell.xib */; };
 		CE768AC8225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE768AC6225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift */; };
 		CE768AC9225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE768AC7225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib */; };
-		CEABD3D322644FF00062B552 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D222644FEF0062B552 /* UserObject.swift */; };
+		CEABD3D322644FF00062B552 /* FriendListObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D222644FEF0062B552 /* FriendListObject.swift */; };
 		CEABD3D522658F840062B552 /* FriendInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D422658F840062B552 /* FriendInviteViewController.swift */; };
 		CEABD3D72265A8C80062B552 /* BillObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D62265A8C80062B552 /* BillObject.swift */; };
 		CEABD3DA2265F5A10062B552 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D92265F5A10062B552 /* FirebaseManager.swift */; };
@@ -57,7 +59,7 @@
 		CEABD3EA226740B30062B552 /* IndividualCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEABD3E8226740B30062B552 /* IndividualCell.xib */; };
 		CEABD3ED226767080062B552 /* AverageValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3EB226767080062B552 /* AverageValueCell.swift */; };
 		CEABD3EE226767080062B552 /* AverageValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEABD3EC226767080062B552 /* AverageValueCell.xib */; };
-		CEABD3F9226D9EDC0062B552 /* BillingDetailObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3F8226D9EDB0062B552 /* BillingDetailObject.swift */; };
+		CEABD3F9226D9EDC0062B552 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3F8226D9EDB0062B552 /* UserObject.swift */; };
 		CED3A86922545874007B5A07 /* LogInAndSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */; };
 		CED3A86C225460B6007B5A07 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86B225460B6007B5A07 /* UIView+Extension.swift */; };
 		CED3A86F2254655F007B5A07 /* TextFieldPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */; };
@@ -96,6 +98,8 @@
 		968056FE5A4616085FDFFC44 /* Pods-Project-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-2.debug.xcconfig"; path = "Target Support Files/Pods-Project-2/Pods-Project-2.debug.xcconfig"; sourceTree = "<group>"; };
 		A12B318B13D4CCFE8266D316 /* Pods-Project-2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-2.release.xcconfig"; path = "Target Support Files/Pods-Project-2/Pods-Project-2.release.xcconfig"; sourceTree = "<group>"; };
 		A219E35342CA912299A66365 /* Pods_Project_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE007C57226EB16800465E28 /* FriendSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSectionCell.swift; sourceTree = "<group>"; };
+		CE007C58226EB16800465E28 /* FriendSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendSectionCell.xib; sourceTree = "<group>"; };
 		CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSettingViewController.swift; sourceTree = "<group>"; };
 		CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingViewController.swift; sourceTree = "<group>"; };
 		CE497CF9225B928B004ED6DF /* GroupSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingCell.swift; sourceTree = "<group>"; };
@@ -132,7 +136,7 @@
 		CE768AC3225B1A2400ECEBE1 /* GroupDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDetailCell.xib; sourceTree = "<group>"; };
 		CE768AC6225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAccountsListDetailCell.swift; sourceTree = "<group>"; };
 		CE768AC7225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupAccountsListDetailCell.xib; sourceTree = "<group>"; };
-		CEABD3D222644FEF0062B552 /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
+		CEABD3D222644FEF0062B552 /* FriendListObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListObject.swift; sourceTree = "<group>"; };
 		CEABD3D422658F840062B552 /* FriendInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInviteViewController.swift; sourceTree = "<group>"; };
 		CEABD3D62265A8C80062B552 /* BillObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillObject.swift; sourceTree = "<group>"; };
 		CEABD3D92265F5A10062B552 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -145,7 +149,7 @@
 		CEABD3E8226740B30062B552 /* IndividualCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IndividualCell.xib; sourceTree = "<group>"; };
 		CEABD3EB226767080062B552 /* AverageValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageValueCell.swift; sourceTree = "<group>"; };
 		CEABD3EC226767080062B552 /* AverageValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AverageValueCell.xib; sourceTree = "<group>"; };
-		CEABD3F8226D9EDB0062B552 /* BillingDetailObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDetailObject.swift; sourceTree = "<group>"; };
+		CEABD3F8226D9EDB0062B552 /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInAndSignUp.storyboard; sourceTree = "<group>"; };
 		CED3A86B225460B6007B5A07 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPlaceholder.swift; sourceTree = "<group>"; };
@@ -295,6 +299,8 @@
 			children = (
 				CE768A9D225642E000ECEBE1 /* FriendListCell.swift */,
 				CE768A9E225642E000ECEBE1 /* FriendListCell.xib */,
+				CE007C57226EB16800465E28 /* FriendSectionCell.swift */,
+				CE007C58226EB16800465E28 /* FriendSectionCell.xib */,
 			);
 			path = FriendListCell;
 			sourceTree = "<group>";
@@ -463,10 +469,10 @@
 			isa = PBXGroup;
 			children = (
 				CEFDBC1322538EFC00E603F3 /* Assets.xcassets */,
-				CEABD3D222644FEF0062B552 /* UserObject.swift */,
+				CEABD3D222644FEF0062B552 /* FriendListObject.swift */,
 				CEABD3D62265A8C80062B552 /* BillObject.swift */,
 				CEABD3D92265F5A10062B552 /* FirebaseManager.swift */,
-				CEABD3F8226D9EDB0062B552 /* BillingDetailObject.swift */,
+				CEABD3F8226D9EDB0062B552 /* UserObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -572,6 +578,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE007C5A226EB16800465E28 /* FriendSectionCell.xib in Resources */,
 				CE768A892254EED000ECEBE1 /* Group.storyboard in Resources */,
 				CEABD3EE226767080062B552 /* AverageValueCell.xib in Resources */,
 				CE768ABA225A165C00ECEBE1 /* FriendDetailCell.xib in Resources */,
@@ -693,7 +700,7 @@
 			files = (
 				CED3A86C225460B6007B5A07 /* UIView+Extension.swift in Sources */,
 				CEABD3DE226737510062B552 /* IndividualViewController.swift in Sources */,
-				CEABD3D322644FF00062B552 /* UserObject.swift in Sources */,
+				CEABD3D322644FF00062B552 /* FriendListObject.swift in Sources */,
 				CEFF0D6E225D932D00C74ED4 /* AddGroupMemberHeaderCell.swift in Sources */,
 				CEFDBC0F22538EF900E603F3 /* LogInAndSignUpViewController.swift in Sources */,
 				CE497CFF225C5964004ED6DF /* GroupHeaderCell.swift in Sources */,
@@ -711,6 +718,7 @@
 				CE497D06225C82D0004ED6DF /* SplitBillDetailViewController.swift in Sources */,
 				CED3A87C2254D3FA007B5A07 /* UIImage+Extension.swift in Sources */,
 				CE768A952254F09A00ECEBE1 /* GroupViewController.swift in Sources */,
+				CE007C59226EB16800465E28 /* FriendSectionCell.swift in Sources */,
 				CE768ABD225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.swift in Sources */,
 				CEFF0D66225D8F6B00C74ED4 /* AddGroupMemberViewController.swift in Sources */,
 				CEFF0D6A225D900500C74ED4 /* AddGroupMemberCell.swift in Sources */,
@@ -738,7 +746,7 @@
 				CEABD3E0226738410062B552 /* BaseTableViewController.swift in Sources */,
 				CE768A9F225642E000ECEBE1 /* FriendListCell.swift in Sources */,
 				CE768AC4225B1A2400ECEBE1 /* GroupDetailCell.swift in Sources */,
-				CEABD3F9226D9EDC0062B552 /* BillingDetailObject.swift in Sources */,
+				CEABD3F9226D9EDC0062B552 /* UserObject.swift in Sources */,
 				CEABD3DA2265F5A10062B552 /* FirebaseManager.swift in Sources */,
 				CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */,
 				CEABD3E9226740B30062B552 /* IndividualCell.swift in Sources */,

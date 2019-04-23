@@ -20,7 +20,9 @@ class FirebaseManager {
         FirebaseApp.configure()
     }
     
-    var myName: String?
+    var user: UserData?
+    
+    var addFriendVC: AddFriendViewController?
     
     lazy var userReference = Firestore.firestore().collection("users")
     
@@ -45,12 +47,14 @@ class FirebaseManager {
                         guard let currentUser = Auth.auth().currentUser else { return }
                         self.userReference.document(currentUser.uid).setData(
                             [
-                                "email": withEmail,
-                                "name": userName,
-                                "storage": "",
-                                "uid": currentUser.uid
+                                UserData.CodingKeys.name.rawValue: userName,
+                                UserData.CodingKeys.email.rawValue: withEmail,
+                                UserData.CodingKeys.storage.rawValue: "",
+                                UserData.CodingKeys.uid.rawValue:
+                                    currentUser.uid
                             ])
-                        self.myName = userName
+                        
+                        self.addFriendVC?.userData = self.user
                         
                         if let tabBarVC =
                             UIStoryboard.main.instantiateViewController(
@@ -90,7 +94,19 @@ class FirebaseManager {
         }
     }
     
-    func update() {
+    func deleteFriend(document: String) {
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        userReference.document(currentUser.uid).collection("friends").document(document).delete()
+        
+    }
+    
+    func updateFriendStatus(document: String) {
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        userReference.document(currentUser.uid).collection("friends").document(document).updateData(["status": 1])
         
     }
 }
