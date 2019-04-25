@@ -31,10 +31,6 @@ class AddBillViewController: BaseViewController {
     var friendID: String?
     
     var friend: [String: Any]?
-
-//    var user: PersonalData?
-//
-//    var bill: BillData?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,6 +16,8 @@ struct BillData {
     
     let uid: String?
     
+    let billUid: String?
+    
     let name: String?
     
     let billName: String?
@@ -36,7 +38,8 @@ struct BillData {
             "uid": uid ?? "",
             "status": status ?? "",
             "owedAmount": owedAmount ?? "",
-            "payAmount": payAmount ?? ""
+            "payAmount": payAmount ?? "",
+            "billUid": billUid ?? ""
         ]
     }
     
@@ -55,6 +58,8 @@ struct BillData {
         case payAmount
         
         case status
+        
+        case billUid
     }
 }
 
@@ -68,6 +73,8 @@ extension BillData: BillingDocument {
             dictionary["amountTotal"] as? Int,
             let uid =
             dictionary["uid"] as? String,
+            let billUid =
+            dictionary["billUid"] as? String,
             let status =
             dictionary["status"] as? Int,
             let owedAmount =
@@ -81,6 +88,7 @@ extension BillData: BillingDocument {
         
         self.init(
             uid: uid,
+            billUid: billUid,
             name: name,
             billName: billName,
             amountTotal: amountTotal,

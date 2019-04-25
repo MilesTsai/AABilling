@@ -10,10 +10,13 @@ import UIKit
 
 class FriendSettleUpViewController: BaseViewController {
 
+    @IBOutlet weak var settleUpLabel: UILabel!
+    
+    @IBOutlet weak var settleUpTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
     @IBAction func settleUpCancel(_ sender: UIBarButtonItem) {

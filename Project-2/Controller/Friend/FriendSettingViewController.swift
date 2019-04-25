@@ -44,6 +44,9 @@ class FriendSettingViewController: BaseViewController {
             return
         }
         
+        NotificationCenter.default.post(name: NSNotification.Name("deleteFriend"), object: nil, userInfo: ["friendUid": friendUid])
+        
         FirebaseManager.shared.deleteFriend(document: friendUid)
+        
     }
 }

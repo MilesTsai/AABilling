@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class FriendBillDetailViewController: BaseViewController {
     
     var billingDetailData: BillData?
+    
+    var splitBillDetailVC: SplitBillDetailViewController?
+    
+    var friendBillingUid: String?
+    
+    var dataBase: Firestore = Firestore.firestore()
     
     @IBOutlet weak var billName: UILabel!
     
@@ -22,7 +29,10 @@ class FriendBillDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        splitBillDetailVC?.friendBillingUid = { [weak self] uid in
+            self?.friendBillingUid = uid
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -64,14 +74,42 @@ class FriendBillDetailViewController: BaseViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func settleUpBtn(_ sender: UIButton) {
+        
+        guard let billingUid = billingDetailData?.billUid else { return }
+        
+        guard let friendUid = billingDetailData?.uid else { return }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("settleUp"), object: nil, userInfo: ["billingUid": billingUid])
+        
+        FirebaseManager.shared.updateMyBillStatus(document: billingUid)
+        FirebaseManager.shared.updateFriendBillStatus(document: friendUid, billID: billingUid)
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func friendBillEdit(_ sender: UIBarButtonItem) {
         if let billEditVC = storyboard?.instantiateViewController(withIdentifier: "FriendBillEdit") {
-
+            
             present(billEditVC, animated: true, completion: nil)
         }
     }
     
     @IBAction func accountDelete(_ sender: Any) {
+        
+        guard let billingUid = billingDetailData?.billUid else { return }
+        
+        guard let friendUid = billingDetailData?.uid else { return }
+        
+        print("=============")
+        print(billingUid)
+        
+        NotificationCenter.default.post(name: NSNotification.Name("deleteBilling"), object: nil, userInfo: ["billingUid": billingUid])
+        
+        FirebaseManager.shared.deleteBilling(document: billingUid)
+        FirebaseManager.shared.deleteFriendBilling(document: friendUid, billId: billingUid)
+        
+        dismiss(animated: true, completion: nil)
     }
     
 }

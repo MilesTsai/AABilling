@@ -29,6 +29,8 @@ class FriendDetailViewController: BaseViewController {
     
     var billingList = [BillData]()
     
+    var settleUpList = [BillData]()
+    
     var sum = 0
     
     override func viewDidLoad() {
@@ -36,10 +38,32 @@ class FriendDetailViewController: BaseViewController {
 
         setupTableView()
         
-        billingDetail()
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteBillList(data:)), name: NSNotification.Name("deleteBilling"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(billList(data:)), name: NSNotification.Name("settleUp"), object: nil)
 
     }
-
+    
+    @objc func deleteBillList(data: Notification) {
+        let billUid = data.userInfo?["billingUid"] as? String
+        for (index, element) in billingList.enumerated() {
+            if element.billUid == billUid {
+                billingList.remove(at: index)
+            }
+            friendDetailTableView.reloadData()
+        }
+    }
+    
+    @objc func billList(data: Notification) {
+        let billUid = data.userInfo?["billingUid"] as? String
+        for (index, element) in billingList.enumerated() {
+            if element.billUid == billUid {
+                billingList.remove(at: index)
+            }
+            friendDetailTableView.reloadData()
+        }
+    }
+    
     private func setupTableView() {
 
         friendDetailTableView.mls_registerCellWithNib(
@@ -51,6 +75,22 @@ class FriendDetailViewController: BaseViewController {
             identifier: String(describing: FriendAccountsListDetailCell.self),
             bundle: nil
         )
+    }
+    
+    func settleUp() {
+        
+        var tempSettleUp: [BillData] = []
+        
+        for settleUp in 0..<billingList.count {
+            
+            if billingList[settleUp].status != 2 {
+                
+                tempSettleUp.append(billingList[settleUp])
+                
+            }
+            
+            settleUpList = tempSettleUp
+        }
     }
     
     private func billingDetail() {
@@ -77,7 +117,9 @@ class FriendDetailViewController: BaseViewController {
                         
                         self.friendBill =
                             BillData(
-                                uid: billDetail["uid"] as? String, name: billDetail["name"] as? String,
+                                uid: billDetail["uid"] as? String,
+                                billUid: billDetail["billUid"] as? String,
+                                name: billDetail["name"] as? String,
                                 billName: billDetail["email"] as? String,
                                 amountTotal: billDetail["status"] as? Int,
                                 owedAmount: billDetail["amountTotal"] as? Int,
@@ -92,6 +134,9 @@ class FriendDetailViewController: BaseViewController {
                             .compactMap({
                                 BillData(dictionary: $0.data())
                             })
+                    
+                    self.settleUp()
+                    
                     DispatchQueue.main.async {
                         
                         self.friendDetailTableView.reloadData()
@@ -106,6 +151,9 @@ class FriendDetailViewController: BaseViewController {
 
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
+        billingDetail()
+        
+        friendDetailTableView.reloadData()
     }
 
     @IBAction func backFriendList(_ sender: UIButton) {
@@ -152,10 +200,10 @@ extension FriendDetailViewController: UITableViewDataSource {
         guard let friendHeaderCell =
                     headerCell as? FriendDetailCell else { return headerCell }
         
-        friendHeaderCell.settleUpBtn.addTarget(
-            self, action: #selector(self.friendSettleUp),
-            for: .touchUpInside
-        )
+//        friendHeaderCell.settleUpBtn.addTarget(
+//            self, action: #selector(self.friendSettleUp),
+//            for: .touchUpInside
+//        )
         
         friendHeaderCell.friendName.text = friendData?.name
         
@@ -177,21 +225,21 @@ extension FriendDetailViewController: UITableViewDataSource {
         return friendHeaderCell
     }
     
-    @objc func friendSettleUp() {
-        
-        let storyboard = UIStoryboard(name: "Friend", bundle: nil)
-        let settleVC =
-                storyboard.instantiateViewController(
-                    withIdentifier: String(
-                    describing: FriendSettleUpViewController.self)
-                )
-            present(settleVC, animated: true, completion: nil)
-        
-    }
+//    @objc func friendSettleUp() {
+//
+//        let storyboard = UIStoryboard(name: "Friend", bundle: nil)
+//        let settleVC =
+//                storyboard.instantiateViewController(
+//                    withIdentifier: String(
+//                    describing: FriendSettleUpViewController.self)
+//                )
+//            present(settleVC, animated: true, completion: nil)
+//
+//    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return billingList.count
+        return settleUpList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -200,23 +248,19 @@ extension FriendDetailViewController: UITableViewDataSource {
                     withIdentifier: String(describing: FriendAccountsListDetailCell.self),
                 for: indexPath
                 )
-        
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = UIColor.clear
-//        cell.selectedBackgroundView = backgroundView
 
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
         guard let accountsDetailCell =
                     cell as? FriendAccountsListDetailCell else { return cell }
         
-        if billingList.count == 0 {
+        if settleUpList.count == 0 {
             
             return accountsDetailCell
             
         } else {
             
-            let list = billingList[indexPath.row]
+            let list = settleUpList[indexPath.row]
             
             guard var moneyList = list.owedAmount else { return accountsDetailCell }
             
@@ -261,9 +305,7 @@ extension FriendDetailViewController: UITableViewDataSource {
                 
                 guard let friendBillDetailVC = friendBillDetailNC.topViewController as? FriendBillDetailViewController else { return }
                 
-                friendBillDetailVC.billingDetailData = billingList[indexPath.row]
-//                    print("=========")
-//                    print(friendBillDetailVC.billingDetailData)
+                friendBillDetailVC.billingDetailData = settleUpList[indexPath.row]
             }
         }
     }
@@ -272,7 +314,7 @@ extension FriendDetailViewController: UITableViewDataSource {
 extension FriendDetailViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200
+        return 190
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

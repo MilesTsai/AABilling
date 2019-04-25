@@ -29,6 +29,10 @@ class FriendViewController: BaseViewController {
         }
     }
     
+    @IBAction func unwindSegueBack(segue: UIStoryboardSegue) {
+        
+    }
+    
     var dataBase: Firestore = Firestore.firestore()
     
     let currentUser = Auth.auth().currentUser
@@ -47,21 +51,21 @@ class FriendViewController: BaseViewController {
         }
     }
     
-    var owe = 0
-    
     var friends = [PersonalData]() {
         
         didSet {
             
             var sum = 0
             
-            var oweFriend = 0
+            var owe = 0
             
             var lent = 0
             
             for friend in friends {
 
                 guard let total = friend.totalAccount else { return }
+//                print("===============")
+//                print(total)
                 
                 sum += total
                 
@@ -69,7 +73,9 @@ class FriendViewController: BaseViewController {
                 
                 if total < 0 {
                     
-                    oweFriend += total
+                    owe += total
+                    
+                    oweLabel.text = "$\(owe)"
                     
                 } else if total > 0 {
                     
@@ -79,11 +85,12 @@ class FriendViewController: BaseViewController {
                 }
             }
             
-            owe = oweFriend
+//            owe.negate()
             
-            owe.negate()
+//            print("=======")
+//            print(owe)
             
-            oweLabel.text = "$\(owe)"
+//            oweLabel.text = "$\(owe)"
         }
     }
     
@@ -92,8 +99,7 @@ class FriendViewController: BaseViewController {
 
         setupTableView()
         
-        loadData()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteFriendList(data:)), name: NSNotification.Name("deleteFriend"), object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -101,8 +107,21 @@ class FriendViewController: BaseViewController {
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
+        loadData()
+        
+        tableView.reloadData()
     }
-
+    
+    @objc func deleteFriendList(data: Notification) {
+        let friendUid = data.userInfo?["friendUid"] as? String
+        for (index, element) in friends.enumerated() {
+            if element.uid == friendUid {
+                friends.remove(at: index)
+            }
+            tableView.reloadData()
+        }
+    }
+    
     private func setupTableView() {
 
         tableView.mls_registerCellWithNib(
@@ -272,7 +291,7 @@ extension FriendViewController: UITableViewDataSource {
             
             let list = friends[indexPath.row]
             
-            guard var total = list.totalAccount else { return friendCell }
+            guard let total = list.totalAccount else { return friendCell }
             
             friendCell.userName.text = list.name
             
@@ -290,7 +309,7 @@ extension FriendViewController: UITableViewDataSource {
                 
                 friendCell.accountsStatus.text = "欠款"
                 
-                total.negate()
+                //                total.negate()
                 
                 friendCell.accountsSum.text = "$\(String(describing: total))"
             }
@@ -303,6 +322,7 @@ extension FriendViewController: UITableViewDataSource {
         
         guard let acceptUid = acceptsList[sender.tag].uid else { return }
         
+        FirebaseManager.shared.updateMyStatus(document: acceptUid)
         FirebaseManager.shared.updateFriendStatus(document: acceptUid)
     }
     
@@ -311,6 +331,10 @@ extension FriendViewController: UITableViewDataSource {
         guard let acceptUid = acceptsList[sender.tag].uid else { return }
         
         FirebaseManager.shared.deleteFriend(document: acceptUid)
+        
+        acceptsList.remove(at: sender.tag)
+        
+        tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -338,6 +362,8 @@ extension FriendViewController: UITableViewDataSource {
                 guard let friendDetailVC =
                           segue.destination as? FriendDetailViewController else { return }
                 friendDetailVC.friendData = friends[indexPath.row]
+//                print("=========")
+//                print(friendDetailVC.friendData)
             }
         }
     }

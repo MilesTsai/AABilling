@@ -22,8 +22,6 @@ class FirebaseManager {
     
     var user: UserData?
     
-    var addFriendVC: AddFriendViewController?
-    
     lazy var userReference = Firestore.firestore().collection("users")
     
     func signUp(withEmail: String, password: String, userName: String, view: UIViewController) {
@@ -54,7 +52,7 @@ class FirebaseManager {
                                     currentUser.uid
                             ])
                         
-                        self.addFriendVC?.userData = self.user
+                        self.user = UserData(name: userName, email: withEmail, storage: "", uid: currentUser.uid)
                         
                         if let tabBarVC =
                             UIStoryboard.main.instantiateViewController(
@@ -100,13 +98,45 @@ class FirebaseManager {
         
         userReference.document(currentUser.uid).collection("friends").document(document).delete()
         
+        userReference.document(document).collection("friends").document(currentUser.uid).delete()
+        
     }
     
-    func updateFriendStatus(document: String) {
+    func deleteBilling(document: String) {
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        userReference.document(currentUser.uid).collection("bills").document(document).delete()
+        
+    }
+    
+    func deleteFriendBilling(document: String, billId: String) {
+        userReference.document(document).collection("bills").document(billId).delete()
+        
+    }
+    
+    func updateMyStatus(document: String) {
         
         guard let currentUser = Auth.auth().currentUser else { return }
         
         userReference.document(currentUser.uid).collection("friends").document(document).updateData(["status": 1])
         
+    }
+    
+    func updateFriendStatus(document: String) {
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        userReference.document(document).collection("friends").document(currentUser.uid).updateData(["status": 1])
+    }
+    
+    func updateMyBillStatus(document: String) {
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        userReference.document(currentUser.uid).collection("bills").document(document).updateData(["status": 2, "owedAmount": 0])
+    }
+    
+    func updateFriendBillStatus(document: String, billID: String) {
+        userReference.document(document).collection("bills").document(billID).updateData(["status": 2, "owedAmount": 0])
     }
 }

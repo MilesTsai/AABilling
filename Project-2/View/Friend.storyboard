@@ -250,7 +250,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEC-89-6l1">
-                                <rect key="frame" x="16" y="296" width="343" height="32"/>
+                                <rect key="frame" x="16" y="348" width="343" height="32"/>
                                 <color key="backgroundColor" red="0.73223350249999997" green="0.08863985227" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="刪除此分帳">
@@ -285,22 +285,35 @@
                                 <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQ8-3U-ujt">
+                                <rect key="frame" x="16" y="296" width="343" height="32"/>
+                                <color key="backgroundColor" red="0.17187392769278592" green="0.87658629441624369" blue="0.62639385778620771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="付款">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="settleUpBtn:" destination="f8H-41-GR2" eventType="touchUpInside" id="jo7-9Q-j3C"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JEC-89-6l1" firstAttribute="centerX" secondItem="CYj-w9-wTF" secondAttribute="centerX" id="1Ab-I2-vhl"/>
+                            <constraint firstItem="JEC-89-6l1" firstAttribute="top" secondItem="lQ8-3U-ujt" secondAttribute="bottom" constant="20" id="3rb-k2-eQw"/>
                             <constraint firstItem="k02-Eh-Iqc" firstAttribute="top" secondItem="sHq-HZ-XlZ" secondAttribute="bottom" constant="16" id="4HP-cQ-Thr"/>
                             <constraint firstItem="k02-Eh-Iqc" firstAttribute="leading" secondItem="NiX-YE-ihn" secondAttribute="trailing" constant="16" id="DUY-UV-3P7"/>
                             <constraint firstItem="qCk-lH-5jZ" firstAttribute="leading" secondItem="Wh2-5b-iLK" secondAttribute="leading" id="Ghx-2C-cMG"/>
                             <constraint firstItem="DQw-tQ-tJJ" firstAttribute="centerY" secondItem="LA1-cN-0cL" secondAttribute="centerY" id="MyZ-ff-bfX"/>
                             <constraint firstItem="sHq-HZ-XlZ" firstAttribute="leading" secondItem="CYj-w9-wTF" secondAttribute="leading" constant="8" id="Ndm-0u-PUr"/>
-                            <constraint firstItem="JEC-89-6l1" firstAttribute="top" secondItem="LA1-cN-0cL" secondAttribute="bottom" constant="26" id="OKL-lf-mUZ"/>
                             <constraint firstItem="qCk-lH-5jZ" firstAttribute="top" secondItem="Wh2-5b-iLK" secondAttribute="bottom" constant="8" id="Rbp-sr-Fff"/>
                             <constraint firstItem="WT6-Zp-7tV" firstAttribute="trailing" secondItem="DQw-tQ-tJJ" secondAttribute="trailing" constant="16" id="UP2-NT-RQx"/>
                             <constraint firstItem="LA1-cN-0cL" firstAttribute="leading" secondItem="NiX-YE-ihn" secondAttribute="leading" id="cBf-Ic-WpU"/>
                             <constraint firstItem="sHq-HZ-XlZ" firstAttribute="top" secondItem="qCk-lH-5jZ" secondAttribute="bottom" constant="16" id="cFQ-iA-K5E"/>
                             <constraint firstItem="k02-Eh-Iqc" firstAttribute="centerY" secondItem="NiX-YE-ihn" secondAttribute="centerY" id="dG6-ow-CB2"/>
                             <constraint firstItem="WT6-Zp-7tV" firstAttribute="trailing" secondItem="k02-Eh-Iqc" secondAttribute="trailing" constant="16" id="fG0-b5-k3k"/>
+                            <constraint firstItem="lQ8-3U-ujt" firstAttribute="width" secondItem="CYj-w9-wTF" secondAttribute="width" multiplier="343:375" id="fLJ-RX-peB"/>
+                            <constraint firstItem="lQ8-3U-ujt" firstAttribute="top" secondItem="LA1-cN-0cL" secondAttribute="bottom" constant="26" id="iJY-Vn-NtH"/>
                             <constraint firstItem="NiX-YE-ihn" firstAttribute="leading" secondItem="WT6-Zp-7tV" secondAttribute="leading" constant="16" id="j3l-ep-gRy"/>
                             <constraint firstItem="JEC-89-6l1" firstAttribute="width" secondItem="CYj-w9-wTF" secondAttribute="width" multiplier="343:375" id="lCV-xP-bY5"/>
                             <constraint firstItem="Wh2-5b-iLK" firstAttribute="leading" secondItem="WT6-Zp-7tV" secondAttribute="leading" constant="17" id="npp-o8-Kcd"/>
@@ -308,6 +321,7 @@
                             <constraint firstItem="WT6-Zp-7tV" firstAttribute="trailing" secondItem="Wh2-5b-iLK" secondAttribute="trailing" constant="17" id="oc0-Pf-reA"/>
                             <constraint firstItem="DQw-tQ-tJJ" firstAttribute="leading" secondItem="LA1-cN-0cL" secondAttribute="trailing" constant="16" id="tdT-dW-RoI"/>
                             <constraint firstAttribute="trailing" secondItem="sHq-HZ-XlZ" secondAttribute="trailing" constant="8" id="wdB-Rl-MLs"/>
+                            <constraint firstItem="lQ8-3U-ujt" firstAttribute="centerX" secondItem="CYj-w9-wTF" secondAttribute="centerX" id="wgP-Cn-tqk"/>
                             <constraint firstItem="DQw-tQ-tJJ" firstAttribute="top" secondItem="k02-Eh-Iqc" secondAttribute="bottom" constant="16" id="xRj-hk-WXH"/>
                             <constraint firstItem="LA1-cN-0cL" firstAttribute="top" secondItem="NiX-YE-ihn" secondAttribute="bottom" constant="16" id="xip-bd-Etf"/>
                             <constraint firstItem="WT6-Zp-7tV" firstAttribute="trailing" secondItem="qCk-lH-5jZ" secondAttribute="trailing" constant="17" id="yHI-sc-z89"/>
@@ -401,6 +415,10 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="settleUpLabel" destination="Vst-up-nfv" id="5ct-Sw-oIw"/>
+                        <outlet property="settleUpTextField" destination="Gr5-Tx-p4r" id="wKs-Hq-tVa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7x-br-3vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -761,6 +779,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="deleteFriend:" destination="0mW-zO-wTS" eventType="touchUpInside" id="Lmc-IB-Neu"/>
+                                    <segue destination="zDH-1A-vDl" kind="unwind" unwindAction="unwindSegueBackWithSegue:" id="WPU-kK-Mnc"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbR-fn-xwU">
@@ -810,6 +829,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbI-PM-eus" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zDH-1A-vDl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2167" y="1774"/>
         </scene>

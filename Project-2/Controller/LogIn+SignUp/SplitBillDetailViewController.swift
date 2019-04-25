@@ -15,6 +15,8 @@ class SplitBillDetailViewController: BaseViewController {
     
     var vc2: IndividualViewController?
     
+    var friendBillingUid: ((String) -> Void)?
+    
     var dataBase: Firestore = Firestore.firestore()
     
     var friendID: String?
@@ -162,11 +164,14 @@ class SplitBillDetailViewController: BaseViewController {
                     amountStatus = 0
                 }
                 
+                let ref = dataBase.collection("users").document()
+                let refUid = ref.documentID
+                
                 dataBase
                     .collection("users")
                     .document(currentUser.uid)
                     .collection("bills")
-                    .document()
+                    .document(refUid)
                     .setData(
                         [
                             BillData.CodingKeys.name.rawValue:
@@ -181,11 +186,12 @@ class SplitBillDetailViewController: BaseViewController {
                                 equalResult ?? "",
                             BillData.CodingKeys.status.rawValue:
                                 amountStatus ?? "",
-                            BillData.CodingKeys.uid.rawValue: friendID ?? ""
+                            BillData.CodingKeys.uid.rawValue: friendID ?? "",
+                            BillData.CodingKeys.billUid.rawValue: refUid
                         ]
                 )
                 
-                addEqualDocument()
+                addEqualDocument(document: refUid)
                 
                 updateEqualDocument()
                 
@@ -205,18 +211,10 @@ class SplitBillDetailViewController: BaseViewController {
             if Int(-0.9501) == individualCalculationResult {
 
                 let alertController =
-                    UIAlertController(
-                        title: "錯誤",
-                        message: "請填入金額",
-                        preferredStyle: .alert
-                )
+                    UIAlertController(title: "錯誤", message: "請填入金額", preferredStyle: .alert)
 
                 let defaultAction =
-                    UIAlertAction(
-                        title: "OK",
-                        style: .cancel,
-                        handler: nil
-                )
+                    UIAlertAction(title: "OK", style: .cancel, handler: nil)
 
                 alertController.addAction(defaultAction)
 
@@ -231,11 +229,14 @@ class SplitBillDetailViewController: BaseViewController {
                     amountStatus = 0
                 }
                 
+                let ref = dataBase.collection("users").document()
+                let refUid = ref.documentID
+                
                 dataBase
                     .collection("users")
                     .document(currentUser.uid)
                     .collection("bills")
-                    .document()
+                    .document(refUid)
                     .setData(
                         [
                             BillData.CodingKeys.name.rawValue:
@@ -250,11 +251,12 @@ class SplitBillDetailViewController: BaseViewController {
                                 individualResult ?? "",
                             BillData.CodingKeys.status.rawValue:
                                 amountStatus ?? "",
-                            BillData.CodingKeys.uid.rawValue: friendID ?? ""
+                            BillData.CodingKeys.uid.rawValue: friendID ?? "",
+                            BillData.CodingKeys.billUid.rawValue: refUid
                         ]
                 )
                 
-                addIndividualDocument()
+                addIndividualDocument(document: refUid)
                 
                 updateIndividualDocument()
                 
@@ -279,7 +281,7 @@ class SplitBillDetailViewController: BaseViewController {
         }
     }
     
-    private func addEqualDocument() {
+    private func addEqualDocument(document: String) {
         
         guard let currentUser = Auth.auth().currentUser
             else {
@@ -298,7 +300,7 @@ class SplitBillDetailViewController: BaseViewController {
             .collection("users")
             .document(friendID ?? "")
             .collection("bills")
-            .document()
+            .document(document)
             .setData(
                 [
                     BillData.CodingKeys.name.rawValue: user?.name ?? "",
@@ -307,13 +309,14 @@ class SplitBillDetailViewController: BaseViewController {
                     BillData.CodingKeys.owedAmount.rawValue: friendEqualCalculationResult ?? "",
                     BillData.CodingKeys.payAmount.rawValue: friendEqualResult ?? "",
                     BillData.CodingKeys.status.rawValue: amountStatus ?? "",
-                    BillData.CodingKeys.uid.rawValue: currentUser.uid
+                    BillData.CodingKeys.uid.rawValue: currentUser.uid,
+                    BillData.CodingKeys.billUid.rawValue: document
                 ]
         )
     
     }
     
-    private func addIndividualDocument() {
+    private func addIndividualDocument(document: String) {
         
         guard let currentUser = Auth.auth().currentUser
             else {
@@ -332,7 +335,7 @@ class SplitBillDetailViewController: BaseViewController {
             .collection("users")
             .document(friendID ?? "")
             .collection("bills")
-            .document()
+            .document(document)
             .setData(
                 [
                     BillData.CodingKeys.name.rawValue: user?.name ?? "",
@@ -341,7 +344,8 @@ class SplitBillDetailViewController: BaseViewController {
                     BillData.CodingKeys.owedAmount.rawValue: friendIndividualCalculationResult ?? "",
                     BillData.CodingKeys.payAmount.rawValue: friendIndividualResult ?? "",
                     BillData.CodingKeys.status.rawValue: amountStatus ?? "",
-                    BillData.CodingKeys.uid.rawValue: currentUser.uid
+                    BillData.CodingKeys.uid.rawValue: currentUser.uid,
+                    BillData.CodingKeys.billUid.rawValue: document
                 ]
         )
     }
@@ -355,13 +359,34 @@ class SplitBillDetailViewController: BaseViewController {
         
         guard let equal = equalCalculationResult else { return }
         
+        print("==========")
+        print(equal)
+        guard let friendEqual = friendEqualCalculationResult else { return }
+        
+        print("==========")
+        print(friendEqual)
+        
         guard let money = (friend?["totalAccount"]) as? Int else { return }
+        
+        let equalSum = money + equal
+        
+        let friendEqualSum = money + friendEqual
+        
+        print("===========")
+        print(equalSum)
+        print(friendEqualSum)
         
         dataBase
             .collection("users")
             .document(currentUser.uid).collection("friends")
             .document(friendID ?? "")
-            .updateData(["totalAccount": money + equal])
+            .updateData(["totalAccount": equalSum])
+        
+        dataBase
+            .collection("users")
+            .document(friendID ?? "").collection("friends")
+            .document(currentUser.uid)
+            .updateData(["totalAccount": friendEqualSum])
 
     }
     

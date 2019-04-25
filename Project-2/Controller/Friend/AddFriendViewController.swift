@@ -118,7 +118,6 @@ class AddFriendViewController: UIViewController {
                                         self.friend?.email ?? "",
                                     PersonalData.CodingKeys.uid.rawValue:
                                         self.friend?.uid ?? "",
-                                    
                                     PersonalData.CodingKeys.totalAccount.rawValue: 0
                                 ])
                     
@@ -148,31 +147,40 @@ class AddFriendViewController: UIViewController {
         
         guard let currentUser = Auth.auth().currentUser else { return }
         
-        dataBase
-            .collection("users")
-            .document(friendID ?? "")
-            .collection("friends")
-            .document(currentUser.uid)
-            .setData([
-                PersonalData.CodingKeys.status.rawValue:
-                0,
-                PersonalData.CodingKeys.name.rawValue:
-                    userData?.name ?? "",
-                PersonalData.CodingKeys.storage.rawValue:
-                    userData?.storage ?? "",
-                PersonalData.CodingKeys.email.rawValue:
-                    userData?.email ?? "",
-                PersonalData.CodingKeys.uid.rawValue:
-                    currentUser.uid ,
-                PersonalData.CodingKeys.totalAccount.rawValue: 0
-                
-            ]) { error in
-            if let error = error {
-                print("Error updating document: \(error)")
-            } else {
-                print("Document successfully updated")
+        dataBase.collection("users").document(currentUser.uid).getDocument(completion: { (snapshot, error) in
+            let user = snapshot?.data()
+            self.userData = UserData(
+                name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
+                email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
+                storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
+                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String)
+            
+            self.dataBase
+                .collection("users")
+                .document(document)
+                .collection("friends")
+                .document(currentUser.uid)
+                .setData([
+                    PersonalData.CodingKeys.status.rawValue:
+                    0,
+                    PersonalData.CodingKeys.name.rawValue:
+                        self.userData?.name ?? "",
+                    PersonalData.CodingKeys.storage.rawValue:
+                        self.userData?.storage ?? "",
+                    PersonalData.CodingKeys.email.rawValue:
+                        self.userData?.email ?? "",
+                    PersonalData.CodingKeys.uid.rawValue:
+                        currentUser.uid ,
+                    PersonalData.CodingKeys.totalAccount.rawValue: 0
+                    
+                ]) { error in
+                    if let error = error {
+                        print("Error updating document: \(error)")
+                    } else {
+                        print("Document successfully updated")
+                    }
             }
-        }
+        })
     }
     
     @IBAction func cancelAddFriend(_ sender: UIButton) {
