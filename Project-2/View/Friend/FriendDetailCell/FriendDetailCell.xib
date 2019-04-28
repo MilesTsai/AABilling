@@ -31,7 +31,7 @@
                             <constraint firstAttribute="height" constant="25" id="CVp-rb-1s4"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oc6-GE-930">
@@ -41,11 +41,11 @@
                             <constraint firstAttribute="width" constant="200" id="hcx-D8-3wV"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.6709331784" green="0.79875872459999997" blue="0.77399348540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.47183173890000002" green="0.49789589639999998" blue="0.51599597929999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="oc6-GE-930" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ZN1-hm-rDc"/>
                     <constraint firstItem="oc6-GE-930" firstAttribute="top" secondItem="CEf-VH-sWo" secondAttribute="bottom" constant="10" id="duU-BJ-GDs"/>
@@ -59,6 +59,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="friendBackgroundColor" destination="H2p-sc-9uM" id="WGU-Yg-HCM"/>
                 <outlet property="friendBill" destination="cdl-SE-xhD" id="aiO-U7-Ms3"/>
                 <outlet property="friendName" destination="oc6-GE-930" id="edN-5o-5m5"/>
                 <outlet property="friendPhoto" destination="CEf-VH-sWo" id="0KG-kF-lfW"/>

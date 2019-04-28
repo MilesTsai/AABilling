@@ -41,6 +41,16 @@ class AddFriendViewController: UIViewController {
         })
         
         setStatusBarBackgroundColor(color: UIColor.clear)
+        
+        guard let rootViewVC = UIApplication.shared.keyWindow?.rootViewController as? TabBarViewController else { return }
+        rootViewVC.tabBar.isHidden = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        guard let rootViewVC = UIApplication.shared.keyWindow?.rootViewController as? TabBarViewController else { return }
+        rootViewVC.tabBar.isHidden = false
     }
     
     func setStatusBarBackgroundColor(color: UIColor) {
@@ -132,8 +142,11 @@ class AddFriendViewController: UIViewController {
                             UIAlertAction(
                                 title: "OK",
                                 style: .cancel,
-                                handler: nil
-                        )
+                                handler: { [weak self] _ in
+                                    self?.presentingViewController?.dismiss(animated: false, completion: nil)
+                                    
+                                    self?.addEmail.text = ""
+                            })
                     
                     alertController.addAction(defaultAction)
                     
@@ -186,6 +199,7 @@ class AddFriendViewController: UIViewController {
     @IBAction func cancelAddFriend(_ sender: UIButton) {
 
         presentingViewController?.dismiss(animated: false, completion: nil)
+//        view.removeFromSuperview()
     }
 
 }

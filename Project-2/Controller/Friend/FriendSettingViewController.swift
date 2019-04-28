@@ -40,13 +40,41 @@ class FriendSettingViewController: BaseViewController {
 
     @IBAction func deleteFriend(_ sender: UIButton) {
         
-        guard let friendUid = friendDetailData?.uid else {
-            return
-        }
+        let alertController =
+            UIAlertController(
+                title: "注意",
+                message: "您確定刪除此好友？",
+                preferredStyle: .alert
+        )
         
-        NotificationCenter.default.post(name: NSNotification.Name("deleteFriend"), object: nil, userInfo: ["friendUid": friendUid])
+        let okAction =
+            UIAlertAction(
+                title: "確定",
+                style: .default,
+                handler: { _ in
+                    print("Hello")
+            })
         
-        FirebaseManager.shared.deleteFriend(document: friendUid)
+        let cancelAction =
+            UIAlertAction(
+                title: "取消",
+                style: .default,
+                handler: { _ in
+                    print("GO")
+            })
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+//        guard let friendUid = friendDetailData?.uid else {
+//            return
+//        }
+//
+//        NotificationCenter.default.post(name: NSNotification.Name("deleteFriend"), object: nil, userInfo: ["friendUid": friendUid])
+//
+//        FirebaseManager.shared.deleteFriend(document: friendUid)
         
     }
 }

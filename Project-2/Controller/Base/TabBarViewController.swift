@@ -98,6 +98,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         viewControllers = tabs.map({ $0.controller() })
 
         delegate = self
-
+        
+        tabBar.isTranslucent = false
+        
+        view.backgroundColor = UIColor(red: 120.0 / 255.0, green: 127.0 / 255.0, blue: 132.0 / 255.0, alpha: 1)
     }
 }

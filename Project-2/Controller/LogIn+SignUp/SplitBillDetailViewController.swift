@@ -21,9 +21,11 @@ class SplitBillDetailViewController: BaseViewController {
     
     var friendID: String?
     
-    var friend: [String : Any]?
+    var myFriend: [String: Any]?
     
-    var user: UserData?
+    var friendBillData: [String: Any]?
+    
+    var userData: UserData?
     
     var bill: BillData?
     
@@ -129,7 +131,10 @@ class SplitBillDetailViewController: BaseViewController {
         }
         
         print("=========")
-        print(friend)
+        print(myFriend)
+        
+        print("=========")
+        print(friendBillData)
         
     }
     
@@ -296,24 +301,32 @@ class SplitBillDetailViewController: BaseViewController {
             amountStatus = 0
         }
         
-        dataBase
+        dataBase.collection("users").document(currentUser.uid).getDocument(completion: { (snapshot, error) in
+            let user = snapshot?.data()
+            self.userData = UserData(
+                name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
+                email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
+                storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
+                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String)
+        
+            self.dataBase
             .collection("users")
-            .document(friendID ?? "")
+            .document(self.friendID ?? "")
             .collection("bills")
             .document(document)
             .setData(
                 [
-                    BillData.CodingKeys.name.rawValue: user?.name ?? "",
-                    BillData.CodingKeys.billName.rawValue: billingContent?.billName ?? "",
-                    BillData.CodingKeys.amountTotal.rawValue: billingContent?.amount ?? "",
-                    BillData.CodingKeys.owedAmount.rawValue: friendEqualCalculationResult ?? "",
-                    BillData.CodingKeys.payAmount.rawValue: friendEqualResult ?? "",
-                    BillData.CodingKeys.status.rawValue: amountStatus ?? "",
+                    BillData.CodingKeys.name.rawValue: self.userData?.name ?? "",
+                    BillData.CodingKeys.billName.rawValue: self.billingContent?.billName ?? "",
+                    BillData.CodingKeys.amountTotal.rawValue: self.billingContent?.amount ?? "",
+                    BillData.CodingKeys.owedAmount.rawValue: self.friendEqualCalculationResult ?? "",
+                    BillData.CodingKeys.payAmount.rawValue: self.friendEqualResult ?? "",
+                    BillData.CodingKeys.status.rawValue: self.amountStatus ?? "",
                     BillData.CodingKeys.uid.rawValue: currentUser.uid,
                     BillData.CodingKeys.billUid.rawValue: document
                 ]
-        )
-    
+            )
+        })
     }
     
     private func addIndividualDocument(document: String) {
@@ -331,23 +344,32 @@ class SplitBillDetailViewController: BaseViewController {
             amountStatus = 0
         }
         
-        dataBase
+        dataBase.collection("users").document(currentUser.uid).getDocument(completion: { (snapshot, error) in
+            let user = snapshot?.data()
+            self.userData = UserData(
+                name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
+                email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
+                storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
+                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String)
+        
+            self.dataBase
             .collection("users")
-            .document(friendID ?? "")
+            .document(self.friendID ?? "")
             .collection("bills")
             .document(document)
             .setData(
                 [
-                    BillData.CodingKeys.name.rawValue: user?.name ?? "",
-                    BillData.CodingKeys.billName.rawValue: billingContent?.billName ?? "",
-                    BillData.CodingKeys.amountTotal.rawValue: billingContent?.amount ?? "",
-                    BillData.CodingKeys.owedAmount.rawValue: friendIndividualCalculationResult ?? "",
-                    BillData.CodingKeys.payAmount.rawValue: friendIndividualResult ?? "",
-                    BillData.CodingKeys.status.rawValue: amountStatus ?? "",
+                    BillData.CodingKeys.name.rawValue: self.userData?.name ?? "",
+                    BillData.CodingKeys.billName.rawValue: self.billingContent?.billName ?? "",
+                    BillData.CodingKeys.amountTotal.rawValue: self.billingContent?.amount ?? "",
+                    BillData.CodingKeys.owedAmount.rawValue: self.friendIndividualCalculationResult ?? "",
+                    BillData.CodingKeys.payAmount.rawValue: self.friendIndividualResult ?? "",
+                    BillData.CodingKeys.status.rawValue: self.amountStatus ?? "",
                     BillData.CodingKeys.uid.rawValue: currentUser.uid,
                     BillData.CodingKeys.billUid.rawValue: document
                 ]
-        )
+            )
+        })
     }
     
     private func updateEqualDocument() {
@@ -366,11 +388,17 @@ class SplitBillDetailViewController: BaseViewController {
         print("==========")
         print(friendEqual)
         
-        guard let money = (friend?["totalAccount"]) as? Int else { return }
+        guard let money = (myFriend?["totalAccount"]) as? Int else { return }
+        print("=======")
+        print(money)
+        
+        guard let friendMoney = (friendBillData?["totalAccount"]) as? Int else { return }
+        print("=======")
+        print(friendMoney)
         
         let equalSum = money + equal
         
-        let friendEqualSum = money + friendEqual
+        let friendEqualSum = friendMoney + friendEqual
         
         print("===========")
         print(equalSum)
@@ -399,16 +427,30 @@ class SplitBillDetailViewController: BaseViewController {
         
         guard let individual = individualCalculationResult else { return }
         
-        guard let amount = (friend?["totalAccount"]) as? Int else {
+        guard let friendIndividual = friendIndividualCalculationResult else { return }
+        
+        guard let amount = (myFriend?["totalAccount"]) as? Int else {
             return
         }
+        
+        guard let friendAmount = (friendBillData?["totalAccount"]) as? Int else { return }
+        
+        let individualSum = amount + individual
+        
+        let friendIndividualSum = friendAmount + friendIndividual
         
         dataBase
             .collection("users")
             .document(currentUser.uid)
             .collection("friends")
             .document(friendID ?? "")
-            .updateData(["totalAccount" : amount + individual])
+            .updateData(["totalAccount": individualSum])
+        
+        dataBase
+            .collection("users")
+            .document(friendID ?? "").collection("friends")
+            .document(currentUser.uid)
+            .updateData(["totalAccount": friendIndividualSum])
     }
     
     @IBAction func cancelExpenseDetail(_ sender: UIBarButtonItem) {

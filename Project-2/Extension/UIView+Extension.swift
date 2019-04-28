@@ -72,4 +72,14 @@ extension UIView {
         
         objectView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset.bottom).isActive = true
     }
+    
+    func setViewBackgroundColor() {
+        
+        let layer = CAGradientLayer()
+        layer.frame = self.bounds
+        layer.colors = [UIColor.yellow.cgColor, UIColor.green.cgColor]
+        layer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        layer.endPoint = CGPoint(x: 1.0, y: 1.0)
+//        self.layer.addSublayer(layer)
+    }
 }

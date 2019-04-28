@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class FriendDetailViewController: BaseViewController {
-
+    
     @IBOutlet weak var friendDetailTableView: UITableView! {
 
         didSet {
@@ -29,9 +29,11 @@ class FriendDetailViewController: BaseViewController {
     
     var billingList = [BillData]()
     
+//    var payList = [BillData]()
+    
     var settleUpList = [BillData]()
     
-    var sum = 0
+    var sum = 0 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +43,8 @@ class FriendDetailViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(deleteBillList(data:)), name: NSNotification.Name("deleteBilling"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(billList(data:)), name: NSNotification.Name("settleUp"), object: nil)
-
+        
+//        self.setStatusBarBackgroundColor(color: #colorLiteral(red: 0.4718317389, green: 0.4978958964, blue: 0.5159959793, alpha: 1))
     }
     
     @objc func deleteBillList(data: Notification) {
@@ -220,6 +223,10 @@ extension FriendDetailViewController: UITableViewDataSource {
             
             friendHeaderCell.friendBill.text =
             "你 需還\(friendName) $\(sum)"
+            
+        } else if sum == 0 {
+            
+            friendHeaderCell.friendBill.text = "積欠金額為 $0"
         }
         
         return friendHeaderCell
@@ -240,6 +247,7 @@ extension FriendDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return settleUpList.count
+        
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -264,32 +272,31 @@ extension FriendDetailViewController: UITableViewDataSource {
             
             guard var moneyList = list.owedAmount else { return accountsDetailCell }
             
-            for totals in moneyList...moneyList {
-                sum += totals
-            }
-            
+            sum += moneyList
+                
             accountsDetailCell.billName.text = list.billName
             
             accountsDetailCell.sumOfMoney.text = "$\(moneyList)"
-            
+                
             accountsDetailCell.sumOfMoneyStatus.text = ""
-            
+                
             if moneyList > 0 {
-                
+                    
                 accountsDetailCell.sumOfMoneyStatus.text = "未取款"
-                
+                    
                 accountsDetailCell.sumOfMoney.text = "$\(String(describing: moneyList))"
-                
+                    
             } else if moneyList < 0 {
-                
+                    
                 accountsDetailCell.sumOfMoneyStatus.text = "欠款"
                 
+                accountsDetailCell.sumOfMoneyStatus.textColor = .red
+                    
                 moneyList.negate()
                 
                 accountsDetailCell.sumOfMoney.text = "$\(String(describing: moneyList))"
             }
         }
-        
         return accountsDetailCell
     }
 

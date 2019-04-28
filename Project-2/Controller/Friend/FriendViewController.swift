@@ -64,8 +64,6 @@ class FriendViewController: BaseViewController {
             for friend in friends {
 
                 guard let total = friend.totalAccount else { return }
-//                print("===============")
-//                print(total)
                 
                 sum += total
                 
@@ -73,7 +71,11 @@ class FriendViewController: BaseViewController {
                 
                 if total < 0 {
                     
-                    owe += total
+                    var money = total
+                    
+                    money.negate()
+                    
+                    owe += money
                     
                     oweLabel.text = "$\(owe)"
                     
@@ -82,15 +84,14 @@ class FriendViewController: BaseViewController {
                     lent += total
                     
                     lentLabel.text = "$\(lent)"
+                    
+                } else if total == 0 {
+                    
+                    oweLabel.text = "$\(total)"
+                    
+                    lentLabel.text = "$\(total)"
                 }
             }
-            
-//            owe.negate()
-            
-//            print("=======")
-//            print(owe)
-            
-//            oweLabel.text = "$\(owe)"
         }
     }
     
@@ -100,6 +101,7 @@ class FriendViewController: BaseViewController {
         setupTableView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(deleteFriendList(data:)), name: NSNotification.Name("deleteFriend"), object: nil)
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -109,7 +111,6 @@ class FriendViewController: BaseViewController {
         
         loadData()
         
-        tableView.reloadData()
     }
     
     @objc func deleteFriendList(data: Notification) {
@@ -166,12 +167,20 @@ class FriendViewController: BaseViewController {
             }
     }
 
+    lazy var addFriendVC =
+        storyboard!.instantiateViewController(withIdentifier: "AddFriend")
+    
     @IBAction func addFriend(_ sender: UIBarButtonItem) {
-        if let addFriendVC =
-               storyboard?.instantiateViewController(withIdentifier: "AddFriend") {
+
+//        view.stickSubView(addFriendVC.view)
+        
+//        view.addSubview(addFriendVC.view)
+        
+//            addFriendVC.willMove(toParent: self)
+//
+//            addChild(addFriendVC)
             addFriendVC.modalPresentationStyle = .overCurrentContext
             present(addFriendVC, animated: true, completion: nil)
-        }
     }
     
     @IBAction func logOut(_ sender: UIBarButtonItem) {
@@ -253,6 +262,8 @@ extension FriendViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             
+            friendCell.accessoryType = UITableViewCell.AccessoryType.none
+            
             let list = acceptsList[indexPath.row]
             
             friendCell.userName.text = list.name
@@ -291,11 +302,11 @@ extension FriendViewController: UITableViewDataSource {
             
             let list = friends[indexPath.row]
             
-            guard let total = list.totalAccount else { return friendCell }
+            guard var total = list.totalAccount else { return friendCell }
             
             friendCell.userName.text = list.name
             
-            friendCell.accountsStatus.text = ""
+            friendCell.accountsStatus.text = "銀貨兩訖"
             
             friendCell.accountsSum.text = "$\(String(describing: total))"
             
@@ -309,7 +320,9 @@ extension FriendViewController: UITableViewDataSource {
                 
                 friendCell.accountsStatus.text = "欠款"
                 
-                //                total.negate()
+                friendCell.accountsStatus.textColor = .red
+                
+                total.negate()
                 
                 friendCell.accountsSum.text = "$\(String(describing: total))"
             }

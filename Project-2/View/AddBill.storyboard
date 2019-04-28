@@ -85,12 +85,12 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzu-Uf-mDr">
                                 <rect key="frame" x="82.5" y="271" width="210" height="28"/>
-                                <color key="backgroundColor" red="0.79992605080000001" green="1" blue="0.81688684820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.30238682030000003" green="0.34066727759999998" blue="0.36258155110000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="lpY-OP-T3l"/>
                                 </constraints>
                                 <state key="normal" title="分帳細節">
-                                    <color key="titleColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="mlsCornerRadius">

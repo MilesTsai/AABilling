@@ -20,7 +20,9 @@ class FirebaseManager {
         FirebaseApp.configure()
     }
     
-    var user: UserData?
+    var userData: UserData?
+    
+    var friendData: PersonalData?
     
     lazy var userReference = Firestore.firestore().collection("users")
     
@@ -52,7 +54,7 @@ class FirebaseManager {
                                     currentUser.uid
                             ])
                         
-                        self.user = UserData(name: userName, email: withEmail, storage: "", uid: currentUser.uid)
+//                        self.user = UserData(name: userName, email: withEmail, storage: "", uid: currentUser.uid)
                         
                         if let tabBarVC =
                             UIStoryboard.main.instantiateViewController(
@@ -78,18 +80,20 @@ class FirebaseManager {
         }
     }
     
-    func read() {
+    func readUserData(friendUid: String) {
         
         guard let currentUser = Auth.auth().currentUser else { return }
         
-        userReference.document(currentUser.uid).collection("bills").addSnapshotListener { (snapshot, _) in
-            
-            guard let snapshot = snapshot else { return }
-            
-            for document in snapshot.documents {
-                print("\(document.documentID) => \(document.data())")
-            }
-        }
+        userReference.document(friendUid).collection("friends").document(currentUser.uid).getDocument(completion: { [weak self] (snapshot, error) in
+            let friend = snapshot?.data()
+            self?.friendData = PersonalData(
+                name: friend?[PersonalData.CodingKeys.name.rawValue] as? String,
+                email: friend?[PersonalData.CodingKeys.email.rawValue] as? String,
+                storage: friend?[PersonalData.CodingKeys.storage.rawValue] as? String,
+                uid: friend?[PersonalData.CodingKeys.uid.rawValue] as? String,
+                status: friend?[PersonalData.CodingKeys.status.rawValue] as? Int,
+                totalAccount: friend?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int)
+        })
     }
     
     func deleteFriend(document: String) {

@@ -18,9 +18,13 @@ class FriendDetailCell: UITableViewCell {
     
     @IBOutlet weak var settleUpBtn: UIButton!
     
+    @IBOutlet weak var friendBackgroundColor: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+//        friendBackgroundColor.setGradientBackground()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
