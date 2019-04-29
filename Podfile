@@ -14,8 +14,8 @@ target 'Project-2' do
   
   pod 'IQKeyboardManager'
   
-  pod 'Fabric'
+  pod 'Fabric', '~> 1.9.0'
   
-  pod 'Crashlytics'
+  pod 'Crashlytics', '~> 3.12.0'
 
 end

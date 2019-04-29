@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Crashlytics
 
 class FriendViewController: BaseViewController {
 
@@ -101,7 +102,6 @@ class FriendViewController: BaseViewController {
         setupTableView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(deleteFriendList(data:)), name: NSNotification.Name("deleteFriend"), object: nil)
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -181,6 +181,7 @@ class FriendViewController: BaseViewController {
 //            addChild(addFriendVC)
             addFriendVC.modalPresentationStyle = .overCurrentContext
             present(addFriendVC, animated: true, completion: nil)
+//        Crashlytics.sharedInstance().crash()
     }
     
     @IBAction func logOut(_ sender: UIBarButtonItem) {
