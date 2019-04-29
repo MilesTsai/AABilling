@@ -18,6 +18,8 @@ class FriendDetailViewController: BaseViewController {
             friendDetailTableView.dataSource = self
 
             friendDetailTableView.delegate = self
+            
+            friendDetailTableView.separatorStyle = .none
         }
     }
     
@@ -29,11 +31,9 @@ class FriendDetailViewController: BaseViewController {
     
     var billingList = [BillData]()
     
-//    var payList = [BillData]()
-    
     var settleUpList = [BillData]()
     
-    var sum = 0 
+    var sum = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +43,6 @@ class FriendDetailViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(deleteBillList(data:)), name: NSNotification.Name("deleteBilling"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(billList(data:)), name: NSNotification.Name("settleUp"), object: nil)
-        
-//        self.setStatusBarBackgroundColor(color: #colorLiteral(red: 0.4718317389, green: 0.4978958964, blue: 0.5159959793, alpha: 1))
     }
     
     @objc func deleteBillList(data: Notification) {
@@ -80,20 +78,18 @@ class FriendDetailViewController: BaseViewController {
         )
     }
     
-    func settleUp() {
-        
-        var tempSettleUp: [BillData] = []
-        
-        for settleUp in 0..<billingList.count {
+    func lentAmount() {
+
+        var lent = 0
+
+        for owed in billingList {
             
-            if billingList[settleUp].status != 2 {
-                
-                tempSettleUp.append(billingList[settleUp])
-                
-            }
+            guard let owedTotal = owed.owedAmount else { return }
             
-            settleUpList = tempSettleUp
+            lent += owedTotal
         }
+        
+        sum = lent
     }
     
     private func billingDetail() {
@@ -107,7 +103,7 @@ class FriendDetailViewController: BaseViewController {
             .document(currentUser.uid)
             .collection("bills")
             .whereField("uid", isEqualTo: friendUid)
-            .getDocuments(completion: { (snapshot, error) in
+            .getDocuments(completion: { [weak self] (snapshot, error) in
                 if let error = error {
                     print(error)
                 } else {
@@ -118,7 +114,7 @@ class FriendDetailViewController: BaseViewController {
                         
                         let billDetail = document.data()
                         
-                        self.friendBill =
+                        self?.friendBill =
                             BillData(
                                 uid: billDetail["uid"] as? String,
                                 billUid: billDetail["billUid"] as? String,
@@ -131,18 +127,18 @@ class FriendDetailViewController: BaseViewController {
                             )
                         }
                     
-                    self.billingList =
+                    self?.billingList =
                         snap
                             .documents
                             .compactMap({
                                 BillData(dictionary: $0.data())
                             })
                     
-                    self.settleUp()
+                    self?.lentAmount()
                     
                     DispatchQueue.main.async {
                         
-                        self.friendDetailTableView.reloadData()
+                        self?.friendDetailTableView.reloadData()
                     }
                     
                 }
@@ -156,7 +152,7 @@ class FriendDetailViewController: BaseViewController {
         
         billingDetail()
         
-        friendDetailTableView.reloadData()
+//        friendDetailTableView.reloadData()
     }
 
     @IBAction func backFriendList(_ sender: UIButton) {
@@ -246,7 +242,7 @@ extension FriendDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return settleUpList.count
+        return billingList.count
         
     }
 
@@ -262,18 +258,16 @@ extension FriendDetailViewController: UITableViewDataSource {
         guard let accountsDetailCell =
                     cell as? FriendAccountsListDetailCell else { return cell }
         
-        if settleUpList.count == 0 {
+        if billingList.count == 0 {
             
             return accountsDetailCell
             
         } else {
             
-            let list = settleUpList[indexPath.row]
+            let list = billingList[indexPath.row]
             
             guard var moneyList = list.owedAmount else { return accountsDetailCell }
             
-            sum += moneyList
-                
             accountsDetailCell.billName.text = list.billName
             
             accountsDetailCell.sumOfMoney.text = "$\(moneyList)"
@@ -285,6 +279,8 @@ extension FriendDetailViewController: UITableViewDataSource {
                 accountsDetailCell.sumOfMoneyStatus.text = "未取款"
                     
                 accountsDetailCell.sumOfMoney.text = "$\(String(describing: moneyList))"
+                
+                accountsDetailCell.sumOfMoneyStatus.textColor = .init(cgColor: #colorLiteral(red: 0.2470588235, green: 0.2274509804, blue: 0.2274509804, alpha: 1))
                     
             } else if moneyList < 0 {
                     
@@ -295,6 +291,14 @@ extension FriendDetailViewController: UITableViewDataSource {
                 moneyList.negate()
                 
                 accountsDetailCell.sumOfMoney.text = "$\(String(describing: moneyList))"
+                
+            } else if moneyList == 0 {
+                
+                accountsDetailCell.sumOfMoneyStatus.text = "銀貨兩訖"
+                
+                accountsDetailCell.sumOfMoney.text = "$0"
+                
+                accountsDetailCell.sumOfMoneyStatus.textColor = .init(cgColor: #colorLiteral(red: 0.2470588235, green: 0.2274509804, blue: 0.2274509804, alpha: 1))
             }
         }
         return accountsDetailCell
@@ -312,7 +316,7 @@ extension FriendDetailViewController: UITableViewDataSource {
                 
                 guard let friendBillDetailVC = friendBillDetailNC.topViewController as? FriendBillDetailViewController else { return }
                 
-                friendBillDetailVC.billingDetailData = settleUpList[indexPath.row]
+                friendBillDetailVC.billingDetailData = billingList[indexPath.row]
             }
         }
     }

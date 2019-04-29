@@ -180,22 +180,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ytA-pd-fv2">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ytA-pd-fv2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <sections/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-JP-uPa" userLabel="backFriendList">
-                                <rect key="frame" x="7" y="21" width="38" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="back"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-JP-uPa" userLabel="backFriendList">
+                                <rect key="frame" x="8" y="21" width="38" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="a1M-Cz-LE5"/>
+                                    <constraint firstAttribute="width" secondItem="vDn-JP-uPa" secondAttribute="height" multiplier="1:1" id="jEE-P6-uzy"/>
+                                </constraints>
+                                <state key="normal" image="whiteBack"/>
                                 <connections>
                                     <action selector="backFriendList:" destination="Zi3-d1-7tX" eventType="touchUpInside" id="Tqi-bL-iou"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7l-oC-WWF" userLabel="friendSetting">
-                                <rect key="frame" x="320" y="21" width="38" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="setting"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7l-oC-WWF" userLabel="friendSetting">
+                                <rect key="frame" x="329" y="21" width="38" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="2Gt-4a-c98"/>
+                                    <constraint firstAttribute="width" secondItem="T7l-oC-WWF" secondAttribute="height" multiplier="1:1" id="tlM-U2-PRz"/>
+                                </constraints>
+                                <state key="normal" image="whiteSetting"/>
                                 <connections>
                                     <action selector="friendSetting:" destination="Zi3-d1-7tX" eventType="touchUpInside" id="iXj-jk-ZXv"/>
                                 </connections>
@@ -205,7 +212,11 @@
                         <constraints>
                             <constraint firstItem="ytA-pd-fv2" firstAttribute="top" secondItem="PRf-UL-KgI" secondAttribute="top" id="K5s-hU-6Nh"/>
                             <constraint firstItem="ytA-pd-fv2" firstAttribute="bottom" secondItem="K9j-8h-G1Q" secondAttribute="bottom" id="Qez-L2-6V2"/>
+                            <constraint firstAttribute="trailing" secondItem="T7l-oC-WWF" secondAttribute="trailing" constant="8" id="Sod-Zf-QiK"/>
                             <constraint firstItem="ytA-pd-fv2" firstAttribute="leading" secondItem="K9j-8h-G1Q" secondAttribute="leading" id="ZYx-3X-PIK"/>
+                            <constraint firstItem="T7l-oC-WWF" firstAttribute="top" secondItem="PRf-UL-KgI" secondAttribute="top" constant="21" id="cdy-LN-yjy"/>
+                            <constraint firstItem="vDn-JP-uPa" firstAttribute="top" secondItem="PRf-UL-KgI" secondAttribute="top" constant="21" id="cms-q0-dJC"/>
+                            <constraint firstItem="vDn-JP-uPa" firstAttribute="leading" secondItem="PRf-UL-KgI" secondAttribute="leading" constant="8" id="jRK-Vg-Fxj"/>
                             <constraint firstItem="ytA-pd-fv2" firstAttribute="trailing" secondItem="K9j-8h-G1Q" secondAttribute="trailing" id="zgY-Nh-V4f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K9j-8h-G1Q"/>
@@ -253,7 +264,7 @@
                                     <constraint firstAttribute="width" secondItem="LA1-cN-0cL" secondAttribute="height" multiplier="1:1" id="jCL-dg-r6z"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEC-89-6l1">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEC-89-6l1">
                                 <rect key="frame" x="16" y="348" width="343" height="32"/>
                                 <color key="backgroundColor" red="0.73223350249999997" green="0.08863985227" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -356,6 +367,7 @@
                         <outlet property="billName" destination="Wh2-5b-iLK" id="Gnz-Pw-DeS"/>
                         <outlet property="friendAccountStatus" destination="DQw-tQ-tJJ" id="gEg-Hb-gfY"/>
                         <outlet property="myAccountStatus" destination="k02-Eh-Iqc" id="krt-N8-1zv"/>
+                        <outlet property="settleUpBtn" destination="lQ8-3U-ujt" id="FXX-jt-Bzg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hty-dS-nfk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -740,7 +752,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="deleteFriend:" destination="0mW-zO-wTS" eventType="touchUpInside" id="Lmc-IB-Neu"/>
-                                    <segue destination="zDH-1A-vDl" kind="unwind" unwindAction="unwindSegueBackWithSegue:" id="WPU-kK-Mnc"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbR-fn-xwU">
@@ -787,6 +798,7 @@
                     <connections>
                         <outlet property="friendEmail" destination="RVa-Y0-laK" id="IXG-0b-BTj"/>
                         <outlet property="friendName" destination="tbR-fn-xwU" id="PdK-Bf-wF3"/>
+                        <segue destination="zDH-1A-vDl" kind="unwind" identifier="unwindSegueBack" unwindAction="unwindSegueBackWithSegue:" id="AI3-wh-bLg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbI-PM-eus" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1142,8 +1154,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back" width="24" height="24"/>
-        <image name="setting" width="24" height="24"/>
         <image name="userPhoto" width="36" height="36"/>
+        <image name="whiteBack" width="24" height="24"/>
+        <image name="whiteSetting" width="24" height="24"/>
     </resources>
 </document>

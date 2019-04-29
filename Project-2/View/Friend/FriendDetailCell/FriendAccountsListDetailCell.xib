@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欠款" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJr-iZ-efg">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兩清" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJr-iZ-efg">
                         <rect key="frame" x="300" y="8" width="60" height="13.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="M8k-E3-S1J"/>
@@ -27,7 +27,7 @@
                         <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="$1,000" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SP2-Gk-uGJ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="$0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SP2-Gk-uGJ">
                         <rect key="frame" x="260" y="21.5" width="100" height="33"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="L8P-IM-PHV"/>
@@ -42,14 +42,24 @@
                         <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bcx-4G-OCc">
+                        <rect key="frame" x="0.0" y="0.0" width="425" height="0.5"/>
+                        <color key="backgroundColor" red="0.86274509803921573" green="0.8666666666666667" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="RhP-Yq-blw"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="fxy-gQ-674" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2hA-S7-9LU"/>
                     <constraint firstItem="SP2-Gk-uGJ" firstAttribute="top" secondItem="sJr-iZ-efg" secondAttribute="bottom" id="8sx-zA-nSy"/>
+                    <constraint firstItem="Bcx-4G-OCc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="SpC-Tx-GTm"/>
                     <constraint firstItem="sJr-iZ-efg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="eCs-YV-zNP"/>
+                    <constraint firstAttribute="trailing" secondItem="Bcx-4G-OCc" secondAttribute="trailing" constant="-50" id="edw-Ci-L5k"/>
                     <constraint firstAttribute="trailing" secondItem="SP2-Gk-uGJ" secondAttribute="trailing" constant="15" id="fr6-i9-0U3"/>
                     <constraint firstAttribute="bottom" secondItem="fxy-gQ-674" secondAttribute="bottom" id="hJ0-jF-Qrc"/>
                     <constraint firstAttribute="trailing" secondItem="sJr-iZ-efg" secondAttribute="trailing" constant="15" id="kvi-o7-pzr"/>
+                    <constraint firstItem="Bcx-4G-OCc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sfv-9n-Oos"/>
                     <constraint firstItem="SP2-Gk-uGJ" firstAttribute="leading" secondItem="fxy-gQ-674" secondAttribute="trailing" constant="10" id="wwN-rf-Y83"/>
                     <constraint firstItem="fxy-gQ-674" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="yfq-uL-ui7"/>
                     <constraint firstAttribute="bottom" secondItem="SP2-Gk-uGJ" secondAttribute="bottom" constant="5" id="ytI-cF-yoV"/>
@@ -61,7 +71,7 @@
                 <outlet property="sumOfMoney" destination="SP2-Gk-uGJ" id="Y9b-UQ-pZ3"/>
                 <outlet property="sumOfMoneyStatus" destination="sJr-iZ-efg" id="jXc-3h-3TG"/>
             </connections>
-            <point key="canvasLocation" x="138.40579710144928" y="269.53125"/>
+            <point key="canvasLocation" x="138.40579710144928" y="269.19642857142856"/>
         </tableViewCell>
     </objects>
 </document>

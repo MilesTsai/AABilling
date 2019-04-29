@@ -306,13 +306,15 @@ extension FriendViewController: UITableViewDataSource {
             
             friendCell.userName.text = list.name
             
-            friendCell.accountsStatus.text = "銀貨兩訖"
+            friendCell.accountsStatus.text = ""
             
             friendCell.accountsSum.text = "$\(String(describing: total))"
             
             if total > 0 {
                 
                 friendCell.accountsStatus.text = "未取款"
+                
+                friendCell.accountsStatus.textColor = .init(cgColor: #colorLiteral(red: 0.2470588235, green: 0.2274509804, blue: 0.2274509804, alpha: 1))
                 
                 friendCell.accountsSum.text = "$\(String(describing: total))"
                 
@@ -323,6 +325,14 @@ extension FriendViewController: UITableViewDataSource {
                 friendCell.accountsStatus.textColor = .red
                 
                 total.negate()
+                
+                friendCell.accountsSum.text = "$\(String(describing: total))"
+                
+            } else if total == 0 {
+                
+                friendCell.accountsStatus.text = "銀貨兩訖"
+                
+                friendCell.accountsStatus.textColor = .init(cgColor: #colorLiteral(red: 0.2470588235, green: 0.2274509804, blue: 0.2274509804, alpha: 1))
                 
                 friendCell.accountsSum.text = "$\(String(describing: total))"
             }

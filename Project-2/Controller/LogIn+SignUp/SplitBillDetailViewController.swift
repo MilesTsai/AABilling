@@ -141,9 +141,7 @@ class SplitBillDetailViewController: BaseViewController {
     @IBAction func saveBill(_ sender: UIBarButtonItem) {
         
         guard let currentUser = Auth.auth().currentUser
-            else {
-                return
-        }
+            else { return }
         
         if selectExpenseBtns[0].isSelected == true {
             
@@ -204,7 +202,10 @@ class SplitBillDetailViewController: BaseViewController {
                     UIAlertController(title: "成功", message: "帳單已成立", preferredStyle: .alert)
                 
                 let defaultAction =
-                    UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    UIAlertAction(title: "OK", style: .cancel, handler: { [weak self] _ in
+                        
+                        self?.presentingViewController?.dismiss(animated: true, completion: nil)
+                    })
                 
                 alertController.addAction(defaultAction)
                 
@@ -276,8 +277,9 @@ class SplitBillDetailViewController: BaseViewController {
                     UIAlertAction(
                         title: "OK",
                         style: .cancel,
-                        handler: nil
-                )
+                        handler: { [weak self] _ in
+                            self?.presentingViewController?.dismiss(animated: true, completion: nil)
+                    })
                 
                 alertController.addAction(defaultAction)
                 
@@ -381,28 +383,15 @@ class SplitBillDetailViewController: BaseViewController {
         
         guard let equal = equalCalculationResult else { return }
         
-        print("==========")
-        print(equal)
         guard let friendEqual = friendEqualCalculationResult else { return }
         
-        print("==========")
-        print(friendEqual)
-        
         guard let money = (myFriend?["totalAccount"]) as? Int else { return }
-        print("=======")
-        print(money)
         
         guard let friendMoney = (friendBillData?["totalAccount"]) as? Int else { return }
-        print("=======")
-        print(friendMoney)
         
         let equalSum = money + equal
         
         let friendEqualSum = friendMoney + friendEqual
-        
-        print("===========")
-        print(equalSum)
-        print(friendEqualSum)
         
         dataBase
             .collection("users")
@@ -415,23 +404,17 @@ class SplitBillDetailViewController: BaseViewController {
             .document(friendID ?? "").collection("friends")
             .document(currentUser.uid)
             .updateData(["totalAccount": friendEqualSum])
-
     }
     
     private func updateIndividualDocument() {
         
-        guard let currentUser = Auth.auth().currentUser
-            else {
-                return
-        }
+        guard let currentUser = Auth.auth().currentUser else { return }
         
         guard let individual = individualCalculationResult else { return }
         
         guard let friendIndividual = friendIndividualCalculationResult else { return }
         
-        guard let amount = (myFriend?["totalAccount"]) as? Int else {
-            return
-        }
+        guard let amount = (myFriend?["totalAccount"]) as? Int else { return }
         
         guard let friendAmount = (friendBillData?["totalAccount"]) as? Int else { return }
         
@@ -473,7 +456,6 @@ class SplitBillDetailViewController: BaseViewController {
             else {
                 return
         }
-        
         updateContainer(type: type)
     }
     

@@ -36,6 +36,7 @@
             <connections>
                 <outlet property="sectionTitle" destination="dbx-f5-4At" id="VHG-jI-YbU"/>
             </connections>
+            <point key="canvasLocation" x="138.40579710144928" y="131.91964285714286"/>
         </tableViewCell>
     </objects>
 </document>

@@ -11,6 +11,7 @@
 		CE007C59226EB16800465E28 /* FriendSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE007C57226EB16800465E28 /* FriendSectionCell.swift */; };
 		CE007C5A226EB16800465E28 /* FriendSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE007C58226EB16800465E28 /* FriendSectionCell.xib */; };
 		CE007C7A2273278800465E28 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE007C792273278700465E28 /* UINavigationBar+Extension.swift */; };
+		CE007C7D22759CDA00465E28 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A882254EED000ECEBE1 /* Group.storyboard */; };
 		CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */; };
 		CE497CF7225B8C1D004ED6DF /* GroupSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */; };
 		CE497CFB225B928B004ED6DF /* GroupSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CF9225B928B004ED6DF /* GroupSettingCell.swift */; };
@@ -21,7 +22,6 @@
 		CE497D04225C6EF2004ED6DF /* FriendBillEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D03225C6EF2004ED6DF /* FriendBillEditViewController.swift */; };
 		CE497D06225C82D0004ED6DF /* SplitBillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D05225C82D0004ED6DF /* SplitBillDetailViewController.swift */; };
 		CE497D09225CB9AD004ED6DF /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D08225CB9AD004ED6DF /* UIScreen+Extension.swift */; };
-		CE768A892254EED000ECEBE1 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A882254EED000ECEBE1 /* Group.storyboard */; };
 		CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */; };
 		CE768A8D2254EF3B00ECEBE1 /* Chart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */; };
 		CE768A8F2254EF4E00ECEBE1 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8E2254EF4E00ECEBE1 /* User.storyboard */; };
@@ -582,10 +582,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE007C5A226EB16800465E28 /* FriendSectionCell.xib in Resources */,
-				CE768A892254EED000ECEBE1 /* Group.storyboard in Resources */,
 				CEABD3EE226767080062B552 /* AverageValueCell.xib in Resources */,
 				CE768ABA225A165C00ECEBE1 /* FriendDetailCell.xib in Resources */,
 				CEABD3E6226740950062B552 /* EqualCell.xib in Resources */,
+				CE007C7D22759CDA00465E28 /* Group.storyboard in Resources */,
 				CEFF0D78225DBEE900C74ED4 /* GroupSettleUpSelectCell.xib in Resources */,
 				CEFF0D89225F3E1600C74ED4 /* Loading.storyboard in Resources */,
 				CE768AC5225B1A2400ECEBE1 /* GroupDetailCell.xib in Resources */,

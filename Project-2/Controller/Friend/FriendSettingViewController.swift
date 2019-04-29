@@ -47,34 +47,33 @@ class FriendSettingViewController: BaseViewController {
                 preferredStyle: .alert
         )
         
-        let okAction =
-            UIAlertAction(
-                title: "確定",
-                style: .default,
-                handler: { _ in
-                    print("Hello")
-            })
-        
         let cancelAction =
             UIAlertAction(
                 title: "取消",
                 style: .default,
                 handler: { _ in
-                    print("GO")
+            
             })
         
-        alertController.addAction(okAction)
+        let okAction =
+            UIAlertAction(
+                title: "確定",
+                style: .default,
+                handler: { [weak self] _ in
+                    
+                    guard let friendUid = self?.friendDetailData?.uid else {
+                        return
+                    }
+                    
+                    NotificationCenter.default.post(name: NSNotification.Name("deleteFriend"), object: nil, userInfo: ["friendUid": friendUid])
+                    
+                    FirebaseManager.shared.deleteFriend(document: friendUid)
+                    self?.performSegue(withIdentifier: "unwindSegueBack", sender: self)
+            })
+        
         alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
         
         self.present(alertController, animated: true, completion: nil)
-        
-//        guard let friendUid = friendDetailData?.uid else {
-//            return
-//        }
-//
-//        NotificationCenter.default.post(name: NSNotification.Name("deleteFriend"), object: nil, userInfo: ["friendUid": friendUid])
-//
-//        FirebaseManager.shared.deleteFriend(document: friendUid)
-        
     }
 }

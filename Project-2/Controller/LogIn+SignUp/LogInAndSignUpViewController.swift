@@ -27,12 +27,14 @@ class LogInAndSignUpViewController: UIViewController {
         super.viewDidLoad()
         
         dataBase = Firestore.firestore()
+        
+        setStatusBarBackgroundColor(color: UIColor.clear)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setStatusBarBackgroundColor(color: UIColor.clear)
+//        setStatusBarBackgroundColor(color: UIColor.clear)
     }
     
     func setStatusBarBackgroundColor(color: UIColor) {

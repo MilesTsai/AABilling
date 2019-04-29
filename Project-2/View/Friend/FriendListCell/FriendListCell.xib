@@ -19,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="3lI-2h-T75">
-                        <rect key="frame" x="13" y="6" width="47.5" height="47.5"/>
+                        <rect key="frame" x="13" y="8" width="43.5" height="43.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="3lI-2h-T75" secondAttribute="height" multiplier="1:1" id="1wQ-jJ-EFP"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0K-MR-WCY">
-                        <rect key="frame" x="68.5" y="9" width="150" height="41.5"/>
+                        <rect key="frame" x="64.5" y="9" width="150" height="41.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="REE-zJ-hX4"/>
                         </constraints>
@@ -98,9 +98,9 @@
                     <constraint firstAttribute="trailing" secondItem="Mch-fu-r2d" secondAttribute="trailing" constant="-50" id="510-lM-Rn2"/>
                     <constraint firstAttribute="bottom" secondItem="l0K-MR-WCY" secondAttribute="bottom" constant="9" id="6JZ-Ne-9OR"/>
                     <constraint firstItem="18Y-UE-LsJ" firstAttribute="leading" secondItem="bkb-Ux-fRW" secondAttribute="trailing" constant="10" id="CQX-AG-tMo"/>
-                    <constraint firstItem="3lI-2h-T75" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="I2Y-vD-DQn"/>
+                    <constraint firstItem="3lI-2h-T75" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="I2Y-vD-DQn"/>
                     <constraint firstItem="Mch-fu-r2d" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Qnl-2B-YWg"/>
-                    <constraint firstAttribute="bottom" secondItem="3lI-2h-T75" secondAttribute="bottom" constant="6" id="RHu-LT-SXk"/>
+                    <constraint firstAttribute="bottom" secondItem="3lI-2h-T75" secondAttribute="bottom" constant="8" id="RHu-LT-SXk"/>
                     <constraint firstItem="3lI-2h-T75" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="Wre-Fm-Wfx"/>
                     <constraint firstItem="bkb-Ux-fRW" firstAttribute="centerY" secondItem="l0K-MR-WCY" secondAttribute="centerY" id="ZCe-SC-zIe"/>
                     <constraint firstItem="b3Y-Av-Mz2" firstAttribute="top" secondItem="puc-P1-QSe" secondAttribute="bottom" id="eOo-Ue-7I0"/>

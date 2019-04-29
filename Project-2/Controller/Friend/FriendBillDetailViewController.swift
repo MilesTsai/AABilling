@@ -21,7 +21,17 @@ class FriendBillDetailViewController: BaseViewController {
     
     var friendTotalAccount: PersonalData?
     
+    var friendBilling: BillData?
+    
     var dataBase: Firestore = Firestore.firestore()
+    
+    let dispatchGroup = DispatchGroup()
+    
+    var mySelfTotalAccount: Int = 0
+    
+    var myfriendTotalAccount: Int = 0
+    
+    var myfriendOwedAmount: Int = 0
     
     @IBOutlet weak var billName: UILabel!
     
@@ -31,11 +41,17 @@ class FriendBillDetailViewController: BaseViewController {
     
     @IBOutlet weak var friendAccountStatus: UILabel!
     
+    @IBOutlet weak var settleUpBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         splitBillDetailVC?.friendBillingUid = { [weak self] uid in
             self?.friendBillingUid = uid
+        }
+        
+        if billingDetailData?.status == 2 && friendBilling?.status == 2 {
+            settleUpBtn.isHidden = true
         }
     }
 
@@ -78,18 +94,67 @@ class FriendBillDetailViewController: BaseViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func settleUpBtn(_ sender: UIButton) {
+    func readFriendTotalAccountData() {
+        
+        dispatchGroup.enter()
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        guard let friendUid = billingDetailData?.uid else { return }
+        dataBase.collection("users").document(friendUid).collection("friends").document(currentUser.uid).getDocument(completion: { [weak self] (snapshot, error) in
+            let friend = snapshot?.data()
+            self?.friendTotalAccount = PersonalData(
+                name: friend?[PersonalData.CodingKeys.name.rawValue] as? String,
+                email: friend?[PersonalData.CodingKeys.email.rawValue] as? String,
+                storage: friend?[PersonalData.CodingKeys.storage.rawValue] as? String,
+                uid: friend?[PersonalData.CodingKeys.uid.rawValue] as? String,
+                status: friend?[PersonalData.CodingKeys.status.rawValue] as? Int,
+                totalAccount: friend?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int)
+            
+            guard let myfriend = self?.friendTotalAccount?.totalAccount else { return }
+            
+            self?.myfriendTotalAccount = myfriend
+            
+            self?.dispatchGroup.leave()
+        })
+    }
+    
+    func readFriendBillOwedAmount() {
+        
+        dispatchGroup.enter()
         
         guard let billingUid = billingDetailData?.billUid else { return }
         
         guard let friendUid = billingDetailData?.uid else { return }
         
-        NotificationCenter.default.post(name: NSNotification.Name("settleUp"), object: nil, userInfo: ["billingUid": billingUid])
+        dataBase.collection("users").document(friendUid).collection("bills").document(billingUid).getDocument(completion: { [weak self] (snapshot, error) in
+            let friendBill = snapshot?.data()
+            self?.friendBilling = BillData(
+                uid: friendBill?[BillData.CodingKeys.uid.rawValue] as? String,
+                billUid: friendBill?[BillData.CodingKeys.billUid.rawValue] as? String,
+                name: friendBill?[BillData.CodingKeys.name.rawValue] as? String,
+                billName: friendBill?[BillData.CodingKeys.billName.rawValue] as? String,
+                amountTotal: friendBill?[BillData.CodingKeys.amountTotal.rawValue] as? Int,
+                owedAmount: friendBill?[BillData.CodingKeys.owedAmount.rawValue] as? Int,
+                payAmount: friendBill?[BillData.CodingKeys.payAmount.rawValue] as? Int,
+                status: friendBill?[BillData.CodingKeys.status.rawValue] as? Int)
+            
+            guard let myfriendBill = self?.friendBilling?.owedAmount else { return }
+            print(myfriendBill)
+            
+            self?.myfriendOwedAmount = myfriendBill
+            
+            self?.dispatchGroup.leave()
+        })
+    }
+    
+    func readMyTotalAccount() {
         
-        FirebaseManager.shared.updateMyBillStatus(document: billingUid)
-        FirebaseManager.shared.updateFriendBillStatus(document: friendUid, billID: billingUid)
+        dispatchGroup.enter()
         
         guard let currentUser = Auth.auth().currentUser else { return }
+        
+        guard let friendUid = billingDetailData?.uid else { return }
         
         dataBase.collection("users").document(currentUser.uid).collection("friends").document(friendUid).getDocument(completion: { [weak self] (snapshot, error) in
             let user = snapshot?.data()
@@ -101,33 +166,69 @@ class FriendBillDetailViewController: BaseViewController {
                 status: user?[PersonalData.CodingKeys.status.rawValue] as? Int,
                 totalAccount: user?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int)
             
-            guard let mySelfTotalAccount = self?.myTotalAccount?.totalAccount else { return }
+            guard let selfTotalAccount = self?.myTotalAccount?.totalAccount else { return }
             
-            guard let myOwedAmount = self?.billingDetailData?.owedAmount else { return }
+            self?.mySelfTotalAccount = selfTotalAccount
             
-            self?.dataBase
-                .collection("users")
-                .document(currentUser.uid).collection("friends")
-                .document(friendUid)
-                .updateData(["totalAccount": mySelfTotalAccount + myOwedAmount])
+            self?.dispatchGroup.leave()
+            
         })
+    }
+    
+    func updateMyTotalAccount() {
         
-        dataBase.collection("users").document(friendUid).collection("friends").document(currentUser.uid).getDocument(completion: { [weak self] (snapshot, error) in
-            let friend = snapshot?.data()
-            self?.friendTotalAccount = PersonalData(
-                name: friend?[PersonalData.CodingKeys.name.rawValue] as? String,
-                email: friend?[PersonalData.CodingKeys.email.rawValue] as? String,
-                storage: friend?[PersonalData.CodingKeys.storage.rawValue] as? String,
-                uid: friend?[PersonalData.CodingKeys.uid.rawValue] as? String,
-                status: friend?[PersonalData.CodingKeys.status.rawValue] as? Int,
-                totalAccount: friend?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int)
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        guard let friendUid = billingDetailData?.uid else { return }
+        
+        self.dataBase
+            .collection("users")
+            .document(currentUser.uid).collection("friends")
+            .document(friendUid)
+            .updateData(["totalAccount": mySelfTotalAccount + myfriendOwedAmount])
+    }
+    
+    func updateFriendTotalAccount() {
+        
+        guard let myOwedAmount = self.billingDetailData?.owedAmount else { return }
+        
+        guard let friendUid = self.billingDetailData?.uid else { return }
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+//        let total = self.myfriendTotalAccount + myOwedAmount
+//        print(total)
+        
+        self.dataBase
+            .collection("users")
+            .document(friendUid).collection("friends")
+            .document(currentUser.uid)
+            .updateData(["totalAccount": self.myfriendTotalAccount + myOwedAmount])
+    }
+    
+    @IBAction func settleUpBtn(_ sender: UIButton) {
+        
+        guard let billingUid = self.billingDetailData?.billUid else { return }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("settleUp"), object: nil, userInfo: ["billingUid": billingUid])
+        
+        readMyTotalAccount()
+        readFriendTotalAccountData()
+        readFriendBillOwedAmount()
+        
+        dispatchGroup.notify(queue: .main) {
             
-            self?.dataBase
-                .collection("users")
-                .document(friendUid).collection("friends")
-                .document(currentUser.uid)
-                .updateData(["totalAccount": 0])
-        })
+            guard let billingUid = self.billingDetailData?.billUid else { return }
+            
+            guard let friendUid = self.billingDetailData?.uid else { return }
+            
+            self.updateFriendTotalAccount()
+            
+            self.updateMyTotalAccount()
+            
+            FirebaseManager.shared.updateMyBillStatus(document: billingUid)
+            FirebaseManager.shared.updateFriendBillStatus(document: friendUid, billID: billingUid)
+        }
         
         dismiss(animated: true, completion: nil)
     }

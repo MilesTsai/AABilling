@@ -12,7 +12,7 @@ private enum Tab {
 
     case friend
 
-    case group
+//    case group
 
     case addBill
 
@@ -28,7 +28,7 @@ private enum Tab {
 
         case .friend: controller = UIStoryboard.friend.instantiateInitialViewController()!
 
-        case .group: controller = UIStoryboard.group.instantiateInitialViewController()!
+//        case .group: controller = UIStoryboard.group.instantiateInitialViewController()!
 
         case .addBill: controller = UIStoryboard.addBill.instantiateInitialViewController()!
 
@@ -56,12 +56,12 @@ private enum Tab {
                 selectedImage: UIImage.source(.friendselect)
             )
 
-        case .group:
-            return UITabBarItem(
-                title: nil,
-                image: UIImage.source(.group),
-                selectedImage: UIImage.source(.groupselect)
-            )
+//        case .group:
+//            return UITabBarItem(
+//                title: nil,
+//                image: UIImage.source(.group),
+//                selectedImage: UIImage.source(.groupselect)
+//            )
 
         case .addBill:
             return UITabBarItem(
@@ -90,7 +90,7 @@ private enum Tab {
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
 //    private let tabs: [Tab] = [.friend, .group, .addBill, .chart, .user]
-    private let tabs: [Tab] = [.friend, .addBill, .group]
+    private let tabs: [Tab] = [.friend, .addBill]
 
     override func viewDidLoad() {
         super.viewDidLoad()

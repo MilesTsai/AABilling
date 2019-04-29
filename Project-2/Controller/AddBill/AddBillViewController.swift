@@ -36,7 +36,16 @@ class AddBillViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        accountObject.text = ""
+        
+        friendBillName.text = ""
+        
+        billAmount.text = ""
     }
     
     @IBAction func expenseDetail(_ sender: UIButton) {

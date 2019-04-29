@@ -13,5 +13,9 @@ target 'Project-2' do
   pod 'Firebase/Firestore'
   
   pod 'IQKeyboardManager'
+  
+  pod 'Fabric'
+  
+  pod 'Crashlytics'
 
 end
