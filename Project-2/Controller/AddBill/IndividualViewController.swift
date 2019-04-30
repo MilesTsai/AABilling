@@ -25,7 +25,7 @@ class IndividualViewController: BaseTableViewController {
     
     var owedAmount: ((Int) -> Void)?
     
-    var payAmount: ((Int) -> Void)?
+    var payAmount: ((Int?) -> Void)?
     
     var friendOwedAmount: ((Int) -> Void)?
     
@@ -158,18 +158,18 @@ class IndividualViewController: BaseTableViewController {
         return 60
     }
     
-    func tableView(
-        _ tableView: UITableView,
-        didSelectRowAt indexPath: IndexPath) {
-        
-        if indexPath.row == 0 {
-            selectHandler?(userNameInfo)
-        } else if indexPath.row == 1 {
-            selectHandler?(individualBilling!.anyone)
-        } else {
-            return
-        }
-    }
+//    func tableView(
+//        _ tableView: UITableView,
+//        didSelectRowAt indexPath: IndexPath) {
+//        
+//        if indexPath.row == 0 {
+//            selectHandler?(userNameInfo)
+//        } else if indexPath.row == 1 {
+//            selectHandler?(individualBilling!.anyone)
+//        } else {
+//            return
+//        }
+//    }
 }
 
 extension IndividualViewController: UITextFieldDelegate {
@@ -188,6 +188,9 @@ extension IndividualViewController: UITextFieldDelegate {
                 
                 guard let userAmount = Int(userTextField?.text ?? "")
                     else {
+                        
+                        payAmount?(nil)
+                        
                         return
                 }
                 friendTextField?.text =

@@ -91,10 +91,23 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
 //    private let tabs: [Tab] = [.friend, .group, .addBill, .chart, .user]
     private let tabs: [Tab] = [.friend, .addBill]
+    
+    let layerGradient = CAGradientLayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        layerGradient.colors = [
+            UIColor.init(red: 250/255, green: 248/255, blue: 248/255, alpha: 1).cgColor,
+            UIColor.init(displayP3Red: 50.0 / 255.0, green: 41.0 / 255.0, blue: 31.0 / 255.0, alpha: 1).cgColor]
+        layerGradient.startPoint = CGPoint(x: 0.0, y: 0.0)
+        layerGradient.endPoint = CGPoint(x: 0.0, y: 1.4)
+        layerGradient.frame = CGRect(x: 0, y: 0, width: tabBar.bounds.width, height: tabBar.bounds.height)
+        self.tabBar.layer.addSublayer(layerGradient)
 
+        UITabBar.appearance().layer.borderWidth = 0.0
+        UITabBar.appearance().clipsToBounds = true
+        
         viewControllers = tabs.map({ $0.controller() })
 
         delegate = self
@@ -102,5 +115,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         tabBar.isTranslucent = false
         
         view.backgroundColor = UIColor(red: 120.0 / 255.0, green: 127.0 / 255.0, blue: 132.0 / 255.0, alpha: 1)
+        
+        
+        
     }
 }

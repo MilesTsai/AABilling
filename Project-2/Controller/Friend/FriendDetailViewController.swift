@@ -45,6 +45,11 @@ class FriendDetailViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(billList(data:)), name: NSNotification.Name("settleUp"), object: nil)
     }
     
+    override var prefersStatusBarHidden: Bool {
+        
+        return true
+    }
+    
     @objc func deleteBillList(data: Notification) {
         let billUid = data.userInfo?["billingUid"] as? String
         for (index, element) in billingList.enumerated() {

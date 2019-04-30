@@ -12,6 +12,8 @@
 		CE007C5A226EB16800465E28 /* FriendSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE007C58226EB16800465E28 /* FriendSectionCell.xib */; };
 		CE007C7A2273278800465E28 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE007C792273278700465E28 /* UINavigationBar+Extension.swift */; };
 		CE007C7D22759CDA00465E28 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A882254EED000ECEBE1 /* Group.storyboard */; };
+		CE007C812277367B00465E28 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE007C802277367B00465E28 /* String+Extension.swift */; };
+		CE007C8322782A9900465E28 /* AlertObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE007C8222782A9900465E28 /* AlertObject.swift */; };
 		CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */; };
 		CE497CF7225B8C1D004ED6DF /* GroupSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */; };
 		CE497CFB225B928B004ED6DF /* GroupSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CF9225B928B004ED6DF /* GroupSettingCell.swift */; };
@@ -102,6 +104,8 @@
 		CE007C57226EB16800465E28 /* FriendSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSectionCell.swift; sourceTree = "<group>"; };
 		CE007C58226EB16800465E28 /* FriendSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendSectionCell.xib; sourceTree = "<group>"; };
 		CE007C792273278700465E28 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
+		CE007C802277367B00465E28 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		CE007C8222782A9900465E28 /* AlertObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertObject.swift; sourceTree = "<group>"; };
 		CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSettingViewController.swift; sourceTree = "<group>"; };
 		CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingViewController.swift; sourceTree = "<group>"; };
 		CE497CF9225B928B004ED6DF /* GroupSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingCell.swift; sourceTree = "<group>"; };
@@ -356,6 +360,7 @@
 				CE768AA1225644EC00ECEBE1 /* UITableView+Extension.swift */,
 				CE497D08225CB9AD004ED6DF /* UIScreen+Extension.swift */,
 				CE007C792273278700465E28 /* UINavigationBar+Extension.swift */,
+				CE007C802277367B00465E28 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				CEABD3D62265A8C80062B552 /* BillObject.swift */,
 				CEABD3D92265F5A10062B552 /* FirebaseManager.swift */,
 				CEABD3F8226D9EDB0062B552 /* UserObject.swift */,
+				CE007C8222782A9900465E28 /* AlertObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -742,6 +748,7 @@
 				CED3A87C2254D3FA007B5A07 /* UIImage+Extension.swift in Sources */,
 				CE768A952254F09A00ECEBE1 /* GroupViewController.swift in Sources */,
 				CE007C59226EB16800465E28 /* FriendSectionCell.swift in Sources */,
+				CE007C812277367B00465E28 /* String+Extension.swift in Sources */,
 				CE768ABD225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.swift in Sources */,
 				CEFF0D66225D8F6B00C74ED4 /* AddGroupMemberViewController.swift in Sources */,
 				CEFF0D6A225D900500C74ED4 /* AddGroupMemberCell.swift in Sources */,
@@ -772,6 +779,7 @@
 				CEABD3F9226D9EDC0062B552 /* UserObject.swift in Sources */,
 				CEABD3DA2265F5A10062B552 /* FirebaseManager.swift in Sources */,
 				CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */,
+				CE007C8322782A9900465E28 /* AlertObject.swift in Sources */,
 				CEABD3E9226740B30062B552 /* IndividualCell.swift in Sources */,
 				CEABD3D522658F840062B552 /* FriendInviteViewController.swift in Sources */,
 				CE768AAD2259EB6A00ECEBE1 /* FriendDetailViewController.swift in Sources */,
@@ -928,7 +936,7 @@
 				DEVELOPMENT_TEAM = WAH4T7BX8F;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "Project-2/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -937,7 +945,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -951,7 +959,7 @@
 				DEVELOPMENT_TEAM = WAH4T7BX8F;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "Project-2/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -960,7 +968,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

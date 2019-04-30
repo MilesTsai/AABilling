@@ -151,7 +151,7 @@ class AddBillViewController: BaseViewController {
                                 
                                 splitBillDetailVC.equalCalculationResult = 0
                                 
-                                splitBillDetailVC.individualCalculationResult = Int(-0.01)
+                                splitBillDetailVC.individualCalculationResult = Int(-0.9501)
                                 
                                 splitBillDetailVC.friendEqualCalculationResult = 0
                                 

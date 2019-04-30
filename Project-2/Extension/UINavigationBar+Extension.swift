@@ -16,9 +16,9 @@ extension UINavigationBar {
         var updatedFrame = self.bounds
         updatedFrame.size.height += 20
         gradientLayer.frame = updatedFrame
-        gradientLayer.colors = [UIColor.init(cgColor: #colorLiteral(red: 0.2717267275, green: 0.3133575916, blue: 0.3388757706, alpha: 1)).cgColor, UIColor.init(cgColor: #colorLiteral(red: 0.9763852954, green: 0.9765252471, blue: 0.9763546586, alpha: 1)).cgColor]
+        gradientLayer.colors = [UIColor.init(cgColor: #colorLiteral(red: 0.1962916255, green: 0.1593724787, blue: 0.120939143, alpha: 1)).cgColor, UIColor.init(cgColor: #colorLiteral(red: 0.9734193683, green: 0.9823022485, blue: 0.9787819982, alpha: 1)).cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0) // vertical gradient start
-        gradientLayer.endPoint = CGPoint(x: 4.0, y: 4.0) // vertical gradient end
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 2.5) // vertical gradient end
         
         UIGraphicsBeginImageContext(gradientLayer.bounds.size)
         gradientLayer.render(in: UIGraphicsGetCurrentContext()!)

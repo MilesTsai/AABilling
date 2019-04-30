@@ -107,11 +107,48 @@ class LogInAndSignUpViewController: UIViewController {
     
     @IBAction func signUp(_ sender: UIButton) { 
         
-        FirebaseManager.shared.signUp(
-            withEmail: signUpEmail.text ?? "",
-            password: signUpPassword.text ?? "",
-            userName: signUpUsername.text ?? "",
-            view: self
-        )
+        if signUpEmail.text?.isValidEmail == false {
+
+            let alertController = UIAlertController(
+                title: "錯誤",
+                message: "信箱格式不符",
+                preferredStyle: .alert
+            )
+
+            let defaultAction = UIAlertAction(
+                title: "OK",
+                style: .cancel,
+                handler: nil
+            )
+            alertController.addAction(defaultAction)
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else if signUpPassword.text?.isPasswordValid == false {
+
+            let alertController = UIAlertController(
+                title: "錯誤",
+                message: "密碼格式不符",
+                preferredStyle: .alert
+            )
+
+            let defaultAction = UIAlertAction(
+                title: "OK",
+                style: .cancel,
+                handler: nil
+            )
+            alertController.addAction(defaultAction)
+
+            self.present(alertController, animated: true, completion: nil)
+
+        } else {
+        
+            FirebaseManager.shared.signUp(
+                withEmail: signUpEmail.text ?? "",
+                password: signUpPassword.text ?? "",
+                userName: signUpUsername.text ?? "",
+                view: self)
+        }
     }
 }
+

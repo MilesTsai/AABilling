@@ -35,12 +35,6 @@ class BaseViewController: UIViewController {
 
         navigationController?.navigationBar.isTranslucent = false
         
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//
-//        navigationController?.navigationBar.shadowImage = UIImage()
-//
-//        navigationController?.navigationBar.layoutIfNeeded()
-        
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
 
         if isHideNavigationBar {

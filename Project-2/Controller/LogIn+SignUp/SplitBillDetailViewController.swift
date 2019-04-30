@@ -90,15 +90,18 @@ class SplitBillDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        vc1?.selectHandler = { [weak self] name in
-            self?.payer.text = name
-        }
-        
-        vc2?.selectHandler = { [weak self] name in
-            self?.payer.text = name
-        }
+//        vc1?.selectHandler = { [weak self] name in
+//            self?.payer.text = name
+//        }
+//        
+//        vc2?.selectHandler = { [weak self] name in
+//            self?.payer.text = name
+//        }
         
         vc1?.owedAmount = { [weak self] calculation in
+        
+            
+            
             self?.equalCalculationResult = calculation
         }
         
@@ -115,18 +118,30 @@ class SplitBillDetailViewController: BaseViewController {
         }
         
         vc2?.owedAmount = { [weak self] calculation in
+            
+            if calculation == Int(-0.9501) {
+                
+                self?.individualResult = nil
+                
+                self?.friendIndividualResult = nil
+                
+            }
+            
             self?.individualCalculationResult = calculation
         }
         
         vc2?.payAmount = { [weak self] whoPay in
+            
             self?.individualResult = whoPay
         }
         
         vc2?.friendOwedAmount = { [weak self] calculation in
+            
             self?.friendIndividualCalculationResult = calculation
         }
         
         vc2?.friendPayAmount = { [weak self] whoPay in
+            
             self?.friendIndividualResult = whoPay
         }
         
@@ -166,7 +181,6 @@ class SplitBillDetailViewController: BaseViewController {
                 } else if equalCalculationResult! > 0 {
                     amountStatus = 0
                 }
-                
                 let ref = dataBase.collection("users").document()
                 let refUid = ref.documentID
                 
@@ -175,8 +189,7 @@ class SplitBillDetailViewController: BaseViewController {
                     .document(currentUser.uid)
                     .collection("bills")
                     .document(refUid)
-                    .setData(
-                        [
+                    .setData([
                             BillData.CodingKeys.name.rawValue:
                                 billingContent?.anyone ?? "",
                             BillData.CodingKeys.billName.rawValue:
@@ -190,12 +203,8 @@ class SplitBillDetailViewController: BaseViewController {
                             BillData.CodingKeys.status.rawValue:
                                 amountStatus ?? "",
                             BillData.CodingKeys.uid.rawValue: friendID ?? "",
-                            BillData.CodingKeys.billUid.rawValue: refUid
-                        ]
-                )
-                
+                            BillData.CodingKeys.billUid.rawValue: refUid])
                 addEqualDocument(document: refUid)
-                
                 updateEqualDocument()
                 
                 let alertController =
@@ -203,28 +212,29 @@ class SplitBillDetailViewController: BaseViewController {
                 
                 let defaultAction =
                     UIAlertAction(title: "OK", style: .cancel, handler: { [weak self] _ in
-                        
-                        self?.presentingViewController?.dismiss(animated: true, completion: nil)
-                    })
+                        self?.presentingViewController?.dismiss(animated: true, completion: nil)})
                 
                 alertController.addAction(defaultAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-            }
+                self.present(alertController, animated: true, completion: nil)}
             
         } else {
             
+            guard let indvidualSum = individualResult else {
+                
+                AlertManager().alertView(title: "錯誤", message: "請輸入金額", view: self)
+                
+                return }
+            
+            guard let amountTotal = billingContent?.amount else { return }
+            
             if Int(-0.9501) == individualCalculationResult {
-
-                let alertController =
-                    UIAlertController(title: "錯誤", message: "請填入金額", preferredStyle: .alert)
-
-                let defaultAction =
-                    UIAlertAction(title: "OK", style: .cancel, handler: nil)
-
-                alertController.addAction(defaultAction)
-
-                self.present(alertController, animated: true, completion: nil)
+                
+                AlertManager().alertView(title: "錯誤", message: "請填入金額", view: self)
+                
+            } else if indvidualSum < 0 || indvidualSum > amountTotal {
+                
+                AlertManager().alertView(title: "錯誤", message: "超出輸入金額範圍", view: self)
+                
             } else {
             
                 if individualCalculationResult! < 0 {
@@ -258,31 +268,18 @@ class SplitBillDetailViewController: BaseViewController {
                             BillData.CodingKeys.status.rawValue:
                                 amountStatus ?? "",
                             BillData.CodingKeys.uid.rawValue: friendID ?? "",
-                            BillData.CodingKeys.billUid.rawValue: refUid
-                        ]
-                )
-                
+                            BillData.CodingKeys.billUid.rawValue: refUid])
                 addIndividualDocument(document: refUid)
-                
                 updateIndividualDocument()
                 
                 let alertController =
-                    UIAlertController(
-                        title: "成功",
-                        message: "帳單已成立",
-                        preferredStyle: .alert
-                )
+                    UIAlertController(title: "成功", message: "帳單已成立", preferredStyle: .alert)
                 
                 let defaultAction =
-                    UIAlertAction(
-                        title: "OK",
-                        style: .cancel,
-                        handler: { [weak self] _ in
-                            self?.presentingViewController?.dismiss(animated: true, completion: nil)
-                    })
+                    UIAlertAction(title: "OK", style: .cancel, handler: { [weak self] _ in
+                            self?.presentingViewController?.dismiss(animated: true, completion: nil)})
                 
                 alertController.addAction(defaultAction)
-                
                 self.present(alertController, animated: true, completion: nil)
             }
         }
@@ -302,7 +299,6 @@ class SplitBillDetailViewController: BaseViewController {
         } else if friendEqualCalculationResult! > 0 {
             amountStatus = 0
         }
-        
         dataBase.collection("users").document(currentUser.uid).getDocument(completion: { (snapshot, error) in
             let user = snapshot?.data()
             self.userData = UserData(
