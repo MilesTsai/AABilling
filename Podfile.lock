@@ -108,8 +108,8 @@ PODS:
   - SwiftLint (0.31.0)
 
 DEPENDENCIES:
-  - Crashlytics
-  - Fabric
+  - Crashlytics (~> 3.12.0)
+  - Fabric (~> 1.9.0)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
@@ -161,6 +161,6 @@ SPEC CHECKSUMS:
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: 89a5c29d465ad1ede93a8ab0ddd9dfb538a9c6ff
+PODFILE CHECKSUM: d371969632e4e5e2546951a48879fafa7923227d
 
 COCOAPODS: 1.6.0
