@@ -209,6 +209,8 @@ extension FriendDetailViewController: UITableViewDataSource {
 //            for: .touchUpInside
 //        )
         
+        friendHeaderCell.friendBackgroundColor.setGradientBackground(colorTop: #colorLiteral(red: 0.1960784314, green: 0.1607843137, blue: 0.1215686275, alpha: 1), colorBottom: #colorLiteral(red: 0.9725490196, green: 0.9803921569, blue: 0.9803921569, alpha: 1))
+        
         friendHeaderCell.friendName.text = friendData?.name
         
         guard let friendName = friendBill?.name else { return friendHeaderCell }

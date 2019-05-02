@@ -99,8 +99,6 @@ class SplitBillDetailViewController: BaseViewController {
 //        }
         
         vc1?.owedAmount = { [weak self] calculation in
-        
-            
             
             self?.equalCalculationResult = calculation
         }
@@ -144,13 +142,6 @@ class SplitBillDetailViewController: BaseViewController {
             
             self?.friendIndividualResult = whoPay
         }
-        
-        print("=========")
-        print(myFriend)
-        
-        print("=========")
-        print(friendBillData)
-        
     }
     
     @IBAction func saveBill(_ sender: UIBarButtonItem) {
@@ -162,15 +153,7 @@ class SplitBillDetailViewController: BaseViewController {
             
             if billingContent!.amount + 1 == equalCalculationResult {
                 
-                let alertController =
-                    UIAlertController(title: "錯誤", message: "請至少選擇一人", preferredStyle: .alert)
-                
-                let defaultAction =
-                    UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                
-                self.present(alertController, animated: true, completion: nil)
+                AlertManager().alertView(title: "錯誤", message: "請至少選擇一人", view: self)
                 
             } else {
                 

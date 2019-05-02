@@ -34,8 +34,22 @@ class AddBillViewController: BaseViewController {
     
     var friendBillData: [String: Any]?
     
+    var friendList: [PersonalData] = []
+    
+    var pickerView = UIPickerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pickerView.delegate = self
+        
+        pickerView.dataSource = self
+        
+        accountObject.inputView = pickerView
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
+        view.addGestureRecognizer(tap)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +60,13 @@ class AddBillViewController: BaseViewController {
         friendBillName.text = ""
         
         billAmount.text = ""
+        
+        readFirendList()
+    }
+    
+    @objc func closeKeyboard(){
+        
+        self.view.endEditing(true)
     }
     
     @IBAction func expenseDetail(_ sender: UIButton) {
@@ -170,4 +191,49 @@ class AddBillViewController: BaseViewController {
             }
         }
     }
+    
+    func readFirendList() {
+        
+        guard let currentUser = Auth.auth().currentUser
+            else {
+                return
+        }
+        
+        dataBase.collection("users").document(currentUser.uid).collection("friends").order(by: "name", descending: false).addSnapshotListener { (snapshot, error) in
+            
+            guard let snapshot =
+                snapshot else { return }
+            
+            self.friendList =
+                snapshot
+                    .documents
+                    .compactMap({
+                        PersonalData(dictionary: $0.data())
+                    })
+        }
+    }
+}
+
+extension AddBillViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return friendList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return friendList[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        accountObject.text = friendList[row].name
+    }
+    
 }

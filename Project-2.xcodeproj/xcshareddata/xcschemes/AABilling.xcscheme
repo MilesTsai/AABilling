@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CEFDBC0822538EF800E603F3"
-               BuildableName = "Project-2.app"
-               BlueprintName = "Project-2"
+               BuildableName = "AABilling.app"
+               BlueprintName = "AABilling"
                ReferencedContainer = "container:Project-2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEFDBC0822538EF800E603F3"
-            BuildableName = "Project-2.app"
-            BlueprintName = "Project-2"
+            BuildableName = "AABilling.app"
+            BlueprintName = "AABilling"
             ReferencedContainer = "container:Project-2.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEFDBC0822538EF800E603F3"
-            BuildableName = "Project-2.app"
-            BlueprintName = "Project-2"
+            BuildableName = "AABilling.app"
+            BlueprintName = "AABilling"
             ReferencedContainer = "container:Project-2.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEFDBC0822538EF800E603F3"
-            BuildableName = "Project-2.app"
-            BlueprintName = "Project-2"
+            BuildableName = "AABilling.app"
+            BlueprintName = "AABilling"
             ReferencedContainer = "container:Project-2.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

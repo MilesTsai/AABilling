@@ -142,6 +142,7 @@ class FriendViewController: BaseViewController {
             .collection("users")
             .document(currentUser?.uid ?? "")
             .collection("friends")
+            .order(by: "name", descending: false)
             .addSnapshotListener { querySnapshot, error in
             
                 if let error = error {
@@ -180,7 +181,7 @@ class FriendViewController: BaseViewController {
 //
 //            addChild(addFriendVC)
             addFriendVC.modalPresentationStyle = .overCurrentContext
-            present(addFriendVC, animated: true, completion: nil)
+            present(addFriendVC, animated: false, completion: nil)
 //        Crashlytics.sharedInstance().crash()
     }
     

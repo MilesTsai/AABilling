@@ -73,13 +73,14 @@ extension UIView {
         objectView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset.bottom).isActive = true
     }
     
-    func setViewBackgroundColor() {
+    func setGradientBackground(colorTop: UIColor, colorBottom: UIColor) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorBottom.cgColor, colorTop.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = bounds
         
-        let layer = CAGradientLayer()
-        layer.frame = self.bounds
-        layer.colors = [UIColor.yellow.cgColor, UIColor.green.cgColor]
-        layer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        layer.endPoint = CGPoint(x: 1.0, y: 1.0)
-//        self.layer.addSublayer(layer)
+        layer.insertSublayer(gradientLayer, at: 0)
     }
 }

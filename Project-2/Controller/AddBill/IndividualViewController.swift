@@ -8,6 +8,20 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManager
+
+enum OperationType {
+    
+    case addition
+    
+    case subtraction
+    
+    case multiplication
+    
+    case division
+    
+    case none
+}
 
 class IndividualViewController: BaseTableViewController {
     
@@ -30,9 +44,21 @@ class IndividualViewController: BaseTableViewController {
     var friendOwedAmount: ((Int) -> Void)?
     
     var friendPayAmount: ((Int) -> Void)?
-
+    
+    var selectTextField: Bool?
+    
+    @IBOutlet weak var numberKeyView: UIView!
+    
+    @IBOutlet weak var calculatedTotal: UILabel!
+    
+    var userIsInTyping: Bool = false
+    
+    var valueHasTyping: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        IQKeyboardManager.shared().isEnableAutoToolbar = false
         
         guard let currentUser = Auth.auth().currentUser
             else {
@@ -56,6 +82,7 @@ class IndividualViewController: BaseTableViewController {
         
         setupTableView()
         
+        view.bringSubviewToFront(numberKeyView)
     }
     
     private func setupTableView() {
@@ -91,14 +118,12 @@ class IndividualViewController: BaseTableViewController {
                 for: indexPath
             )
             
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.clear
-            myCell.selectedBackgroundView = backgroundView
-            
             guard let individualCell = myCell as? IndividualCell
                 else {
                     return myCell
             }
+            
+            individualCell.amountTextField.inputView = UIView(frame: CGRect.zero)
             
             individualCell.amountTextField.delegate = self
             
@@ -120,15 +145,13 @@ class IndividualViewController: BaseTableViewController {
                 for: indexPath
             )
             
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.clear
-            friendCell.selectedBackgroundView = backgroundView
-            
             guard let individualCell =
                 friendCell as? IndividualCell
                 else {
                     return friendCell
             }
+            
+            individualCell.amountTextField.inputView = UIView(frame: CGRect.zero)
             
             individualCell.amountTextField.delegate = self
             
@@ -170,9 +193,256 @@ class IndividualViewController: BaseTableViewController {
 //            return
 //        }
 //    }
+    
+//    func numberPressed(_ number: String) {
+//        calculatedTotal.text?.append(number)
+//    }
+    
+    @IBAction func numbers(_ sender: UIButton) {
+        
+        if let pressedNum = sender.currentTitle {
+            if userIsInTyping {
+                calculatedTotal.text = calculatedTotal.text! + pressedNum
+            } else {
+                calculatedTotal.text = pressedNum
+                userIsInTyping = true
+            }
+            valueHasTyping = true
+        }
+    }
+    
+    var displayValue: Double {
+        get {
+            if calculatedTotal != nil {
+                return Double(calculatedTotal.text!)!
+            } else {
+                return 0
+            }
+        }
+        set {
+            if round(newValue) == newValue {
+                calculatedTotal.text = String(Int(newValue))
+            } else {
+                calculatedTotal.text = String(newValue)
+            }
+        }
+    }
+    
+    struct Operating {
+        var resultValue: Double = 0
+        var bindingValue: Double = 0
+        var bindingOperate: String = ""
+        
+        mutating func resulet(_ operate: String, value secondValue: Double) -> Double {
+            
+            if bindingOperate == "" {
+                bindingValue = secondValue
+                bindingOperate = operate
+                resultValue = secondValue
+            } else {
+                switch bindingOperate {
+                case "+": resultValue = bindingValue + secondValue
+                case "-": resultValue = bindingValue - secondValue
+                case "×": resultValue = bindingValue * secondValue
+                case "÷": resultValue = bindingValue / secondValue
+                default : break
+                }
+                bindingValue = resultValue
+                bindingOperate = operate
+            }
+            if operate == "=" {
+                bindingOperate = ""
+            }
+            
+            return resultValue
+        }
+        
+        mutating func resetBind() {
+            bindingValue = 0
+            bindingOperate = ""
+        }
+    }
+    
+    var operating = Operating()
+    
+    @IBAction func operate(_ sender: UIButton) {
+        if let operate = sender.currentTitle {
+            switch operate {
+            case "+", "-", "×", "÷", "=":
+                if valueHasTyping {
+                    displayValue = operating.resulet(operate, value: displayValue)
+                    userIsInTyping = false
+                    valueHasTyping = false
+                    if operate == "=" {
+                        let value = Int(displayValue)
+
+                        if selectTextField == true {
+
+                            userTextField?.text = "\(value)"
+                            guard let userAmount = Int(userTextField?.text ?? "") else { return }
+
+                            friendTextField?.text = "\(individualBilling!.amount - userAmount)"
+                            textFieldDidChange(userTextField!)
+
+                        } else {
+
+                            friendTextField?.text = "\(value)"
+
+                            guard let friendAmount = Int(friendTextField?.text ?? "") else { return }
+
+                            userTextField?.text = "\(individualBilling!.amount - friendAmount)"
+                            textFieldDidChange(friendTextField!)
+                        }
+                    }
+                    
+                } else {
+                    operating.bindingOperate = operate
+                }
+            case "AC":
+                displayValue = 0
+                userTextField?.text = calculatedTotal.text
+                friendTextField?.text = calculatedTotal.text
+                operating.resetBind()
+                userIsInTyping = false
+                valueHasTyping = false
+                
+            default: break
+            }
+        }
+    }
+//        let inputNumber = sender.tag - 1
+//        if calculatedTotal.text != nil {
+//
+//            if startNew == true {
+//
+//                calculatedTotal.text = "\(inputNumber)"
+//
+//                startNew = false
+//
+//            } else {
+//
+//                if calculatedTotal.text == "0"
+//                    || calculatedTotal.text == "+"
+//                    || calculatedTotal.text == "-"
+//                    || calculatedTotal.text == "×"
+//                    || calculatedTotal.text == "÷" {
+//                    calculatedTotal.text? = "\(inputNumber)"
+//
+//                } else {
+//
+//                    calculatedTotal.text = calculatedTotal.text! + "\(inputNumber)"
+//                }
+//            }
+//
+//            guard let number = Int(calculatedTotal.text ?? "") else { return }
+//
+//            numberOnScreen = number
+//        }
+//    }
+    
+//    @IBAction func clearCalculatedTotal(_ sender: UIButton) {
+//
+//        calculatedTotal.text = "0"
+//        userTextField?.text = calculatedTotal.text
+//        friendTextField?.text = calculatedTotal.text
+//        numberOnScreen = 0
+//        previousNumber = 0
+//        performigMath = false
+//        opertion = .none
+//        startNew = true
+//    }
+//
+//    @IBAction func addition(_ sender: UIButton) {
+//
+//        calculatedTotal.text = "+"
+//        opertion = .addition
+//        performigMath = true
+//        previousNumber = numberOnScreen
+//    }
+//
+//    @IBAction func subtraction(_ sender: UIButton) {
+//
+//        calculatedTotal.text = "-"
+//        opertion = .subtraction
+//        performigMath = true
+//        previousNumber = numberOnScreen
+//    }
+//
+//    @IBAction func multiplication(_ sender: UIButton) {
+//
+//        calculatedTotal.text = "×"
+//        opertion = .multiplication
+//        performigMath = true
+//        previousNumber = numberOnScreen
+//    }
+//
+//    @IBAction func division(_ sender: UIButton) {
+//
+//        calculatedTotal.text = "÷"
+//        opertion = .division
+//        performigMath = true
+//        previousNumber = numberOnScreen
+//    }
+//
+//    @IBAction func equals(_ sender: UIButton) {
+//
+//        if performigMath == true {
+//            switch opertion {
+//            case .addition:
+//                calculatedTotal.text = "\(previousNumber + numberOnScreen)"
+//                userTextField?.text = calculatedTotal.text
+//
+//                guard let userAmount = Int(userTextField?.text ?? "") else { return }
+//
+//                friendTextField?.text = "\(individualBilling!.amount - userAmount)"
+//                textFieldDidChange(userTextField!)
+//
+//            case .subtraction:
+//                calculatedTotal.text = "\(previousNumber - numberOnScreen)"
+//                userTextField?.text = calculatedTotal.text
+//
+//                guard let userAmount = Int(userTextField?.text ?? "") else { return }
+//
+//                friendTextField?.text = "\(individualBilling!.amount - userAmount)"
+//                textFieldDidChange(userTextField!)
+//
+//            case .multiplication:
+//                calculatedTotal.text = "\(previousNumber * numberOnScreen)"
+//                userTextField?.text = calculatedTotal.text
+//
+//                guard let userAmount = Int(userTextField?.text ?? "") else { return }
+//
+//                friendTextField?.text = "\(individualBilling!.amount - userAmount)"
+//                textFieldDidChange(userTextField!)
+////
+//            case .division:
+//                calculatedTotal.text = "\(previousNumber / numberOnScreen)"
+//                userTextField?.text = calculatedTotal.text
+//
+//                guard let userAmount = Int(userTextField?.text ?? "") else { return }
+//
+//                friendTextField?.text = "\(individualBilling!.amount - userAmount)"
+//                textFieldDidChange(userTextField!)
+//
+//            case .none:
+//                calculatedTotal.text = "0"
+//            }
+//            performigMath = false
+//            startNew = true
+//        }
+//    }
+    
 }
 
 extension IndividualViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == userTextField {
+            selectTextField = true
+        } else {
+            selectTextField = false
+        }
+    }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
         
