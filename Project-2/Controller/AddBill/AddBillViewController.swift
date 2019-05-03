@@ -226,8 +226,9 @@ extension AddBillViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        accountObject.text = friendList[row].name
+        if friendList.count == 0 {
+        } else {
+            accountObject.text = friendList[row].name
+        }
     }
-    
 }

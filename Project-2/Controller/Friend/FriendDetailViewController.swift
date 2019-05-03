@@ -332,7 +332,7 @@ extension FriendDetailViewController: UITableViewDataSource {
 extension FriendDetailViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 190
+        return 190 + UIApplication.shared.statusBarFrame.height
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
