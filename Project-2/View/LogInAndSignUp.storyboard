@@ -72,7 +72,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qjl-dL-6zC">
                                 <rect key="frame" x="75.5" y="541.5" width="224" height="40"/>
-                                <color key="backgroundColor" red="0.27836874127388" green="0.32148486375808716" blue="0.36851397156715393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.28238996859999999" green="0.25105237959999999" blue="0.21962741020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="oO6-aN-aQl"/>
                                 </constraints>
@@ -218,7 +218,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAn-mn-c7r">
                                 <rect key="frame" x="75.5" y="353.5" width="224" height="40"/>
-                                <color key="backgroundColor" red="0.27836874127388" green="0.32148486375808716" blue="0.36851397156715393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.28238996859999999" green="0.25105237959999999" blue="0.21962741020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="00U-BM-UgZ"/>
                                 </constraints>

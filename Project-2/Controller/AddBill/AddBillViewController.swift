@@ -109,23 +109,9 @@ class AddBillViewController: BaseViewController {
                     } else {
                         if querySnapshot?.isEmpty == true {
                             print("No exist")
-                            let alertController =
-                                UIAlertController(
-                                    title: "錯誤",
-                                    message: "無此帳號",
-                                    preferredStyle: .alert
-                            )
                             
-                            let defaultAction =
-                                UIAlertAction(
-                                    title: "OK",
-                                    style: .cancel,
-                                    handler: nil
-                            )
+                            AlertManager().alertView(title: "錯誤", message: "無此帳號", view: self)
                             
-                            alertController.addAction(defaultAction)
-                            
-                            self.present(alertController, animated: true, completion: nil)
                         } else {
                             
                             for document in querySnapshot!.documents {
@@ -136,10 +122,13 @@ class AddBillViewController: BaseViewController {
                                 self.friend = document.data()
                             }
                             
-                            self.dataBase.collection("users").document(self.friendID ?? "").collection("friends").document(currentUser.uid).getDocument(completion: { (document, error) in
+                            self.dataBase.collection("users")
+                                .document(self.friendID ?? "")
+                                .collection("friends")
+                                .document(currentUser.uid)
+                                .getDocument(completion: { (document, error) in
                                 
                                 self.friendBillData = document?.data()
-                                print(document?.data())
                                 
                                 let storyboard = UIStoryboard(name: "Friend", bundle: nil)
                                 
@@ -199,7 +188,12 @@ class AddBillViewController: BaseViewController {
                 return
         }
         
-        dataBase.collection("users").document(currentUser.uid).collection("friends").order(by: "name", descending: false).addSnapshotListener { (snapshot, error) in
+        dataBase
+            .collection("users")
+            .document(currentUser.uid)
+            .collection("friends")
+            .order(by: "name", descending: false)
+            .addSnapshotListener { (snapshot, error) in
             
             guard let snapshot =
                 snapshot else { return }

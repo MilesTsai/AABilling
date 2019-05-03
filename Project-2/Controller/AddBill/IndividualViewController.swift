@@ -10,19 +10,6 @@ import UIKit
 import Firebase
 import IQKeyboardManager
 
-enum OperationType {
-    
-    case addition
-    
-    case subtraction
-    
-    case multiplication
-    
-    case division
-    
-    case none
-}
-
 class IndividualViewController: BaseTableViewController {
     
     var individualBilling: BillingContent?
@@ -54,6 +41,10 @@ class IndividualViewController: BaseTableViewController {
     var userIsInTyping: Bool = false
     
     var valueHasTyping: Bool = false
+    
+    var afterEquals: Bool = false
+    
+    var calculationValue: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -201,39 +192,48 @@ class IndividualViewController: BaseTableViewController {
     @IBAction func numbers(_ sender: UIButton) {
         
         if let pressedNum = sender.currentTitle {
-            if userIsInTyping {
+            if userIsInTyping == true {
+                calculationValue += pressedNum
+                
+            } else {
+                calculationValue = pressedNum
+                
+                userIsInTyping = true
+            }
+            
+            if afterEquals == false {
+                
                 calculatedTotal.text = calculatedTotal.text! + pressedNum
             } else {
                 calculatedTotal.text = pressedNum
-                userIsInTyping = true
             }
             valueHasTyping = true
         }
     }
     
-    var displayValue: Double {
-        get {
-            if calculatedTotal != nil {
-                return Double(calculatedTotal.text!)!
-            } else {
-                return 0
-            }
-        }
-        set {
-            if round(newValue) == newValue {
-                calculatedTotal.text = String(Int(newValue))
-            } else {
-                calculatedTotal.text = String(newValue)
-            }
-        }
-    }
+//    var displayValue: Double {
+//        get {
+//            if calculatedTotal != nil {
+//                return Double(calculatedTotal.text!)!
+//            } else {
+//                return 0
+//            }
+//        }
+//        set {
+//            if round(newValue) == newValue {
+//                calculatedTotal.text = String(Int(newValue))
+//            } else {
+//                calculatedTotal.text = String(newValue)
+//            }
+//        }
+//    }
     
     struct Operating {
         var resultValue: Double = 0
         var bindingValue: Double = 0
         var bindingOperate: String = ""
         
-        mutating func resulet(_ operate: String, value secondValue: Double) -> Double {
+        mutating func resulet(_ operate: String, value secondValue: Double) -> String {
             
             if bindingOperate == "" {
                 bindingValue = secondValue
@@ -254,7 +254,7 @@ class IndividualViewController: BaseTableViewController {
                 bindingOperate = ""
             }
             
-            return resultValue
+            return String(Int(resultValue))
         }
         
         mutating func resetBind() {
@@ -270,11 +270,20 @@ class IndividualViewController: BaseTableViewController {
             switch operate {
             case "+", "-", "×", "÷", "=":
                 if valueHasTyping {
-                    displayValue = operating.resulet(operate, value: displayValue)
+                    calculationValue = operating.resulet(operate, value: Double(calculationValue)! as Double)
+                    if operate != "=" {
+                        calculatedTotal.text?.append(operate)
+                    }
                     userIsInTyping = false
                     valueHasTyping = false
+                    
                     if operate == "=" {
-                        let value = Int(displayValue)
+                        
+                        afterEquals = false
+                        
+                        calculatedTotal.text = calculationValue
+                        
+                        guard let value = Int(calculationValue) else { return }
 
                         if selectTextField == true {
 
@@ -296,10 +305,14 @@ class IndividualViewController: BaseTableViewController {
                     }
                     
                 } else {
+                    if operate != "=" {
+                        calculatedTotal.text?.append(operate)
+                    }
                     operating.bindingOperate = operate
                 }
+                
             case "AC":
-                displayValue = 0
+//                displayValue = 0
                 userTextField?.text = calculatedTotal.text
                 friendTextField?.text = calculatedTotal.text
                 operating.resetBind()
