@@ -108,10 +108,9 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9B8-5L-dWC">
                                 <rect key="frame" x="0.0" y="102.5" width="375" height="564.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.47183173894882202" green="0.49789589643478394" blue="0.51599597930908203" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1tS-Yd-36t" firstAttribute="bottom" secondItem="evs-IK-rcf" secondAttribute="bottom" constant="3" id="0bN-Mw-guQ"/>
                             <constraint firstItem="EQ3-HC-pK5" firstAttribute="leading" secondItem="1tS-Yd-36t" secondAttribute="leading" constant="6" id="1e7-Cp-Iiy"/>

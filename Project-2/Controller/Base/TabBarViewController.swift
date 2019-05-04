@@ -18,7 +18,7 @@ private enum Tab {
 
 //    case chart
 //
-//    case user
+    case user
 
     func controller() -> UIViewController {
 
@@ -34,7 +34,7 @@ private enum Tab {
 
 //        case .chart: controller = UIStoryboard.chart.instantiateInitialViewController()!
 //
-//        case .user: controller = UIStoryboard.user.instantiateInitialViewController()!
+        case .user: controller = UIStoryboard.user.instantiateInitialViewController()!
 
         }
 
@@ -77,12 +77,12 @@ private enum Tab {
 //                selectedImage: UIImage.source(.chartselect)
 //            )
 
-//        case .user:
-//            return UITabBarItem(
-//                title: nil,
-//                image: UIImage.source(.user),
-//                selectedImage: UIImage.source(.userselect)
-//            )
+        case .user:
+            return UITabBarItem(
+                title: nil,
+                image: UIImage.source(.user),
+                selectedImage: UIImage.source(.userselect)
+            )
         }
     }
 }
@@ -90,7 +90,7 @@ private enum Tab {
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
 //    private let tabs: [Tab] = [.friend, .group, .addBill, .chart, .user]
-    private let tabs: [Tab] = [.friend, .addBill]
+    private let tabs: [Tab] = [.friend, .addBill, .user]
     
     let layerGradient = CAGradientLayer()
 

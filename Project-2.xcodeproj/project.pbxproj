@@ -24,6 +24,8 @@
 		CE497D04225C6EF2004ED6DF /* FriendBillEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D03225C6EF2004ED6DF /* FriendBillEditViewController.swift */; };
 		CE497D06225C82D0004ED6DF /* SplitBillDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D05225C82D0004ED6DF /* SplitBillDetailViewController.swift */; };
 		CE497D09225CB9AD004ED6DF /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D08225CB9AD004ED6DF /* UIScreen+Extension.swift */; };
+		CE654179227DA08B005DCD94 /* LentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE654177227DA08B005DCD94 /* LentCell.swift */; };
+		CE65417A227DA08B005DCD94 /* LentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE654178227DA08B005DCD94 /* LentCell.xib */; };
 		CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */; };
 		CE768A8D2254EF3B00ECEBE1 /* Chart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */; };
 		CE768A8F2254EF4E00ECEBE1 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8E2254EF4E00ECEBE1 /* User.storyboard */; };
@@ -116,6 +118,9 @@
 		CE497D03225C6EF2004ED6DF /* FriendBillEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendBillEditViewController.swift; sourceTree = "<group>"; };
 		CE497D05225C82D0004ED6DF /* SplitBillDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SplitBillDetailViewController.swift; path = "../LogIn+SignUp/SplitBillDetailViewController.swift"; sourceTree = "<group>"; };
 		CE497D08225CB9AD004ED6DF /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
+		CE654177227DA08B005DCD94 /* LentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LentCell.swift; sourceTree = "<group>"; };
+		CE654178227DA08B005DCD94 /* LentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LentCell.xib; sourceTree = "<group>"; };
+		CE65417B227DBCB0005DCD94 /* Project-2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project-2.entitlements"; sourceTree = "<group>"; };
 		CE768A882254EED000ECEBE1 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddBill.storyboard; sourceTree = "<group>"; };
 		CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chart.storyboard; sourceTree = "<group>"; };
@@ -221,6 +226,15 @@
 				CE497CFA225B928B004ED6DF /* GroupSettingCell.xib */,
 			);
 			path = GroupSettingCell;
+			sourceTree = "<group>";
+		};
+		CE654176227D9F2C005DCD94 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				CE654177227DA08B005DCD94 /* LentCell.swift */,
+				CE654178227DA08B005DCD94 /* LentCell.xib */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		CE768A902254F02D00ECEBE1 /* Group */ = {
@@ -429,6 +443,7 @@
 		CEFDBC0B22538EF900E603F3 /* Project-2 */ = {
 			isa = PBXGroup;
 			children = (
+				CE65417B227DBCB0005DCD94 /* Project-2.entitlements */,
 				CED3A86A22546070007B5A07 /* Extension */,
 				CEFDBC2022538FC100E603F3 /* Model */,
 				CEFDBC1F22538FBE00E603F3 /* View */,
@@ -459,6 +474,7 @@
 			children = (
 				CE768A9C225642A900ECEBE1 /* Friend */,
 				CE768AA72256510F00ECEBE1 /* Group */,
+				CE654176227D9F2C005DCD94 /* User */,
 				CED3A86D22546518007B5A07 /* Base */,
 				CEFDBC1522538EFC00E603F3 /* LaunchScreen.storyboard */,
 				CEFDBC1022538EF900E603F3 /* Main.storyboard */,
@@ -562,6 +578,11 @@
 				TargetAttributes = {
 					CEFDBC0822538EF800E603F3 = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -602,6 +623,7 @@
 				CEFDBC1722538EFC00E603F3 /* LaunchScreen.storyboard in Resources */,
 				CE768AB4225A010100ECEBE1 /* .gitignore in Resources */,
 				CED3A86922545874007B5A07 /* LogInAndSignUp.storyboard in Resources */,
+				CE65417A227DA08B005DCD94 /* LentCell.xib in Resources */,
 				CE768AA0225642E000ECEBE1 /* FriendListCell.xib in Resources */,
 				CED3A8722254B787007B5A07 /* Friend.storyboard in Resources */,
 				CEFDBC1422538EFC00E603F3 /* Assets.xcassets in Resources */,
@@ -779,6 +801,7 @@
 				CEABD3F9226D9EDC0062B552 /* UserObject.swift in Sources */,
 				CEABD3DA2265F5A10062B552 /* FirebaseManager.swift in Sources */,
 				CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */,
+				CE654179227DA08B005DCD94 /* LentCell.swift in Sources */,
 				CE007C8322782A9900465E28 /* AlertObject.swift in Sources */,
 				CEABD3E9226740B30062B552 /* IndividualCell.swift in Sources */,
 				CEABD3D522658F840062B552 /* FriendInviteViewController.swift in Sources */,
@@ -930,6 +953,7 @@
 			baseConfigurationReference = 968056FE5A4616085FDFFC44 /* Pods-Project-2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Project-2/Project-2.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -954,6 +978,7 @@
 			baseConfigurationReference = A12B318B13D4CCFE8266D316 /* Pods-Project-2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Project-2/Project-2.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WAH4T7BX8F;

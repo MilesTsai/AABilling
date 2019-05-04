@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,15 +19,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待接受" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbx-f5-4At">
-                        <rect key="frame" x="16" y="5" width="43" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b03-2y-yCU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbx-f5-4At">
+                        <rect key="frame" x="16" y="5" width="31" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" red="0.9332844615" green="0.93336725229999995" blue="0.93321532009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstItem="b03-2y-yCU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9uN-vf-WsJ"/>
+                    <constraint firstAttribute="trailing" secondItem="b03-2y-yCU" secondAttribute="trailing" id="K8b-Wt-c9x"/>
+                    <constraint firstItem="b03-2y-yCU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Mwx-td-zIn"/>
+                    <constraint firstAttribute="bottom" secondItem="b03-2y-yCU" secondAttribute="bottom" id="aw7-k3-zBd"/>
                     <constraint firstAttribute="bottom" secondItem="dbx-f5-4At" secondAttribute="bottom" constant="5" id="gLD-Lm-okg"/>
                     <constraint firstItem="dbx-f5-4At" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="l9T-Ul-IW0"/>
                     <constraint firstItem="dbx-f5-4At" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="uLO-5c-27Y"/>
@@ -34,6 +43,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="sectionBackgroundView" destination="b03-2y-yCU" id="a4v-kb-Bxa"/>
                 <outlet property="sectionTitle" destination="dbx-f5-4At" id="VHG-jI-YbU"/>
             </connections>
             <point key="canvasLocation" x="138.40579710144928" y="131.91964285714286"/>

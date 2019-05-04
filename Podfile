@@ -12,6 +12,8 @@ target 'Project-2' do
   
   pod 'Firebase/Firestore'
   
+  pod 'Firebase/Messaging'
+  
   pod 'IQKeyboardManager'
   
   pod 'Fabric', '~> 1.9.0'
