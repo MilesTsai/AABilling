@@ -36,6 +36,8 @@ class AddBillViewController: BaseViewController {
     
     var friendList: [PersonalData] = []
     
+    var newFriendLists = [PersonalData]()
+    
     var pickerView = UIPickerView()
     
     override func viewDidLoad() {
@@ -193,17 +195,38 @@ class AddBillViewController: BaseViewController {
             .document(currentUser.uid)
             .collection("friends")
             .order(by: "name", descending: false)
-            .addSnapshotListener { (snapshot, error) in
+            .addSnapshotListener { [weak self] (snapshot, error) in
             
             guard let snapshot =
                 snapshot else { return }
             
-            self.friendList =
+            self?.friendList =
                 snapshot
                     .documents
                     .compactMap({
                         PersonalData(dictionary: $0.data())
                     })
+                
+                self?.list()
+        }
+    }
+    
+    func list() {
+        
+        var tempFriendList: [PersonalData] = []
+        
+        for lists in 0..<friendList.count {
+            
+            guard let newFriendList = friendList[lists].status else { return }
+            
+            if newFriendList == 1 {
+                
+                tempFriendList.append(friendList[lists])
+                
+            }
+            
+            newFriendLists = tempFriendList
+
         }
     }
 }
@@ -217,18 +240,18 @@ extension AddBillViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return friendList.count
+        return newFriendLists.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return friendList[row].name
+        return newFriendLists[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if friendList.count == 0 {
+        if newFriendLists.count == 0 {
         } else {
-            accountObject.text = friendList[row].name
+            accountObject.text = newFriendLists[row].name
         }
     }
 }

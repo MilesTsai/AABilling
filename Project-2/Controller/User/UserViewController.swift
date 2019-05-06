@@ -55,7 +55,9 @@ class UserViewController: BaseViewController {
                 name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
                 email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
                 storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
-                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String)
+                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String,
+                fcmToken: user?[PersonalData.CodingKeys.fcmToken.rawValue] as? String
+            )
             
             self?.userName.text = self?.userData?.name
             
@@ -120,7 +122,67 @@ class UserViewController: BaseViewController {
             }
             
             lentList = tempLentList
+            
+            print("____________")
+            print(lentList)
         }
+    }
+    
+    @IBAction func saveUserData(_ sender: UIBarButtonItem) {
+        
+        if userName.text == "" {
+            AlertManager().alertView(title: "錯誤", message: "請輸入名稱", view: self)
+        } else {
+            FirebaseManager.shared.updateUserName(name: userName.text ?? "")
+            AlertManager().alertView(title: "成功", message: "名稱已更換", view: self)
+        }
+        
+        for list in friendList {
+            guard let friendUid = list.uid else { return }
+            
+            dataBase.collection("users").document(friendUid).collection("friends").document(currentUser?.uid ?? "").updateData(["name": userName.text ?? ""])
+        }
+    }
+    
+    @IBAction func pushNotificationForList(_ sender: UIButton) {
+        
+        guard let userName = userData?.name else { return }
+        
+        let alertController =
+            UIAlertController(
+                title: "提醒",
+                message: "您確定一鍵發送款項未結清訊息？",
+                preferredStyle: .alert
+        )
+        
+        let cancelAction =
+            UIAlertAction(
+                title: "取消",
+                style: .default,
+                handler: { _ in
+                    
+            })
+        
+        let okAction =
+            UIAlertAction(
+                title: "確定",
+                style: .default,
+                handler: { [weak self] _ in
+                    
+                    for document in self!.lentList {
+                        
+                        guard let token = document.fcmToken else { return }
+                        
+                        let sender = PushNotificationSender()
+                        sender.sendPushNotification(to: token,
+                                                    title: "溫馨提醒", body: "目前您與\(userName)尚有款項未結清")
+                    }
+            })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -149,6 +211,46 @@ extension UserViewController: UITableViewDataSource {
         friendCell.sumAccount.text = "$\(String(describing: total))"
         
         return friendCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let token = lentList[indexPath.row].fcmToken else { return }
+        
+        guard let userName = userData?.name else { return }
+        
+        guard let friendName = lentList[indexPath.row].name else { return }
+        
+        let alertController =
+            UIAlertController(
+                title: "提醒",
+                message: "您確定對\(friendName)發送款項未結清訊息？",
+                preferredStyle: .alert
+        )
+        
+        let cancelAction =
+            UIAlertAction(
+                title: "取消",
+                style: .default,
+                handler: { _ in
+                    
+            })
+        
+        let okAction =
+            UIAlertAction(
+                title: "確定",
+                style: .default,
+                handler: { _ in
+                    
+                    let sender = PushNotificationSender()
+                    sender.sendPushNotification(to: token,
+                                                title: "溫馨提醒", body: "目前您與\(userName)尚有款項未結清")
+            })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

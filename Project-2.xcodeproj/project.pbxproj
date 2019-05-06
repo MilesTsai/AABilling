@@ -26,6 +26,8 @@
 		CE497D09225CB9AD004ED6DF /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497D08225CB9AD004ED6DF /* UIScreen+Extension.swift */; };
 		CE654179227DA08B005DCD94 /* LentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE654177227DA08B005DCD94 /* LentCell.swift */; };
 		CE65417A227DA08B005DCD94 /* LentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE654178227DA08B005DCD94 /* LentCell.xib */; };
+		CE65417D227DF0A2005DCD94 /* PushNotivicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65417C227DF0A2005DCD94 /* PushNotivicationManager.swift */; };
+		CE65417F227DF2FA005DCD94 /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65417E227DF2FA005DCD94 /* PushNotificationSender.swift */; };
 		CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */; };
 		CE768A8D2254EF3B00ECEBE1 /* Chart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */; };
 		CE768A8F2254EF4E00ECEBE1 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8E2254EF4E00ECEBE1 /* User.storyboard */; };
@@ -52,7 +54,6 @@
 		CE768AC8225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE768AC6225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift */; };
 		CE768AC9225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE768AC7225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib */; };
 		CEABD3D322644FF00062B552 /* FriendListObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D222644FEF0062B552 /* FriendListObject.swift */; };
-		CEABD3D522658F840062B552 /* FriendInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D422658F840062B552 /* FriendInviteViewController.swift */; };
 		CEABD3D72265A8C80062B552 /* BillObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D62265A8C80062B552 /* BillObject.swift */; };
 		CEABD3DA2265F5A10062B552 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3D92265F5A10062B552 /* FirebaseManager.swift */; };
 		CEABD3DC226737140062B552 /* EqualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3DB226737140062B552 /* EqualViewController.swift */; };
@@ -121,6 +122,8 @@
 		CE654177227DA08B005DCD94 /* LentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LentCell.swift; sourceTree = "<group>"; };
 		CE654178227DA08B005DCD94 /* LentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LentCell.xib; sourceTree = "<group>"; };
 		CE65417B227DBCB0005DCD94 /* Project-2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project-2.entitlements"; sourceTree = "<group>"; };
+		CE65417C227DF0A2005DCD94 /* PushNotivicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotivicationManager.swift; sourceTree = "<group>"; };
+		CE65417E227DF2FA005DCD94 /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
 		CE768A882254EED000ECEBE1 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddBill.storyboard; sourceTree = "<group>"; };
 		CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chart.storyboard; sourceTree = "<group>"; };
@@ -148,7 +151,6 @@
 		CE768AC6225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAccountsListDetailCell.swift; sourceTree = "<group>"; };
 		CE768AC7225B1A6B00ECEBE1 /* GroupAccountsListDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupAccountsListDetailCell.xib; sourceTree = "<group>"; };
 		CEABD3D222644FEF0062B552 /* FriendListObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListObject.swift; sourceTree = "<group>"; };
-		CEABD3D422658F840062B552 /* FriendInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInviteViewController.swift; sourceTree = "<group>"; };
 		CEABD3D62265A8C80062B552 /* BillObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillObject.swift; sourceTree = "<group>"; };
 		CEABD3D92265F5A10062B552 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		CEABD3DB226737140062B552 /* EqualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualViewController.swift; sourceTree = "<group>"; };
@@ -400,7 +402,6 @@
 			children = (
 				CED3A8742254B87A007B5A07 /* FriendViewController.swift */,
 				CE768AA82259C45600ECEBE1 /* AddFriendViewController.swift */,
-				CEABD3D422658F840062B552 /* FriendInviteViewController.swift */,
 				CE768AAC2259EB6A00ECEBE1 /* FriendDetailViewController.swift */,
 				CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */,
 				CE497D01225C6123004ED6DF /* FriendBillDetailViewController.swift */,
@@ -498,6 +499,8 @@
 				CEABD3D92265F5A10062B552 /* FirebaseManager.swift */,
 				CEABD3F8226D9EDB0062B552 /* UserObject.swift */,
 				CE007C8222782A9900465E28 /* AlertObject.swift */,
+				CE65417C227DF0A2005DCD94 /* PushNotivicationManager.swift */,
+				CE65417E227DF2FA005DCD94 /* PushNotificationSender.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				CE497CFB225B928B004ED6DF /* GroupSettingCell.swift in Sources */,
 				CEABD3DC226737140062B552 /* EqualViewController.swift in Sources */,
 				CED3A87E2254EAEC007B5A07 /* BaseViewController.swift in Sources */,
+				CE65417F227DF2FA005DCD94 /* PushNotificationSender.swift in Sources */,
 				CED3A8782254CE12007B5A07 /* TabBarViewController.swift in Sources */,
 				CED3A8752254B87A007B5A07 /* FriendViewController.swift in Sources */,
 				CEABD3E5226740950062B552 /* EqualCell.swift in Sources */,
@@ -804,8 +808,8 @@
 				CE654179227DA08B005DCD94 /* LentCell.swift in Sources */,
 				CE007C8322782A9900465E28 /* AlertObject.swift in Sources */,
 				CEABD3E9226740B30062B552 /* IndividualCell.swift in Sources */,
-				CEABD3D522658F840062B552 /* FriendInviteViewController.swift in Sources */,
 				CE768AAD2259EB6A00ECEBE1 /* FriendDetailViewController.swift in Sources */,
+				CE65417D227DF0A2005DCD94 /* PushNotivicationManager.swift in Sources */,
 				CEABD3D72265A8C80062B552 /* BillObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

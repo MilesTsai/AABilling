@@ -109,7 +109,9 @@ class FriendBillDetailViewController: BaseViewController {
                 storage: friend?[PersonalData.CodingKeys.storage.rawValue] as? String,
                 uid: friend?[PersonalData.CodingKeys.uid.rawValue] as? String,
                 status: friend?[PersonalData.CodingKeys.status.rawValue] as? Int,
-                totalAccount: friend?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int)
+                totalAccount: friend?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int,
+                fcmToken: friend?[PersonalData.CodingKeys.fcmToken.rawValue] as? String
+            )
             
             guard let myfriend = self?.friendTotalAccount?.totalAccount else { return }
             
@@ -164,7 +166,9 @@ class FriendBillDetailViewController: BaseViewController {
                 storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
                 uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String,
                 status: user?[PersonalData.CodingKeys.status.rawValue] as? Int,
-                totalAccount: user?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int)
+                totalAccount: user?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int,
+                fcmToken: user?[PersonalData.CodingKeys.fcmToken.rawValue] as? String
+            )
             
             guard let selfTotalAccount = self?.myTotalAccount?.totalAccount else { return }
             

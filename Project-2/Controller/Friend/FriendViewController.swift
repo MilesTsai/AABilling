@@ -90,7 +90,7 @@ class FriendViewController: BaseViewController {
                     
                     oweLabel.text = "$\(total)"
                     
-                    lentLabel.text = "$\(total)"
+//                    lentLabel.text = "$\(total)"
                 }
             }
         }
@@ -108,6 +108,12 @@ class FriendViewController: BaseViewController {
         super.viewWillAppear(animated)
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        PushNotificationManager.shared.registerForPushNotifications()
+        
+        PushNotificationManager.shared.updateFirestorePushTokenIfNeeded(uid: currentUser.uid)
         
         loadData()
         
@@ -143,7 +149,7 @@ class FriendViewController: BaseViewController {
             .document(currentUser?.uid ?? "")
             .collection("friends")
             .order(by: "name", descending: false)
-            .addSnapshotListener { querySnapshot, error in
+            .addSnapshotListener { [weak self] querySnapshot, error in
             
                 if let error = error {
                     print("\(error.localizedDescription)")
@@ -151,18 +157,29 @@ class FriendViewController: BaseViewController {
                     guard let snapshot =
                               querySnapshot else { return }
                     
-                    self.friendList =
+                    self?.friendList =
                          snapshot
                             .documents
                             .compactMap({
                                 PersonalData(dictionary: $0.data())
                             })
                     
-                    self.acceptList()
+                    self?.acceptList()
+                    
+                    guard let token = Messaging.messaging().fcmToken else { return }
+                    
+                    guard let currentUser = Auth.auth().currentUser else { return }
+                    
+                    for list in self!.friends {
+                        if let friendUid = list.uid {
+                            
+                            self?.dataBase.collection("users").document(friendUid).collection("friends").document(currentUser.uid).updateData(["fcmToken": token])
+                        }
+                    }
                     
                     DispatchQueue.main.async {
                         
-                        self.tableView.reloadData()
+                        self?.tableView.reloadData()
                     }
                 }
             }
@@ -254,10 +271,6 @@ extension FriendViewController: UITableViewDataSource {
 
         let cell =
             tableView.dequeueReusableCell(withIdentifier: String(describing: FriendListCell.self), for: indexPath)
-
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = UIColor.clear
-//        cell.selectedBackgroundView = backgroundView
 
         guard let friendCell =
                   cell as? FriendListCell else { return cell }
@@ -387,8 +400,6 @@ extension FriendViewController: UITableViewDataSource {
                 guard let friendDetailVC =
                           segue.destination as? FriendDetailViewController else { return }
                 friendDetailVC.friendData = friends[indexPath.row]
-//                print("=========")
-//                print(friendDetailVC.friendData)
             }
         }
     }

@@ -106,7 +106,8 @@ class AddFriendViewController: UIViewController {
                                     storage: friend["storage"] as? String,
                                     uid: friend["uid"] as? String,
                                     status: friend["status"] as? Int,
-                                    totalAccount: friend["totalAccount"] as? Int
+                                    totalAccount: friend["totalAccount"] as? Int,
+                                    fcmToken: friend["fcmToken"] as? String
                                 )
                     }
                     self.updateDocument(document: self.friendID ?? "")
@@ -128,7 +129,10 @@ class AddFriendViewController: UIViewController {
                                         self.friend?.email ?? "",
                                     PersonalData.CodingKeys.uid.rawValue:
                                         self.friend?.uid ?? "",
-                                    PersonalData.CodingKeys.totalAccount.rawValue: 0
+                                    PersonalData.CodingKeys.totalAccount.rawValue: 0,
+                                    
+                                    PersonalData.CodingKeys.fcmToken.rawValue:
+                                        self.friend?.fcmToken ?? ""
                                 ])
                     
                     let alertController =
@@ -166,7 +170,10 @@ class AddFriendViewController: UIViewController {
                 name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
                 email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
                 storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
-                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String)
+                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String,
+                fcmToken: user?[PersonalData.CodingKeys.fcmToken.rawValue] as? String
+            )
+            print(self.userData ?? "")
             
             self.dataBase
                 .collection("users")
@@ -184,7 +191,8 @@ class AddFriendViewController: UIViewController {
                         self.userData?.email ?? "",
                     PersonalData.CodingKeys.uid.rawValue:
                         currentUser.uid ,
-                    PersonalData.CodingKeys.totalAccount.rawValue: 0
+                    PersonalData.CodingKeys.totalAccount.rawValue: 0,
+                    PersonalData.CodingKeys.fcmToken.rawValue: self.userData?.fcmToken ?? ""
                     
                 ]) { error in
                     if let error = error {

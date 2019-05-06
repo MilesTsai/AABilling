@@ -80,7 +80,7 @@ class IndividualViewController: BaseTableViewController {
         
         tableView.separatorStyle = .none
         
-        tableView.backgroundColor = UIColor.white
+        tableView.backgroundColor = UIColor(cgColor: #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1))
         
         tableView.mls_registerCellWithNib(
             identifier: String(describing: IndividualCell.self),

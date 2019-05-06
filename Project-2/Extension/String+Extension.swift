@@ -21,7 +21,9 @@ extension String {
     
     var isPasswordValid: Bool {
         
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])[A-Za-z\\d$@$#!%*?&]{6,}")
+        let passwordRegEx = "[a-zA-Z0-9]{6,}"
+        
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
         
         return passwordTest.evaluate(with: self)
     }

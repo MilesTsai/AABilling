@@ -22,12 +22,15 @@ struct UserData {
     
     let uid: String?
     
+    let fcmToken: String?
+    
     var dictionary: [String: Any] {
         return [
             "name": name ?? "",
             "email": email ?? "",
             "storage": storage ?? "",
-            "uid": uid ?? ""
+            "uid": uid ?? "",
+            "fcmToken": fcmToken ?? ""
         ]
     }
     
@@ -40,6 +43,8 @@ struct UserData {
         case storage
         
         case uid
+        
+        case fcmToken
     }
 }
 
@@ -52,14 +57,17 @@ extension UserData: UserDocument {
             let storage =
             dictionary["storage"] as? String,
             let uid =
-            dictionary["uid"] as? String
+            dictionary["uid"] as? String,
+            let fcmToken =
+            dictionary["fcmToken"] as? String
             else { return nil }
         
         self.init(
             name: name,
             email: email,
             storage: storage,
-            uid: uid
+            uid: uid,
+            fcmToken: fcmToken
         )
     }
 }

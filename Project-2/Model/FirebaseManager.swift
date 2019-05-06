@@ -39,22 +39,21 @@ class FirebaseManager {
                 view.present(alertController, animated: true, completion: nil)
                 
             } else {
-                Auth.auth().createUser(withEmail: withEmail, password: password) { (_, error) in
+                Auth.auth().createUser(withEmail: withEmail, password: password) { [weak self] (_, error) in
                     
                     if error == nil {
                         print("You have successfully signed up")
                         
                         guard let currentUser = Auth.auth().currentUser else { return }
-                        self.userReference.document(currentUser.uid).setData(
+                        self?.userReference.document(currentUser.uid).setData(
                             [
                                 UserData.CodingKeys.name.rawValue: userName,
                                 UserData.CodingKeys.email.rawValue: withEmail,
                                 UserData.CodingKeys.storage.rawValue: "",
                                 UserData.CodingKeys.uid.rawValue:
                                     currentUser.uid
+//                                UserData.CodingKeys.fcmToken.rawValue: Messaging.messaging().fcmToken ?? ""
                             ])
-                        
-//                        self.user = UserData(name: userName, email: withEmail, storage: "", uid: currentUser.uid)
                         
                         if let tabBarVC =
                             UIStoryboard.main.instantiateViewController(
@@ -80,6 +79,20 @@ class FirebaseManager {
         }
     }
     
+//    func updateFirestorePushTokenIfNeeded(uid: String) {
+//        if let token = Messaging.messaging().fcmToken {
+//            let usersRef = Firestore.firestore().collection("users").document(uid)
+//            usersRef.setData(["fcmToken": token], merge: true)
+//        }
+//    }
+//
+//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+//
+//        guard let currentUser = Auth.auth().currentUser else { return }
+//
+//        updateFirestorePushTokenIfNeeded(uid: currentUser.uid)
+//    }
+    
     func readUserData(friendUid: String) {
         
         guard let currentUser = Auth.auth().currentUser else { return }
@@ -92,7 +105,9 @@ class FirebaseManager {
                 storage: friend?[PersonalData.CodingKeys.storage.rawValue] as? String,
                 uid: friend?[PersonalData.CodingKeys.uid.rawValue] as? String,
                 status: friend?[PersonalData.CodingKeys.status.rawValue] as? Int,
-                totalAccount: friend?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int)
+                totalAccount: friend?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int,
+                fcmToken: friend?[PersonalData.CodingKeys.fcmToken.rawValue] as? String)
+            
         })
     }
     
@@ -117,6 +132,13 @@ class FirebaseManager {
     func deleteFriendBilling(document: String, billId: String) {
         userReference.document(document).collection("bills").document(billId).delete()
         
+    }
+    
+    func updateUserName(name: String) {
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        userReference.document(currentUser.uid).updateData(["name": name])
     }
     
     func updateMyStatus(document: String) {

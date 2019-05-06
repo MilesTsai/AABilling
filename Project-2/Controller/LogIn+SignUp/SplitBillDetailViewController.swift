@@ -288,7 +288,9 @@ class SplitBillDetailViewController: BaseViewController {
                 name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
                 email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
                 storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
-                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String)
+                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String,
+                fcmToken: user?[PersonalData.CodingKeys.fcmToken.rawValue] as? String
+            )
         
             self.dataBase
             .collection("users")
@@ -331,7 +333,9 @@ class SplitBillDetailViewController: BaseViewController {
                 name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
                 email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
                 storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
-                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String)
+                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String,
+                fcmToken: user?[PersonalData.CodingKeys.fcmToken.rawValue] as? String
+            )
         
             self.dataBase
             .collection("users")

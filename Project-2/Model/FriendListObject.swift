@@ -26,6 +26,8 @@ struct PersonalData {
     
     var totalAccount: Int?
     
+    let fcmToken: String?
+    
     var dictionary: [String: Any] {
         return [
             "name": name ?? "",
@@ -33,7 +35,8 @@ struct PersonalData {
             "storage": storage ?? "",
             "uid": uid ?? "",
             "status": status ?? "",
-            "totalAccount": totalAccount ?? ""
+            "totalAccount": totalAccount ?? "",
+            "fcmToken": fcmToken ?? ""
         ]
     }
     
@@ -50,6 +53,8 @@ struct PersonalData {
         case status
         
         case totalAccount
+        
+        case fcmToken
     }
 }
 
@@ -66,7 +71,9 @@ extension PersonalData: DocumentSerializable {
               let status =
                     dictionary["status"] as? Int,
               let totalAccount =
-                    dictionary["totalAccount"] as? Int
+                    dictionary["totalAccount"] as? Int,
+              let fcmToken =
+                    dictionary["fcmToken"] as? String
               else { return nil }
         
         self.init(
@@ -75,7 +82,8 @@ extension PersonalData: DocumentSerializable {
             storage: storage,
             uid: uid,
             status: status,
-            totalAccount: totalAccount
+            totalAccount: totalAccount,
+            fcmToken: fcmToken
         )
     }
 }
