@@ -90,8 +90,13 @@ class FriendViewController: BaseViewController {
                     
                     oweLabel.text = "$\(total)"
                     
-//                    lentLabel.text = "$\(total)"
+                    lentLabel.text = "$\(total)"
                 }
+            }
+            if owe == 0 {
+                oweLabel.text = "0"
+            } else if lent == 0 {
+                lentLabel.text = "0"
             }
         }
     }
@@ -140,6 +145,10 @@ class FriendViewController: BaseViewController {
             identifier: String(describing: FriendSectionCell.self),
             bundle: nil
         )
+        
+        tableView.addRefreshHeader(refreshingBlock: { [weak self] in
+            self?.loadData()
+        })
     }
     
     func loadData() {
@@ -151,6 +160,8 @@ class FriendViewController: BaseViewController {
             .order(by: "name", descending: false)
             .addSnapshotListener { [weak self] querySnapshot, error in
             
+                self?.tableView.mj_header.endRefreshing()
+                
                 if let error = error {
                     print("\(error.localizedDescription)")
                 } else {
@@ -170,7 +181,7 @@ class FriendViewController: BaseViewController {
                     
                     guard let currentUser = Auth.auth().currentUser else { return }
                     
-                    for list in self!.friends {
+                    for list in self?.friends ?? [] {
                         if let friendUid = list.uid {
                             
                             self?.dataBase.collection("users").document(friendUid).collection("friends").document(currentUser.uid).updateData(["fcmToken": token])
@@ -327,7 +338,7 @@ extension FriendViewController: UITableViewDataSource {
             
             if total > 0 {
                 
-                friendCell.accountsStatus.text = "未取款"
+                friendCell.accountsStatus.text = "借出"
                 
                 friendCell.accountsStatus.textColor = .init(cgColor: #colorLiteral(red: 0.2470588235, green: 0.2274509804, blue: 0.2274509804, alpha: 1))
                 

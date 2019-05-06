@@ -28,6 +28,9 @@
 		CE65417A227DA08B005DCD94 /* LentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE654178227DA08B005DCD94 /* LentCell.xib */; };
 		CE65417D227DF0A2005DCD94 /* PushNotivicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65417C227DF0A2005DCD94 /* PushNotivicationManager.swift */; };
 		CE65417F227DF2FA005DCD94 /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65417E227DF2FA005DCD94 /* PushNotificationSender.swift */; };
+		CE654182227FC3BB005DCD94 /* MJRereshWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE654181227FC3BB005DCD94 /* MJRereshWrapper.swift */; };
+		CE654185227FFF97005DCD94 /* NoLentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE654183227FFF96005DCD94 /* NoLentCell.swift */; };
+		CE654186227FFF97005DCD94 /* NoLentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE654184227FFF96005DCD94 /* NoLentCell.xib */; };
 		CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */; };
 		CE768A8D2254EF3B00ECEBE1 /* Chart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */; };
 		CE768A8F2254EF4E00ECEBE1 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A8E2254EF4E00ECEBE1 /* User.storyboard */; };
@@ -124,6 +127,9 @@
 		CE65417B227DBCB0005DCD94 /* Project-2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project-2.entitlements"; sourceTree = "<group>"; };
 		CE65417C227DF0A2005DCD94 /* PushNotivicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotivicationManager.swift; sourceTree = "<group>"; };
 		CE65417E227DF2FA005DCD94 /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
+		CE654181227FC3BB005DCD94 /* MJRereshWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJRereshWrapper.swift; sourceTree = "<group>"; };
+		CE654183227FFF96005DCD94 /* NoLentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLentCell.swift; sourceTree = "<group>"; };
+		CE654184227FFF96005DCD94 /* NoLentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoLentCell.xib; sourceTree = "<group>"; };
 		CE768A882254EED000ECEBE1 /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		CE768A8A2254EF2400ECEBE1 /* AddBill.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddBill.storyboard; sourceTree = "<group>"; };
 		CE768A8C2254EF3B00ECEBE1 /* Chart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chart.storyboard; sourceTree = "<group>"; };
@@ -235,8 +241,18 @@
 			children = (
 				CE654177227DA08B005DCD94 /* LentCell.swift */,
 				CE654178227DA08B005DCD94 /* LentCell.xib */,
+				CE654183227FFF96005DCD94 /* NoLentCell.swift */,
+				CE654184227FFF96005DCD94 /* NoLentCell.xib */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		CE654180227FC31A005DCD94 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				CE654181227FC3BB005DCD94 /* MJRereshWrapper.swift */,
+			);
+			path = ThirdParty;
 			sourceTree = "<group>";
 		};
 		CE768A902254F02D00ECEBE1 /* Group */ = {
@@ -445,6 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				CE65417B227DBCB0005DCD94 /* Project-2.entitlements */,
+				CE654180227FC31A005DCD94 /* ThirdParty */,
 				CED3A86A22546070007B5A07 /* Extension */,
 				CEFDBC2022538FC100E603F3 /* Model */,
 				CEFDBC1F22538FBE00E603F3 /* View */,
@@ -642,6 +659,7 @@
 				CEFF0D81225DE47100C74ED4 /* GroupBillDetailTitleCell.xib in Resources */,
 				CE768A8F2254EF4E00ECEBE1 /* User.storyboard in Resources */,
 				CEFF0D85225DE49300C74ED4 /* GroupBillDetailCell.xib in Resources */,
+				CE654186227FFF97005DCD94 /* NoLentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +679,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -675,6 +694,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -769,6 +789,7 @@
 				CE768A9B2254F0D200ECEBE1 /* UserViewController.swift in Sources */,
 				CEFDBC0D22538EF900E603F3 /* AppDelegate.swift in Sources */,
 				CEABD3ED226767080062B552 /* AverageValueCell.swift in Sources */,
+				CE654182227FC3BB005DCD94 /* MJRereshWrapper.swift in Sources */,
 				CE497D06225C82D0004ED6DF /* SplitBillDetailViewController.swift in Sources */,
 				CED3A87C2254D3FA007B5A07 /* UIImage+Extension.swift in Sources */,
 				CE768A952254F09A00ECEBE1 /* GroupViewController.swift in Sources */,
@@ -809,6 +830,7 @@
 				CE007C8322782A9900465E28 /* AlertObject.swift in Sources */,
 				CEABD3E9226740B30062B552 /* IndividualCell.swift in Sources */,
 				CE768AAD2259EB6A00ECEBE1 /* FriendDetailViewController.swift in Sources */,
+				CE654185227FFF97005DCD94 /* NoLentCell.swift in Sources */,
 				CE65417D227DF0A2005DCD94 /* PushNotivicationManager.swift in Sources */,
 				CEABD3D72265A8C80062B552 /* BillObject.swift in Sources */,
 			);

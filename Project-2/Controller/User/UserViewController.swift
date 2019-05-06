@@ -17,6 +17,8 @@ class UserViewController: BaseViewController {
     
     @IBOutlet weak var userEmail: UILabel!
     
+    @IBOutlet weak var pushNotification: UIButton!
+    
     @IBOutlet weak var lentListTableView: UITableView! {
         
         didSet {
@@ -65,6 +67,14 @@ class UserViewController: BaseViewController {
         })
         
         loadData()
+        
+        if lentList.count == 0 {
+            
+            pushNotification.isHidden = true
+        } else {
+            pushNotification.isHidden = false
+        }
+        
     }
     
     private func setupTableView() {
@@ -73,6 +83,11 @@ class UserViewController: BaseViewController {
             identifier: String(describing: LentCell.self),
             bundle: nil
         )
+        
+//        lentListTableView.mls_registerCellWithNib(
+//            identifier: String(describing: NoLentCell.self),
+//            bundle: nil
+//        )
     }
     
     func loadData() {
@@ -189,7 +204,11 @@ class UserViewController: BaseViewController {
 extension UserViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return lentList.count
+//        if lentList.count == 0 {
+//            return 1
+//        } else {
+            return lentList.count
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -197,20 +216,35 @@ extension UserViewController: UITableViewDataSource {
         let cell =
             tableView.dequeueReusableCell(withIdentifier: String(describing: LentCell.self), for: indexPath)
         
+//        let secondCell =
+//            tableView.dequeueReusableCell(withIdentifier: String(describing: NoLentCell.self), for: indexPath)
+        
         guard let friendCell =
             cell as? LentCell else { return cell }
         
-        let list = lentList[indexPath.row]
+//        guard let noFriendCell =
+//            secondCell as? NoLentCell else { return secondCell }
         
-        guard let total = list.totalAccount else { return friendCell }
+//        if lentList.count == 0 {
+//
+//            noFriendCell.noLentLogo.text = "暫無未還款的朋友"
+//
+//            return noFriendCell
+//
+//        } else {
         
-        friendCell.userName.text = list.name
-        
-        friendCell.statusAccount.text = "未取款"
-        
-        friendCell.sumAccount.text = "$\(String(describing: total))"
-        
-        return friendCell
+            let list = lentList[indexPath.row]
+            
+            guard let total = list.totalAccount else { return friendCell }
+            
+            friendCell.userName.text = list.name
+            
+            friendCell.statusAccount.text = "借出"
+            
+            friendCell.sumAccount.text = "$\(String(describing: total))"
+            
+            return friendCell
+//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

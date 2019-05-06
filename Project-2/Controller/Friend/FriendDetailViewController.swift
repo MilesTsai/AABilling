@@ -81,6 +81,11 @@ class FriendDetailViewController: BaseViewController {
             identifier: String(describing: FriendAccountsListDetailCell.self),
             bundle: nil
         )
+        
+        friendDetailTableView.addRefreshHeader(refreshingBlock: { [weak self] in
+            self?.billingDetail()
+            
+        })
     }
     
     func lentAmount() {
@@ -109,6 +114,9 @@ class FriendDetailViewController: BaseViewController {
             .collection("bills")
             .whereField("uid", isEqualTo: friendUid)
             .getDocuments(completion: { [weak self] (snapshot, error) in
+                
+                self?.friendDetailTableView.mj_header.endRefreshing()
+                
                 if let error = error {
                     print(error)
                 } else {
@@ -208,7 +216,6 @@ extension FriendDetailViewController: UITableViewDataSource {
 //            self, action: #selector(self.friendSettleUp),
 //            for: .touchUpInside
 //        )
-        
         friendHeaderCell.friendBackgroundColor.setGradientBackground(colorTop: #colorLiteral(red: 0.1960784314, green: 0.1607843137, blue: 0.1215686275, alpha: 1), colorBottom: #colorLiteral(red: 0.9725490196, green: 0.9803921569, blue: 0.9803921569, alpha: 1), startPoint: CGPoint(x: 0.5, y: 1.0), endPoint: CGPoint(x: 0.5, y: 0.0))
         
         friendHeaderCell.friendName.text = friendData?.name
@@ -283,7 +290,7 @@ extension FriendDetailViewController: UITableViewDataSource {
                 
             if moneyList > 0 {
                     
-                accountsDetailCell.sumOfMoneyStatus.text = "未取款"
+                accountsDetailCell.sumOfMoneyStatus.text = "借出"
                     
                 accountsDetailCell.sumOfMoney.text = "$\(String(describing: moneyList))"
                 

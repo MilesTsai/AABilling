@@ -76,6 +76,12 @@ class IndividualViewController: BaseTableViewController {
         view.bringSubviewToFront(numberKeyView)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        IQKeyboardManager.shared().isEnableAutoToolbar = true
+    }
+    
     private func setupTableView() {
         
         tableView.separatorStyle = .none

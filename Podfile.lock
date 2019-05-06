@@ -111,6 +111,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.1)
   - IQKeyboardManager (6.2.1)
   - leveldb-library (1.20)
+  - MJRefresh (3.1.16)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -127,6 +128,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Messaging
   - IQKeyboardManager
+  - MJRefresh
   - SwiftLint
 
 SPEC REPOS:
@@ -150,6 +152,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - IQKeyboardManager
     - leveldb-library
+    - MJRefresh
     - nanopb
     - Protobuf
     - SwiftLint
@@ -174,10 +177,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   IQKeyboardManager: 964638372b4a61892cc74fdfa6fd26de8c9464a2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: a5bd7dd553c8a43150d9d5848bebc051673b9e7b
+PODFILE CHECKSUM: 29fe20eccb5e3398f59f280845158b7d5e2cb160
 
 COCOAPODS: 1.6.0
