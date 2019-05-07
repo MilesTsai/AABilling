@@ -66,7 +66,7 @@ class AddBillViewController: BaseViewController {
         readFirendList()
     }
     
-    @objc func closeKeyboard(){
+    @objc func closeKeyboard() {
         
         self.view.endEditing(true)
     }
@@ -77,21 +77,7 @@ class AddBillViewController: BaseViewController {
             || friendBillName.text?.isEmpty == true
             || billAmount.text?.isEmpty == true {
             
-            let alertController =
-                UIAlertController(
-                    title: "錯誤",
-                    message: "請輸入帳單資訊",
-                    preferredStyle: .alert
-            )
-            let defaultAction =
-                UIAlertAction(
-                    title: "OK",
-                    style: .cancel,
-                    handler: nil
-            )
-            alertController.addAction(defaultAction)
-            
-            self.present(alertController, animated: true, completion: nil)
+            AlertManager().alertView(title: "錯誤", message: "請輸入帳單資訊", view: self)
             
         } else {
             

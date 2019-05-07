@@ -79,20 +79,6 @@ class FirebaseManager {
         }
     }
     
-//    func updateFirestorePushTokenIfNeeded(uid: String) {
-//        if let token = Messaging.messaging().fcmToken {
-//            let usersRef = Firestore.firestore().collection("users").document(uid)
-//            usersRef.setData(["fcmToken": token], merge: true)
-//        }
-//    }
-//
-//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-//
-//        guard let currentUser = Auth.auth().currentUser else { return }
-//
-//        updateFirestorePushTokenIfNeeded(uid: currentUser.uid)
-//    }
-    
     func readUserData(friendUid: String) {
         
         guard let currentUser = Auth.auth().currentUser else { return }

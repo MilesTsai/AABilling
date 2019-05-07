@@ -122,8 +122,6 @@ class FriendDetailViewController: BaseViewController {
                 } else {
                     guard let snap = snapshot else { return }
                     for document in snap.documents {
-                        print("==========")
-                        print(document.data())
                         
                         let billDetail = document.data()
                         
@@ -165,7 +163,6 @@ class FriendDetailViewController: BaseViewController {
         
         billingDetail()
         
-//        friendDetailTableView.reloadData()
     }
 
     @IBAction func backFriendList(_ sender: UIButton) {
@@ -212,10 +209,6 @@ extension FriendDetailViewController: UITableViewDataSource {
         guard let friendHeaderCell =
                     headerCell as? FriendDetailCell else { return headerCell }
         
-//        friendHeaderCell.settleUpBtn.addTarget(
-//            self, action: #selector(self.friendSettleUp),
-//            for: .touchUpInside
-//        )
         friendHeaderCell.friendBackgroundColor.setGradientBackground(colorTop: #colorLiteral(red: 0.1960784314, green: 0.1607843137, blue: 0.1215686275, alpha: 1), colorBottom: #colorLiteral(red: 0.9725490196, green: 0.9803921569, blue: 0.9803921569, alpha: 1), startPoint: CGPoint(x: 0.5, y: 1.0), endPoint: CGPoint(x: 0.5, y: 0.0))
         
         friendHeaderCell.friendName.text = friendData?.name

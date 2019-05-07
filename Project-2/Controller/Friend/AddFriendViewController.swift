@@ -73,24 +73,9 @@ class AddFriendViewController: UIViewController {
                 print("Error getting documents: \(error)")
             } else {
                 if querySnapshot?.isEmpty == true {
-                    print("No exist")
-                    let alertController =
-                            UIAlertController(
-                                title: "錯誤",
-                                message: "無此帳號",
-                                preferredStyle: .alert
-                            )
                     
-                    let defaultAction =
-                            UIAlertAction(
-                                title: "OK",
-                                style: .cancel,
-                                handler: nil
-                            )
+                    AlertManager().alertView(title: "錯誤", message: "無此帳號", view: self)
                     
-                    alertController.addAction(defaultAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
                 } else {
                     for document in querySnapshot!.documents {
                         print("\(document.documentID) => \(document.data())")
