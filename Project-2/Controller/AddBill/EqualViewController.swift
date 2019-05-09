@@ -227,22 +227,4 @@ class EqualViewController: BaseTableViewController {
             
         return 60
     }
-    
-//    func tableView(
-//        _ tableView: UITableView,
-//        didSelectRowAt indexPath: IndexPath) {
-//        
-//        if indexPath.row == 0 {
-//            
-//            selectHandler?(userNameInfo)
-//            
-//        } else if indexPath.row == 1 {
-//            
-//            selectHandler?(equalBilling!.anyone)
-//            
-//        } else {
-//            
-//            return
-//        }
-//    }
 }

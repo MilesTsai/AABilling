@@ -9,14 +9,14 @@
 import UIKit
 import Firebase
 
-struct BillingContent {
-    
-    let anyone: String
-    
-    let billName: String
-    
-    let amount: Int
-}
+//struct BillingContent {
+//    
+//    let anyone: String
+//    
+//    let billName: String
+//    
+//    let amount: Int
+//}
 
 class AddBillViewController: BaseViewController {
     

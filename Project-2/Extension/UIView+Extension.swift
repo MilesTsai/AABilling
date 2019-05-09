@@ -124,7 +124,12 @@ extension UIView {
         gradientLayer.endPoint = endPoint
 //            CGPoint(x: 0.5, y: 0.0)
         gradientLayer.locations = [0, 1]
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 190 + UIApplication.shared.statusBarFrame.height)
+        gradientLayer.frame = CGRect(
+            x: 0,
+            y: 0,
+            width: UIScreen.main.bounds.width,
+            height: 190 + UIApplication.shared.statusBarFrame.height
+        )
         
         layer.insertSublayer(gradientLayer, at: 0)
     }

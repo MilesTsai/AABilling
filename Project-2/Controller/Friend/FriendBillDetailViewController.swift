@@ -101,7 +101,13 @@ class FriendBillDetailViewController: BaseViewController {
         guard let currentUser = Auth.auth().currentUser else { return }
         
         guard let friendUid = billingDetailData?.uid else { return }
-        dataBase.collection("users").document(friendUid).collection("friends").document(currentUser.uid).getDocument(completion: { [weak self] (snapshot, error) in
+        dataBase
+            .collection(UserEnum.users.rawValue)
+            .document(friendUid)
+            .collection(UserEnum.friends.rawValue)
+            .document(currentUser.uid)
+            .getDocument(completion: { [weak self] (snapshot, _) in
+                
             let friend = snapshot?.data()
             self?.friendTotalAccount = PersonalData(
                 name: friend?[PersonalData.CodingKeys.name.rawValue] as? String,
@@ -129,7 +135,13 @@ class FriendBillDetailViewController: BaseViewController {
         
         guard let friendUid = billingDetailData?.uid else { return }
         
-        dataBase.collection("users").document(friendUid).collection("bills").document(billingUid).getDocument(completion: { [weak self] (snapshot, error) in
+        dataBase
+            .collection(UserEnum.users.rawValue)
+            .document(friendUid)
+            .collection(UserEnum.bills.rawValue)
+            .document(billingUid)
+            .getDocument(completion: { [weak self] (snapshot, _) in
+                
             let friendBill = snapshot?.data()
             self?.friendBilling = BillData(
                 uid: friendBill?[BillData.CodingKeys.uid.rawValue] as? String,
@@ -158,7 +170,13 @@ class FriendBillDetailViewController: BaseViewController {
         
         guard let friendUid = billingDetailData?.uid else { return }
         
-        dataBase.collection("users").document(currentUser.uid).collection("friends").document(friendUid).getDocument(completion: { [weak self] (snapshot, error) in
+        dataBase
+            .collection(UserEnum.users.rawValue)
+            .document(currentUser.uid)
+            .collection(UserEnum.friends.rawValue)
+            .document(friendUid)
+            .getDocument(completion: { [weak self] (snapshot, _) in
+                
             let user = snapshot?.data()
             self?.myTotalAccount = PersonalData(
                 name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
@@ -186,8 +204,8 @@ class FriendBillDetailViewController: BaseViewController {
         guard let friendUid = billingDetailData?.uid else { return }
         
         self.dataBase
-            .collection("users")
-            .document(currentUser.uid).collection("friends")
+            .collection(UserEnum.users.rawValue)
+            .document(currentUser.uid).collection(UserEnum.friends.rawValue)
             .document(friendUid)
             .updateData(["totalAccount": mySelfTotalAccount + myfriendOwedAmount])
     }
@@ -200,12 +218,9 @@ class FriendBillDetailViewController: BaseViewController {
         
         guard let currentUser = Auth.auth().currentUser else { return }
         
-//        let total = self.myfriendTotalAccount + myOwedAmount
-//        print(total)
-        
         self.dataBase
-            .collection("users")
-            .document(friendUid).collection("friends")
+            .collection(UserEnum.users.rawValue)
+            .document(friendUid).collection(UserEnum.friends.rawValue)
             .document(currentUser.uid)
             .updateData(["totalAccount": self.myfriendTotalAccount + myOwedAmount])
     }
@@ -214,7 +229,11 @@ class FriendBillDetailViewController: BaseViewController {
         
         guard let billingUid = self.billingDetailData?.billUid else { return }
         
-        NotificationCenter.default.post(name: NSNotification.Name("settleUp"), object: nil, userInfo: ["billingUid": billingUid])
+        NotificationCenter.default.post(
+            name: NSNotification.Name("settleUp"),
+            object: nil,
+            userInfo: ["billingUid": billingUid]
+        )
         
         readMyTotalAccount()
         readFriendTotalAccountData()
@@ -250,10 +269,11 @@ class FriendBillDetailViewController: BaseViewController {
         
         guard let friendUid = billingDetailData?.uid else { return }
         
-        print("=============")
-        print(billingUid)
-        
-        NotificationCenter.default.post(name: NSNotification.Name("deleteBilling"), object: nil, userInfo: ["billingUid": billingUid])
+        NotificationCenter.default.post(
+            name: NSNotification.Name("deleteBilling"),
+            object: nil,
+            userInfo: ["billingUid": billingUid]
+        )
         
         FirebaseManager.shared.deleteBilling(document: billingUid)
         FirebaseManager.shared.deleteFriendBilling(document: friendUid, billId: billingUid)

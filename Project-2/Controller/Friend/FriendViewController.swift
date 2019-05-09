@@ -34,12 +34,8 @@ class FriendViewController: BaseViewController {
         
     }
     
-    var dataBase: Firestore = Firestore.firestore()
-    
-    let currentUser = Auth.auth().currentUser
-    
     var friendList = [PersonalData]() {
-        
+
         didSet {
             print("")
         }
@@ -94,9 +90,9 @@ class FriendViewController: BaseViewController {
                 }
             }
             if owe == 0 {
-                oweLabel.text = "0"
+                oweLabel.text = "$0"
             } else if lent == 0 {
-                lentLabel.text = "0"
+                lentLabel.text = "$0"
             }
         }
     }
@@ -106,7 +102,12 @@ class FriendViewController: BaseViewController {
 
         setupTableView()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(deleteFriendList(data:)), name: NSNotification.Name("deleteFriend"), object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(deleteFriendList(data:)),
+            name: NSNotification.Name("deleteFriend"),
+            object: nil
+        )
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -120,7 +121,7 @@ class FriendViewController: BaseViewController {
         
         PushNotificationManager.shared.updateFirestorePushTokenIfNeeded(uid: currentUser.uid)
         
-        loadData()
+        readFriendListData()
         
     }
     
@@ -147,53 +148,27 @@ class FriendViewController: BaseViewController {
         )
         
         tableView.addRefreshHeader(refreshingBlock: { [weak self] in
-            self?.loadData()
+            self?.readFriendListData()
         })
     }
     
-    func loadData() {
+    func readFriendListData() {
         
-        dataBase
-            .collection("users")
-            .document(currentUser?.uid ?? "")
-            .collection("friends")
-            .order(by: "name", descending: false)
-            .addSnapshotListener { [weak self] querySnapshot, error in
+        FirebaseManager.shared.readFriendListData { [weak self] (friendList) in
+            self?.friendList = friendList
             
+            self?.acceptList()
+            
+            FirebaseManager.shared.updateToken(friends: self?.friends ?? [])
+            
+            DispatchQueue.main.async {
+                
+                self?.tableView.reloadData()
+                
                 self?.tableView.mj_header.endRefreshing()
                 
-                if let error = error {
-                    print("\(error.localizedDescription)")
-                } else {
-                    guard let snapshot =
-                              querySnapshot else { return }
-                    
-                    self?.friendList =
-                         snapshot
-                            .documents
-                            .compactMap({
-                                PersonalData(dictionary: $0.data())
-                            })
-                    
-                    self?.acceptList()
-                    
-                    guard let token = Messaging.messaging().fcmToken else { return }
-                    
-                    guard let currentUser = Auth.auth().currentUser else { return }
-                    
-                    for list in self?.friends ?? [] {
-                        if let friendUid = list.uid {
-                            
-                            self?.dataBase.collection("users").document(friendUid).collection("friends").document(currentUser.uid).updateData(["fcmToken": token])
-                        }
-                    }
-                    
-                    DispatchQueue.main.async {
-                        
-                        self?.tableView.reloadData()
-                    }
-                }
             }
+        }
     }
 
     lazy var addFriendVC =

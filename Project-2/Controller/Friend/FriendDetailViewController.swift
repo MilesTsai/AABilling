@@ -23,7 +23,7 @@ class FriendDetailViewController: BaseViewController {
         }
     }
     
-    var dataBase: Firestore = Firestore.firestore()
+//    var dataBase: Firestore = Firestore.firestore()
 
     var friendData: PersonalData?
     
@@ -31,7 +31,7 @@ class FriendDetailViewController: BaseViewController {
     
     var billingList = [BillData]()
     
-    var settleUpList = [BillData]()
+//    var settleUpList = [BillData]()
     
     var sum = 0
     
@@ -40,9 +40,19 @@ class FriendDetailViewController: BaseViewController {
 
         setupTableView()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(deleteBillList(data:)), name: NSNotification.Name("deleteBilling"), object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(deleteBillList(data:)),
+            name: NSNotification.Name("deleteBilling"),
+            object: nil
+        )
         
-        NotificationCenter.default.addObserver(self, selector: #selector(billList(data:)), name: NSNotification.Name("settleUp"), object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(billList(data:)),
+            name: NSNotification.Name("settleUp"),
+            object: nil
+        )
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -102,60 +112,77 @@ class FriendDetailViewController: BaseViewController {
         sum = lent
     }
     
-    private func billingDetail() {
+    func billingDetail() {
         
-        guard let currentUser = Auth.auth().currentUser else { return }
+        guard let friendID = friendData?.uid else { return }
         
-        guard let friendUid = friendData?.uid else { return }
-        
-        dataBase
-            .collection("users")
-            .document(currentUser.uid)
-            .collection("bills")
-            .whereField("uid", isEqualTo: friendUid)
-            .getDocuments(completion: { [weak self] (snapshot, error) in
+        FirebaseManager.shared.readBillingDetail(friendUid: friendID, completion: { [weak self] (billingList) in
+            
+            self?.billingList = billingList
+            
+            self?.lentAmount()
+            
+            DispatchQueue.main.async {
+                
+                self?.friendDetailTableView.reloadData()
                 
                 self?.friendDetailTableView.mj_header.endRefreshing()
-                
-                if let error = error {
-                    print(error)
-                } else {
-                    guard let snap = snapshot else { return }
-                    for document in snap.documents {
-                        
-                        let billDetail = document.data()
-                        
-                        self?.friendBill =
-                            BillData(
-                                uid: billDetail["uid"] as? String,
-                                billUid: billDetail["billUid"] as? String,
-                                name: billDetail["name"] as? String,
-                                billName: billDetail["email"] as? String,
-                                amountTotal: billDetail["status"] as? Int,
-                                owedAmount: billDetail["amountTotal"] as? Int,
-                                payAmount: billDetail["owedAmount"] as? Int,
-                                status: billDetail["payAmount"] as? Int
-                            )
-                        }
-                    
-                    self?.billingList =
-                        snap
-                            .documents
-                            .compactMap({
-                                BillData(dictionary: $0.data())
-                            })
-                    
-                    self?.lentAmount()
-                    
-                    DispatchQueue.main.async {
-                        
-                        self?.friendDetailTableView.reloadData()
-                    }
-                    
-                }
+            }
         })
     }
-
+//        guard let currentUser = Auth.auth().currentUser else { return }
+//        
+//        guard let friendUid = friendData?.uid else { return }
+//        
+//        dataBase
+//            .collection(UserEnum.users.rawValue)
+//            .document(currentUser.uid)
+//            .collection(UserEnum.bills.rawValue)
+//            .whereField("uid", isEqualTo: friendUid)
+//            .getDocuments(completion: { [weak self] (snapshot, error) in
+//                
+//                if let error = error {
+//                    print(error)
+//                } else {
+//                    
+//                    guard let snap = snapshot else { return }
+//                    
+//                    for document in snap.documents {
+//                        
+//                        let billDetail = document.data()
+//                        
+//                        self?.friendBill =
+//                            BillData(
+//                                uid: billDetail["uid"] as? String,
+//                                billUid: billDetail["billUid"] as? String,
+//                                name: billDetail["name"] as? String,
+//                                billName: billDetail["email"] as? String,
+//                                amountTotal: billDetail["status"] as? Int,
+//                                owedAmount: billDetail["amountTotal"] as? Int,
+//                                payAmount: billDetail["owedAmount"] as? Int,
+//                                status: billDetail["payAmount"] as? Int
+//                            )
+//                        }
+//                    
+//                    self?.billingList =
+//                        snap
+//                            .documents
+//                            .compactMap({
+//                                BillData(dictionary: $0.data())
+//                            })
+//                    
+            
+//
+//                    DispatchQueue.main.async {
+//
+//                        self?.friendDetailTableView.reloadData()
+//
+//                        self?.friendDetailTableView.mj_header.endRefreshing()
+//                    }
+//
+//                }
+//        })
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -209,7 +236,14 @@ extension FriendDetailViewController: UITableViewDataSource {
         guard let friendHeaderCell =
                     headerCell as? FriendDetailCell else { return headerCell }
         
-        friendHeaderCell.friendBackgroundColor.setGradientBackground(colorTop: #colorLiteral(red: 0.1960784314, green: 0.1607843137, blue: 0.1215686275, alpha: 1), colorBottom: #colorLiteral(red: 0.9725490196, green: 0.9803921569, blue: 0.9803921569, alpha: 1), startPoint: CGPoint(x: 0.5, y: 1.0), endPoint: CGPoint(x: 0.5, y: 0.0))
+        friendHeaderCell
+            .friendBackgroundColor
+            .setGradientBackground(
+                colorTop: #colorLiteral(red: 0.1960784314, green: 0.1607843137, blue: 0.1215686275, alpha: 1),
+                colorBottom: #colorLiteral(red: 0.9725490196, green: 0.9803921569, blue: 0.9803921569, alpha: 1),
+                startPoint: CGPoint(x: 0.5, y: 1.0),
+                endPoint: CGPoint(x: 0.5, y: 0.0)
+        )
         
         friendHeaderCell.friendName.text = friendData?.name
         
@@ -250,7 +284,6 @@ extension FriendDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return billingList.count
-        
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

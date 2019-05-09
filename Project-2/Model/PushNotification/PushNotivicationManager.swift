@@ -14,11 +14,6 @@ import UIKit
 
 class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenterDelegate {
     
-//    let userID: String
-//    init(userID: String) {
-//        self.userID = userID
-//        super.init()
-//    }
     static let shared = PushNotificationManager()
     
     func registerForPushNotifications() {

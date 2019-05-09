@@ -11,9 +11,9 @@ import Firebase
 
 class SplitBillDetailViewController: BaseViewController {
     
-    var vc1: EqualViewController?
+    var equalViewController: EqualViewController?
     
-    var vc2: IndividualViewController?
+    var individualViewController: IndividualViewController?
     
     var friendBillingUid: ((String) -> Void)?
     
@@ -90,32 +90,24 @@ class SplitBillDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        vc1?.selectHandler = { [weak self] name in
-//            self?.payer.text = name
-//        }
-//        
-//        vc2?.selectHandler = { [weak self] name in
-//            self?.payer.text = name
-//        }
-        
-        vc1?.owedAmount = { [weak self] calculation in
+        equalViewController?.owedAmount = { [weak self] calculation in
             
             self?.equalCalculationResult = calculation
         }
         
-        vc1?.payAmount = { [weak self] whoPay in
+        equalViewController?.payAmount = { [weak self] whoPay in
             self?.equalResult = whoPay
         }
         
-        vc1?.friendOwedAmount = { [weak self] calculation in
+        equalViewController?.friendOwedAmount = { [weak self] calculation in
             self?.friendEqualCalculationResult = calculation
         }
         
-        vc1?.friendPayAmount = { [weak self] whoPay in
+        equalViewController?.friendPayAmount = { [weak self] whoPay in
             self?.friendEqualResult = whoPay
         }
         
-        vc2?.owedAmount = { [weak self] calculation in
+        individualViewController?.owedAmount = { [weak self] calculation in
             
             if calculation == Int(-0.9501) {
                 
@@ -128,17 +120,17 @@ class SplitBillDetailViewController: BaseViewController {
             self?.individualCalculationResult = calculation
         }
         
-        vc2?.payAmount = { [weak self] whoPay in
+        individualViewController?.payAmount = { [weak self] whoPay in
             
             self?.individualResult = whoPay
         }
         
-        vc2?.friendOwedAmount = { [weak self] calculation in
+        individualViewController?.friendOwedAmount = { [weak self] calculation in
             
             self?.friendIndividualCalculationResult = calculation
         }
         
-        vc2?.friendPayAmount = { [weak self] whoPay in
+        individualViewController?.friendPayAmount = { [weak self] whoPay in
             
             self?.friendIndividualResult = whoPay
         }
@@ -260,7 +252,7 @@ class SplitBillDetailViewController: BaseViewController {
                 
                 let defaultAction =
                     UIAlertAction(title: "OK", style: .cancel, handler: { [weak self] _ in
-                            self?.presentingViewController?.dismiss(animated: true, completion: nil)})
+                        self?.presentingViewController?.dismiss(animated: true, completion: nil)})
                 
                 alertController.addAction(defaultAction)
                 self.present(alertController, animated: true, completion: nil)
@@ -282,7 +274,11 @@ class SplitBillDetailViewController: BaseViewController {
         } else if friendEqualCalculationResult! > 0 {
             amountStatus = 0
         }
-        dataBase.collection("users").document(currentUser.uid).getDocument(completion: { (snapshot, error) in
+        dataBase
+            .collection(UserEnum.users.rawValue)
+            .document(currentUser.uid)
+            .getDocument(completion: { (snapshot, _) in
+                
             let user = snapshot?.data()
             self.userData = UserData(
                 name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
@@ -293,9 +289,9 @@ class SplitBillDetailViewController: BaseViewController {
             )
         
             self.dataBase
-            .collection("users")
+            .collection(UserEnum.users.rawValue)
             .document(self.friendID ?? "")
-            .collection("bills")
+            .collection(UserEnum.bills.rawValue)
             .document(document)
             .setData(
                 [
@@ -327,7 +323,11 @@ class SplitBillDetailViewController: BaseViewController {
             amountStatus = 0
         }
         
-        dataBase.collection("users").document(currentUser.uid).getDocument(completion: { (snapshot, error) in
+        dataBase
+            .collection(UserEnum.users.rawValue)
+            .document(currentUser.uid)
+            .getDocument(completion: { (snapshot, _) in
+                
             let user = snapshot?.data()
             self.userData = UserData(
                 name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
@@ -338,22 +338,22 @@ class SplitBillDetailViewController: BaseViewController {
             )
         
             self.dataBase
-            .collection("users")
-            .document(self.friendID ?? "")
-            .collection("bills")
-            .document(document)
-            .setData(
-                [
-                    BillData.CodingKeys.name.rawValue: self.userData?.name ?? "",
-                    BillData.CodingKeys.billName.rawValue: self.billingContent?.billName ?? "",
-                    BillData.CodingKeys.amountTotal.rawValue: self.billingContent?.amount ?? "",
-                    BillData.CodingKeys.owedAmount.rawValue: self.friendIndividualCalculationResult ?? "",
-                    BillData.CodingKeys.payAmount.rawValue: self.friendIndividualResult ?? "",
-                    BillData.CodingKeys.status.rawValue: self.amountStatus ?? "",
-                    BillData.CodingKeys.uid.rawValue: currentUser.uid,
-                    BillData.CodingKeys.billUid.rawValue: document
-                ]
-            )
+                .collection(UserEnum.users.rawValue)
+                .document(self.friendID ?? "")
+                .collection(UserEnum.bills.rawValue)
+                .document(document)
+                .setData(
+                    [
+                        BillData.CodingKeys.name.rawValue: self.userData?.name ?? "",
+                        BillData.CodingKeys.billName.rawValue: self.billingContent?.billName ?? "",
+                        BillData.CodingKeys.amountTotal.rawValue: self.billingContent?.amount ?? "",
+                        BillData.CodingKeys.owedAmount.rawValue: self.friendIndividualCalculationResult ?? "",
+                        BillData.CodingKeys.payAmount.rawValue: self.friendIndividualResult ?? "",
+                        BillData.CodingKeys.status.rawValue: self.amountStatus ?? "",
+                        BillData.CodingKeys.uid.rawValue: currentUser.uid,
+                        BillData.CodingKeys.billUid.rawValue: document
+                    ]
+                )
         })
     }
     
@@ -377,14 +377,16 @@ class SplitBillDetailViewController: BaseViewController {
         let friendEqualSum = friendMoney + friendEqual
         
         dataBase
-            .collection("users")
-            .document(currentUser.uid).collection("friends")
+            .collection(UserEnum.users.rawValue)
+            .document(currentUser.uid)
+            .collection(UserEnum.friends.rawValue)
             .document(friendID ?? "")
             .updateData(["totalAccount": equalSum])
         
         dataBase
-            .collection("users")
-            .document(friendID ?? "").collection("friends")
+            .collection(UserEnum.users.rawValue)
+            .document(friendID ?? "")
+            .collection(UserEnum.friends.rawValue)
             .document(currentUser.uid)
             .updateData(["totalAccount": friendEqualSum])
     }
@@ -406,15 +408,16 @@ class SplitBillDetailViewController: BaseViewController {
         let friendIndividualSum = friendAmount + friendIndividual
         
         dataBase
-            .collection("users")
+            .collection(UserEnum.users.rawValue)
             .document(currentUser.uid)
-            .collection("friends")
+            .collection(UserEnum.friends.rawValue)
             .document(friendID ?? "")
             .updateData(["totalAccount": individualSum])
         
         dataBase
-            .collection("users")
-            .document(friendID ?? "").collection("friends")
+            .collection(UserEnum.users.rawValue)
+            .document(friendID ?? "")
+            .collection(UserEnum.friends.rawValue)
             .document(currentUser.uid)
             .updateData(["totalAccount": friendIndividualSum])
     }
@@ -479,8 +482,8 @@ class SplitBillDetailViewController: BaseViewController {
                 else {
                     return
             }
-            vc1 = equalVC
-            vc1?.equalBilling = billingContent
+            equalViewController = equalVC
+            equalViewController?.equalBilling = billingContent
             
         } else if identifier == Segue.individual {
             
@@ -488,8 +491,8 @@ class SplitBillDetailViewController: BaseViewController {
                 else {
                     return
             }
-            vc2 = individualVC
-            vc2?.individualBilling = billingContent
+            individualViewController = individualVC
+            individualViewController?.individualBilling = billingContent
         }
     }
 }

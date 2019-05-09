@@ -63,6 +63,15 @@ struct BillData {
     }
 }
 
+struct BillingContent {
+    
+    let anyone: String
+    
+    let billName: String
+    
+    let amount: Int
+}
+
 extension BillData: BillingDocument {
     init?(dictionary: [String: Any]) {
         guard let name =

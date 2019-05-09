@@ -34,7 +34,6 @@ class LogInAndSignUpViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        setStatusBarBackgroundColor(color: UIColor.clear)
     }
     
     func setStatusBarBackgroundColor(color: UIColor) {
@@ -53,21 +52,8 @@ class LogInAndSignUpViewController: UIViewController {
     @IBAction func logIn(_ sender: UIButton) {
         
         if logInEmail.text == "" || logInPassword.text == "" {
-            // 提示用戶是不是忘記輸入 textfield ？
-            let alertController = UIAlertController(
-                title: "錯誤",
-                message: "請輸入信箱與密碼",
-                preferredStyle: .alert
-            )
             
-            let defaultAction = UIAlertAction(
-                title: "OK",
-                style: .cancel,
-                handler: nil
-            )
-            alertController.addAction(defaultAction)
-            
-            self.present(alertController, animated: true, completion: nil)
+            AlertManager().alertView(title: "錯誤", message: "請輸入信箱與密碼", view: self)
             
         } else {
             Auth.auth().signIn(withEmail: self.logInEmail.text!,
@@ -83,19 +69,7 @@ class LogInAndSignUpViewController: UIViewController {
                         self.present(tabBarVC, animated: true, completion: nil)
                     }
                 } else {
-                    // 提示用戶從 firebase 返回了一個錯誤。
-                    let alertController =
-                        UIAlertController(
-                            title: "錯誤",
-                            message: "無此帳號",
-//                            message: error?.localizedDescription,
-                            preferredStyle: .alert
-                    )
-                    
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
+                    AlertManager().alertView(title: "錯誤", message: "無此帳號", view: self)
                 }
             }
         }
@@ -108,38 +82,12 @@ class LogInAndSignUpViewController: UIViewController {
     @IBAction func signUp(_ sender: UIButton) { 
         
         if signUpEmail.text?.isValidEmail == false {
-
-            let alertController = UIAlertController(
-                title: "錯誤",
-                message: "信箱格式不符",
-                preferredStyle: .alert
-            )
-
-            let defaultAction = UIAlertAction(
-                title: "OK",
-                style: .cancel,
-                handler: nil
-            )
-            alertController.addAction(defaultAction)
-
-            self.present(alertController, animated: true, completion: nil)
+            
+            AlertManager().alertView(title: "錯誤", message: "信箱格式不符", view: self)
 
         } else if signUpPassword.text?.isPasswordValid == false {
 
-            let alertController = UIAlertController(
-                title: "錯誤",
-                message: "密碼格式不符",
-                preferredStyle: .alert
-            )
-
-            let defaultAction = UIAlertAction(
-                title: "OK",
-                style: .cancel,
-                handler: nil
-            )
-            alertController.addAction(defaultAction)
-
-            self.present(alertController, animated: true, completion: nil)
+            AlertManager().alertView(title: "錯誤", message: "請輸入英文與數字組成的密碼", view: self)
 
         } else {
         

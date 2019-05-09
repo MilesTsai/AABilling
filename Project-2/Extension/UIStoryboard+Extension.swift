@@ -25,23 +25,29 @@ private struct StoryboardCategory {
 
 extension UIStoryboard {
 
-    static var main: UIStoryboard
-        { return storyboard(name: StoryboardCategory.main) }
+    static var main: UIStoryboard {
+        return storyboard(name: StoryboardCategory.main)
+    }
 
-    static var friend: UIStoryboard
-        { return storyboard(name: StoryboardCategory.friend) }
+    static var friend: UIStoryboard {
+        return storyboard(name: StoryboardCategory.friend)
+    }
 
-    static var group: UIStoryboard
-        { return storyboard(name: StoryboardCategory.group) }
+    static var group: UIStoryboard {
+        return storyboard(name: StoryboardCategory.group)
+    }
 
-    static var addBill: UIStoryboard
-        { return storyboard(name: StoryboardCategory.addBill) }
+    static var addBill: UIStoryboard {
+        return storyboard(name: StoryboardCategory.addBill)
+    }
 
-    static var chart: UIStoryboard
-        { return storyboard(name: StoryboardCategory.chart) }
+    static var chart: UIStoryboard {
+        return storyboard(name: StoryboardCategory.chart)
+    }
 
-    static var user: UIStoryboard
-        { return storyboard(name: StoryboardCategory.user) }
+    static var user: UIStoryboard {
+        return storyboard(name: StoryboardCategory.user)
+    }
 
     private static func storyboard(name: String) -> UIStoryboard {
 

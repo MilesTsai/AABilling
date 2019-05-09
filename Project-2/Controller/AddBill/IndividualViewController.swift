@@ -178,23 +178,6 @@ class IndividualViewController: BaseTableViewController {
         return 60
     }
     
-//    func tableView(
-//        _ tableView: UITableView,
-//        didSelectRowAt indexPath: IndexPath) {
-//        
-//        if indexPath.row == 0 {
-//            selectHandler?(userNameInfo)
-//        } else if indexPath.row == 1 {
-//            selectHandler?(individualBilling!.anyone)
-//        } else {
-//            return
-//        }
-//    }
-    
-//    func numberPressed(_ number: String) {
-//        calculatedTotal.text?.append(number)
-//    }
-    
     @IBAction func numbers(_ sender: UIButton) {
         
         if let pressedNum = sender.currentTitle {
@@ -216,23 +199,6 @@ class IndividualViewController: BaseTableViewController {
             valueHasTyping = true
         }
     }
-    
-//    var displayValue: Double {
-//        get {
-//            if calculatedTotal != nil {
-//                return Double(calculatedTotal.text!)!
-//            } else {
-//                return 0
-//            }
-//        }
-//        set {
-//            if round(newValue) == newValue {
-//                calculatedTotal.text = String(Int(newValue))
-//            } else {
-//                calculatedTotal.text = String(newValue)
-//            }
-//        }
-//    }
     
     struct Operating {
         var resultValue: Double = 0
