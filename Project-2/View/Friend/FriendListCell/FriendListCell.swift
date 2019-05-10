@@ -29,6 +29,12 @@ class FriendListCell: UITableViewCell {
         acceptBtn.isHidden = true
         
         refuseBtn.isHidden = true
+        
+        accountsStatus.text = ""
+        
+        accountsSum.text = ""
+        
+        self.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

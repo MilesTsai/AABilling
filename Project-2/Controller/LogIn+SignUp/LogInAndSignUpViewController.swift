@@ -31,11 +31,6 @@ class LogInAndSignUpViewController: UIViewController {
         setStatusBarBackgroundColor(color: UIColor.clear)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
     func setStatusBarBackgroundColor(color: UIColor) {
         guard let statusBar =
             UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
@@ -90,12 +85,47 @@ class LogInAndSignUpViewController: UIViewController {
             AlertManager().alertView(title: "錯誤", message: "請輸入英文與數字組成的密碼", view: self)
 
         } else {
+            
+            signUp()
+        }
+    }
+    
+    func signUp() {
         
-            FirebaseManager.shared.signUp(
-                withEmail: signUpEmail.text ?? "",
-                password: signUpPassword.text ?? "",
-                userName: signUpUsername.text ?? "",
-                view: self)
+        if signUpEmail.text?.isEmpty == true {
+            
+            AlertManager().alertView(title: "錯誤", message: "請輸入信箱與密碼", view: self)
+            
+        } else {
+            
+            Auth.auth().createUser(
+            withEmail: signUpEmail.text ?? "",
+            password: signUpPassword.text ?? "")
+            { [weak self] (_, error) in
+                
+                if error == nil {
+                    print("You have successfully signed up")
+                    
+                    FirebaseManager
+                        .shared
+                        .createUserData(
+                            userName: self?.signUpUsername.text ?? "",
+                            withEmail: self?.signUpEmail.text ?? ""
+                    )
+                }
+                
+                if let tabBarVC =
+                    UIStoryboard.main.instantiateViewController(
+                        withIdentifier:
+                        String(describing: TabBarViewController.self))
+                        as? TabBarViewController {
+                    self?.present(tabBarVC, animated: true, completion: nil)
+                    
+                } else {
+                    
+                    AlertManager().alertView(title: "錯誤", message: error?.localizedDescription ?? "", view: self!)
+                }
+            }
         }
     }
 }

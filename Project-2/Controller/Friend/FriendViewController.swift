@@ -269,10 +269,6 @@ extension FriendViewController: UITableViewDataSource {
             
             friendCell.userName.text = list.name
             
-            friendCell.accountsStatus.text = ""
-            
-            friendCell.accountsSum.text = ""
-            
             friendCell.acceptBtn.isHidden = false
             
             friendCell.refuseBtn.isHidden = false
@@ -294,8 +290,6 @@ extension FriendViewController: UITableViewDataSource {
             friendCell.refuseBtn.tag = indexPath.row
             
         } else if indexPath.section == 1 {
-            
-            friendCell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
          
             friendCell.acceptBtn.isHidden = true
             

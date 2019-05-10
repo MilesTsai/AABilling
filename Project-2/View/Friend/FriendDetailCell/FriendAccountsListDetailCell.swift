@@ -18,7 +18,8 @@ class FriendAccountsListDetailCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

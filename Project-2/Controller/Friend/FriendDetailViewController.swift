@@ -130,58 +130,6 @@ class FriendDetailViewController: BaseViewController {
             }
         })
     }
-//        guard let currentUser = Auth.auth().currentUser else { return }
-//        
-//        guard let friendUid = friendData?.uid else { return }
-//        
-//        dataBase
-//            .collection(UserEnum.users.rawValue)
-//            .document(currentUser.uid)
-//            .collection(UserEnum.bills.rawValue)
-//            .whereField("uid", isEqualTo: friendUid)
-//            .getDocuments(completion: { [weak self] (snapshot, error) in
-//                
-//                if let error = error {
-//                    print(error)
-//                } else {
-//                    
-//                    guard let snap = snapshot else { return }
-//                    
-//                    for document in snap.documents {
-//                        
-//                        let billDetail = document.data()
-//                        
-//                        self?.friendBill =
-//                            BillData(
-//                                uid: billDetail["uid"] as? String,
-//                                billUid: billDetail["billUid"] as? String,
-//                                name: billDetail["name"] as? String,
-//                                billName: billDetail["email"] as? String,
-//                                amountTotal: billDetail["status"] as? Int,
-//                                owedAmount: billDetail["amountTotal"] as? Int,
-//                                payAmount: billDetail["owedAmount"] as? Int,
-//                                status: billDetail["payAmount"] as? Int
-//                            )
-//                        }
-//                    
-//                    self?.billingList =
-//                        snap
-//                            .documents
-//                            .compactMap({
-//                                BillData(dictionary: $0.data())
-//                            })
-//                    
-            
-//
-//                    DispatchQueue.main.async {
-//
-//                        self?.friendDetailTableView.reloadData()
-//
-//                        self?.friendDetailTableView.mj_header.endRefreshing()
-//                    }
-//
-//                }
-//        })
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -292,8 +240,6 @@ extension FriendDetailViewController: UITableViewDataSource {
                     withIdentifier: String(describing: FriendAccountsListDetailCell.self),
                 for: indexPath
                 )
-
-        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
 
         guard let accountsDetailCell =
                     cell as? FriendAccountsListDetailCell else { return cell }
