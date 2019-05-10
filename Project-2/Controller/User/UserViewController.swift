@@ -51,20 +51,14 @@ class UserViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        dataBase.collection("users").document(currentUser?.uid ?? "").getDocument(completion: { [weak self] (snapshot, _) in
-            let user = snapshot?.data()
-            self?.userData = UserData(
-                name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
-                email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
-                storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
-                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String,
-                fcmToken: user?[PersonalData.CodingKeys.fcmToken.rawValue] as? String
-            )
+        FirebaseManager.shared.readUserData { [weak self] (userData) in
+            
+            self?.userData = userData
             
             self?.userName.text = self?.userData?.name
             
             self?.userEmail.text = self?.userData?.email
-        })
+        }
         
         loadData()
         
@@ -83,42 +77,40 @@ class UserViewController: BaseViewController {
             identifier: String(describing: LentCell.self),
             bundle: nil
         )
-        
-//        lentListTableView.mls_registerCellWithNib(
-//            identifier: String(describing: NoLentCell.self),
-//            bundle: nil
-//        )
     }
     
     func loadData() {
         
-        dataBase
-            .collection("users")
-            .document(currentUser?.uid ?? "")
-            .collection("friends")
-            .order(by: "name", descending: false)
-            .addSnapshotListener { [weak self] querySnapshot, error in
+        FirebaseManager.shared.readFriendListData { [weak self] (friendList) in
+            
+            self?.friendList = friendList
+            
+            self?.list()
+            
+            DispatchQueue.main.async {
                 
-                if let error = error {
-                    print("\(error.localizedDescription)")
-                } else {
-                    guard let snapshot =
-                        querySnapshot else { return }
-                    
-                    self?.friendList =
-                        snapshot
-                            .documents
-                            .compactMap({
-                                PersonalData(dictionary: $0.data())
-                            })
-                    
-                    self?.list()
-                    
-                    DispatchQueue.main.async {
-                        
-                        self?.lentListTableView.reloadData()
-                    }
-                }
+                self?.lentListTableView.reloadData()
+            }
+//        dataBase
+//            .collection("users")
+//            .document(currentUser?.uid ?? "")
+//            .collection("friends")
+//            .order(by: "name", descending: false)
+//            .addSnapshotListener { [weak self] querySnapshot, error in
+//
+//                if let error = error {
+//                    print("\(error.localizedDescription)")
+//                } else {
+//                    guard let snapshot =
+//                        querySnapshot else { return }
+//
+//                    self?.friendList =
+//                        snapshot
+//                            .documents
+//                            .compactMap({
+//                                PersonalData(dictionary: $0.data())
+//                            })
+//                }
         }
     }
     
@@ -137,9 +129,6 @@ class UserViewController: BaseViewController {
             }
             
             lentList = tempLentList
-            
-            print("____________")
-            print(lentList)
         }
     }
     
@@ -155,7 +144,7 @@ class UserViewController: BaseViewController {
         for list in friendList {
             guard let friendUid = list.uid else { return }
             
-            dataBase.collection("users").document(friendUid).collection("friends").document(currentUser?.uid ?? "").updateData(["name": userName.text ?? ""])
+            FirebaseManager.shared.updateUserName(friendID: friendUid, name: userName.text ?? "")
         }
     }
     
@@ -189,8 +178,11 @@ class UserViewController: BaseViewController {
                         guard let token = document.fcmToken else { return }
                         
                         let sender = PushNotificationSender()
-                        sender.sendPushNotification(to: token,
-                                                    title: "溫馨提醒", body: "目前您與\(userName)尚有款項未結清")
+                        sender.sendPushNotification(
+                            to: token,
+                            title: "溫馨提醒",
+                            body: "目前您與\(userName)尚有款項未結清"
+                        )
                     }
             })
         
@@ -277,8 +269,11 @@ extension UserViewController: UITableViewDataSource {
                 handler: { _ in
                     
                     let sender = PushNotificationSender()
-                    sender.sendPushNotification(to: token,
-                                                title: "溫馨提醒", body: "目前您與\(userName)尚有款項未結清")
+                    sender.sendPushNotification(
+                        to: token,
+                        title: "溫馨提醒",
+                        body: "目前您與\(userName)尚有款項未結清"
+                    )
             })
         
         alertController.addAction(cancelAction)

@@ -17,17 +17,11 @@ class SplitBillDetailViewController: BaseViewController {
     
     var friendBillingUid: ((String) -> Void)?
     
-    var dataBase: Firestore = Firestore.firestore()
-    
     var friendID: String?
     
     var myFriend: [String: Any]?
     
     var friendBillData: [String: Any]?
-    
-    var userData: UserData?
-    
-    var bill: BillData?
     
     var billingContent: BillingContent?
     
@@ -91,7 +85,6 @@ class SplitBillDetailViewController: BaseViewController {
         super.viewDidLoad()
         
         equalViewController?.owedAmount = { [weak self] calculation in
-            
             self?.equalCalculationResult = calculation
         }
         
@@ -114,7 +107,6 @@ class SplitBillDetailViewController: BaseViewController {
                 self?.individualResult = nil
                 
                 self?.friendIndividualResult = nil
-                
             }
             
             self?.individualCalculationResult = calculation
@@ -138,9 +130,6 @@ class SplitBillDetailViewController: BaseViewController {
     
     @IBAction func saveBill(_ sender: UIBarButtonItem) {
         
-        guard let currentUser = Auth.auth().currentUser
-            else { return }
-        
         if selectExpenseBtns[0].isSelected == true {
             
             if billingContent!.amount + 1 == equalCalculationResult {
@@ -156,38 +145,35 @@ class SplitBillDetailViewController: BaseViewController {
                 } else if equalCalculationResult! > 0 {
                     amountStatus = 0
                 }
-                let ref = dataBase.collection("users").document()
-                let refUid = ref.documentID
                 
-                dataBase
-                    .collection("users")
-                    .document(currentUser.uid)
-                    .collection("bills")
-                    .document(refUid)
-                    .setData([
-                            BillData.CodingKeys.name.rawValue:
-                                billingContent?.anyone ?? "",
-                            BillData.CodingKeys.billName.rawValue:
-                                billingContent?.billName ?? "",
-                            BillData.CodingKeys.amountTotal.rawValue:
-                                billingContent?.amount ?? "",
-                            BillData.CodingKeys.owedAmount.rawValue:
-                                equalCalculationResult ?? "",
-                            BillData.CodingKeys.payAmount.rawValue:
-                                equalResult ?? "",
-                            BillData.CodingKeys.status.rawValue:
-                                amountStatus ?? "",
-                            BillData.CodingKeys.uid.rawValue: friendID ?? "",
-                            BillData.CodingKeys.billUid.rawValue: refUid])
-                addEqualDocument(document: refUid)
+                FirebaseManager.shared.createMyBilling(
+                    name: billingContent?.anyone ?? "",
+                    billName: billingContent?.billName ?? "",
+                    amountTotal: billingContent?.amount ?? 0,
+                    owedAmount: equalCalculationResult ?? 0,
+                    payAmount: equalResult ?? 0,
+                    status: amountStatus ?? 3,
+                    uid: friendID ?? "")
+                
+                addEqualDocument()
+                
                 updateEqualDocument()
                 
                 let alertController =
-                    UIAlertController(title: "成功", message: "帳單已成立", preferredStyle: .alert)
+                    UIAlertController(
+                        title: "成功",
+                        message: "帳單已成立",
+                        preferredStyle: .alert
+                )
                 
                 let defaultAction =
-                    UIAlertAction(title: "OK", style: .cancel, handler: { [weak self] _ in
-                        self?.presentingViewController?.dismiss(animated: true, completion: nil)})
+                    UIAlertAction(
+                        title: "OK",
+                        style: .cancel,
+                        handler: { [weak self] _ in
+                        self?.presentingViewController?.dismiss(
+                            animated: true, completion: nil)
+                    })
                 
                 alertController.addAction(defaultAction)
                 self.present(alertController, animated: true, completion: nil)}
@@ -204,11 +190,19 @@ class SplitBillDetailViewController: BaseViewController {
             
             if Int(-0.9501) == individualCalculationResult {
                 
-                AlertManager().alertView(title: "錯誤", message: "請填入金額", view: self)
+                AlertManager().alertView(
+                    title: "錯誤",
+                    message: "請輸入金額",
+                    view: self
+                )
                 
             } else if indvidualSum < 0 || indvidualSum > amountTotal {
                 
-                AlertManager().alertView(title: "錯誤", message: "超出輸入金額範圍", view: self)
+                AlertManager().alertView(
+                    title: "錯誤",
+                    message: "超出輸入金額範圍",
+                    view: self
+                )
                 
             } else {
             
@@ -220,39 +214,34 @@ class SplitBillDetailViewController: BaseViewController {
                     amountStatus = 0
                 }
                 
-                let ref = dataBase.collection("users").document()
-                let refUid = ref.documentID
+                FirebaseManager.shared.createMyBilling(
+                    name: billingContent?.anyone ?? "",
+                    billName: billingContent?.billName ?? "",
+                    amountTotal: billingContent?.amount ?? 0,
+                    owedAmount: individualCalculationResult ?? 0,
+                    payAmount: individualResult ?? 0,
+                    status: amountStatus ?? 3,
+                    uid: friendID ?? "")
                 
-                dataBase
-                    .collection("users")
-                    .document(currentUser.uid)
-                    .collection("bills")
-                    .document(refUid)
-                    .setData(
-                        [
-                            BillData.CodingKeys.name.rawValue:
-                                billingContent?.anyone ?? "",
-                            BillData.CodingKeys.billName.rawValue:
-                                billingContent?.billName ?? "",
-                            BillData.CodingKeys.amountTotal.rawValue:
-                                billingContent?.amount ?? "",
-                            BillData.CodingKeys.owedAmount.rawValue:
-                                individualCalculationResult ?? "",
-                            BillData.CodingKeys.payAmount.rawValue:
-                                individualResult ?? "",
-                            BillData.CodingKeys.status.rawValue:
-                                amountStatus ?? "",
-                            BillData.CodingKeys.uid.rawValue: friendID ?? "",
-                            BillData.CodingKeys.billUid.rawValue: refUid])
-                addIndividualDocument(document: refUid)
+                addIndividualDocument()
+                
                 updateIndividualDocument()
                 
                 let alertController =
-                    UIAlertController(title: "成功", message: "帳單已成立", preferredStyle: .alert)
+                    UIAlertController(
+                        title: "成功",
+                        message: "帳單已成立",
+                        preferredStyle: .alert
+                )
                 
                 let defaultAction =
-                    UIAlertAction(title: "OK", style: .cancel, handler: { [weak self] _ in
-                        self?.presentingViewController?.dismiss(animated: true, completion: nil)})
+                    UIAlertAction(
+                        title: "OK",
+                        style: .cancel,
+                        handler: { [weak self] _ in
+                        self?.presentingViewController?.dismiss(
+                            animated: true, completion: nil)
+                    })
                 
                 alertController.addAction(defaultAction)
                 self.present(alertController, animated: true, completion: nil)
@@ -260,12 +249,7 @@ class SplitBillDetailViewController: BaseViewController {
         }
     }
     
-    private func addEqualDocument(document: String) {
-        
-        guard let currentUser = Auth.auth().currentUser
-            else {
-                return
-        }
+    private func addEqualDocument() {
         
         if friendEqualCalculationResult! < 0 {
             amountStatus = 1
@@ -274,46 +258,17 @@ class SplitBillDetailViewController: BaseViewController {
         } else if friendEqualCalculationResult! > 0 {
             amountStatus = 0
         }
-        dataBase
-            .collection(UserEnum.users.rawValue)
-            .document(currentUser.uid)
-            .getDocument(completion: { (snapshot, _) in
-                
-            let user = snapshot?.data()
-            self.userData = UserData(
-                name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
-                email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
-                storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
-                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String,
-                fcmToken: user?[PersonalData.CodingKeys.fcmToken.rawValue] as? String
-            )
         
-            self.dataBase
-            .collection(UserEnum.users.rawValue)
-            .document(self.friendID ?? "")
-            .collection(UserEnum.bills.rawValue)
-            .document(document)
-            .setData(
-                [
-                    BillData.CodingKeys.name.rawValue: self.userData?.name ?? "",
-                    BillData.CodingKeys.billName.rawValue: self.billingContent?.billName ?? "",
-                    BillData.CodingKeys.amountTotal.rawValue: self.billingContent?.amount ?? "",
-                    BillData.CodingKeys.owedAmount.rawValue: self.friendEqualCalculationResult ?? "",
-                    BillData.CodingKeys.payAmount.rawValue: self.friendEqualResult ?? "",
-                    BillData.CodingKeys.status.rawValue: self.amountStatus ?? "",
-                    BillData.CodingKeys.uid.rawValue: currentUser.uid,
-                    BillData.CodingKeys.billUid.rawValue: document
-                ]
-            )
-        })
+        FirebaseManager.shared.createFriendBilling(
+            friendID: self.friendID ?? "",
+            billName: self.billingContent?.billName ?? "",
+            amountTotal: self.billingContent?.amount ?? 0,
+            owedAmount: self.friendEqualCalculationResult ?? 0,
+            payAmount: self.friendEqualResult ?? 0,
+            status: self.amountStatus ?? 3)
     }
     
-    private func addIndividualDocument(document: String) {
-        
-        guard let currentUser = Auth.auth().currentUser
-            else {
-                return
-        }
+    private func addIndividualDocument() {
         
         if friendIndividualCalculationResult! < 0 {
             amountStatus = 1
@@ -323,46 +278,16 @@ class SplitBillDetailViewController: BaseViewController {
             amountStatus = 0
         }
         
-        dataBase
-            .collection(UserEnum.users.rawValue)
-            .document(currentUser.uid)
-            .getDocument(completion: { (snapshot, _) in
-                
-            let user = snapshot?.data()
-            self.userData = UserData(
-                name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
-                email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
-                storage: user?[PersonalData.CodingKeys.storage.rawValue] as? String,
-                uid: user?[PersonalData.CodingKeys.uid.rawValue] as? String,
-                fcmToken: user?[PersonalData.CodingKeys.fcmToken.rawValue] as? String
-            )
-        
-            self.dataBase
-                .collection(UserEnum.users.rawValue)
-                .document(self.friendID ?? "")
-                .collection(UserEnum.bills.rawValue)
-                .document(document)
-                .setData(
-                    [
-                        BillData.CodingKeys.name.rawValue: self.userData?.name ?? "",
-                        BillData.CodingKeys.billName.rawValue: self.billingContent?.billName ?? "",
-                        BillData.CodingKeys.amountTotal.rawValue: self.billingContent?.amount ?? "",
-                        BillData.CodingKeys.owedAmount.rawValue: self.friendIndividualCalculationResult ?? "",
-                        BillData.CodingKeys.payAmount.rawValue: self.friendIndividualResult ?? "",
-                        BillData.CodingKeys.status.rawValue: self.amountStatus ?? "",
-                        BillData.CodingKeys.uid.rawValue: currentUser.uid,
-                        BillData.CodingKeys.billUid.rawValue: document
-                    ]
-                )
-        })
+        FirebaseManager.shared.createFriendBilling(
+            friendID: self.friendID ?? "",
+            billName: self.billingContent?.billName ?? "",
+            amountTotal: self.billingContent?.amount ?? 0,
+            owedAmount: self.friendIndividualCalculationResult ?? 0,
+            payAmount: self.friendIndividualResult ?? 0,
+            status: self.amountStatus ?? 3)
     }
     
     private func updateEqualDocument() {
-        
-        guard let currentUser = Auth.auth().currentUser
-            else {
-                return
-        }
         
         guard let equal = equalCalculationResult else { return }
         
@@ -376,24 +301,11 @@ class SplitBillDetailViewController: BaseViewController {
         
         let friendEqualSum = friendMoney + friendEqual
         
-        dataBase
-            .collection(UserEnum.users.rawValue)
-            .document(currentUser.uid)
-            .collection(UserEnum.friends.rawValue)
-            .document(friendID ?? "")
-            .updateData(["totalAccount": equalSum])
-        
-        dataBase
-            .collection(UserEnum.users.rawValue)
-            .document(friendID ?? "")
-            .collection(UserEnum.friends.rawValue)
-            .document(currentUser.uid)
-            .updateData(["totalAccount": friendEqualSum])
+        FirebaseManager.shared.updateMySum(friendID: friendID ?? "", sum: equalSum)
+        FirebaseManager.shared.updateFriendSum(friendID: friendID ?? "", friendSum: friendEqualSum)
     }
     
     private func updateIndividualDocument() {
-        
-        guard let currentUser = Auth.auth().currentUser else { return }
         
         guard let individual = individualCalculationResult else { return }
         
@@ -407,19 +319,8 @@ class SplitBillDetailViewController: BaseViewController {
         
         let friendIndividualSum = friendAmount + friendIndividual
         
-        dataBase
-            .collection(UserEnum.users.rawValue)
-            .document(currentUser.uid)
-            .collection(UserEnum.friends.rawValue)
-            .document(friendID ?? "")
-            .updateData(["totalAccount": individualSum])
-        
-        dataBase
-            .collection(UserEnum.users.rawValue)
-            .document(friendID ?? "")
-            .collection(UserEnum.friends.rawValue)
-            .document(currentUser.uid)
-            .updateData(["totalAccount": friendIndividualSum])
+        FirebaseManager.shared.updateMySum(friendID: friendID ?? "", sum: individualSum)
+        FirebaseManager.shared.updateFriendSum(friendID: friendID ?? "", friendSum: friendIndividualSum)
     }
     
     @IBAction func cancelExpenseDetail(_ sender: UIBarButtonItem) {

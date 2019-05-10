@@ -9,15 +9,6 @@
 import UIKit
 import Firebase
 
-//struct BillingContent {
-//    
-//    let anyone: String
-//    
-//    let billName: String
-//    
-//    let amount: Int
-//}
-
 class AddBillViewController: BaseViewController {
     
     @IBOutlet weak var accountObject: UITextField!
@@ -114,7 +105,7 @@ class AddBillViewController: BaseViewController {
                                 .document(self.friendID ?? "")
                                 .collection("friends")
                                 .document(currentUser.uid)
-                                .getDocument(completion: { (document, error) in
+                                .getDocument(completion: { (document, _) in
                                 
                                 self.friendBillData = document?.data()
                                 
@@ -171,29 +162,10 @@ class AddBillViewController: BaseViewController {
     
     func readFirendList() {
         
-        guard let currentUser = Auth.auth().currentUser
-            else {
-                return
-        }
-        
-        dataBase
-            .collection("users")
-            .document(currentUser.uid)
-            .collection("friends")
-            .order(by: "name", descending: false)
-            .addSnapshotListener { [weak self] (snapshot, error) in
+        FirebaseManager.shared.readFriendListData { [weak self] (friendList) in
+            self?.friendList = friendList
             
-            guard let snapshot =
-                snapshot else { return }
-            
-            self?.friendList =
-                snapshot
-                    .documents
-                    .compactMap({
-                        PersonalData(dictionary: $0.data())
-                    })
-                
-                self?.list()
+            self?.list()
         }
     }
     

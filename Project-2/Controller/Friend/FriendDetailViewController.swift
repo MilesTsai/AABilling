@@ -239,7 +239,7 @@ extension FriendDetailViewController: UITableViewDataSource {
         friendHeaderCell
             .friendBackgroundColor
             .setGradientBackground(
-                colorTop: #colorLiteral(red: 0.1960784314, green: 0.1607843137, blue: 0.1215686275, alpha: 1),
+                colorTop: #colorLiteral(red: 0.5019607843, green: 0.4431372549, blue: 0.3843137255, alpha: 1),
                 colorBottom: #colorLiteral(red: 0.9725490196, green: 0.9803921569, blue: 0.9803921569, alpha: 1),
                 startPoint: CGPoint(x: 0.5, y: 1.0),
                 endPoint: CGPoint(x: 0.5, y: 0.0)
@@ -354,7 +354,8 @@ extension FriendDetailViewController: UITableViewDataSource {
             if let indexPath = friendDetailTableView.indexPathForSelectedRow {
                 guard let friendBillDetailNC = segue.destination as? UINavigationController else { return }
                 
-                guard let friendBillDetailVC = friendBillDetailNC.topViewController as? FriendBillDetailViewController else { return }
+                guard let friendBillDetailVC =
+                    friendBillDetailNC.topViewController as? FriendBillDetailViewController else { return }
                 
                 friendBillDetailVC.billingDetailData = billingList[indexPath.row]
             }
