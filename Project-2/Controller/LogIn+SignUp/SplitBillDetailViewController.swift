@@ -74,7 +74,7 @@ class SplitBillDetailViewController: BaseViewController {
     
     @IBOutlet var selectExpenseBtns: [UIButton]!
     
-    @IBOutlet weak var payer: UILabel!
+//    @IBOutlet weak var payer: UILabel!
     
     var containerViews: [UIView] {
         

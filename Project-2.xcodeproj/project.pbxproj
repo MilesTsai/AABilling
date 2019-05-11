@@ -14,6 +14,7 @@
 		CE007C7D22759CDA00465E28 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE768A882254EED000ECEBE1 /* Group.storyboard */; };
 		CE007C812277367B00465E28 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE007C802277367B00465E28 /* String+Extension.swift */; };
 		CE007C8322782A9900465E28 /* AlertObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE007C8222782A9900465E28 /* AlertObject.swift */; };
+		CE457A1522856B0E00D887A1 /* Project_2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE457A1422856B0E00D887A1 /* Project_2Tests.swift */; };
 		CE497CD1225B404E004ED6DF /* FriendSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */; };
 		CE497CF7225B8C1D004ED6DF /* GroupSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */; };
 		CE497CFB225B928B004ED6DF /* GroupSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE497CF9225B928B004ED6DF /* GroupSettingCell.swift */; };
@@ -105,6 +106,16 @@
 		CEFF0D8B225F3F5E00C74ED4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D8A225F3F5E00C74ED4 /* LoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CE457A1722856B0E00D887A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEFDBC0122538EF800E603F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEFDBC0822538EF800E603F3;
+			remoteInfo = "Project-2";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		968056FE5A4616085FDFFC44 /* Pods-Project-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-2.debug.xcconfig"; path = "Target Support Files/Pods-Project-2/Pods-Project-2.debug.xcconfig"; sourceTree = "<group>"; };
 		A12B318B13D4CCFE8266D316 /* Pods-Project-2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-2.release.xcconfig"; path = "Target Support Files/Pods-Project-2/Pods-Project-2.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,6 +125,9 @@
 		CE007C792273278700465E28 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		CE007C802277367B00465E28 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		CE007C8222782A9900465E28 /* AlertObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertObject.swift; sourceTree = "<group>"; };
+		CE457A1222856B0E00D887A1 /* Project-2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project-2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE457A1422856B0E00D887A1 /* Project_2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_2Tests.swift; sourceTree = "<group>"; };
+		CE457A1622856B0E00D887A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE497CD0225B404E004ED6DF /* FriendSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSettingViewController.swift; sourceTree = "<group>"; };
 		CE497CF6225B8C1D004ED6DF /* GroupSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingViewController.swift; sourceTree = "<group>"; };
 		CE497CF9225B928B004ED6DF /* GroupSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingCell.swift; sourceTree = "<group>"; };
@@ -210,6 +224,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CE457A0F22856B0E00D887A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEFDBC0622538EF800E603F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,6 +248,15 @@
 				A219E35342CA912299A66365 /* Pods_Project_2.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE457A1322856B0E00D887A1 /* Project-2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CE457A1422856B0E00D887A1 /* Project_2Tests.swift */,
+				CE457A1622856B0E00D887A1 /* Info.plist */,
+			);
+			path = "Project-2Tests";
 			sourceTree = "<group>";
 		};
 		CE497CF8225B9254004ED6DF /* GroupSettingCell */ = {
@@ -476,6 +506,7 @@
 			children = (
 				CE768AB3225A010100ECEBE1 /* .gitignore */,
 				CEFDBC0B22538EF900E603F3 /* Project-2 */,
+				CE457A1322856B0E00D887A1 /* Project-2Tests */,
 				CEFDBC0A22538EF900E603F3 /* Products */,
 				DF6A6343403FC6674536FFE9 /* Pods */,
 				CE2681CA320C0E9BE087440F /* Frameworks */,
@@ -486,6 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				CEFDBC0922538EF900E603F3 /* Project-2.app */,
+				CE457A1222856B0E00D887A1 /* Project-2Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -595,6 +627,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CE457A1122856B0E00D887A1 /* Project-2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE457A1B22856B0E00D887A1 /* Build configuration list for PBXNativeTarget "Project-2Tests" */;
+			buildPhases = (
+				CE457A0E22856B0E00D887A1 /* Sources */,
+				CE457A0F22856B0E00D887A1 /* Frameworks */,
+				CE457A1022856B0E00D887A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE457A1822856B0E00D887A1 /* PBXTargetDependency */,
+			);
+			name = "Project-2Tests";
+			productName = "Project-2Tests";
+			productReference = CE457A1222856B0E00D887A1 /* Project-2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CEFDBC0822538EF800E603F3 /* Project-2 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEFDBC1B22538EFC00E603F3 /* Build configuration list for PBXNativeTarget "Project-2" */;
@@ -626,6 +676,10 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Miles;
 				TargetAttributes = {
+					CE457A1122856B0E00D887A1 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = CEFDBC0822538EF800E603F3;
+					};
 					CEFDBC0822538EF800E603F3 = {
 						CreatedOnToolsVersion = 10.2;
 						SystemCapabilities = {
@@ -650,11 +704,19 @@
 			projectRoot = "";
 			targets = (
 				CEFDBC0822538EF800E603F3 /* Project-2 */,
+				CE457A1122856B0E00D887A1 /* Project-2Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CE457A1022856B0E00D887A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEFDBC0722538EF800E603F3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -797,6 +859,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CE457A0E22856B0E00D887A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE457A1522856B0E00D887A1 /* Project_2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEFDBC0522538EF800E603F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -870,6 +940,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		CE457A1822856B0E00D887A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEFDBC0822538EF800E603F3 /* Project-2 */;
+			targetProxy = CE457A1722856B0E00D887A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		CEFDBC1022538EF900E603F3 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -890,6 +968,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CE457A1922856B0E00D887A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Project-2Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Miles.Project-2Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project-2.app/Project-2";
+			};
+			name = Debug;
+		};
+		CE457A1A22856B0E00D887A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Project-2Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Miles.Project-2Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project-2.app/Project-2";
+			};
+			name = Release;
+		};
 		CEFDBC1922538EFC00E603F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1058,6 +1176,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CE457A1B22856B0E00D887A1 /* Build configuration list for PBXNativeTarget "Project-2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE457A1922856B0E00D887A1 /* Debug */,
+				CE457A1A22856B0E00D887A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CEFDBC0422538EF800E603F3 /* Build configuration list for PBXProject "Project-2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
