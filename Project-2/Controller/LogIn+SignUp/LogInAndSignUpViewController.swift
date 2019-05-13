@@ -63,7 +63,9 @@ class LogInAndSignUpViewController: UIViewController {
                             withIdentifier: String(describing: TabBarViewController.self)) as? TabBarViewController {
                         self.present(tabBarVC, animated: true, completion: nil)
                     }
+                    
                 } else {
+                    
                     AlertManager().alertView(title: "錯誤", message: "無此帳號", view: self)
                 }
             }

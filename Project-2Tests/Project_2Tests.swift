@@ -8,6 +8,7 @@
 
 import XCTest
 import UIKit
+@testable import Project_2
 
 class Project2Tests: XCTestCase {
 
@@ -20,6 +21,7 @@ class Project2Tests: XCTestCase {
     }
     
     func add(aaa: Int, bbb: Int) -> Int {
+        
         return aaa + bbb
     }
     
@@ -43,6 +45,62 @@ class Project2Tests: XCTestCase {
         
         XCTAssertEqual(actualResult, expectedResult)
         print("哈哈哈")
+    }
+    
+//    func testBack(xx: Int) -> Int {
+//
+//        if xx <= 1 {
+//
+//            return 1
+//
+//        } else {
+//
+//            return fib(x: xx - 1) + fib(x: xx - 2)
+//        }
+//    }
+    
+    func fib(nnn: Int) -> Int {
+        
+        if nnn <= 1 {
+            return nnn
+        }
+        
+        var fibs: [Int] = []
+        
+        for index in 0...nnn {
+            
+            if index <= 1 {
+                
+                fibs.append(1)
+            } else {
+                
+                fibs.append(fibs[index - 1] + fibs[index - 2])
+            }
+        }
+        print(fibs)
+        return fibs[nnn]
+    }
+    
+    func testFib() {
+        
+        let expectedResult = 8
+        
+        let actualResult = fib(nnn: 5)
+        
+        XCTAssertEqual(actualResult, expectedResult)
+    }
+    
+    func testCorrect() {
+//        fib(nn: 10)
+        let aa = fib(nnn: 11)
+        let bb = fib(nnn: 12)
+        
+        XCTAssertEqual(aa, bb)
+    }
+    
+    func testNegative() {
+//        fib(nn: -1)
+//        fib(1.5)
     }
     
     func testExample() {

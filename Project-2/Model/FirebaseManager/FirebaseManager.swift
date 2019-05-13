@@ -32,42 +32,6 @@ class FirebaseManager {
     
     lazy var billUid = Firestore.firestore().collection("users").document().documentID
     
-//    func signUp(withEmail: String, password: String, userName: String, view: UIViewController) {
-//            if withEmail.isEmpty == true {
-//
-//                AlertManager().alertView(title: "錯誤", message: "請輸入信箱與密碼", view: view)
-//
-//            } else {
-//                Auth.auth().createUser(withEmail: withEmail, password: password) { [weak self] (_, error) in
-//
-//                    if error == nil {
-//                        print("You have successfully signed up")
-//
-//                        guard let currentUser = Auth.auth().currentUser else { return }
-//                        self?.userReference.document(currentUser.uid).setData(
-//                            [
-//                                UserData.CodingKeys.name.rawValue: userName,
-//                                UserData.CodingKeys.email.rawValue: withEmail,
-//                                UserData.CodingKeys.storage.rawValue: "",
-//                                UserData.CodingKeys.uid.rawValue:
-//                                    currentUser.uid
-//                            ])
-//
-//                        if let tabBarVC =
-//                            UIStoryboard.main.instantiateViewController(
-//                                withIdentifier:
-//                                String(describing: TabBarViewController.self))
-//                                as? TabBarViewController {
-//                            view.present(tabBarVC, animated: true, completion: nil)
-//                        }
-//                    } else {
-//
-//                        AlertManager().alertView(title: "錯誤", message: error?.localizedDescription ?? "", view: view)
-//                    }
-//            }
-//        }
-//    }
-    
     func createUserData(userName: String, withEmail: String) {
         
         guard let currentUser = Auth.auth().currentUser else { return }
@@ -79,17 +43,6 @@ class FirebaseManager {
                 UserData.CodingKeys.uid.rawValue: currentUser.uid
             ])
     }
-        
-        
-//        guard let currentUser = Auth.auth().currentUser else { return }
-//        userReference.document(currentUser.uid).setData(
-//            [
-//                UserData.CodingKeys.name.rawValue: userName,
-//                UserData.CodingKeys.email.rawValue: withEmail,
-//                UserData.CodingKeys.storage.rawValue: "",
-//                UserData.CodingKeys.uid.rawValue:
-//                    currentUser.uid
-//            ])
     
     func createFriend(friendID: String) {
         

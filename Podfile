@@ -21,5 +21,10 @@ target 'Project-2' do
   pod 'Crashlytics', '~> 3.12.0'
   
   pod 'MJRefresh'
+  
+  target 'Project_2Tests' do
+    inherit!: search_paths
+    pod 'Firebase'
+  end
 
 end
