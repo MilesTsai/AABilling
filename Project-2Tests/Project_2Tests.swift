@@ -11,41 +11,51 @@ import UIKit
 @testable import Project_2
 
 class Project2Tests: XCTestCase {
+    
+    var sut: LogInAndSignUpViewController!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        sut = LogInAndSignUpViewController()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
+        
     }
     
-    func add(aaa: Int, bbb: Int) -> Int {
+    func test_read_FirebaseUser() {
         
-        return aaa + bbb
+        FirebaseManager.shared.readUserData()
+        
+        FirebaseManager.shared.readUserFriendData(friendUid: "")
     }
+//    func add(aaa: Int, bbb: Int) -> Int {
+//
+//        return aaa + bbb
+//    }
     
-    func testMiles() {
-        
+//    func testMiles() {
+    
         // 3A - Arrange, Action, Assert
         
         // Arrange
-        
-        let aaa = 10
-        
-        let bbb = 20
-        
-        let expectedResult = aaa + bbb
-        
+//
+//        let aaa = 10
+//
+//        let bbb = 20
+//
+//        let expectedResult = aaa + bbb
+    
         // Action
         
-        let actualResult = add(aaa: aaa, bbb: bbb)
-        
+//        let actualResult = add(aaa: aaa, bbb: bbb)
+    
         // Assert
         
-        XCTAssertEqual(actualResult, expectedResult)
-        print("哈哈哈")
-    }
+//        XCTAssertEqual(actualResult, expectedResult)
+//        print("哈哈哈")
+//    }
     
 //    func testBack(xx: Int) -> Int {
 //
@@ -59,49 +69,49 @@ class Project2Tests: XCTestCase {
 //        }
 //    }
     
-    func fib(nnn: Int) -> Int {
-        
-        if nnn <= 1 {
-            return nnn
-        }
-        
-        var fibs: [Int] = []
-        
-        for index in 0...nnn {
-            
-            if index <= 1 {
-                
-                fibs.append(1)
-            } else {
-                
-                fibs.append(fibs[index - 1] + fibs[index - 2])
-            }
-        }
-        print(fibs)
-        return fibs[nnn]
-    }
+//    func fib(nnn: Int) -> Int {
+//
+//        if nnn <= 1 {
+//            return nnn
+//        }
+//
+//        var fibs: [Int] = []
+//
+//        for index in 0...nnn {
+//
+//            if index <= 1 {
+//
+//                fibs.append(1)
+//            } else {
+//
+//                fibs.append(fibs[index - 1] + fibs[index - 2])
+//            }
+//        }
+//        print(fibs)
+//        return fibs[nnn]
+//    }
     
-    func testFib() {
-        
-        let expectedResult = 8
-        
-        let actualResult = fib(nnn: 5)
-        
-        XCTAssertEqual(actualResult, expectedResult)
-    }
+//    func testFib() {
+//
+//        let expectedResult = 8
+//
+//        let actualResult = fib(nnn: 5)
+//
+//        XCTAssertEqual(actualResult, expectedResult)
+//    }
     
-    func testCorrect() {
+//    func testCorrect() {
 //        fib(nn: 10)
-        let aa = fib(nnn: 11)
-        let bb = fib(nnn: 12)
-        
-        XCTAssertEqual(aa, bb)
-    }
+//        let aa = fib(nnn: 11)
+//        let bb = fib(nnn: 12)
+//
+//        XCTAssertEqual(aa, bb)
+//    }
     
-    func testNegative() {
+//    func testNegative() {
 //        fib(nn: -1)
 //        fib(1.5)
-    }
+//    }
     
     func testExample() {
         // This is an example of a functional test case.
@@ -110,11 +120,11 @@ class Project2Tests: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measure {
-            
-            for _ in 0...3000 {
-                let _ = UIView()
-            }
-        }
+//        self.measure {
+//
+//            for _ in 0...3000 {
+//                let _ = UIView()
+//            }
+//        }
     }
 }

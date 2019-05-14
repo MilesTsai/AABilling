@@ -18,6 +18,8 @@ class IndividualViewController: BaseTableViewController {
     
     var userNameInfo: String = ""
     
+    var userData: UserData?
+    
     var userTextField: UITextField?
     
     var friendTextField: UITextField?
@@ -32,42 +34,24 @@ class IndividualViewController: BaseTableViewController {
     
     var friendPayAmount: ((Int) -> Void)?
     
+    var calculatorManager = CalculatorManager()
+    
     var selectTextField: Bool?
     
     @IBOutlet weak var numberKeyView: UIView!
     
     @IBOutlet weak var calculatedTotal: UILabel!
     
-    var userIsInTyping: Bool = false
-    
-    var valueHasTyping: Bool = false
-    
-    var afterEquals: Bool = false
-    
-    var calculationValue: String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         IQKeyboardManager.shared().isEnableAutoToolbar = false
         
-        guard let currentUser = Auth.auth().currentUser
-            else {
-                return
-        }
-        
-        dataBase
-            .collection("users")
-            .document(currentUser.uid)
-            .getDocument { [weak self](snapshot, _) in
-                
-            guard let document = snapshot?.data()
-                else {
-                    return
-                }
-                
-            self?.userNameInfo = document["name"] as? String ?? "No Document"
-            print(self?.userNameInfo ?? "")
+        FirebaseManager.shared.readUserData { [weak self] (userData) in
+            self?.userData = userData
+            
+            self?.userNameInfo = self?.userData?.name ?? ""
+            
             self?.tableView.reloadData()
         }
         
@@ -180,118 +164,44 @@ class IndividualViewController: BaseTableViewController {
     
     @IBAction func numbers(_ sender: UIButton) {
         
-        if let pressedNum = sender.currentTitle {
-            if userIsInTyping == true {
-                calculationValue += pressedNum
-                
-            } else {
-                calculationValue = pressedNum
-                
-                userIsInTyping = true
-            }
-            
-            if afterEquals == false {
-                
-                calculatedTotal.text = calculatedTotal.text! + pressedNum
-            } else {
-                calculatedTotal.text = pressedNum
-            }
-            valueHasTyping = true
-        }
-    }
-    
-    struct Operating {
-        var resultValue: Double = 0
-        var bindingValue: Double = 0
-        var bindingOperate: String = ""
+        calculatedTotal.text =  calculatorManager.number(currentTitle: sender.currentTitle)
         
-        mutating func resulet(_ operate: String, value secondValue: Double) -> String {
-            
-            if bindingOperate == "" {
-                bindingValue = secondValue
-                bindingOperate = operate
-                resultValue = secondValue
-            } else {
-                switch bindingOperate {
-                case "+": resultValue = bindingValue + secondValue
-                case "-": resultValue = bindingValue - secondValue
-                case "×": resultValue = bindingValue * secondValue
-                case "÷": resultValue = bindingValue / secondValue
-                default : break
-                }
-                bindingValue = resultValue
-                bindingOperate = operate
-            }
-            if operate == "=" {
-                bindingOperate = ""
-            }
-            
-            return String(Int(resultValue))
-        }
-        
-        mutating func resetBind() {
-            bindingValue = 0
-            bindingOperate = ""
-        }
     }
-    
-    var operating = Operating()
-    
+
     @IBAction func operate(_ sender: UIButton) {
-        if let operate = sender.currentTitle {
-            switch operate {
-            case "+", "-", "×", "÷", "=":
-                if valueHasTyping == true {
-                    calculationValue = operating.resulet(operate, value: Double(calculationValue)! as Double)
-                    if operate != "=" {
-                        calculatedTotal.text?.append(operate)
-                    }
-                    userIsInTyping = false
-                    valueHasTyping = false
-                    
-                    if operate == "=" {
-                        
-                        afterEquals = false
-                        
-                        calculatedTotal.text = calculationValue
-                        
-                        guard let value = Int(calculationValue) else { return }
-
-                        if selectTextField == true {
-
-                            userTextField?.text = "\(value)"
-                            guard let userAmount = Int(userTextField?.text ?? "") else { return }
-
-                            friendTextField?.text = "\(individualBilling!.amount - userAmount)"
-                            textFieldDidChange(userTextField!)
-
-                        } else {
-
-                            friendTextField?.text = "\(value)"
-
-                            guard let friendAmount = Int(friendTextField?.text ?? "") else { return }
-
-                            userTextField?.text = "\(individualBilling!.amount - friendAmount)"
-                            textFieldDidChange(friendTextField!)
-                        }
-                    }
-                    
-                } else {
-                    if operate != "=" {
-                        calculatedTotal.text?.append(operate)
-                    }
-                    operating.bindingOperate = operate
-                }
+        
+        let totalValue = calculatorManager.operate(currentTitle: sender.currentTitle)
+        
+        calculatedTotal.text = totalValue
+        
+        if totalValue == "" {
+            
+            userTextField?.text = ""
+            
+            friendTextField?.text = ""
+            
+        } else {
+            
+            guard let value = Double(totalValue) else { return }
+            
+            let newValue = Int(value)
+            
+            if selectTextField == true {
                 
-            case "AC":
-                calculatedTotal.text = ""
-                userTextField?.text = calculatedTotal.text
-                friendTextField?.text = calculatedTotal.text
-                operating.resetBind()
-                userIsInTyping = false
-                valueHasTyping = false
+                userTextField?.text = "\(newValue)"
+                guard let userAmount = Int(userTextField?.text ?? "") else { return }
                 
-            default: break
+                friendTextField?.text = "\(individualBilling!.amount - userAmount)"
+                textFieldDidChange(userTextField!)
+                
+            } else {
+                
+                friendTextField?.text = "\(newValue)"
+                
+                guard let friendAmount = Int(friendTextField?.text ?? "") else { return }
+                
+                userTextField?.text = "\(individualBilling!.amount - friendAmount)"
+                textFieldDidChange(friendTextField!)
             }
         }
     }
