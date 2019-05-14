@@ -51,17 +51,11 @@ class CalculatorManager {
     
     var afterEquals: Bool = false
     
-    var selectTextField: Bool?
-    
     var calculationValue: String = ""
     
     var operating = Operating()
     
     var calculatedTotal: String = ""
-    
-//    var userTextField: String = ""
-//
-//    var friendTextField: String = ""
     
     func number(currentTitle: String?) -> String {
         

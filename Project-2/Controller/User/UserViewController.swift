@@ -77,6 +77,11 @@ class UserViewController: BaseViewController {
             identifier: String(describing: LentCell.self),
             bundle: nil
         )
+        
+        lentListTableView.mls_registerCellWithNib(
+            identifier: String(describing: NoLentCell.self),
+            bundle: nil
+        )
     }
     
     func loadData() {
@@ -196,35 +201,35 @@ class UserViewController: BaseViewController {
 extension UserViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-//        if lentList.count == 0 {
-//            return 1
-//        } else {
+        if lentList.count == 0 {
+            return 1
+        } else {
             return lentList.count
-//        }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell =
-            tableView.dequeueReusableCell(withIdentifier: String(describing: LentCell.self), for: indexPath)
-        
-//        let secondCell =
-//            tableView.dequeueReusableCell(withIdentifier: String(describing: NoLentCell.self), for: indexPath)
-        
-        guard let friendCell =
-            cell as? LentCell else { return cell }
-        
-//        guard let noFriendCell =
-//            secondCell as? NoLentCell else { return secondCell }
-        
-//        if lentList.count == 0 {
-//
+        if lentList.count == 0 {
+            
+            let secondCell =
+                tableView.dequeueReusableCell(withIdentifier: String(describing: NoLentCell.self), for: indexPath)
+            
+            guard let noFriendCell =
+                secondCell as? NoLentCell else { return secondCell }
+
 //            noFriendCell.noLentLogo.text = "暫無未還款的朋友"
-//
-//            return noFriendCell
-//
-//        } else {
-        
+
+            return noFriendCell
+
+        } else {
+            
+            let cell =
+                tableView.dequeueReusableCell(withIdentifier: String(describing: LentCell.self), for: indexPath)
+            
+            guard let friendCell =
+                cell as? LentCell else { return cell }
+            
             let list = lentList[indexPath.row]
             
             guard let total = list.totalAccount else { return friendCell }
@@ -236,7 +241,7 @@ extension UserViewController: UITableViewDataSource {
             friendCell.sumAccount.text = "$\(String(describing: total))"
             
             return friendCell
-//        }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

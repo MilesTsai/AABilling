@@ -42,22 +42,22 @@ class IndividualViewController: BaseTableViewController {
     
     @IBOutlet weak var calculatedTotal: UILabel!
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        IQKeyboardManager.shared().isEnableAutoToolbar = false
-        
-        FirebaseManager.shared.readUserData { [weak self] (userData) in
-            self?.userData = userData
-            
-            self?.userNameInfo = self?.userData?.name ?? ""
-            
-            self?.tableView.reloadData()
-        }
+        fetchData()
         
         setupTableView()
         
         view.bringSubviewToFront(numberKeyView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        IQKeyboardManager.shared().isEnableAutoToolbar = false
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,11 +66,24 @@ class IndividualViewController: BaseTableViewController {
         IQKeyboardManager.shared().isEnableAutoToolbar = true
     }
     
+    func fetchData() {
+        
+        FirebaseManager.shared.readUserData { [weak self] (userData) in
+            
+            self?.userData = userData
+            
+            self?.userNameInfo = self?.userData?.name ?? ""
+            
+            self?.tableView.reloadData()
+        }
+        
+    }
+    
     private func setupTableView() {
         
         tableView.separatorStyle = .none
         
-        tableView.backgroundColor = UIColor(cgColor: #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1))
+        tableView.backgroundColor = UIColor(cgColor: #colorLiteral(red: 0.9490196078, green: 0.9882352941, blue: 0.9882352941, alpha: 1))
         
         tableView.mls_registerCellWithNib(
             identifier: String(describing: IndividualCell.self),
@@ -99,9 +112,9 @@ class IndividualViewController: BaseTableViewController {
                 for: indexPath
             )
             
-            guard let individualCell = myCell as? IndividualCell
-                else {
-                    return myCell
+            guard let individualCell = myCell as? IndividualCell else {
+                
+                return myCell
             }
             
             individualCell.amountTextField.inputView = UIView(frame: CGRect.zero)

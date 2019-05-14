@@ -147,6 +147,11 @@ class FriendViewController: BaseViewController {
             bundle: nil
         )
         
+        tableView.mls_registerCellWithNib(
+            identifier: String(describing: NoInviteCell.self),
+            bundle: nil
+        )
+        
         tableView.addRefreshHeader(refreshingBlock: { [weak self] in
             self?.readFriendListData()
         })
@@ -247,49 +252,73 @@ extension FriendViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
-            return acceptsList.count
+            if acceptsList.count == 0 {
+                return 1
+            } else {
+                return acceptsList.count
+            }
         } else {
             return friends.count
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell =
-            tableView.dequeueReusableCell(withIdentifier: String(describing: FriendListCell.self), for: indexPath)
-
-        guard let friendCell =
-                  cell as? FriendListCell else { return cell }
         
         if indexPath.section == 0 {
             
-            friendCell.accessoryType = UITableViewCell.AccessoryType.none
-            
-            let list = acceptsList[indexPath.row]
-            
-            friendCell.userName.text = list.name
-            
-            friendCell.acceptBtn.isHidden = false
-            
-            friendCell.refuseBtn.isHidden = false
-            
-            friendCell.acceptBtn.addTarget(
-                self,
-                action: #selector(self.accept(_:)),
-                for: .touchUpInside
-            )
-            
-            friendCell.refuseBtn.addTarget(
-                self,
-                action: #selector(self.refuse(_:)),
-                for: .touchUpInside
-            )
-            
-            friendCell.acceptBtn.tag = indexPath.row
-
-            friendCell.refuseBtn.tag = indexPath.row
+            if acceptsList.count == 0 {
+                
+                let inviteCell =
+                    tableView.dequeueReusableCell(withIdentifier: String(describing: NoInviteCell.self), for: indexPath)
+                
+                guard let noInviteCell = inviteCell as? NoInviteCell else { return inviteCell }
+                
+                return noInviteCell
+                
+            } else {
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendListCell.self), for: indexPath)
+                
+                guard let friendCell =
+                    cell as? FriendListCell else { return cell }
+                
+                friendCell.accessoryType = UITableViewCell.AccessoryType.none
+                
+                let list = acceptsList[indexPath.row]
+                
+                friendCell.userName.text = list.name
+                
+                friendCell.acceptBtn.isHidden = false
+                
+                friendCell.refuseBtn.isHidden = false
+                
+                friendCell.acceptBtn.addTarget(
+                    self,
+                    action: #selector(self.accept(_:)),
+                    for: .touchUpInside
+                )
+                
+                friendCell.refuseBtn.addTarget(
+                    self,
+                    action: #selector(self.refuse(_:)),
+                    for: .touchUpInside
+                )
+                
+                friendCell.acceptBtn.tag = indexPath.row
+                
+                friendCell.refuseBtn.tag = indexPath.row
+                
+                return friendCell
+                
+            }
             
         } else if indexPath.section == 1 {
+            
+            let cell =
+                tableView.dequeueReusableCell(withIdentifier: String(describing: FriendListCell.self), for: indexPath)
+            
+            guard let friendCell =
+                cell as? FriendListCell else { return cell }
          
             friendCell.acceptBtn.isHidden = true
             
@@ -331,9 +360,10 @@ extension FriendViewController: UITableViewDataSource {
                 
                 friendCell.accountsSum.text = "$\(String(describing: total))"
             }
+            return friendCell
         }
-
-        return friendCell
+        
+        return UITableViewCell()
     }
     
     @objc func accept(_ sender: UIButton) {

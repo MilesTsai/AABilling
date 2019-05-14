@@ -20,7 +20,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zj5-YF-hFT" userLabel="View 3">
                                 <rect key="frame" x="250" y="64" width="125" height="39"/>
-                                <color key="backgroundColor" red="0.97641962766647339" green="0.97650605440139771" blue="0.97634750604629517" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="mlsBorderWidth">
                                         <real key="value" value="0.5"/>
@@ -35,7 +35,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9PF-67-gBY" userLabel="View 2">
                                 <rect key="frame" x="125" y="64" width="125" height="39"/>
-                                <color key="backgroundColor" red="0.97641962770000001" green="0.97650605440000005" blue="0.97634750599999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="mlsBorderColor">
                                         <color key="value" red="0.86269974709999997" green="0.86277663709999997" blue="0.86263555290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -50,7 +50,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tS-Yd-36t" userLabel="View 1">
                                 <rect key="frame" x="0.0" y="64" width="125" height="39"/>
-                                <color key="backgroundColor" red="0.97641962770000001" green="0.97650605440000005" blue="0.97634750599999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="mlsBorderWidth">
                                         <real key="value" value="0.5"/>
@@ -101,7 +101,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9B8-5L-dWC">
                                 <rect key="frame" x="0.0" y="103" width="375" height="564"/>
-                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9497995163744094" green="0.98899562311350819" blue="0.98935744189807906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
                         <constraints>
@@ -148,13 +148,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="好友" id="Y8W-gH-bcJ">
                         <barButtonItem key="leftBarButtonItem" title="登出" id="YhF-lH-tNf">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.24705882352941178" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="logOut:" destination="o5B-qN-8np" id="Mmt-jO-hkB"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="YNC-aU-0br">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.24705882352941178" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="addFriend:" destination="o5B-qN-8np" id="Eed-3e-H3f"/>
                             </connections>
@@ -182,7 +182,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ytA-pd-fv2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <sections/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-JP-uPa" userLabel="backFriendList">
@@ -191,7 +191,7 @@
                                     <constraint firstAttribute="width" constant="38" id="a1M-Cz-LE5"/>
                                     <constraint firstAttribute="width" secondItem="vDn-JP-uPa" secondAttribute="height" multiplier="1:1" id="jEE-P6-uzy"/>
                                 </constraints>
-                                <state key="normal" image="whiteBack"/>
+                                <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="backFriendList:" destination="Zi3-d1-7tX" eventType="touchUpInside" id="Tqi-bL-iou"/>
                                 </connections>
@@ -202,7 +202,7 @@
                                     <constraint firstAttribute="width" constant="38" id="2Gt-4a-c98"/>
                                     <constraint firstAttribute="width" secondItem="T7l-oC-WWF" secondAttribute="height" multiplier="1:1" id="tlM-U2-PRz"/>
                                 </constraints>
-                                <state key="normal" image="whiteSetting"/>
+                                <state key="normal" image="setting"/>
                                 <connections>
                                     <action selector="friendSetting:" destination="Zi3-d1-7tX" eventType="touchUpInside" id="iXj-jk-ZXv"/>
                                 </connections>
@@ -307,10 +307,10 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQ8-3U-ujt">
                                 <rect key="frame" x="16" y="296" width="343" height="32"/>
-                                <color key="backgroundColor" red="0.41960784313725491" green="0.38823529411764707" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.93645934669999997" green="0.95871668779999997" blue="0.66881558510000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="付款">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="mlsCornerRadius">
@@ -322,7 +322,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JEC-89-6l1" firstAttribute="centerX" secondItem="CYj-w9-wTF" secondAttribute="centerX" id="1Ab-I2-vhl"/>
                             <constraint firstItem="JEC-89-6l1" firstAttribute="top" secondItem="lQ8-3U-ujt" secondAttribute="bottom" constant="20" id="3rb-k2-eQw"/>
@@ -356,7 +356,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="好友帳單細節" id="KVC-Ly-OMW">
                         <barButtonItem key="leftBarButtonItem" title="返回" id="szK-kW-H9j">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="backFreindDetail:" destination="f8H-41-GR2" id="3dn-v4-2hQ"/>
                             </connections>
@@ -694,13 +694,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="分帳細節" id="Ozc-Jp-a2J">
                         <barButtonItem key="leftBarButtonItem" title="取消" id="SqY-FR-xSN">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="cancelExpenseDetail:" destination="7w6-ZU-MlV" id="Uz7-Wo-WDh"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="儲存" id="O6u-Jt-ef9">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="saveBill:" destination="7w6-ZU-MlV" id="l1d-ZB-3Zq"/>
                             </connections>
@@ -772,7 +772,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="mff-Xc-fkT" firstAttribute="trailing" secondItem="RVa-Y0-laK" secondAttribute="trailing" constant="60" id="0tn-IB-S9k"/>
                             <constraint firstItem="RVa-Y0-laK" firstAttribute="leading" secondItem="tbR-fn-xwU" secondAttribute="leading" id="78l-0y-PL2"/>
@@ -791,7 +791,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="好友設定" id="Hhx-Mf-U0L">
                         <barButtonItem key="leftBarButtonItem" title="取消" id="fec-lF-Bqx">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="cancelFriendSetting:" destination="0mW-zO-wTS" id="XqI-zV-0OU"/>
                             </connections>
@@ -1560,8 +1560,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="24" height="24"/>
+        <image name="setting" width="24" height="24"/>
         <image name="userPhoto" width="36" height="36"/>
-        <image name="whiteBack" width="24" height="24"/>
-        <image name="whiteSetting" width="24" height="24"/>
     </resources>
 </document>

@@ -88,6 +88,8 @@
 		CEFDBC1422538EFC00E603F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEFDBC1322538EFC00E603F3 /* Assets.xcassets */; };
 		CEFDBC1722538EFC00E603F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEFDBC1522538EFC00E603F3 /* LaunchScreen.storyboard */; };
 		CEFDF7CF228A5FD70076B68E /* CalculatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFDF7CE228A5FD70076B68E /* CalculatorManager.swift */; };
+		CEFDF7D2228AA9B10076B68E /* NoInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFDF7D0228AA9B10076B68E /* NoInviteCell.swift */; };
+		CEFDF7D3228AA9B10076B68E /* NoInviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFDF7D1228AA9B10076B68E /* NoInviteCell.xib */; };
 		CEFF0D66225D8F6B00C74ED4 /* AddGroupMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D65225D8F6A00C74ED4 /* AddGroupMemberViewController.swift */; };
 		CEFF0D6A225D900500C74ED4 /* AddGroupMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF0D68225D900500C74ED4 /* AddGroupMemberCell.swift */; };
 		CEFF0D6B225D900500C74ED4 /* AddGroupMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEFF0D69225D900500C74ED4 /* AddGroupMemberCell.xib */; };
@@ -209,6 +211,8 @@
 		CEFDBC1622538EFC00E603F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEFDBC1822538EFC00E603F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEFDF7CE228A5FD70076B68E /* CalculatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorManager.swift; sourceTree = "<group>"; };
+		CEFDF7D0228AA9B10076B68E /* NoInviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInviteCell.swift; sourceTree = "<group>"; };
+		CEFDF7D1228AA9B10076B68E /* NoInviteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoInviteCell.xib; sourceTree = "<group>"; };
 		CEFF0D65225D8F6A00C74ED4 /* AddGroupMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupMemberViewController.swift; sourceTree = "<group>"; };
 		CEFF0D68225D900500C74ED4 /* AddGroupMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupMemberCell.swift; sourceTree = "<group>"; };
 		CEFF0D69225D900500C74ED4 /* AddGroupMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddGroupMemberCell.xib; sourceTree = "<group>"; };
@@ -381,6 +385,8 @@
 				CE768A9E225642E000ECEBE1 /* FriendListCell.xib */,
 				CE007C57226EB16800465E28 /* FriendSectionCell.swift */,
 				CE007C58226EB16800465E28 /* FriendSectionCell.xib */,
+				CEFDF7D0228AA9B10076B68E /* NoInviteCell.swift */,
+				CEFDF7D1228AA9B10076B68E /* NoInviteCell.xib */,
 			);
 			path = FriendListCell;
 			sourceTree = "<group>";
@@ -755,6 +761,7 @@
 				CE768ABE225AD8AE00ECEBE1 /* FriendAccountsListDetailCell.xib in Resources */,
 				CEFDBC1722538EFC00E603F3 /* LaunchScreen.storyboard in Resources */,
 				CE768AB4225A010100ECEBE1 /* .gitignore in Resources */,
+				CEFDF7D3228AA9B10076B68E /* NoInviteCell.xib in Resources */,
 				CED3A86922545874007B5A07 /* LogInAndSignUp.storyboard in Resources */,
 				CE65417A227DA08B005DCD94 /* LentCell.xib in Resources */,
 				CE768AA0225642E000ECEBE1 /* FriendListCell.xib in Resources */,
@@ -945,6 +952,7 @@
 				CEFDBC0F22538EF900E603F3 /* LogInAndSignUpViewController.swift in Sources */,
 				CE007C7A2273278800465E28 /* UINavigationBar+Extension.swift in Sources */,
 				CE497CFF225C5964004ED6DF /* GroupHeaderCell.swift in Sources */,
+				CEFDF7D2228AA9B10076B68E /* NoInviteCell.swift in Sources */,
 				CE497D04225C6EF2004ED6DF /* FriendBillEditViewController.swift in Sources */,
 				CE497CF7225B8C1D004ED6DF /* GroupSettingViewController.swift in Sources */,
 				CEFF0D73225DBEA200C74ED4 /* GroupSettleUpSelectViewController.swift in Sources */,
