@@ -18,7 +18,13 @@ class FriendSectionCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        sectionBackgroundView.setGradientBackground(colorTop: #colorLiteral(red: 0.9764705896, green: 0.9635881163, blue: 0.7446185096, alpha: 1), colorBottom: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), startPoint: CGPoint(x: 0.0, y: 0.2), endPoint: CGPoint(x: 0.0, y: 0.0))
+        sectionBackgroundView
+            .setGradientBackground(
+                colorTop: #colorLiteral(red: 0.9333333333, green: 0.8901960784, blue: 0.768627451, alpha: 1),
+                colorBottom: #colorLiteral(red: 0.9333333333, green: 0.8901960784, blue: 0.768627451, alpha: 1),
+                startPoint: CGPoint(x: 0.0, y: 0.2),
+                endPoint: CGPoint(x: 0.0, y: 0.0)
+        )
         
 //        self.accessoryType = UITableViewCell.AccessoryType.none
     }

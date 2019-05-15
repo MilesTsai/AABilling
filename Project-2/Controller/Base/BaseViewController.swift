@@ -31,7 +31,8 @@ class BaseViewController: UIViewController {
         
         navigationController?.navigationBar.setGradientBackground()
 
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.init(red: 63.0 / 255.0, green: 58.0 / 255.0, blue: 58.0 / 255.0, alpha: 1)]
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+//            UIColor.init(red: 63.0 / 255.0, green: 58.0 / 255.0, blue: 58.0 / 255.0, alpha: 1)]
 
         navigationController?.navigationBar.isTranslucent = false
         

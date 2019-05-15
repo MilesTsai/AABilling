@@ -11,12 +11,10 @@ import UIKit
 @testable import Project_2
 
 class Project2Tests: XCTestCase {
-    
-    var sut: LogInAndSignUpViewController!
 
     override func setUp() {
         super.setUp()
-        sut = LogInAndSignUpViewController()
+        
     }
 
     override func tearDown() {
@@ -24,11 +22,41 @@ class Project2Tests: XCTestCase {
         
     }
     
-    func test_read_FirebaseUser() {
+    func test_isInTypingValue_userIsInTypingFail() {
         
-        FirebaseManager.shared.readUserData()
+        let value = CalculatorManager()
         
-        FirebaseManager.shared.readUserFriendData(friendUid: "")
+        value.userIsInTyping = false
+        
+        let giveValue = "2"
+        
+        value.isInTypingValue(pressedNum: giveValue)
+        
+        XCTAssertEqual(giveValue, value.calculationValue)
+        
+        // Arrange
+//        let addValue = CalculatorManager()
+        
+//        addValue.calculationValue =
+        
+        // Action
+//        let result = addValue.equal()
+        
+        // Assert
+//        XCTAssertEqual(result, "12")
+    }
+    
+    func test_isInTypingValue_userIsInTypingTrue() {
+        
+        let value = CalculatorManager()
+        
+        value.userIsInTyping = false
+        
+        let giveValue = "3"
+        
+        value.isInTypingValue(pressedNum: giveValue)
+        
+        XCTAssertTrue(value.userIsInTyping)
     }
 //    func add(aaa: Int, bbb: Int) -> Int {
 //

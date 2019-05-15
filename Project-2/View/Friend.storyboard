@@ -101,7 +101,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9B8-5L-dWC">
                                 <rect key="frame" x="0.0" y="103" width="375" height="564"/>
-                                <color key="backgroundColor" red="0.9497995163744094" green="0.98899562311350819" blue="0.98935744189807906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.95686274509803915" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
                         <constraints>
@@ -148,13 +148,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="好友" id="Y8W-gH-bcJ">
                         <barButtonItem key="leftBarButtonItem" title="登出" id="YhF-lH-tNf">
-                            <color key="tintColor" red="0.24705882352941178" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="logOut:" destination="o5B-qN-8np" id="Mmt-jO-hkB"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="YNC-aU-0br">
-                            <color key="tintColor" red="0.24705882352941178" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addFriend:" destination="o5B-qN-8np" id="Eed-3e-H3f"/>
                             </connections>
@@ -182,7 +182,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ytA-pd-fv2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.94901960784313721" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.95686274509803915" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <sections/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDn-JP-uPa" userLabel="backFriendList">
@@ -191,7 +191,7 @@
                                     <constraint firstAttribute="width" constant="38" id="a1M-Cz-LE5"/>
                                     <constraint firstAttribute="width" secondItem="vDn-JP-uPa" secondAttribute="height" multiplier="1:1" id="jEE-P6-uzy"/>
                                 </constraints>
-                                <state key="normal" image="back"/>
+                                <state key="normal" image="whiteBack"/>
                                 <connections>
                                     <action selector="backFriendList:" destination="Zi3-d1-7tX" eventType="touchUpInside" id="Tqi-bL-iou"/>
                                 </connections>
@@ -202,7 +202,7 @@
                                     <constraint firstAttribute="width" constant="38" id="2Gt-4a-c98"/>
                                     <constraint firstAttribute="width" secondItem="T7l-oC-WWF" secondAttribute="height" multiplier="1:1" id="tlM-U2-PRz"/>
                                 </constraints>
-                                <state key="normal" image="setting"/>
+                                <state key="normal" image="whiteSetting"/>
                                 <connections>
                                     <action selector="friendSetting:" destination="Zi3-d1-7tX" eventType="touchUpInside" id="iXj-jk-ZXv"/>
                                 </connections>
@@ -265,7 +265,7 @@
                                 </constraints>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEC-89-6l1">
-                                <rect key="frame" x="16" y="348" width="343" height="32"/>
+                                <rect key="frame" x="16" y="354" width="343" height="32"/>
                                 <color key="backgroundColor" red="0.73223350249999997" green="0.08863985227" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="刪除此分帳">
@@ -306,11 +306,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQ8-3U-ujt">
-                                <rect key="frame" x="16" y="296" width="343" height="32"/>
-                                <color key="backgroundColor" red="0.93645934669999997" green="0.95871668779999997" blue="0.66881558510000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="16" y="296" width="343" height="38"/>
+                                <color key="backgroundColor" red="0.91439324617385864" green="0.56532782316207886" blue="0.23640727996826172" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="JxK-4H-oZa"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="付款">
-                                    <color key="titleColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="mlsCornerRadius">
@@ -322,7 +325,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.95686274509803915" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JEC-89-6l1" firstAttribute="centerX" secondItem="CYj-w9-wTF" secondAttribute="centerX" id="1Ab-I2-vhl"/>
                             <constraint firstItem="JEC-89-6l1" firstAttribute="top" secondItem="lQ8-3U-ujt" secondAttribute="bottom" constant="20" id="3rb-k2-eQw"/>
@@ -356,7 +359,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="好友帳單細節" id="KVC-Ly-OMW">
                         <barButtonItem key="leftBarButtonItem" title="返回" id="szK-kW-H9j">
-                            <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="backFreindDetail:" destination="f8H-41-GR2" id="3dn-v4-2hQ"/>
                             </connections>
@@ -651,7 +654,6 @@
                                                 </connections>
                                             </containerView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="sMA-4C-Xib" firstAttribute="top" secondItem="IVv-VW-abw" secondAttribute="top" id="5OU-OX-StM"/>
                                             <constraint firstItem="xkf-UG-hZN" firstAttribute="leading" secondItem="IVv-VW-abw" secondAttribute="leading" id="9E8-Ui-420"/>
@@ -694,13 +696,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="分帳細節" id="Ozc-Jp-a2J">
                         <barButtonItem key="leftBarButtonItem" title="取消" id="SqY-FR-xSN">
-                            <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelExpenseDetail:" destination="7w6-ZU-MlV" id="Uz7-Wo-WDh"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="儲存" id="O6u-Jt-ef9">
-                            <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="saveBill:" destination="7w6-ZU-MlV" id="l1d-ZB-3Zq"/>
                             </connections>
@@ -772,7 +774,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.95686274509803915" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="mff-Xc-fkT" firstAttribute="trailing" secondItem="RVa-Y0-laK" secondAttribute="trailing" constant="60" id="0tn-IB-S9k"/>
                             <constraint firstItem="RVa-Y0-laK" firstAttribute="leading" secondItem="tbR-fn-xwU" secondAttribute="leading" id="78l-0y-PL2"/>
@@ -791,7 +793,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="好友設定" id="Hhx-Mf-U0L">
                         <barButtonItem key="leftBarButtonItem" title="取消" id="fec-lF-Bqx">
-                            <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelFriendSetting:" destination="0mW-zO-wTS" id="XqI-zV-0OU"/>
                             </connections>
@@ -861,7 +863,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pv2-oX-fHL">
                                         <rect key="frame" x="126" y="78" width="94" height="30"/>
-                                        <color key="backgroundColor" red="0.91273397842639592" green="0.69614974845968536" blue="0.2429643188396497" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.91439324619999995" green="0.56532782319999997" blue="0.23640728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="新增">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1560,8 +1562,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back" width="24" height="24"/>
-        <image name="setting" width="24" height="24"/>
         <image name="userPhoto" width="36" height="36"/>
+        <image name="whiteBack" width="24" height="24"/>
+        <image name="whiteSetting" width="24" height="24"/>
     </resources>
 </document>

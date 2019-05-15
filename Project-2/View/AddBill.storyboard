@@ -85,14 +85,14 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzu-Uf-mDr">
-                                <rect key="frame" x="82.5" y="271" width="210" height="28"/>
-                                <color key="backgroundColor" red="0.93645934667380815" green="0.95871668781725883" blue="0.66881558506760264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="82.5" y="271" width="210" height="38"/>
+                                <color key="backgroundColor" red="0.91452175378799438" green="0.56492292881011963" blue="0.23636478185653687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="lpY-OP-T3l"/>
+                                    <constraint firstAttribute="height" constant="38" id="lpY-OP-T3l"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="分帳細節">
-                                    <color key="titleColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="mlsCornerRadius">
@@ -104,7 +104,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.95686274509803915" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="iQx-ZW-4yF" firstAttribute="leading" secondItem="Bgz-Ww-umO" secondAttribute="leading" id="1aS-eU-hQJ"/>
                             <constraint firstItem="esd-wy-2Z6" firstAttribute="leading" secondItem="Bgz-Ww-umO" secondAttribute="trailing" constant="1" id="20u-eb-nol"/>

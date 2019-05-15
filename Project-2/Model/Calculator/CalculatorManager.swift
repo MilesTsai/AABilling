@@ -16,9 +16,9 @@ struct Operating {
     mutating func resulet(_ operate: String, value secondValue: Double) -> String {
         
         if bindingOperate == "" {
-            bindingValue = secondValue
-            bindingOperate = operate
-            resultValue = secondValue
+//            bindingValue = secondValue
+//            bindingOperate = operate
+//            resultValue = secondValue
         } else {
             switch bindingOperate {
             case "+": resultValue = bindingValue + secondValue
@@ -37,11 +37,21 @@ struct Operating {
         return String(resultValue)
     }
     
+    mutating func calculatorStatus(secondValue: Double, operate: String) {
+        
+        bindingValue = secondValue
+        bindingOperate = operate
+        resultValue = secondValue
+    }
+    
     mutating func resetBind() {
         bindingValue = 0
         bindingOperate = ""
     }
 }
+
+//let operate = Operating()
+//operate.
 
 class CalculatorManager {
     
@@ -61,15 +71,7 @@ class CalculatorManager {
         
         if let pressedNum = currentTitle {
             
-            if userIsInTyping == true {
-                
-                calculationValue += pressedNum
-                
-            } else {
-                calculationValue = pressedNum
-                
-                userIsInTyping = true
-            }
+            isInTypingValue(pressedNum: pressedNum)
             
             if afterEquals == false {
                 
@@ -87,6 +89,20 @@ class CalculatorManager {
         return ""
     }
     
+    func isInTypingValue(pressedNum: String) {
+        
+        if userIsInTyping == true {
+            
+            calculationValue += pressedNum
+            
+        } else {
+            
+            calculationValue = pressedNum
+            
+            userIsInTyping = true
+        }
+    }
+    
     func operate(currentTitle: String?) -> String {
     
         if let operate = currentTitle {
@@ -99,6 +115,7 @@ class CalculatorManager {
                     
                     userIsInTyping = false
                     valueHasTyping = false
+                    afterEquals = false
                     
                     return calculatedTotal
                     
@@ -132,12 +149,20 @@ class CalculatorManager {
     
     func equal() -> String {
             
-        afterEquals = false
+        afterEquals = true
         
         calculationValue = operating.resulet("=", value: Double(calculationValue)! as Double)
             
         calculatedTotal = calculationValue
         
         return calculatedTotal
+        
+//        let value = CalculatorManager()
+//
+//        value.calculationValue = "2+2"
+//
+//        let result = value.equal()
+//
+//        (result, "4") 
     }
 }

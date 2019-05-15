@@ -109,7 +109,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoY-4f-YU5">
                                 <rect key="frame" x="255" y="282.5" width="60" height="25"/>
-                                <color key="backgroundColor" red="0.87828863060413886" green="0.29269956651983337" blue="0.30092244974175536" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9145217538" green="0.56492292879999995" blue="0.23636478189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="ecv-On-hk5"/>
                                     <constraint firstAttribute="width" constant="60" id="jmw-SN-YJA"/>
@@ -131,7 +131,7 @@
                                 <rect key="frame" x="295" y="203" width="20" height="24"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.95686274509803915" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3zf-yu-Kp5" firstAttribute="trailing" secondItem="z70-l5-WH8" secondAttribute="trailing" constant="46" id="0jB-8S-NUU"/>
                             <constraint firstItem="gqM-QY-RLv" firstAttribute="centerY" secondItem="jua-9z-8ty" secondAttribute="centerY" id="1Kn-Vx-LZ2"/>
@@ -163,7 +163,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="個人設定" id="E5Y-C1-oNw">
                         <barButtonItem key="rightBarButtonItem" title="儲存" id="WxX-OR-col">
-                            <color key="tintColor" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="saveUserData:" destination="yIB-s3-j4I" id="jZE-hu-6eV"/>
                             </connections>
