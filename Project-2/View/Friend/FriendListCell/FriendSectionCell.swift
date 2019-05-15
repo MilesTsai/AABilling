@@ -20,8 +20,8 @@ class FriendSectionCell: UITableViewCell {
         
         sectionBackgroundView
             .setGradientBackground(
-                colorTop: #colorLiteral(red: 0.9333333333, green: 0.8901960784, blue: 0.768627451, alpha: 1),
-                colorBottom: #colorLiteral(red: 0.9333333333, green: 0.8901960784, blue: 0.768627451, alpha: 1),
+                colorTop: #colorLiteral(red: 0.9143932462, green: 0.5653278232, blue: 0.23640728, alpha: 1),
+                colorBottom: #colorLiteral(red: 0.9143932462, green: 0.5653278232, blue: 0.23640728, alpha: 1),
                 startPoint: CGPoint(x: 0.0, y: 0.2),
                 endPoint: CGPoint(x: 0.0, y: 0.0)
         )

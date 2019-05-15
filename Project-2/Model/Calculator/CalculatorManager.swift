@@ -19,6 +19,7 @@ struct Operating {
 //            bindingValue = secondValue
 //            bindingOperate = operate
 //            resultValue = secondValue
+            calculatorStatus(secondValue: secondValue, operate: operate)
         } else {
             switch bindingOperate {
             case "+": resultValue = bindingValue + secondValue
@@ -30,6 +31,7 @@ struct Operating {
             bindingValue = resultValue
             bindingOperate = operate
         }
+        
         if operate == "=" {
             bindingOperate = ""
         }
@@ -81,6 +83,8 @@ class CalculatorManager {
                 
                 calculatedTotal = pressedNum
                 
+                afterEquals = false
+                
             }
             valueHasTyping = true
             
@@ -115,7 +119,6 @@ class CalculatorManager {
                     
                     userIsInTyping = false
                     valueHasTyping = false
-                    afterEquals = false
                     
                     return calculatedTotal
                     
@@ -156,13 +159,5 @@ class CalculatorManager {
         calculatedTotal = calculationValue
         
         return calculatedTotal
-        
-//        let value = CalculatorManager()
-//
-//        value.calculationValue = "2+2"
-//
-//        let result = value.equal()
-//
-//        (result, "4") 
     }
 }

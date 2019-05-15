@@ -246,45 +246,58 @@ extension UserViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let token = lentList[indexPath.row].fcmToken else { return }
+        if lentList.count != 0 {
+            
+            guard let token = lentList[indexPath.row].fcmToken else { return }
+            
+            guard let userName = userData?.name else { return }
+            
+            guard let friendName = lentList[indexPath.row].name else { return }
+            
+            let alertController =
+                UIAlertController(
+                    title: "提醒",
+                    message: "您確定對\(friendName)發送款項未結清訊息？",
+                    preferredStyle: .alert
+            )
+            
+            let cancelAction =
+                UIAlertAction(
+                    title: "取消",
+                    style: .default,
+                    handler: { _ in
+                        
+                })
+            
+            let okAction =
+                UIAlertAction(
+                    title: "確定",
+                    style: .default,
+                    handler: { _ in
+                        
+                        let sender = PushNotificationSender()
+                        sender.sendPushNotification(
+                            to: token,
+                            title: "溫馨提醒",
+                            body: "目前您與\(userName)尚有款項未結清"
+                        )
+                })
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
-        guard let userName = userData?.name else { return }
+        if lentList.count == 0 {
+            
+            return nil
+        }
         
-        guard let friendName = lentList[indexPath.row].name else { return }
-        
-        let alertController =
-            UIAlertController(
-                title: "提醒",
-                message: "您確定對\(friendName)發送款項未結清訊息？",
-                preferredStyle: .alert
-        )
-        
-        let cancelAction =
-            UIAlertAction(
-                title: "取消",
-                style: .default,
-                handler: { _ in
-                    
-            })
-        
-        let okAction =
-            UIAlertAction(
-                title: "確定",
-                style: .default,
-                handler: { _ in
-                    
-                    let sender = PushNotificationSender()
-                    sender.sendPushNotification(
-                        to: token,
-                        title: "溫馨提醒",
-                        body: "目前您與\(userName)尚有款項未結清"
-                    )
-            })
-        
-        alertController.addAction(cancelAction)
-        alertController.addAction(okAction)
-        
-        self.present(alertController, animated: true, completion: nil)
+        return indexPath
     }
 }
 

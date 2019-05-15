@@ -24,40 +24,36 @@ class Project2Tests: XCTestCase {
     
     func test_isInTypingValue_userIsInTypingFail() {
         
+        // Arrange
         let value = CalculatorManager()
         
         value.userIsInTyping = false
         
         let giveValue = "2"
         
+        // Action
         value.isInTypingValue(pressedNum: giveValue)
         
-        XCTAssertEqual(giveValue, value.calculationValue)
-        
-        // Arrange
-//        let addValue = CalculatorManager()
-        
-//        addValue.calculationValue =
-        
-        // Action
-//        let result = addValue.equal()
-        
         // Assert
-//        XCTAssertEqual(result, "12")
+        XCTAssertEqual(giveValue, value.calculationValue)
     }
     
     func test_isInTypingValue_userIsInTypingTrue() {
         
+        // Arrange
         let value = CalculatorManager()
         
         value.userIsInTyping = false
         
         let giveValue = "3"
         
+        // Action
         value.isInTypingValue(pressedNum: giveValue)
         
+        // Assert
         XCTAssertTrue(value.userIsInTyping)
     }
+    
 //    func add(aaa: Int, bbb: Int) -> Int {
 //
 //        return aaa + bbb

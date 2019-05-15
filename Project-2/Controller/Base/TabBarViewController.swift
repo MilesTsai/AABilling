@@ -105,8 +105,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         layerGradient.frame = CGRect(x: 0, y: 0, width: tabBar.bounds.width, height: tabBar.bounds.height)
         self.tabBar.layer.addSublayer(layerGradient)
 
-        UITabBar.appearance().layer.borderWidth = 0.0
-        UITabBar.appearance().clipsToBounds = true
+//        UITabBar.appearance().layer.borderWidth = 0.0
+//        UITabBar.appearance().clipsToBounds = true
         
         viewControllers = tabs.map({ $0.controller() })
 
