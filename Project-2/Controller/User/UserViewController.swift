@@ -13,7 +13,7 @@ class UserViewController: BaseViewController {
     
     @IBOutlet weak var userPhoto: UIImageView!
     
-    @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var userName: TextFieldPlaceholder!
     
     @IBOutlet weak var userEmail: UILabel!
     

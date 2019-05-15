@@ -187,8 +187,8 @@ extension FriendDetailViewController: UITableViewDataSource {
         friendHeaderCell
             .friendBackgroundColor
             .setGradientBackground(
-                colorTop: #colorLiteral(red: 0.3638622761, green: 0.7279314399, blue: 0.5326015353, alpha: 1),
-                colorBottom: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+                colorTop: #colorLiteral(red: 0.3777077794, green: 0.7216741443, blue: 0.5373740196, alpha: 1),
+                colorBottom: #colorLiteral(red: 0.3777077794, green: 0.7216741443, blue: 0.5373740196, alpha: 1),
                 startPoint: CGPoint(x: 0.5, y: 1.0),
                 endPoint: CGPoint(x: 0.5, y: 0.0)
         )

@@ -41,7 +41,7 @@
                         <state key="selected" image="cancel"/>
                     </button>
                 </subviews>
-                <color key="backgroundColor" red="0.98039215686274506" green="0.95686274509803915" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="lqB-Xk-9ND" firstAttribute="centerY" secondItem="RtX-PY-4kw" secondAttribute="centerY" id="Fwb-CJ-pqT"/>
                     <constraint firstItem="RtX-PY-4kw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Z7o-YE-Lar"/>
