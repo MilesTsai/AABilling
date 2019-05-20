@@ -1399,13 +1399,13 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="4C9-gF-zpa" firstAttribute="centerX" secondItem="y0i-7D-cMG" secondAttribute="centerX" id="04L-Pi-pAL"/>
-                                    <constraint firstItem="yUI-6C-s39" firstAttribute="top" secondItem="y0i-7D-cMG" secondAttribute="top" constant="12" id="264-Ac-kjv"/>
                                     <constraint firstItem="yUI-6C-s39" firstAttribute="trailing" secondItem="MLK-HH-qP5" secondAttribute="trailing" id="40r-to-vrL"/>
                                     <constraint firstItem="iQ8-6D-r5F" firstAttribute="leading" secondItem="y0i-7D-cMG" secondAttribute="leading" id="7xq-zd-5cu"/>
                                     <constraint firstItem="4C9-gF-zpa" firstAttribute="top" secondItem="yUI-6C-s39" secondAttribute="bottom" constant="12" id="CBm-Jp-RST"/>
-                                    <constraint firstItem="iQ8-6D-r5F" firstAttribute="top" secondItem="y0i-7D-cMG" secondAttribute="top" constant="12" id="ETx-lf-lL6"/>
                                     <constraint firstItem="wOF-h7-Jz0" firstAttribute="width" secondItem="y0i-7D-cMG" secondAttribute="width" multiplier="295:375" id="IiO-kB-K8w"/>
                                     <constraint firstItem="L8Y-G9-V8s" firstAttribute="width" secondItem="y0i-7D-cMG" secondAttribute="width" multiplier="295:375" id="P7F-yA-5tx"/>
+                                    <constraint firstItem="iQ8-6D-r5F" firstAttribute="top" secondItem="yUI-6C-s39" secondAttribute="top" id="Trp-0N-cUC"/>
+                                    <constraint firstAttribute="bottom" secondItem="4C9-gF-zpa" secondAttribute="bottom" constant="12" id="fAI-WL-GRL"/>
                                     <constraint firstItem="B2E-tq-1ln" firstAttribute="width" secondItem="y0i-7D-cMG" secondAttribute="width" multiplier="295:375" id="gMc-m1-fKJ"/>
                                     <constraint firstItem="4C9-gF-zpa" firstAttribute="top" secondItem="iQ8-6D-r5F" secondAttribute="bottom" constant="12" id="iuQ-KT-kES"/>
                                     <constraint firstItem="yUI-6C-s39" firstAttribute="leading" secondItem="MLK-HH-qP5" secondAttribute="leading" id="li5-L4-ABQ"/>
@@ -1417,8 +1417,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="y0i-7D-cMG" firstAttribute="leading" secondItem="Lsj-BQ-87Y" secondAttribute="leading" id="BAA-xL-NyS"/>
-                            <constraint firstItem="y0i-7D-cMG" firstAttribute="height" secondItem="Lsj-BQ-87Y" secondAttribute="height" multiplier="312.5:558.5" id="Ios-NI-2J1"/>
                             <constraint firstItem="dTO-9x-TAs" firstAttribute="bottom" secondItem="y0i-7D-cMG" secondAttribute="bottom" id="Nn7-HU-Ymc"/>
+                            <constraint firstItem="y0i-7D-cMG" firstAttribute="height" secondItem="Lsj-BQ-87Y" secondAttribute="height" multiplier="312.5:558.5" id="ewO-9M-IVj"/>
                             <constraint firstItem="dTO-9x-TAs" firstAttribute="trailing" secondItem="y0i-7D-cMG" secondAttribute="trailing" id="pqv-vb-7dT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dTO-9x-TAs"/>
@@ -1471,7 +1471,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="userPhoto" width="36" height="36"/>
+        <image name="userPhoto" width="53" height="53"/>
         <image name="whiteBack" width="24" height="24"/>
         <image name="whiteSetting" width="24" height="24"/>
     </resources>

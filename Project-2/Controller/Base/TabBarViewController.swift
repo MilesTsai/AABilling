@@ -98,8 +98,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         
         layerGradient.colors = [
-            UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 1).cgColor,
-            UIColor.init(displayP3Red: 245.0 / 255.0, green: 245.0 / 255.0, blue: 245.0 / 255.0, alpha: 1).cgColor]
+            UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).cgColor,
+            UIColor.init(displayP3Red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1).cgColor]
         layerGradient.startPoint = CGPoint(x: 0.0, y: 0.0)
         layerGradient.endPoint = CGPoint(x: 0.0, y: 1.6)
         layerGradient.frame = CGRect(x: 0, y: 0, width: tabBar.bounds.width, height: tabBar.bounds.height)
