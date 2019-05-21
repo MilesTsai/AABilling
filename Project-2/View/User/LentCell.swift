@@ -10,14 +10,11 @@ import UIKit
 
 class LentCell: UITableViewCell {
     
-    
     @IBOutlet weak var userPhoto: UIImageView!
-    
     
     @IBOutlet weak var userName: UILabel!
     
     @IBOutlet weak var statusAccount: UILabel!
-    
     
     @IBOutlet weak var sumAccount: UILabel!
     

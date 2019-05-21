@@ -71,7 +71,7 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="phc-jy-D49">
                                         <rect key="frame" x="0.0" y="0.0" width="283" height="331.5"/>
-                                        <color key="backgroundColor" red="0.91439324619999995" green="0.56532782319999997" blue="0.23640728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.91439324619999995" green="0.56532782319999997" blue="0.23640728" alpha="0.2049175941780822" colorSpace="custom" customColorSpace="sRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="mlsShadow">
                                                 <real key="value" value="3"/>

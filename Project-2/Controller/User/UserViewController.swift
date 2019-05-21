@@ -58,16 +58,15 @@ class UserViewController: BaseViewController {
             self?.userName.text = self?.userData?.name
             
             self?.userEmail.text = self?.userData?.email
+            
+            if self?.lentList.count == 0 {
+                self?.pushNotification.isHidden = true
+            } else {
+                self?.pushNotification.isHidden = false
+            }
         }
         
         loadData()
-        
-        if lentList.count == 0 {
-            
-            pushNotification.isHidden = true
-        } else {
-            pushNotification.isHidden = false
-        }
         
     }
     

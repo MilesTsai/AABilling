@@ -30,7 +30,7 @@ class FirebaseManager {
     
     lazy var userReference = Firestore.firestore().collection("users")
     
-    lazy var billUid = Firestore.firestore().collection("users").document().documentID
+//    lazy var billUid = Firestore.firestore().collection("users").document().documentID
     
     func createUserData(userName: String, withEmail: String) {
         
@@ -47,7 +47,6 @@ class FirebaseManager {
     func createFriend(friendID: String) {
         
         guard let currentUser = Auth.auth().currentUser else { return }
-        
         userReference
             .document(currentUser.uid)
             .collection(UserEnum.friends.rawValue)
@@ -72,14 +71,16 @@ class FirebaseManager {
     }
     
     func createMyBilling(
-        name: String, billName: String,
-        amountTotal: Int, owedAmount: Int,
-        payAmount: Int, status: Int,
-        uid: String) {
+        billData: BillData, handler: @escaping (String) -> Void
+        ) {
         
         guard let currentUser = Auth.auth().currentUser
             else { return }
-        
+        let document =
+            userReference.document(currentUser.uid)
+                .collection(UserEnum.bills.rawValue).document()
+        let billUid = document.documentID
+        handler(billUid)
         userReference
             .document(currentUser.uid)
             .collection("bills")
@@ -87,18 +88,18 @@ class FirebaseManager {
             .setData(
                 [
                 BillData.CodingKeys.name.rawValue:
-                    name,
+                    billData.name ?? "",
                 BillData.CodingKeys.billName.rawValue:
-                    billName,
+                    billData.billName ?? "",
                 BillData.CodingKeys.amountTotal.rawValue:
-                    amountTotal,
+                    billData.amountTotal ?? "",
                 BillData.CodingKeys.owedAmount.rawValue:
-                    owedAmount,
+                    billData.owedAmount ?? "",
                 BillData.CodingKeys.payAmount.rawValue:
-                    payAmount,
+                    billData.payAmount ?? "",
                 BillData.CodingKeys.status.rawValue:
-                    status,
-                BillData.CodingKeys.uid.rawValue: uid,
+                    billData.status ?? "",
+                BillData.CodingKeys.uid.rawValue: billData.uid ?? "",
                 BillData.CodingKeys.billUid.rawValue: billUid
                 ]
         )
@@ -107,19 +108,16 @@ class FirebaseManager {
     func createFriendBilling(
         friendID: String, billName: String,
         amountTotal: Int, owedAmount: Int,
-        payAmount: Int, status: Int) {
+        payAmount: Int, status: Int, billUid: String) {
         
         readUserData()
-        
         guard let currentUser = Auth.auth().currentUser
             else { return }
-        
         dispatchGroup.notify(queue: .main) {
-        
             self.userReference
                 .document(friendID)
                 .collection(UserEnum.bills.rawValue)
-                .document(self.billUid)
+                .document(billUid)
                 .setData(
                     [
                         BillData.CodingKeys.name.rawValue: self.userData?.name ?? "",
@@ -129,7 +127,7 @@ class FirebaseManager {
                         BillData.CodingKeys.payAmount.rawValue: payAmount,
                         BillData.CodingKeys.status.rawValue: status,
                         BillData.CodingKeys.uid.rawValue: currentUser.uid,
-                        BillData.CodingKeys.billUid.rawValue: self.billUid
+                        BillData.CodingKeys.billUid.rawValue: billUid
                     ]
             )
         }
@@ -138,13 +136,10 @@ class FirebaseManager {
     func readUserData(completion: @escaping (UserData) -> Void) {
         
         guard let currentUser = Auth.auth().currentUser else { return }
-        
         userReference
             .document(currentUser.uid)
             .getDocument(completion: { (snapshot, _) in
-                
             let user = snapshot?.data()
-            
             let userData = UserData(
                 name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
                 email: user?[PersonalData.CodingKeys.email.rawValue] as? String,
@@ -159,10 +154,10 @@ class FirebaseManager {
     func readUserData() {
         
         dispatchGroup.enter()
-        
         guard let currentUser = Auth.auth().currentUser else { return }
-        
-        userReference.document(currentUser.uid).getDocument(completion: { [weak self] (snapshot, _) in
+        userReference
+            .document(currentUser.uid)
+            .getDocument(completion: { [weak self] (snapshot, _) in
             let user = snapshot?.data()
             self?.userData = UserData(
                 name: user?[PersonalData.CodingKeys.name.rawValue] as? String,
@@ -180,40 +175,32 @@ class FirebaseManager {
         userReference
             .whereField("email", isEqualTo: email)
             .getDocuments { [weak self] (querySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error)")
+                guard error == nil else { return }
+                if querySnapshot?.isEmpty == true {
+                    completion(true)
                 } else {
-                    if querySnapshot?.isEmpty == true {
-                        
-                        completion(true)
-                        
-                    } else {
-                        for document in querySnapshot!.documents {
-                            print("\(document.documentID) => \(document.data())")
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        let friendData = document.data()
+                        self?.friendData =
+                            PersonalData(
+                                name: friendData["name"] as? String,
+                                email: friendData["email"] as? String,
+                                storage: friendData["storage"] as? String,
+                                uid: friendData["uid"] as? String,
+                                status: friendData["status"] as? Int,
+                                totalAccount: friendData["totalAccount"] as? Int,
+                                fcmToken: friendData["fcmToken"] as? String
+                        )
+                        self?.readUserData()
                             
-                            let friendData = document.data()
-                            
-                            self?.friendData =
-                                PersonalData(
-                                    name: friendData["name"] as? String,
-                                    email: friendData["email"] as? String,
-                                    storage: friendData["storage"] as? String,
-                                    uid: friendData["uid"] as? String,
-                                    status: friendData["status"] as? Int,
-                                    totalAccount: friendData["totalAccount"] as? Int,
-                                    fcmToken: friendData["fcmToken"] as? String
-                            )
-                            self?.readUserData()
-                            
-                            self?.dispatchGroup.notify(queue: .main) {
+                        self?.dispatchGroup.notify(queue: .main) {
                                 
-                                self?.createFriend(friendID: String(document.documentID))
+                            self?.createFriend(friendID: String(document.documentID))
                                 
-                                self?.updateDocument(document: String(document.documentID))
-                            }
-                            
-                            completion(false)
+                            self?.updateDocument(document: String(document.documentID))
                         }
+                        completion(false)
                     }
                 }
             }
@@ -222,7 +209,6 @@ class FirebaseManager {
     func readUserFriendData(friendUid: String) {
         
         guard let currentUser = Auth.auth().currentUser else { return }
-        
         userReference
             .document(friendUid)
             .collection(UserEnum.friends.rawValue)
@@ -238,120 +224,94 @@ class FirebaseManager {
                 status: friend?[PersonalData.CodingKeys.status.rawValue] as? Int,
                 totalAccount: friend?[PersonalData.CodingKeys.totalAccount.rawValue] as? Int,
                 fcmToken: friend?[PersonalData.CodingKeys.fcmToken.rawValue] as? String)
-            
         })
     }
     
     func readFriendListData(completion: @escaping ([PersonalData]) -> Void) {
 
         guard let currentUser = Auth.auth().currentUser else { return }
-
         userReference
             .document(currentUser.uid)
             .collection(UserEnum.friends.rawValue)
             .order(by: "name", descending: false)
             .addSnapshotListener { querySnapshot, error in
 
-                if let error = error {
-                    print("\(error.localizedDescription)")
-                } else {
-                    guard let snapshot =
-                        querySnapshot else { return }
-
-                    var friendLists = [PersonalData]()
-                    
-                    friendLists =
-                        snapshot
-                            .documents
-                            .compactMap({
-                                PersonalData(dictionary: $0.data())
-                            })
-                    completion(friendLists)
-                }
+                guard error == nil else { return }
+                guard let snapshot =
+                    querySnapshot else { return }
+                var friendLists = [PersonalData]()
+                friendLists =
+                    snapshot
+                        .documents
+                        .compactMap({
+                            PersonalData(dictionary: $0.data())
+                        })
+                completion(friendLists)
         }
     }
     
     func readBillingDetail(friendUid: String, completion: @escaping ([BillData]) -> Void) {
         
         guard let currentUser = Auth.auth().currentUser else { return }
-        
         userReference
             .document(currentUser.uid)
             .collection(UserEnum.bills.rawValue)
             .whereField("uid", isEqualTo: friendUid)
             .getDocuments(completion: { [weak self] (snapshot, error) in
-                
-                if let error = error {
-                    print(error)
-                } else {
                     
-                    guard let snap = snapshot else { return }
-                    
-                    for document in snap.documents {
-                        
-                        let billDetail = document.data()
-                        
-                        self?.friendBill =
-                            BillData(
-                                uid: billDetail["uid"] as? String,
-                                billUid: billDetail["billUid"] as? String,
-                                name: billDetail["name"] as? String,
-                                billName: billDetail["billName"] as? String,
-                                amountTotal: billDetail["amountTotal"] as? Int,
-                                owedAmount: billDetail["owedAmount"] as? Int,
-                                payAmount: billDetail["payAmount"] as? Int,
-                                status: billDetail["status"] as? Int
+                guard error == nil else { return }
+                guard let snap = snapshot else { return }
+                for document in snap.documents {
+                    let billDetail = document.data()
+                    self?.friendBill =
+                        BillData(
+                            uid: billDetail["uid"] as? String,
+                            billUid: billDetail["billUid"] as? String,
+                            name: billDetail["name"] as? String,
+                            billName: billDetail["billName"] as? String,
+                            amountTotal: billDetail["amountTotal"] as? Int,
+                            owedAmount: billDetail["owedAmount"] as? Int,
+                            payAmount: billDetail["payAmount"] as? Int,
+                            status: billDetail["status"] as? Int
                         )
-                    }
-                    
                     var billingList = [BillData]()
                     
                     billingList =
-                        snap
-                            .documents
+                        snap.documents
                             .compactMap({
                                 BillData(dictionary: $0.data())
                             })
-                    
                     completion(billingList)
                 }
             })
     }
     
     func updateToken(friends: [PersonalData]) {
-
         guard let token = Messaging.messaging().fcmToken else { return }
-
         guard let currentUser = Auth.auth().currentUser else { return }
-
         for list in friends {
             if let friendUid = list.uid {
                 Firestore.firestore()
-                    .collection(UserEnum.users.rawValue)
-                    .document(friendUid)
-                    .collection(UserEnum.friends.rawValue)
-                    .document(currentUser.uid)
+                    .collection(UserEnum.users.rawValue).document(friendUid)
+                    .collection(UserEnum.friends.rawValue).document(currentUser.uid)
                     .updateData(["fcmToken": token])
             }
         }
     }
     
     func updateUserName(name: String) {
-        
         guard let currentUser = Auth.auth().currentUser else { return }
-        
-        userReference.document(currentUser.uid).updateData(["name": name])
+        userReference
+            .document(currentUser.uid)
+            .updateData(["name": name])
     }
     
     func updateDocument(document: String) {
-        
         guard let currentUser = Auth.auth().currentUser else { return }
-        
         userReference
             .document(document)
             .collection(UserEnum.friends.rawValue)
-            .document(currentUser.uid)
-            .setData([
+            .document(currentUser.uid).setData([
                 PersonalData.CodingKeys.status.rawValue:
                 0,
                 PersonalData.CodingKeys.name.rawValue:
@@ -364,125 +324,71 @@ class FirebaseManager {
                     currentUser.uid ,
                 PersonalData.CodingKeys.totalAccount.rawValue: 0,
                 PersonalData.CodingKeys.fcmToken.rawValue: userData?.fcmToken ?? ""
-                    
-            ]) { error in
-                if let error = error {
-                    print("Error updating document: \(error)")
-                } else {
-                    print("Document successfully updated")
-                }
-            }
+            ])
     }
     
     func updateMyStatus(document: String) {
-        
         guard let currentUser = Auth.auth().currentUser else { return }
-        
-        userReference
-            .document(currentUser.uid)
-            .collection(UserEnum.friends.rawValue)
-            .document(document)
-            .updateData(["status": 1])
-        
+        userReference.document(currentUser.uid).collection(UserEnum.friends.rawValue)
+            .document(document).updateData(["status": 1])
     }
     
     func updateFriendStatus(document: String) {
-        
         guard let currentUser = Auth.auth().currentUser else { return }
-        userReference
-            .document(document)
-            .collection(UserEnum.friends.rawValue)
-            .document(currentUser.uid)
-            .updateData(["status": 1])
+        userReference.document(document).collection(UserEnum.friends.rawValue)
+            .document(currentUser.uid).updateData(["status": 1])
     }
     
     func updateMyBillStatus(document: String) {
-        
         guard let currentUser = Auth.auth().currentUser else { return }
-        
-        userReference
-            .document(currentUser.uid)
-            .collection(UserEnum.bills.rawValue)
-            .document(document)
-            .updateData(["status": 2, "owedAmount": 0])
+        userReference.document(currentUser.uid).collection(UserEnum.bills.rawValue)
+            .document(document).updateData(["status": 2, "owedAmount": 0])
     }
     
     func updateFriendBillStatus(document: String, billID: String) {
-        userReference
-            .document(document)
-            .collection(UserEnum.bills.rawValue)
-            .document(billID)
-            .updateData(["status": 2, "owedAmount": 0])
+        userReference.document(document).collection(UserEnum.bills.rawValue)
+            .document(billID).updateData(["status": 2, "owedAmount": 0])
     }
     
     func updateMySum(friendID: String, sum: Int) {
-        
         guard let currentUser = Auth.auth().currentUser else { return }
-        
-        userReference
-            .document(currentUser.uid)
-            .collection(UserEnum.friends.rawValue)
-            .document(friendID)
-            .updateData(["totalAccount": sum])
+        userReference.document(currentUser.uid).collection(UserEnum.friends.rawValue)
+            .document(friendID).updateData(["totalAccount": sum])
     }
     
     func updateFriendSum(friendID: String, friendSum: Int) {
-        
         guard let currentUser = Auth.auth().currentUser else { return }
-        
-        userReference
-            .document(friendID)
-            .collection(UserEnum.friends.rawValue)
-            .document(currentUser.uid)
-            .updateData(["totalAccount": friendSum])
+        userReference.document(friendID).collection(UserEnum.friends.rawValue)
+            .document(currentUser.uid).updateData(["totalAccount": friendSum])
     }
     
-    func updateUserName(friendID: String ,name: String) {
-        
+    func updateUserName(friendID: String, name: String) {
         guard let currentUser = Auth.auth().currentUser else { return }
-        
-        userReference
-            .document(friendID)
-            .collection("friends")
-            .document(currentUser.uid)
-            .updateData(["name": name]
+        userReference.document(friendID).collection("friends")
+            .document(currentUser.uid).updateData(["name": name]
         )
     }
     
     func deleteFriend(document: String) {
-        
         guard let currentUser = Auth.auth().currentUser else { return }
-        
-        userReference
-            .document(currentUser.uid)
+        userReference.document(currentUser.uid)
             .collection(UserEnum.friends.rawValue)
-            .document(document)
-            .delete()
-        
-        userReference
-            .document(document)
+            .document(document).delete()
+        userReference.document(document)
             .collection(UserEnum.friends.rawValue)
-            .document(currentUser.uid)
-            .delete()
-        
+            .document(currentUser.uid).delete()
     }
     
     func deleteBilling(document: String) {
-        
         guard let currentUser = Auth.auth().currentUser else { return }
-        
-        userReference
-            .document(currentUser.uid)
+        userReference.document(currentUser.uid)
             .collection(UserEnum.bills.rawValue)
-            .document(document)
-            .delete()
+            .document(document).delete()
     }
     
     func deleteFriendBilling(document: String, billId: String) {
-        userReference
-            .document(document)
+        userReference.document(document)
             .collection(UserEnum.bills.rawValue)
-            .document(billId)
-            .delete()
+            .document(billId).delete()
     }
 }

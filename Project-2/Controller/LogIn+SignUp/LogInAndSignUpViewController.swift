@@ -102,8 +102,7 @@ class LogInAndSignUpViewController: UIViewController {
             
             Auth.auth().createUser(
             withEmail: signUpEmail.text ?? "",
-            password: signUpPassword.text ?? "")
-            { [weak self] (_, error) in
+            password: signUpPassword.text ?? "") { [weak self] (_, error) in
                 
                 if error == nil {
                     print("You have successfully signed up")

@@ -116,13 +116,10 @@ class FriendViewController: BaseViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         guard let currentUser = Auth.auth().currentUser else { return }
-        
         PushNotificationManager.shared.registerForPushNotifications()
-        
         PushNotificationManager.shared.updateFirestorePushTokenIfNeeded(uid: currentUser.uid)
         
         readFriendListData()
-        
     }
     
     @objc func deleteFriendList(data: Notification) {
@@ -139,18 +136,15 @@ class FriendViewController: BaseViewController {
 
         tableView.mls_registerCellWithNib(
             identifier: String(describing: FriendListCell.self),
-            bundle: nil
-        )
+            bundle: nil)
         
         tableView.mls_registerCellWithNib(
             identifier: String(describing: FriendSectionCell.self),
-            bundle: nil
-        )
+            bundle: nil)
         
         tableView.mls_registerCellWithNib(
             identifier: String(describing: NoInviteCell.self),
-            bundle: nil
-        )
+            bundle: nil)
         
         tableView.addRefreshHeader(refreshingBlock: { [weak self] in
             self?.readFriendListData()
@@ -272,12 +266,14 @@ extension FriendViewController: UITableViewDataSource {
                     tableView.dequeueReusableCell(withIdentifier: String(describing: NoInviteCell.self), for: indexPath)
                 
                 guard let noInviteCell = inviteCell as? NoInviteCell else { return inviteCell }
-                
                 return noInviteCell
-                
             } else {
-                
-                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendListCell.self), for: indexPath)
+                let cell =
+                    tableView
+                        .dequeueReusableCell(
+                            withIdentifier: String(
+                                describing: FriendListCell.self),
+                            for: indexPath)
                 
                 guard let friendCell =
                     cell as? FriendListCell else { return cell }
@@ -297,21 +293,16 @@ extension FriendViewController: UITableViewDataSource {
                     action: #selector(self.accept(_:)),
                     for: .touchUpInside
                 )
-                
-                friendCell.refuseBtn.addTarget(
-                    self,
+                friendCell.refuseBtn.addTarget(self,
                     action: #selector(self.refuse(_:)),
                     for: .touchUpInside
                 )
-                
                 friendCell.acceptBtn.tag = indexPath.row
                 
                 friendCell.refuseBtn.tag = indexPath.row
                 
                 return friendCell
-                
             }
-            
         } else if indexPath.section == 1 {
             
             let cell =
@@ -343,64 +334,44 @@ extension FriendViewController: UITableViewDataSource {
                 friendCell.accountsSum.text = "$\(String(describing: total))"
                 
             } else if total < 0 {
-                
                 friendCell.accountsStatus.text = "欠款"
-                
                 friendCell.accountsStatus.textColor = .red
-                
                 total.negate()
-                
                 friendCell.accountsSum.text = "$\(String(describing: total))"
                 
             } else if total == 0 {
-                
                 friendCell.accountsStatus.text = "銀貨兩訖"
-                
                 friendCell.accountsStatus.textColor = .init(cgColor: #colorLiteral(red: 0.2470588235, green: 0.2274509804, blue: 0.2274509804, alpha: 1))
-                
                 friendCell.accountsSum.text = "$\(String(describing: total))"
             }
             return friendCell
         }
-        
         return UITableViewCell()
     }
     
     @objc func accept(_ sender: UIButton) {
-        
         guard let acceptUid = acceptsList[sender.tag].uid else { return }
-        
         FirebaseManager.shared.updateMyStatus(document: acceptUid)
         FirebaseManager.shared.updateFriendStatus(document: acceptUid)
     }
     
     @objc func refuse(_ sender: UIButton) {
-        
         guard let acceptUid = acceptsList[sender.tag].uid else { return }
-        
         FirebaseManager.shared.deleteFriend(document: acceptUid)
-        
         acceptsList.remove(at: sender.tag)
-        
         tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if indexPath.section == 1 {
-            
           performSegue(withIdentifier: "SegueFriendDetail", sender: nil)
-            
         }
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        
         if indexPath.section == 0 {
-        
             return nil
         }
-        
         return indexPath
     }
     
@@ -420,7 +391,6 @@ extension FriendViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 32
     }

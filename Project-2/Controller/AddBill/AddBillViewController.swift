@@ -83,78 +83,77 @@ class AddBillViewController: BaseViewController {
                 .collection("friends")
                 .whereField("name", isEqualTo: accountObject.text ?? "")
                 .getDocuments { (querySnapshot, error) in
-                    if let error = error {
-                        print("Error getting documents: \(error)")
+                        
+                    guard error == nil else { return }
+                        
+                    if querySnapshot?.isEmpty == true {
+                        print("No exist")
+                            
+                        AlertManager().alertView(title: "錯誤", message: "無此帳號", view: self)
+                            
                     } else {
-                        if querySnapshot?.isEmpty == true {
-                            print("No exist")
                             
-                            AlertManager().alertView(title: "錯誤", message: "無此帳號", view: self)
+                        for document in querySnapshot!.documents {
+                            print("\(document.documentID) => \(document.data())")
                             
-                        } else {
-                            
-                            for document in querySnapshot!.documents {
-                                print("\(document.documentID) => \(document.data())")
+                            self.friendID = String(document.documentID)
                                 
-                                self.friendID = String(document.documentID)
-                                
-                                self.friend = document.data()
-                            }
-                            
-                            self.dataBase.collection("users")
-                                .document(self.friendID ?? "")
-                                .collection("friends")
-                                .document(currentUser.uid)
-                                .getDocument(completion: { (document, _) in
-                                
-                                self.friendBillData = document?.data()
-                                
-                                let storyboard = UIStoryboard(name: "Friend", bundle: nil)
-                                
-                                guard let expenseVC =
-                                    storyboard.instantiateViewController(
-                                        withIdentifier: String(describing: "ExpenseDetail")
-                                        ) as? UINavigationController
-                                    else {
-                                        return
-                                }
-                                
-                                guard let splitBillDetailVC =
-                                    expenseVC.topViewController as? SplitBillDetailViewController
-                                    else {
-                                        return
-                                }
-                                
-                                guard let amount = Int(self.billAmount.text ?? "")
-                                    else {
-                                        return
-                                }
-                                
-                                splitBillDetailVC.billingContent = BillingContent(
-                                    anyone: self.accountObject.text ?? "",
-                                    billName: self.friendBillName.text ?? "",
-                                    amount: amount
-                                )
-                                
-                                splitBillDetailVC.equalResult = amount / 2
-                                
-                                splitBillDetailVC.equalCalculationResult = 0
-                                
-                                splitBillDetailVC.individualCalculationResult = Int(-0.9501)
-                                
-                                splitBillDetailVC.friendEqualCalculationResult = 0
-                                
-                                splitBillDetailVC.friendEqualResult = amount / 2
-                                
-                                splitBillDetailVC.friendID = self.friendID
-                                
-                                splitBillDetailVC.myFriend = self.friend
-                                
-                                splitBillDetailVC.friendBillData = self.friendBillData
-                                
-                                self.present(expenseVC, animated: true, completion: nil)
-                            })
+                            self.friend = document.data()
                         }
+                            
+                        self.dataBase.collection("users")
+                            .document(self.friendID ?? "")
+                            .collection("friends")
+                            .document(currentUser.uid)
+                            .getDocument(completion: { (document, _) in
+                            
+                            self.friendBillData = document?.data()
+                                
+                            let storyboard = UIStoryboard(name: "Friend", bundle: nil)
+                                
+                            guard let expenseVC =
+                                storyboard.instantiateViewController(
+                                    withIdentifier: String(describing: "ExpenseDetail")
+                                    ) as? UINavigationController
+                                else {
+                                    return
+                            }
+                                
+                            guard let splitBillDetailVC =
+                                expenseVC.topViewController as? SplitBillDetailViewController
+                                else {
+                                    return
+                            }
+                                
+                            guard let amount = Int(self.billAmount.text ?? "")
+                                else {
+                                    return
+                            }
+                                
+                            splitBillDetailVC.billingContent = BillingContent(
+                                anyone: self.accountObject.text ?? "",
+                                billName: self.friendBillName.text ?? "",
+                                amount: amount
+                            )
+                                
+                            splitBillDetailVC.equalResult = amount / 2
+                                
+                            splitBillDetailVC.equalCalculationResult = 0
+                                
+                            splitBillDetailVC.individualCalculationResult = Int(-0.9501)
+                                
+                            splitBillDetailVC.friendEqualCalculationResult = 0
+                                
+                            splitBillDetailVC.friendEqualResult = amount / 2
+                                
+                            splitBillDetailVC.friendID = self.friendID
+                                
+                            splitBillDetailVC.myFriend = self.friend
+                                
+                            splitBillDetailVC.friendBillData = self.friendBillData
+                                
+                            self.present(expenseVC, animated: true, completion: nil)
+                        })
                     }
             }
         }

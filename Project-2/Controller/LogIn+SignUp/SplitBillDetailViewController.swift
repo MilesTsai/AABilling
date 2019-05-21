@@ -146,16 +146,20 @@ class SplitBillDetailViewController: BaseViewController {
                     amountStatus = 0
                 }
                 
-                FirebaseManager.shared.createMyBilling(
+                let billData = BillData(
+                    uid: friendID ?? "",
+                    billUid: nil,
                     name: billingContent?.anyone ?? "",
                     billName: billingContent?.billName ?? "",
                     amountTotal: billingContent?.amount ?? 0,
-                    owedAmount: equalCalculationResult ?? 0,
-                    payAmount: equalResult ?? 0,
-                    status: amountStatus ?? 3,
-                    uid: friendID ?? "")
+                    owedAmount: individualCalculationResult ?? 0,
+                    payAmount: individualResult ?? 0,
+                    status: amountStatus ?? 3
+                )
                 
-                addEqualDocument()
+                FirebaseManager.shared.createMyBilling(billData: billData) { [weak self] (billUid) in
+                    self?.addEqualDocument(billUid: billUid)
+                }
                 
                 updateEqualDocument()
                 
@@ -214,16 +218,20 @@ class SplitBillDetailViewController: BaseViewController {
                     amountStatus = 0
                 }
                 
-                FirebaseManager.shared.createMyBilling(
+                let billData = BillData(
+                    uid: friendID ?? "",
+                    billUid: nil,
                     name: billingContent?.anyone ?? "",
                     billName: billingContent?.billName ?? "",
                     amountTotal: billingContent?.amount ?? 0,
                     owedAmount: individualCalculationResult ?? 0,
                     payAmount: individualResult ?? 0,
-                    status: amountStatus ?? 3,
-                    uid: friendID ?? "")
+                    status: amountStatus ?? 3
+                )
                 
-                addIndividualDocument()
+                FirebaseManager.shared.createMyBilling(billData: billData) { [weak self] (billUid) in
+                    self?.addIndividualDocument(billUid: billUid)
+                }
                 
                 updateIndividualDocument()
                 
@@ -249,7 +257,7 @@ class SplitBillDetailViewController: BaseViewController {
         }
     }
     
-    private func addEqualDocument() {
+    private func addEqualDocument(billUid: String) {
         
         if friendEqualCalculationResult! < 0 {
             amountStatus = 1
@@ -265,10 +273,11 @@ class SplitBillDetailViewController: BaseViewController {
             amountTotal: self.billingContent?.amount ?? 0,
             owedAmount: self.friendEqualCalculationResult ?? 0,
             payAmount: self.friendEqualResult ?? 0,
-            status: self.amountStatus ?? 3)
+            status: self.amountStatus ?? 3,
+            billUid: billUid)
     }
     
-    private func addIndividualDocument() {
+    private func addIndividualDocument(billUid: String) {
         
         if friendIndividualCalculationResult! < 0 {
             amountStatus = 1
@@ -284,7 +293,8 @@ class SplitBillDetailViewController: BaseViewController {
             amountTotal: self.billingContent?.amount ?? 0,
             owedAmount: self.friendIndividualCalculationResult ?? 0,
             payAmount: self.friendIndividualResult ?? 0,
-            status: self.amountStatus ?? 3)
+            status: self.amountStatus ?? 3,
+            billUid: billUid)
     }
     
     private func updateEqualDocument() {
