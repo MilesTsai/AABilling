@@ -45,7 +45,6 @@ class UserViewController: BaseViewController {
         super.viewDidLoad()
         
         setupTableView()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,26 +94,6 @@ class UserViewController: BaseViewController {
                 
                 self?.lentListTableView.reloadData()
             }
-//        dataBase
-//            .collection("users")
-//            .document(currentUser?.uid ?? "")
-//            .collection("friends")
-//            .order(by: "name", descending: false)
-//            .addSnapshotListener { [weak self] querySnapshot, error in
-//
-//                if let error = error {
-//                    print("\(error.localizedDescription)")
-//                } else {
-//                    guard let snapshot =
-//                        querySnapshot else { return }
-//
-//                    self?.friendList =
-//                        snapshot
-//                            .documents
-//                            .compactMap({
-//                                PersonalData(dictionary: $0.data())
-//                            })
-//                }
         }
     }
     

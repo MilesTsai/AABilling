@@ -37,14 +37,12 @@ class FriendViewController: BaseViewController {
     var friendList = [PersonalData]() {
 
         didSet {
-            print("")
         }
     }
     
     var acceptsList = [PersonalData]() {
         
         didSet {
-            print("")
         }
     }
     
@@ -174,17 +172,8 @@ class FriendViewController: BaseViewController {
         storyboard!.instantiateViewController(withIdentifier: "AddFriend")
     
     @IBAction func addFriend(_ sender: UIBarButtonItem) {
-
-//        view.stickSubView(addFriendVC.view)
-        
-//        view.addSubview(addFriendVC.view)
-        
-//            addFriendVC.willMove(toParent: self)
-//
-//            addChild(addFriendVC)
-            addFriendVC.modalPresentationStyle = .overCurrentContext
-            present(addFriendVC, animated: false, completion: nil)
-//        Crashlytics.sharedInstance().crash()
+        addFriendVC.modalPresentationStyle = .overCurrentContext
+        present(addFriendVC, animated: false, completion: nil)
     }
     
     @IBAction func logOut(_ sender: UIBarButtonItem) {
@@ -263,45 +252,51 @@ extension FriendViewController: UITableViewDataSource {
             if acceptsList.count == 0 {
                 
                 let inviteCell =
-                    tableView.dequeueReusableCell(withIdentifier: String(describing: NoInviteCell.self), for: indexPath)
+                    tableView.dequeueReusableCell(
+                        withIdentifier: String(
+                            describing: NoInviteCell.self),
+                        for: indexPath)
                 
                 guard let noInviteCell = inviteCell as? NoInviteCell else { return inviteCell }
                 return noInviteCell
             } else {
                 let cell =
-                    tableView
-                        .dequeueReusableCell(
+                    tableView.dequeueReusableCell(
                             withIdentifier: String(
                                 describing: FriendListCell.self),
                             for: indexPath)
                 
-                guard let friendCell =
+                guard let acceptFriendCell =
                     cell as? FriendListCell else { return cell }
                 
-                friendCell.accessoryType = UITableViewCell.AccessoryType.none
+                acceptFriendCell.accessoryType = UITableViewCell.AccessoryType.none
                 
                 let list = acceptsList[indexPath.row]
                 
-                friendCell.userName.text = list.name
+                acceptFriendCell.userName.text = list.name
                 
-                friendCell.acceptBtn.isHidden = false
+                acceptFriendCell.acceptBtn.isHidden = false
                 
-                friendCell.refuseBtn.isHidden = false
+                acceptFriendCell.refuseBtn.isHidden = false
                 
-                friendCell.acceptBtn.addTarget(
+                acceptFriendCell.accountsSum.text = ""
+                
+                acceptFriendCell.accountsStatus.text = ""
+                
+                acceptFriendCell.acceptBtn.addTarget(
                     self,
                     action: #selector(self.accept(_:)),
                     for: .touchUpInside
                 )
-                friendCell.refuseBtn.addTarget(self,
+                acceptFriendCell.refuseBtn.addTarget(self,
                     action: #selector(self.refuse(_:)),
                     for: .touchUpInside
                 )
-                friendCell.acceptBtn.tag = indexPath.row
+                acceptFriendCell.acceptBtn.tag = indexPath.row
                 
-                friendCell.refuseBtn.tag = indexPath.row
+                acceptFriendCell.refuseBtn.tag = indexPath.row
                 
-                return friendCell
+                return acceptFriendCell
             }
         } else if indexPath.section == 1 {
             
@@ -314,6 +309,8 @@ extension FriendViewController: UITableViewDataSource {
             friendCell.acceptBtn.isHidden = true
             
             friendCell.refuseBtn.isHidden = true
+            
+            friendCell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             
             let list = friends[indexPath.row]
             

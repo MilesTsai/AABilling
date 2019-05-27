@@ -55,6 +55,7 @@ class AddBillViewController: BaseViewController {
         billAmount.text = ""
         
         readFirendList()
+        
     }
     
     @objc func closeKeyboard() {
@@ -87,14 +88,12 @@ class AddBillViewController: BaseViewController {
                     guard error == nil else { return }
                         
                     if querySnapshot?.isEmpty == true {
-                        print("No exist")
                             
                         AlertManager().alertView(title: "錯誤", message: "無此帳號", view: self)
                             
                     } else {
                             
                         for document in querySnapshot!.documents {
-                            print("\(document.documentID) => \(document.data())")
                             
                             self.friendID = String(document.documentID)
                                 

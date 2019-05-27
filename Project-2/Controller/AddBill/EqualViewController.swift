@@ -54,7 +54,6 @@ class EqualViewController: BaseTableViewController {
                 
             self?.userNameInfo =
                 document["name"] as? String ?? "No Document"
-            print(self?.userNameInfo ?? "")
             self?.tableView.reloadData()
         }
 

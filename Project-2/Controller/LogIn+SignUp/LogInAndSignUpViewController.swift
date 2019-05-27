@@ -55,7 +55,6 @@ class LogInAndSignUpViewController: UIViewController {
                                password: self.logInPassword.text!) { (_, error) in
                 
                 if error == nil {
-                    print("You have successfully logged in")
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     if let tabBarVC =
@@ -105,7 +104,6 @@ class LogInAndSignUpViewController: UIViewController {
             password: signUpPassword.text ?? "") { [weak self] (_, error) in
                 
                 if error == nil {
-                    print("You have successfully signed up")
                     
                     FirebaseManager
                         .shared

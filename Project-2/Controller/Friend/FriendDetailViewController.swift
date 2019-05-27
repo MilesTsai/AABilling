@@ -22,16 +22,12 @@ class FriendDetailViewController: BaseViewController {
             friendDetailTableView.separatorStyle = .none
         }
     }
-    
-//    var dataBase: Firestore = Firestore.firestore()
 
     var friendData: PersonalData?
     
     var friendBill: BillData?
     
     var billingList = [BillData]()
-    
-//    var settleUpList = [BillData]()
     
     var sum = 0
     
@@ -157,20 +153,7 @@ class FriendDetailViewController: BaseViewController {
   
         friendSettingVC.friendDetailData = friendData
         present(nextVC, animated: true, completion: nil)
-//        performSegue(withIdentifier: "SegueFriendSetting", sender: nil)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "SegueFriendSetting" {
-//            guard let friendSettingVC =
-//                segue.destination
-//                    as? UINavigationController else {
-//                        return
-//            }
-//            guard let nextVC = friendSettingVC.children[0] as? FriendSettingViewController else {return}
-//            nextVC.friendDetailData = friendData
-//        }
-//    }
 }
 
 extension FriendDetailViewController: UITableViewDataSource {
@@ -216,18 +199,6 @@ extension FriendDetailViewController: UITableViewDataSource {
         
         return friendHeaderCell
     }
-    
-//    @objc func friendSettleUp() {
-//
-//        let storyboard = UIStoryboard(name: "Friend", bundle: nil)
-//        let settleVC =
-//                storyboard.instantiateViewController(
-//                    withIdentifier: String(
-//                    describing: FriendSettleUpViewController.self)
-//                )
-//            present(settleVC, animated: true, completion: nil)
-//
-//    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

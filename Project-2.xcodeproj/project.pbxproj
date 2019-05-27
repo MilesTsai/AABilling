@@ -72,7 +72,6 @@
 		CEABD3EE226767080062B552 /* AverageValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEABD3EC226767080062B552 /* AverageValueCell.xib */; };
 		CEABD3F9226D9EDC0062B552 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3F8226D9EDB0062B552 /* UserObject.swift */; };
 		CEC955CE228176D200F764A7 /* User+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC955CD228176D200F764A7 /* User+Enum.swift */; };
-		CEC955D02281F49C00F764A7 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC955CF2281F49C00F764A7 /* Manager.swift */; };
 		CED3A86922545874007B5A07 /* LogInAndSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */; };
 		CED3A86C225460B6007B5A07 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86B225460B6007B5A07 /* UIView+Extension.swift */; };
 		CED3A86F2254655F007B5A07 /* TextFieldPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */; };
@@ -193,7 +192,6 @@
 		CEABD3EC226767080062B552 /* AverageValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AverageValueCell.xib; sourceTree = "<group>"; };
 		CEABD3F8226D9EDB0062B552 /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		CEC955CD228176D200F764A7 /* User+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Enum.swift"; sourceTree = "<group>"; };
-		CEC955CF2281F49C00F764A7 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInAndSignUp.storyboard; sourceTree = "<group>"; };
 		CED3A86B225460B6007B5A07 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		CED3A86E2254655F007B5A07 /* TextFieldPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPlaceholder.swift; sourceTree = "<group>"; };
@@ -455,7 +453,6 @@
 			isa = PBXGroup;
 			children = (
 				CEABD3D92265F5A10062B552 /* FirebaseManager.swift */,
-				CEC955CF2281F49C00F764A7 /* Manager.swift */,
 			);
 			path = FirebaseManager;
 			sourceTree = "<group>";
@@ -981,7 +978,6 @@
 				CE497CFB225B928B004ED6DF /* GroupSettingCell.swift in Sources */,
 				CEABD3DC226737140062B552 /* EqualViewController.swift in Sources */,
 				CED3A87E2254EAEC007B5A07 /* BaseViewController.swift in Sources */,
-				CEC955D02281F49C00F764A7 /* Manager.swift in Sources */,
 				CE65417F227DF2FA005DCD94 /* PushNotificationSender.swift in Sources */,
 				CED3A8782254CE12007B5A07 /* TabBarViewController.swift in Sources */,
 				CED3A8752254B87A007B5A07 /* FriendViewController.swift in Sources */,

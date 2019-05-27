@@ -51,7 +51,7 @@ class PushNotificationSender {
                     }
                 }
             } catch let err as NSError {
-                print(err.debugDescription)
+                
             }
         }
         task.resume()

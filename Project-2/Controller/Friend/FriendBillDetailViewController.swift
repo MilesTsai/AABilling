@@ -154,7 +154,6 @@ class FriendBillDetailViewController: BaseViewController {
                 status: friendBill?[BillData.CodingKeys.status.rawValue] as? Int)
             
             guard let myfriendBill = self?.friendBilling?.owedAmount else { return }
-            print(myfriendBill)
             
             self?.myfriendOwedAmount = myfriendBill
             

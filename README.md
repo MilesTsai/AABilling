@@ -34,7 +34,6 @@ Auth.auth().createUser(
             password: signUpPassword.text ?? "") { [weak self] (_, error) in
                 
                 if error == nil {
-                    print("You have successfully signed up")
                     
                     FirebaseManager
                         .shared
@@ -109,4 +108,4 @@ extension IndividualViewController: UITextFieldDelegate {
 
 ## Contacts
 Hsien-Han Tsai  
-email: sian91355@gmail.com
+E-mail: sian91355@gmail.com

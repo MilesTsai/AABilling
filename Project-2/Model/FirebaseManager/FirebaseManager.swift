@@ -30,8 +30,6 @@ class FirebaseManager {
     
     lazy var userReference = Firestore.firestore().collection("users")
     
-//    lazy var billUid = Firestore.firestore().collection("users").document().documentID
-    
     func createUserData(userName: String, withEmail: String) {
         
         guard let currentUser = Auth.auth().currentUser else { return }
@@ -180,7 +178,7 @@ class FirebaseManager {
                     completion(true)
                 } else {
                     for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
+                        
                         let friendData = document.data()
                         self?.friendData =
                             PersonalData(

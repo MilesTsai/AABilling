@@ -152,8 +152,8 @@ class SplitBillDetailViewController: BaseViewController {
                     name: billingContent?.anyone ?? "",
                     billName: billingContent?.billName ?? "",
                     amountTotal: billingContent?.amount ?? 0,
-                    owedAmount: individualCalculationResult ?? 0,
-                    payAmount: individualResult ?? 0,
+                    owedAmount: equalCalculationResult ?? 0,
+                    payAmount: equalResult ?? 0,
                     status: amountStatus ?? 3
                 )
                 
@@ -424,7 +424,10 @@ extension SplitBillDetailViewController: UIScrollViewDelegate {
             btn.isSelected = false
         }
         
-        selectExpenseBtns[number].isSelected = true
+        if number == 0 || number == 1 {
+            
+            selectExpenseBtns[number].isSelected = true
+        }
         
         guard let type = ShareType(rawValue: number) else { return }
 

@@ -47,7 +47,7 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print(remoteMessage.appData)
+        
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
@@ -61,6 +61,6 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void) {
-        print(response)
+        
     }
 }
