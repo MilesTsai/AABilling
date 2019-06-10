@@ -11,7 +11,7 @@ import Firebase
 
 class AddBillViewController: BaseViewController {
     
-    @IBOutlet weak var accountObject: UITextField!
+    @IBOutlet weak var accountObject: NonEditTextField!
     
     @IBOutlet weak var friendBillName: UITextField!
     
@@ -39,6 +39,10 @@ class AddBillViewController: BaseViewController {
         pickerView.dataSource = self
         
         accountObject.inputView = pickerView
+        
+        friendBillName.delegate = self
+        
+        billAmount.delegate = self
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
         view.addGestureRecognizer(tap)
@@ -182,7 +186,6 @@ class AddBillViewController: BaseViewController {
             }
             
             newFriendLists = tempFriendList
-
         }
     }
 }
@@ -205,9 +208,45 @@ extension AddBillViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         if newFriendLists.count == 0 {
+            
         } else {
+            
             accountObject.text = newFriendLists[row].name
         }
+    }
+}
+
+extension AddBillViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        
+        if textField == friendBillName {
+            
+            if let nameText = friendBillName.text {
+                
+                let count = nameText.count + string.count - range.length
+                
+                return count <= 9
+            }
+            
+        } else if textField == billAmount {
+            
+            if let amountCount = billAmount.text {
+                
+                let count = amountCount.count + string.count - range.length
+                
+                return count <= 10
+            }
+            
+        } else {
+            
+            return true
+        }
+        
+        return true
     }
 }

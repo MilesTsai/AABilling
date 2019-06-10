@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol BillingDocument {
-    init?(dictionary: [String: Any])
-}
-
 struct BillData {
     
     let uid: String?
@@ -72,7 +68,7 @@ struct BillingContent {
     let amount: Int
 }
 
-extension BillData: BillingDocument {
+extension BillData {
     init?(dictionary: [String: Any]) {
         guard let name =
             dictionary["name"] as? String,
@@ -92,9 +88,9 @@ extension BillData: BillingDocument {
             dictionary["payAmount"] as? Int
             else {
                 return nil
-                
+
         }
-        
+
         self.init(
             uid: uid,
             billUid: billUid,

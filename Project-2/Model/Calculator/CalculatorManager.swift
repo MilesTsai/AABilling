@@ -16,9 +16,7 @@ struct Operating {
     mutating func resulet(_ operate: String, value secondValue: Double) -> String {
         
         if bindingOperate == "" {
-//            bindingValue = secondValue
-//            bindingOperate = operate
-//            resultValue = secondValue
+
             calculatorStatus(secondValue: secondValue, operate: operate)
         } else {
             switch bindingOperate {

@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     -> Bool {
         
         FirebaseManager.shared.configure()
-//        FirebaseApp.configure()
         Fabric.with([Crashlytics.self])
 
         return true

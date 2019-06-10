@@ -21,11 +21,8 @@ class FriendViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView! {
 
         didSet {
-
             tableView.dataSource = self
-
             tableView.delegate = self
-
             tableView.separatorStyle = .none
         }
     }
@@ -49,11 +46,8 @@ class FriendViewController: BaseViewController {
     var friends = [PersonalData]() {
         
         didSet {
-            
             var sum = 0
-            
             var owe = 0
-            
             var lent = 0
             
             for friend in friends {
@@ -61,29 +55,23 @@ class FriendViewController: BaseViewController {
                 guard let total = friend.totalAccount else { return }
                 
                 sum += total
-                
                 totalLabel.text = "$\(sum)"
                 
                 if total < 0 {
                     
                     var money = total
-                    
                     money.negate()
-                    
                     owe += money
-                    
                     oweLabel.text = "$\(owe)"
                     
                 } else if total > 0 {
                     
                     lent += total
-                    
                     lentLabel.text = "$\(lent)"
                     
                 } else if total == 0 {
                     
                     oweLabel.text = "$\(total)"
-                    
                     lentLabel.text = "$\(total)"
                 }
             }
@@ -121,6 +109,7 @@ class FriendViewController: BaseViewController {
     }
     
     @objc func deleteFriendList(data: Notification) {
+        
         let friendUid = data.userInfo?["friendUid"] as? String
         for (index, element) in friends.enumerated() {
             if element.uid == friendUid {
@@ -153,7 +142,6 @@ class FriendViewController: BaseViewController {
         
         FirebaseManager.shared.readFriendListData { [weak self] (friendList) in
             self?.friendList = friendList
-            
             self?.acceptList()
             
             FirebaseManager.shared.updateToken(friends: self?.friends ?? [])
@@ -161,9 +149,7 @@ class FriendViewController: BaseViewController {
             DispatchQueue.main.async {
                 
                 self?.tableView.reloadData()
-                
                 self?.tableView.mj_header.endRefreshing()
-                
             }
         }
     }
@@ -172,34 +158,32 @@ class FriendViewController: BaseViewController {
         storyboard!.instantiateViewController(withIdentifier: "AddFriend")
     
     @IBAction func addFriend(_ sender: UIBarButtonItem) {
+        
         addFriendVC.modalPresentationStyle = .overCurrentContext
         present(addFriendVC, animated: false, completion: nil)
     }
     
     @IBAction func logOut(_ sender: UIBarButtonItem) {
+        
         try? Auth.auth().signOut()
     }
     
     func acceptList() {
         
         var tempFriend: [PersonalData] = []
-        
         var tempInvitation: [PersonalData] = []
         
         for accepts in 0..<friendList.count {
             
             if friendList[accepts].status == 0 {
-            
                 tempInvitation.append(friendList[accepts])
                 
             } else if friendList[accepts].status == 1 {
-                
                 tempFriend.append(friendList[accepts])
                 
             }
             
             acceptsList = tempInvitation
-            
             friends = tempFriend
         }
     }
@@ -208,7 +192,6 @@ class FriendViewController: BaseViewController {
 extension FriendViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 2
     }
 
@@ -216,19 +199,16 @@ extension FriendViewController: UITableViewDataSource {
         
         let cell =
             tableView.dequeueReusableCell(withIdentifier: String(describing: FriendSectionCell.self))
-        
         guard let friendSectionCell =
             cell as? FriendSectionCell else { return cell }
         
         if section == 0 {
-            
             friendSectionCell.sectionTitle.text = "好友邀請"
             
         } else {
-            
             friendSectionCell.sectionTitle.text = "好友"
+            
         }
-        
         return friendSectionCell
     }
     
@@ -237,11 +217,14 @@ extension FriendViewController: UITableViewDataSource {
         if section == 0 {
             if acceptsList.count == 0 {
                 return 1
+                
             } else {
                 return acceptsList.count
+                
             }
         } else {
             return friends.count
+            
         }
     }
 
@@ -258,8 +241,11 @@ extension FriendViewController: UITableViewDataSource {
                         for: indexPath)
                 
                 guard let noInviteCell = inviteCell as? NoInviteCell else { return inviteCell }
+                
                 return noInviteCell
+                
             } else {
+                
                 let cell =
                     tableView.dequeueReusableCell(
                             withIdentifier: String(
@@ -274,15 +260,10 @@ extension FriendViewController: UITableViewDataSource {
                 let list = acceptsList[indexPath.row]
                 
                 acceptFriendCell.userName.text = list.name
-                
                 acceptFriendCell.acceptBtn.isHidden = false
-                
                 acceptFriendCell.refuseBtn.isHidden = false
-                
                 acceptFriendCell.accountsSum.text = ""
-                
                 acceptFriendCell.accountsStatus.text = ""
-                
                 acceptFriendCell.acceptBtn.addTarget(
                     self,
                     action: #selector(self.accept(_:)),
@@ -293,11 +274,11 @@ extension FriendViewController: UITableViewDataSource {
                     for: .touchUpInside
                 )
                 acceptFriendCell.acceptBtn.tag = indexPath.row
-                
                 acceptFriendCell.refuseBtn.tag = indexPath.row
                 
                 return acceptFriendCell
             }
+            
         } else if indexPath.section == 1 {
             
             let cell =
@@ -307,9 +288,7 @@ extension FriendViewController: UITableViewDataSource {
                 cell as? FriendListCell else { return cell }
          
             friendCell.acceptBtn.isHidden = true
-            
             friendCell.refuseBtn.isHidden = true
-            
             friendCell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             
             let list = friends[indexPath.row]
@@ -317,17 +296,12 @@ extension FriendViewController: UITableViewDataSource {
             guard var total = list.totalAccount else { return friendCell }
             
             friendCell.userName.text = list.name
-            
             friendCell.accountsStatus.text = ""
-            
             friendCell.accountsSum.text = "$\(String(describing: total))"
             
             if total > 0 {
-                
                 friendCell.accountsStatus.text = "借出"
-                
                 friendCell.accountsStatus.textColor = .init(cgColor: #colorLiteral(red: 0.2470588235, green: 0.2274509804, blue: 0.2274509804, alpha: 1))
-                
                 friendCell.accountsSum.text = "$\(String(describing: total))"
                 
             } else if total < 0 {
@@ -347,12 +321,14 @@ extension FriendViewController: UITableViewDataSource {
     }
     
     @objc func accept(_ sender: UIButton) {
+        
         guard let acceptUid = acceptsList[sender.tag].uid else { return }
         FirebaseManager.shared.updateMyStatus(document: acceptUid)
         FirebaseManager.shared.updateFriendStatus(document: acceptUid)
     }
     
     @objc func refuse(_ sender: UIButton) {
+        
         guard let acceptUid = acceptsList[sender.tag].uid else { return }
         FirebaseManager.shared.deleteFriend(document: acceptUid)
         acceptsList.remove(at: sender.tag)
@@ -360,12 +336,14 @@ extension FriendViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if indexPath.section == 1 {
           performSegue(withIdentifier: "SegueFriendDetail", sender: nil)
         }
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
         if indexPath.section == 0 {
             return nil
         }
@@ -373,6 +351,7 @@ extension FriendViewController: UITableViewDataSource {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "SegueFriendDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 guard let friendDetailVC =
@@ -384,10 +363,11 @@ extension FriendViewController: UITableViewDataSource {
 }
 
 extension FriendViewController: UITableViewDelegate {
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 32
     }

@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol DocumentSerializable {
-    init?(dictionary: [String: Any])
-}
-
 struct PersonalData {
     
     let name: String?
@@ -58,7 +54,8 @@ struct PersonalData {
     }
 }
 
-extension PersonalData: DocumentSerializable {
+extension PersonalData {
+    
     init?(dictionary: [String: Any]) {
         guard let name =
                     dictionary["name"] as? String,
@@ -75,7 +72,7 @@ extension PersonalData: DocumentSerializable {
               let fcmToken =
                     dictionary["fcmToken"] as? String
               else { return nil }
-        
+       
         self.init(
             name: name,
             email: email,

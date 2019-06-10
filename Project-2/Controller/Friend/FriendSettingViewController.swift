@@ -29,7 +29,6 @@ class FriendSettingViewController: BaseViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         friendName.text = friendDetailData?.name
-        
         friendEmail.text = friendDetailData?.email
     }
 

@@ -12,12 +12,8 @@ private enum Tab {
 
     case friend
 
-//    case group
-
     case addBill
 
-//    case chart
-//
     case user
 
     func controller() -> UIViewController {
@@ -28,12 +24,8 @@ private enum Tab {
 
         case .friend: controller = UIStoryboard.friend.instantiateInitialViewController()!
 
-//        case .group: controller = UIStoryboard.group.instantiateInitialViewController()!
-
         case .addBill: controller = UIStoryboard.addBill.instantiateInitialViewController()!
 
-//        case .chart: controller = UIStoryboard.chart.instantiateInitialViewController()!
-//
         case .user: controller = UIStoryboard.user.instantiateInitialViewController()!
 
         }
@@ -56,26 +48,12 @@ private enum Tab {
                 selectedImage: UIImage.source(.friendselect)
             )
 
-//        case .group:
-//            return UITabBarItem(
-//                title: nil,
-//                image: UIImage.source(.group),
-//                selectedImage: UIImage.source(.groupselect)
-//            )
-
         case .addBill:
             return UITabBarItem(
                 title: nil,
                 image: UIImage.source(.addBill),
                 selectedImage: UIImage.source(.addBillselect)
             )
-
-//        case .chart:
-//            return UITabBarItem(
-//                title: nil,
-//                image: UIImage.source(.chart),
-//                selectedImage: UIImage.source(.chartselect)
-//            )
 
         case .user:
             return UITabBarItem(
@@ -89,7 +67,6 @@ private enum Tab {
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
-//    private let tabs: [Tab] = [.friend, .group, .addBill, .chart, .user]
     private let tabs: [Tab] = [.friend, .addBill, .user]
     
     let layerGradient = CAGradientLayer()
@@ -104,9 +81,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         layerGradient.endPoint = CGPoint(x: 0.0, y: 1.6)
         layerGradient.frame = CGRect(x: 0, y: 0, width: tabBar.bounds.width, height: tabBar.bounds.height)
         self.tabBar.layer.addSublayer(layerGradient)
-
-//        UITabBar.appearance().layer.borderWidth = 0.0
-//        UITabBar.appearance().clipsToBounds = true
         
         viewControllers = tabs.map({ $0.controller() })
 

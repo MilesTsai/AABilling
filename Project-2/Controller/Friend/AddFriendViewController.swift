@@ -22,7 +22,6 @@ class AddFriendViewController: UIViewController {
         super.viewDidLoad()
 
         contentView.isHidden = true
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -31,7 +30,6 @@ class AddFriendViewController: UIViewController {
         UIView.animate(withDuration: 0.3, animations: { [weak self] in
 
             self?.contentView.isHidden = false
-
             self?.addEmail.becomeFirstResponder()
         })
         
@@ -66,7 +64,6 @@ class AddFriendViewController: UIViewController {
             if completion == true {
                 
                 AlertManager().alertView(title: "錯誤", message: "無此帳號", view: self!)
-                
             } else {
                 
                 let alertController =

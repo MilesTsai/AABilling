@@ -238,6 +238,7 @@ class FirebaseManager {
                 guard let snapshot =
                     querySnapshot else { return }
                 var friendLists = [PersonalData]()
+                
                 friendLists =
                     snapshot
                         .documents

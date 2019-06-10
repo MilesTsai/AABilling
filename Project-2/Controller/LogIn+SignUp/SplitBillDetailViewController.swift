@@ -74,8 +74,6 @@ class SplitBillDetailViewController: BaseViewController {
     
     @IBOutlet var selectExpenseBtns: [UIButton]!
     
-//    @IBOutlet weak var payer: UILabel!
-    
     var containerViews: [UIView] {
         
         return [equalContainerView, individualContainerView]
@@ -372,7 +370,7 @@ class SplitBillDetailViewController: BaseViewController {
     
     private func updateContainer(type: ShareType) {
         
-        containerViews.forEach({ $0.isHidden = true })
+        containerViews.forEach({ $0.isHidden = false })
         
         switch type {
             

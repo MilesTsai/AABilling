@@ -33,5 +33,10 @@ class TextFieldPlaceholder: UITextField {
         self.leftView = paddingView
         self.leftViewMode = .always
     }
+}
 
+class NonEditTextField: TextFieldPlaceholder {
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        return false
+    }
 }

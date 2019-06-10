@@ -27,8 +27,6 @@ class EqualViewController: BaseTableViewController {
     
     var averageLabel: UILabel?
     
-    var selectHandler: ((String) -> Void)?
-    
     var owedAmount: ((Int) -> Void)?
     
     var payAmount: ((Int) -> Void)?

@@ -26,13 +26,10 @@ class BaseViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-//        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.2717267275, green: 0.3133575916, blue: 0.3388757706, alpha: 1)
         
         navigationController?.navigationBar.setGradientBackground()
 
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-//            UIColor.init(red: 63.0 / 255.0, green: 58.0 / 255.0, blue: 58.0 / 255.0, alpha: 1)]
 
         navigationController?.navigationBar.isTranslucent = false
         

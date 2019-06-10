@@ -50,7 +50,7 @@ class PushNotificationSender {
                         NSLog("Received data:\n\(jsonDataDict))")
                     }
                 }
-            } catch let err as NSError {
+            } catch _ as NSError {
                 
             }
         }

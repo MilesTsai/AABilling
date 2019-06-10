@@ -9,16 +9,13 @@
 import UIKit
 import Firebase
 
-class FriendDetailViewController: BaseViewController {
+class FriendDetailViewController: BaseViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var friendDetailTableView: UITableView! {
 
         didSet {
-
             friendDetailTableView.dataSource = self
-
             friendDetailTableView.delegate = self
-            
             friendDetailTableView.separatorStyle = .none
         }
     }
@@ -57,6 +54,7 @@ class FriendDetailViewController: BaseViewController {
     }
     
     @objc func deleteBillList(data: Notification) {
+        
         let billUid = data.userInfo?["billingUid"] as? String
         for (index, element) in billingList.enumerated() {
             if element.billUid == billUid {
@@ -67,6 +65,7 @@ class FriendDetailViewController: BaseViewController {
     }
     
     @objc func billList(data: Notification) {
+        
         let billUid = data.userInfo?["billingUid"] as? String
         for (index, element) in billingList.enumerated() {
             if element.billUid == billUid {
@@ -82,15 +81,12 @@ class FriendDetailViewController: BaseViewController {
             identifier: String(describing: FriendDetailCell.self),
             bundle: nil
         )
-
         friendDetailTableView.mls_registerCellWithNib(
             identifier: String(describing: FriendAccountsListDetailCell.self),
             bundle: nil
         )
-        
         friendDetailTableView.addRefreshHeader(refreshingBlock: { [weak self] in
             self?.billingDetail()
-            
         })
     }
     
@@ -104,7 +100,6 @@ class FriendDetailViewController: BaseViewController {
             
             lent += owedTotal
         }
-        
         sum = lent
     }
     
@@ -115,13 +110,11 @@ class FriendDetailViewController: BaseViewController {
         FirebaseManager.shared.readBillingDetail(friendUid: friendID, completion: { [weak self] (billingList) in
             
             self?.billingList = billingList
-            
             self?.lentAmount()
             
             DispatchQueue.main.async {
                 
                 self?.friendDetailTableView.reloadData()
-                
                 self?.friendDetailTableView.mj_header.endRefreshing()
             }
         })
@@ -130,10 +123,21 @@ class FriendDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         
         billingDetail()
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+
     }
 
     @IBAction func backFriendList(_ sender: UIButton) {
@@ -147,7 +151,6 @@ class FriendDetailViewController: BaseViewController {
                     storyboard?.instantiateViewController(
                         withIdentifier: "FriendSetting")
                         as? UINavigationController else { return }
-        
         guard let friendSettingVC =
                     nextVC.topViewController as? FriendSettingViewController else { return }
   
@@ -184,11 +187,10 @@ extension FriendDetailViewController: UITableViewDataSource {
             
             friendHeaderCell.friendBill.text =
             "\(friendName) 需還你 $\(sum)"
-            
+
         } else if sum < 0 {
             
             sum.negate()
-            
             friendHeaderCell.friendBill.text =
             "你 需還\(friendName) $\(sum)"
             
@@ -206,6 +208,7 @@ extension FriendDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell =
                 tableView.dequeueReusableCell(
                     withIdentifier: String(describing: FriendAccountsListDetailCell.self),
@@ -214,7 +217,6 @@ extension FriendDetailViewController: UITableViewDataSource {
 
         guard let accountsDetailCell =
                     cell as? FriendAccountsListDetailCell else { return cell }
-        
         if billingList.count == 0 {
             
             return accountsDetailCell
@@ -226,35 +228,26 @@ extension FriendDetailViewController: UITableViewDataSource {
             guard var moneyList = list.owedAmount else { return accountsDetailCell }
             
             accountsDetailCell.billName.text = list.billName
-            
             accountsDetailCell.sumOfMoney.text = "$\(moneyList)"
-                
             accountsDetailCell.sumOfMoneyStatus.text = ""
                 
             if moneyList > 0 {
                     
                 accountsDetailCell.sumOfMoneyStatus.text = "借出"
-                    
                 accountsDetailCell.sumOfMoney.text = "$\(String(describing: moneyList))"
-                
                 accountsDetailCell.sumOfMoneyStatus.textColor = .init(cgColor: #colorLiteral(red: 0.2470588235, green: 0.2274509804, blue: 0.2274509804, alpha: 1))
                     
             } else if moneyList < 0 {
                     
                 accountsDetailCell.sumOfMoneyStatus.text = "欠款"
-                
                 accountsDetailCell.sumOfMoneyStatus.textColor = .red
-                    
                 moneyList.negate()
-                
                 accountsDetailCell.sumOfMoney.text = "$\(String(describing: moneyList))"
                 
             } else if moneyList == 0 {
                 
                 accountsDetailCell.sumOfMoneyStatus.text = "銀貨兩訖"
-                
                 accountsDetailCell.sumOfMoney.text = "$0"
-                
                 accountsDetailCell.sumOfMoneyStatus.textColor = .init(cgColor: #colorLiteral(red: 0.2470588235, green: 0.2274509804, blue: 0.2274509804, alpha: 1))
             }
         }
@@ -267,7 +260,9 @@ extension FriendDetailViewController: UITableViewDataSource {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "SegueFriendBillDetail" {
+            
             if let indexPath = friendDetailTableView.indexPathForSelectedRow {
                 guard let friendBillDetailNC = segue.destination as? UINavigationController else { return }
                 

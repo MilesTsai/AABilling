@@ -67,26 +67,22 @@ class FriendBillDetailViewController: BaseViewController {
         amountTotal.text = "$\(total)"
         
         guard let friendName = billingDetailData?.name else { return }
-        
         guard let pay = billingDetailData?.payAmount else { return }
-        
         guard var owe = billingDetailData?.owedAmount else { return }
-        
         guard let money = billingDetailData?.amountTotal else { return }
         
         myAccountStatus.text = "$\(0)"
-        
         friendAccountStatus.text = "$\(0)"
         
         if owe > 0 {
             myAccountStatus.text = "你付了 $\(pay)，需取回 $\(owe)"
             friendAccountStatus.text = "\(friendName) 欠你 $\(owe)"
+            
         } else if owe < 0 {
             owe.negate()
             myAccountStatus.text = "你欠 \(friendName) $\(owe)"
             friendAccountStatus.text = "\(friendName)付了 $\(money - pay)，需取回 $\(owe)"
         }
-        
     }
     
     @IBAction func backFreindDetail(_ sender: UIBarButtonItem) {
@@ -99,8 +95,8 @@ class FriendBillDetailViewController: BaseViewController {
         dispatchGroup.enter()
         
         guard let currentUser = Auth.auth().currentUser else { return }
-        
         guard let friendUid = billingDetailData?.uid else { return }
+        
         dataBase
             .collection(UserEnum.users.rawValue)
             .document(friendUid)
@@ -120,9 +116,7 @@ class FriendBillDetailViewController: BaseViewController {
             )
             
             guard let myfriend = self?.friendTotalAccount?.totalAccount else { return }
-            
             self?.myfriendTotalAccount = myfriend
-            
             self?.dispatchGroup.leave()
         })
     }
@@ -132,7 +126,6 @@ class FriendBillDetailViewController: BaseViewController {
         dispatchGroup.enter()
         
         guard let billingUid = billingDetailData?.billUid else { return }
-        
         guard let friendUid = billingDetailData?.uid else { return }
         
         dataBase
@@ -154,9 +147,7 @@ class FriendBillDetailViewController: BaseViewController {
                 status: friendBill?[BillData.CodingKeys.status.rawValue] as? Int)
             
             guard let myfriendBill = self?.friendBilling?.owedAmount else { return }
-            
             self?.myfriendOwedAmount = myfriendBill
-            
             self?.dispatchGroup.leave()
         })
     }
@@ -166,7 +157,6 @@ class FriendBillDetailViewController: BaseViewController {
         dispatchGroup.enter()
         
         guard let currentUser = Auth.auth().currentUser else { return }
-        
         guard let friendUid = billingDetailData?.uid else { return }
         
         dataBase
@@ -188,9 +178,7 @@ class FriendBillDetailViewController: BaseViewController {
             )
             
             guard let selfTotalAccount = self?.myTotalAccount?.totalAccount else { return }
-            
             self?.mySelfTotalAccount = selfTotalAccount
-            
             self?.dispatchGroup.leave()
             
         })
@@ -199,12 +187,11 @@ class FriendBillDetailViewController: BaseViewController {
     func updateMyTotalAccount() {
         
         guard let currentUser = Auth.auth().currentUser else { return }
-        
         guard let friendUid = billingDetailData?.uid else { return }
         
-        self.dataBase
-            .collection(UserEnum.users.rawValue)
-            .document(currentUser.uid).collection(UserEnum.friends.rawValue)
+        dataBase.collection(UserEnum.users.rawValue)
+            .document(currentUser.uid)
+            .collection(UserEnum.friends.rawValue)
             .document(friendUid)
             .updateData(["totalAccount": mySelfTotalAccount + myfriendOwedAmount])
     }
@@ -212,14 +199,12 @@ class FriendBillDetailViewController: BaseViewController {
     func updateFriendTotalAccount() {
         
         guard let myOwedAmount = self.billingDetailData?.owedAmount else { return }
-        
         guard let friendUid = self.billingDetailData?.uid else { return }
-        
         guard let currentUser = Auth.auth().currentUser else { return }
         
-        self.dataBase
-            .collection(UserEnum.users.rawValue)
-            .document(friendUid).collection(UserEnum.friends.rawValue)
+        dataBase.collection(UserEnum.users.rawValue)
+            .document(friendUid)
+            .collection(UserEnum.friends.rawValue)
             .document(currentUser.uid)
             .updateData(["totalAccount": self.myfriendTotalAccount + myOwedAmount])
     }
@@ -241,31 +226,21 @@ class FriendBillDetailViewController: BaseViewController {
         dispatchGroup.notify(queue: .main) {
             
             guard let billingUid = self.billingDetailData?.billUid else { return }
-            
             guard let friendUid = self.billingDetailData?.uid else { return }
             
             self.updateFriendTotalAccount()
-            
             self.updateMyTotalAccount()
             
             FirebaseManager.shared.updateMyBillStatus(document: billingUid)
-            FirebaseManager.shared.updateFriendBillStatus(document: friendUid, billID: billingUid)
+            FirebaseManager.shared
+                .updateFriendBillStatus(document: friendUid, billID: billingUid)
         }
-        
         dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func friendBillEdit(_ sender: UIBarButtonItem) {
-        if let billEditVC = storyboard?.instantiateViewController(withIdentifier: "FriendBillEdit") {
-            
-            present(billEditVC, animated: true, completion: nil)
-        }
     }
     
     @IBAction func accountDelete(_ sender: Any) {
         
         guard let billingUid = billingDetailData?.billUid else { return }
-        
         guard let friendUid = billingDetailData?.uid else { return }
         
         NotificationCenter.default.post(

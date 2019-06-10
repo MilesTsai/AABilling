@@ -13,7 +13,7 @@ class UserViewController: BaseViewController {
     
     @IBOutlet weak var userPhoto: UIImageView!
     
-    @IBOutlet weak var userName: TextFieldPlaceholder!
+    @IBOutlet weak var userName: UITextField!
     
     @IBOutlet weak var userEmail: UILabel!
     
@@ -45,6 +45,8 @@ class UserViewController: BaseViewController {
         super.viewDidLoad()
         
         setupTableView()
+        
+        userName.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -196,8 +198,6 @@ extension UserViewController: UITableViewDataSource {
             guard let noFriendCell =
                 secondCell as? NoLentCell else { return secondCell }
 
-//            noFriendCell.noLentLogo.text = "暫無未還款的朋友"
-
             return noFriendCell
 
         } else {
@@ -283,5 +283,21 @@ extension UserViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+}
+
+extension UserViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        
+        guard let text = userName.text else {
+            return true
+        }
+        
+        let count = text.count + string.count - range.length
+        
+        return count <= 10
     }
 }
