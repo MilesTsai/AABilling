@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,24 +18,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kJN-xI-4Vb">
-                                <rect key="frame" x="172.5" y="318.5" width="30" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ym1-EJ-nTK">
+                                <rect key="frame" x="62.5" y="208.5" width="250" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="1pM-Ur-Sgk"/>
-                                    <constraint firstAttribute="height" constant="30" id="m64-nW-BSG"/>
+                                    <constraint firstAttribute="width" constant="250" id="a6t-95-0DM"/>
+                                    <constraint firstAttribute="width" secondItem="ym1-EJ-nTK" secondAttribute="height" multiplier="1:1" id="wbE-tq-5J3"/>
                                 </constraints>
-                                <color key="color" red="0.2470588235" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="kJN-xI-4Vb" firstAttribute="centerX" secondItem="b64-2r-AKr" secondAttribute="centerX" id="760-aR-8yA"/>
-                            <constraint firstItem="kJN-xI-4Vb" firstAttribute="centerY" secondItem="b64-2r-AKr" secondAttribute="centerY" id="Zqb-oD-ASW"/>
+                            <constraint firstItem="ym1-EJ-nTK" firstAttribute="centerY" secondItem="b64-2r-AKr" secondAttribute="centerY" id="JDq-5s-Kws"/>
+                            <constraint firstItem="ym1-EJ-nTK" firstAttribute="centerX" secondItem="b64-2r-AKr" secondAttribute="centerX" id="xo7-ou-8PT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ofD-RZ-HEq"/>
                     </view>
                     <connections>
-                        <outlet property="testView" destination="kJN-xI-4Vb" id="v3C-Wk-I9H"/>
+                        <outlet property="loadingView" destination="ym1-EJ-nTK" id="dKa-U7-RXh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ZD-23-his" userLabel="First Responder" sceneMemberID="firstResponder"/>

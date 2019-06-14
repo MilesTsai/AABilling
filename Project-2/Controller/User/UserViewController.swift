@@ -44,6 +44,8 @@ class UserViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pushNotification.isHidden = true
+        
         setupTableView()
         
         userName.delegate = self

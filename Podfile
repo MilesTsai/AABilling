@@ -22,6 +22,8 @@ target 'Project-2' do
   
   pod 'MJRefresh'
   
+  pod 'lottie-ios'
+  
   target 'Project-2Tests' do
     inherit! :search_paths
     pod 'Firebase'

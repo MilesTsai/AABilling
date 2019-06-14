@@ -71,6 +71,7 @@
 		CEABD3ED226767080062B552 /* AverageValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3EB226767080062B552 /* AverageValueCell.swift */; };
 		CEABD3EE226767080062B552 /* AverageValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEABD3EC226767080062B552 /* AverageValueCell.xib */; };
 		CEABD3F9226D9EDC0062B552 /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABD3F8226D9EDB0062B552 /* UserObject.swift */; };
+		CEBE42CD22B26881004C4B62 /* servishero_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CEBE42CC22B26880004C4B62 /* servishero_loading.json */; };
 		CEC955CE228176D200F764A7 /* User+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC955CD228176D200F764A7 /* User+Enum.swift */; };
 		CED3A86922545874007B5A07 /* LogInAndSignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */; };
 		CED3A86C225460B6007B5A07 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3A86B225460B6007B5A07 /* UIView+Extension.swift */; };
@@ -191,6 +192,7 @@
 		CEABD3EB226767080062B552 /* AverageValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageValueCell.swift; sourceTree = "<group>"; };
 		CEABD3EC226767080062B552 /* AverageValueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AverageValueCell.xib; sourceTree = "<group>"; };
 		CEABD3F8226D9EDB0062B552 /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
+		CEBE42CC22B26880004C4B62 /* servishero_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = servishero_loading.json; path = ../../../Desktop/servishero_loading.json; sourceTree = "<group>"; };
 		CEC955CD228176D200F764A7 /* User+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Enum.swift"; sourceTree = "<group>"; };
 		CED3A86822545874007B5A07 /* LogInAndSignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInAndSignUp.storyboard; sourceTree = "<group>"; };
 		CED3A86B225460B6007B5A07 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				CEFDBC2022538FC100E603F3 /* Model */,
 				CEFDBC1F22538FBE00E603F3 /* View */,
 				CEFDBC1E22538FBA00E603F3 /* Controller */,
+				CEBE42CC22B26880004C4B62 /* servishero_loading.json */,
 				CEFDBC0C22538EF900E603F3 /* AppDelegate.swift */,
 				CEFDBC1822538EFC00E603F3 /* Info.plist */,
 				CEFF0D86225EDF7F00C74ED4 /* GoogleService-Info.plist */,
@@ -752,6 +755,7 @@
 				CE007C7D22759CDA00465E28 /* Group.storyboard in Resources */,
 				CEFF0D78225DBEE900C74ED4 /* GroupSettleUpSelectCell.xib in Resources */,
 				CEFF0D89225F3E1600C74ED4 /* Loading.storyboard in Resources */,
+				CEBE42CD22B26881004C4B62 /* servishero_loading.json in Resources */,
 				CE768AC5225B1A2400ECEBE1 /* GroupDetailCell.xib in Resources */,
 				CE768A8D2254EF3B00ECEBE1 /* Chart.storyboard in Resources */,
 				CE768A8B2254EF2400ECEBE1 /* AddBill.storyboard in Resources */,
@@ -801,6 +805,7 @@
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -816,6 +821,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -124,8 +124,6 @@ class FriendDetailViewController: BaseViewController, UIGestureRecognizerDelegat
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         

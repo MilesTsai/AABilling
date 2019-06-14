@@ -8,23 +8,33 @@
 
 import UIKit
 import FirebaseAuth
+import Lottie
 
 class LoadingViewController: UIViewController {
 
-    @IBOutlet weak var testView: UIActivityIndicatorView!
+//    @IBOutlet weak var testView: UIActivityIndicatorView!
+    @IBOutlet weak var loadingView: AnimationView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let animationVoiew = AnimationView(name: "servishero_loading")
         
+        self.view.addSubview(animationVoiew)
+        animationVoiew.frame.size = CGSize(width: 250, height: 250)
+        animationVoiew.center = self.view.center
+        animationVoiew.contentMode = .scaleAspectFill
+        animationVoiew.loopMode = .loop
+        animationVoiew.play()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         UIView.animate(
-            withDuration: 3.0,
+            withDuration: 1, delay: 0.8,
             animations: {
-                self.testView.startAnimating()
+                self.loadingView.alpha = 0.0
+        
         }, completion: { _ in
             Auth.auth().addStateDidChangeListener { (_, user) in
                 

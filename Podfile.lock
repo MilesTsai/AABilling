@@ -113,6 +113,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.1)
   - IQKeyboardManager (6.2.1)
   - leveldb-library (1.20)
+  - lottie-ios (3.0.4)
   - MJRefresh (3.1.16)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -131,6 +132,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Messaging
   - IQKeyboardManager
+  - lottie-ios
   - MJRefresh
   - SwiftLint
 
@@ -155,6 +157,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - IQKeyboardManager
     - leveldb-library
+    - lottie-ios
     - MJRefresh
     - nanopb
     - Protobuf
@@ -180,11 +183,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   IQKeyboardManager: 964638372b4a61892cc74fdfa6fd26de8c9464a2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  lottie-ios: 55a2de40418f8de2b155efaba4d4d1a025a5c570
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: 86084e94dd3f59d7ff85f03172de55f841e40a16
+PODFILE CHECKSUM: 9b0b23799223913c2e28036deef99081d16ad2b6
 
 COCOAPODS: 1.6.0
