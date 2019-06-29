@@ -12,26 +12,25 @@ import Lottie
 
 class LoadingViewController: UIViewController {
 
-//    @IBOutlet weak var testView: UIActivityIndicatorView!
     @IBOutlet weak var loadingView: AnimationView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let animationVoiew = AnimationView(name: "servishero_loading")
-        
+        loadingView = animationVoiew
         self.view.addSubview(animationVoiew)
-        animationVoiew.frame.size = CGSize(width: 250, height: 250)
-        animationVoiew.center = self.view.center
-        animationVoiew.contentMode = .scaleAspectFill
-        animationVoiew.loopMode = .loop
-        animationVoiew.play()
+        loadingView.frame.size = CGSize(width: 250, height: 250)
+        loadingView.center = self.view.center
+        loadingView.contentMode = .scaleAspectFill
+        loadingView.loopMode = .playOnce
+        loadingView.play()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         UIView.animate(
-            withDuration: 1, delay: 0.8,
+            withDuration: 1, delay: 2,
             animations: {
                 self.loadingView.alpha = 0.0
         
